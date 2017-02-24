@@ -34,6 +34,14 @@ public class Store {
         return sectionArray;
     }
 
+    public boolean removeSection(Section s){
+        if(sections.contains(s)){
+            sections.remove(s);
+            return true;
+        }
+        return false;
+    }
+
 
 
 }

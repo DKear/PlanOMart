@@ -59,4 +59,15 @@ class StoreTest {
         store.addSection(section);
         Assertions.assertTrue(store.hasSections());
     }
+
+    @Test
+    public void storeRemoveSectionTest(){
+        Store store = new Store("Store");
+        Section section0 = new Section ("Section 1");
+        Section section1 = new Section ("Section 2");
+        store.addSection(section0);
+        store.addSection(section1);
+        store.removeSection(section0);
+        Assertions.assertTrue(store.getSections().length == 1);
+    }
 }
