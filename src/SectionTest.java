@@ -8,9 +8,24 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class SectionTest {
     @Test
-    public void sectionNameTest(){
-        String name = "store";
-        Store store = new Store(name);
-        Assertions.assertTrue(store.getStoreName().equals(name));
+    public void sectionNameTest() {
+        String name = "section";
+        Section section = new Section(name);
+        Assertions.assertTrue(section.getSectionName().equals(name));
     }
+
+    @Test
+    public void sectionInvalidNameTest() {
+        String name = null;
+        Store store;
+        try {
+            store = new Store(name);
+
+        } catch (NullPointerException e) {
+            Assertions.assertTrue(true);
+        }
+
+    }
+
+
 }
