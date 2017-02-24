@@ -1,3 +1,5 @@
+
+
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -6,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Created by Jamie on 2/24/2017.
  */
+
+
 class StoreTest {
     @Test
     public void storeNameTest(){
