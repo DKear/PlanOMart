@@ -16,10 +16,9 @@ public class SaleItem {
     private double salePrice;
     private String saleDescription;
 
-    SaleItem(double p, String n, String b, int u, int q, String c, double iS) {
+    SaleItem(double p, String b, int u, int q, String c, double iS) {
         if(p > 0 && u > 0 && q >= 0 && iS > 0) {
             price = p;
-            name = n;
             brand = b;
             upc = u;
             quantity = q;
@@ -33,9 +32,6 @@ public class SaleItem {
     }
     public double getPrice() {
         return price;
-    }
-    public String getName() {
-        return name;
     }
     public String getBrand() {
         return brand;
