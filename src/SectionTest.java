@@ -27,5 +27,16 @@ class SectionTest {
 
     }
 
+    @Test
+    public void sectionHasNoAisleTest(){
+        Section section = new Section("Section 1");
+        Assertions.assertFalse(section.hasAisle());
+    }
+
+    @Test
+    public void sectionReturnArrayTest(){
+        Section section = new Section("Section 1");
+        Assertions.assertTrue(section.getAisles().length == 0);
+    }
 
 }
