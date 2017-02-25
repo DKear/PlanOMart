@@ -20,8 +20,8 @@ public class SaleItemTest {
             test = true;
             Assertions.assertTrue(test);
         }
+        Assertions.assertTrue(test);
     }
-
     @Test
     public void getBrandTest() {
         SaleItem bread = new SaleItem(1.39,"Wonder Bread", 832756, 1, "Bread", 56);
@@ -37,6 +37,7 @@ public class SaleItemTest {
             test = true;
             Assertions.assertTrue(test);
         }
+        Assertions.assertTrue(test);
     }
     @Test
     public void emptyStringBrandTest() {
@@ -44,10 +45,11 @@ public class SaleItemTest {
         boolean test = false;
         try {
             bread = new SaleItem(1.39, "", 832756, 1, "Bread", 56);
-        } catch (NullPointerException e) {
+        } catch (IllegalArgumentException e) {
             test = true;
             Assertions.assertTrue(test);
         }
+        Assertions.assertTrue(test);
     }
     @Test
     public void getUPCTest() {
@@ -64,6 +66,7 @@ public class SaleItemTest {
             test = true;
             Assertions.assertTrue(test);
         }
+        Assertions.assertTrue(test);
     }
     @Test
     public void getQuatityTest() {
@@ -77,7 +80,7 @@ public class SaleItemTest {
         try {
             bread = new SaleItem(1.39, "Wonder Bread", 832756, -1, "Bread", 56);
         } catch (IllegalArgumentException e) {
-            test = false;
+            test = true;
             Assertions.assertTrue(test);
         }
         Assertions.assertTrue(test);

@@ -5,7 +5,6 @@ import java.util.ArrayList;
  */
 public class SaleItem {
     private double price;
-    private String name;
     private String brand;
     private int upc;
     private int quantity;
@@ -17,6 +16,23 @@ public class SaleItem {
     private String saleDescription;
 
     SaleItem(double p, String b, int u, int q, String c, double iS) {
+        if (b.equals(null) || c.equals(null)) {
+            throw new NullPointerException();
+        }
+        if(p > 0 && u > 0 && q >= 0 && iS > 0 && b != "" && c != "") {
+            price = p;
+            brand = b;
+            upc = u;
+            quantity = q;
+            category = c;
+            itemSize = iS;
+            area = quantity * itemSize;
+            tags = new ArrayList<String>();
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
+    SaleItem(double p, String b, int u, int q, String c, double iS, double sp, String sd) {
         if(p > 0 && u > 0 && q >= 0 && iS > 0) {
             price = p;
             brand = b;
@@ -24,6 +40,8 @@ public class SaleItem {
             quantity = q;
             category = c;
             itemSize = iS;
+            salePrice = sp;
+            saleDescription = sd;
             area = quantity * itemSize;
             tags = new ArrayList<String>();
         } else {
