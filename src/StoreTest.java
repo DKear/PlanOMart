@@ -1,7 +1,7 @@
 
 
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,11 +20,13 @@ class StoreTest {
 
     @Test
     public void storeInvalidNameTest(){
-        String name = null;
+        String name = "";
         Store store;
         try {
             store = new Store(name);
-            Assertion.assertFa
+            store.getStoreName();
+            Assertions.assertFalse(!store.getStoreName().equals(""));
+
 
         }catch (NullPointerException e){
             Assertions.assertTrue(true);
