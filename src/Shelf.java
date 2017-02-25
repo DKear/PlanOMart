@@ -11,14 +11,13 @@ public class Shelf {
 
 
     public Shelf(int n, int s) {
-        if(n > -1 && s > -1 && s < maxShelfSize) {
+        if(n >= 0 && s >= 0 && s < maxShelfSize) {
             rowNum = n;
             availableSize = s;
+            products = new ArrayList<SaleItem>();
         } else {
             throw new IllegalArgumentException();
         }
-
-        products = new ArrayList<SaleItem>();
     }
     public int getRowNum(){
         return rowNum;

@@ -13,17 +13,23 @@ public class SaleItem {
     private double itemSize;
     private double area;
     private ArrayList<String> tags;
+    private double salePrice;
+    private String saleDescription;
 
-    SaleItem(double p, String n, String b, int u, int q, String c, double s) {
-        price = p;
-        name =n;
-        brand = b;
-        upc = u;
-        quantity = q;
-        category = c;
-        itemSize = s;
-        area = quantity * itemSize;
-        tags = new ArrayList<String>();
+    SaleItem(double p, String n, String b, int u, int q, String c, double iS) {
+        if(p > 0 && u > 0 && q >= 0 && iS > 0) {
+            price = p;
+            name = n;
+            brand = b;
+            upc = u;
+            quantity = q;
+            category = c;
+            itemSize = iS;
+            area = quantity * itemSize;
+            tags = new ArrayList<String>();
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
     public double getPrice() {
         return price;
@@ -34,7 +40,7 @@ public class SaleItem {
     public String getBrand() {
         return brand;
     }
-    public int getUpc() {
+    public int getUPC() {
         return upc;
     }
     public int getQuantity() {

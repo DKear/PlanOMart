@@ -40,30 +40,36 @@ public class ShelfTest {
     public void negativeRowNum() {
         int row = -3;
         Shelf midHeight;
+        boolean test = false;
         try {
             midHeight = new Shelf(row, 50);
         } catch (IllegalArgumentException e) {
-            Assertions.assertTrue(true);
+            test = true;
+            Assertions.assertTrue(test);
         }
     }
     @Test
     public void negativeShelfSizeTest() {
         int size = -3;
         Shelf midHeight;
+        boolean test = false;
         try {
             midHeight = new Shelf(3, size);
         } catch (IllegalArgumentException e) {
-            Assertions.assertTrue(true);
+            test = true;
+            Assertions.assertTrue(test);
         }
     }
     @Test
     public void exceedsMaxShelfSizeTest() {
         int size = 1800;
         Shelf midHeight;
+        boolean test = false;
         try {
             midHeight = new Shelf(3, size);
         } catch (IllegalArgumentException e) {
-            Assertions.assertTrue(true);
+            test = true;
+            Assertions.assertTrue(test);
         }
     }
     @Test
