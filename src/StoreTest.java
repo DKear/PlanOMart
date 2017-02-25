@@ -24,6 +24,7 @@ class StoreTest {
         Store store;
         try {
             store = new Store(name);
+            Assertion.assertFa
 
         }catch (NullPointerException e){
             Assertions.assertTrue(true);
