@@ -19,7 +19,7 @@ public class SaleItem {
         if (b.equals(null) || c.equals(null)) {
             throw new NullPointerException();
         }
-        if(p > 0 && u > 0 && q >= 0 && iS > 0 && b != "" && c != "") {
+        if (p > 0 && u > 0 && q >= 0 && iS > 0 && b != "" && c != "") {
             price = p;
             brand = b;
             upc = u;
@@ -32,8 +32,12 @@ public class SaleItem {
             throw new IllegalArgumentException();
         }
     }
+
     SaleItem(double p, String b, int u, int q, String c, double iS, double sp, String sd) {
-        if(p > 0 && u > 0 && q >= 0 && iS > 0) {
+        if (b.equals(null) || c.equals(null) || sd.equals(null)) {
+            throw new NullPointerException();
+        }
+        if (p > 0 && u > 0 && q >= 0 && iS > 0 && sp >= 0) {
             price = p;
             brand = b;
             upc = u;
@@ -48,30 +52,46 @@ public class SaleItem {
             throw new IllegalArgumentException();
         }
     }
+
     public double getPrice() {
         return price;
     }
+
     public String getBrand() {
         return brand;
     }
+
     public int getUPC() {
         return upc;
     }
+
     public int getQuantity() {
         return quantity;
     }
+
     public String getCategory() {
         return category;
     }
-    public double getItemSize(){
+
+    public double getItemSize() {
         return itemSize;
     }
+
     public double getArea() {
         return area;
     }
+
     public String[] getTags() {
         String[] theTags = new String[tags.size()];
         theTags = tags.toArray(theTags);
         return theTags;
+    }
+
+    public double getSalePrice() {
+        return salePrice;
+    }
+
+    public String getSaleDescription() {
+        return saleDescription;
     }
 }

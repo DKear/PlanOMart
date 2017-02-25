@@ -69,7 +69,7 @@ public class SaleItemTest {
         Assertions.assertTrue(test);
     }
     @Test
-    public void getQuatityTest() {
+    public void getQuantityTest() {
         SaleItem bread = new SaleItem(1.39, "Wonder Bread", 832756, 1, "Bread", 56);
         Assertions.assertEquals(1, bread.getQuantity());
     }
@@ -84,5 +84,23 @@ public class SaleItemTest {
             Assertions.assertTrue(test);
         }
         Assertions.assertTrue(test);
+    }
+    @Test
+    public void getCategoryTest() {
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread", 832756, 1, "Bread", 56);
+        Assertions.assertTrue(bread.getCategory().equals("Bread"));
+    }
+    @Test
+    public void categoryIsNullTest() {
+        SaleItem bread;
+        boolean test = false;
+        try {
+            bread = new SaleItem(1.39, "Wonder Bread", 832756, 1, null, 56);
+        } catch (NullPointerException e) {
+            test = true;
+            Assertions.assertTrue(test);
+        }
+        Assertions.assertTrue(test);
+
     }
 }
