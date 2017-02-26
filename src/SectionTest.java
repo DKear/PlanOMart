@@ -15,10 +15,12 @@ class SectionTest {
 
     @Test
     public void sectionInvalidNameTest() {
-        String name = null;
-        Store store;
+        String name = "";
+        Section section;
         try {
-            store = new Store(name);
+            section = new Section(name);
+            section.getSectionName();
+            Assertions.assertFalse(!section.getSectionName().equals(""));
 
         } catch (NullPointerException e) {
             Assertions.assertTrue(true);
@@ -38,4 +40,30 @@ class SectionTest {
         Assertions.assertTrue(section.getAisles().length == 0);
     }
 
+    @Test
+    public void sectionAddAisleTest(){
+        Section section = new Section("Section");
+        Aisle aisle = new Aisle("Aisle 1");
+        section.addAisle(aisle);
+        Assertions.assertTrue(section.getAisles().length == 1);
+    }
+
+    @Test
+    public void sectionHasAisle(){
+        Section section = new Section("Section");
+        Aisle aisle = new Aisle("Aisle 1");
+        section.addAisle(aisle);
+        Assertions.assertTrue(section.hasAisle());
+    }
+
+    @Test
+    public void sectionRemoveAisleTest(){
+        Section section = new Section("Section");
+        Aisle aisle0 = new Aisle("Aisle 1");
+        Aisle aisle1 = new Aisle("Aisle 2");
+        section.addAisle(aisle0);
+        section.addAisle(aisle1);
+        section.removeAisle(aisle0);
+        Assertions.assertTrue(section.getAisles().length == 1);
+    }
 }
