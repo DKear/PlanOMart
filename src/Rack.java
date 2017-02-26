@@ -6,7 +6,7 @@ public class Rack {
     private int maxNumOfShelves = 8;
 
     public Rack(String n) {
-        if (n.equals(null)) {
+        /*if (n.equals(null)) {
             throw new NullPointerException();
         }
         if (!n.equals("")) {
@@ -14,7 +14,9 @@ public class Rack {
             shelves = new ArrayList<Shelf>();
         } else {
             throw new IllegalArgumentException();
-        }
+        }*/
+        rackName = n;
+        shelves =  new ArrayList<Shelf>();
     }
 
 

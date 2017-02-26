@@ -26,7 +26,18 @@ class RackTest {
 
     @Test
     public void nullRackNameTest(){
+        String name = "";
         Rack rack;
+        try{
+            rack = new Rack(name);
+            rack.getRackName();
+            Assertions.assertFalse(!rack.getRackName().equals(""));
+
+        }catch(NullPointerException e){
+            Assertions.assertTrue(true);
+
+
+        }
     }
 
 }
