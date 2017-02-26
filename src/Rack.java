@@ -3,18 +3,10 @@ import java.util.ArrayList;
 public class Rack {
     private String rackName;
     private ArrayList<Shelf> shelves;
-    private int maxNumOfShelves = 8;
+    private int rackHeight = 8;
+    private Aisle aisle;
 
     public Rack(String n) {
-        /*if (n.equals(null)) {
-            throw new NullPointerException();
-        }
-        if (!n.equals("")) {
-            rackName = n;
-            shelves = new ArrayList<Shelf>();
-        } else {
-            throw new IllegalArgumentException();
-        }*/
         rackName = n;
         shelves =  new ArrayList<Shelf>();
     }
@@ -49,5 +41,13 @@ public class Rack {
             return true;
         }
         return false;
+    }
+
+    public void setRackToAisle(Aisle a){
+        aisle = a;
+    }
+
+    public Aisle getRackAisle(){
+        return aisle;
     }
 }

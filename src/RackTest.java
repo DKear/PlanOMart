@@ -11,18 +11,6 @@ class RackTest {
         Assertions.assertTrue(rack1.getRackName().equals("rack1"));
     }
 
-    @Test
-    public void emptyRackNameTest(){
-        Rack rack;
-        boolean testRack = false;
-        try {
-            rack = new Rack("");
-        } catch (IllegalArgumentException e) {
-            testRack = true;
-            Assertions.assertTrue(testRack);
-        }
-        Assertions.assertTrue(testRack);
-    }
 
     @Test
     public void nullRackNameTest(){
@@ -39,5 +27,7 @@ class RackTest {
 
         }
     }
+
+
 
 }

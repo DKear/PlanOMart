@@ -102,7 +102,7 @@ public class ShelfTest {
         SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz", 76576598, 1, "books", 5, 8);
         Shelf shelf = new Shelf(3, 1000);
         shelf.addItem(book);
-        Assertions.assertEquals(952, shelf.getAvailableSize());
+        Assertions.assertEquals(960, shelf.getAvailableSize());
     }
 
     @Test
