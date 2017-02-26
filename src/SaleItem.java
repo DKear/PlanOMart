@@ -5,48 +5,56 @@ import java.util.ArrayList;
  */
 public class SaleItem {
     private double price;
+    private String name;
     private String brand;
     private int upc;
     private int quantity;
     private String category;
-    private double itemSize;
-    private double area;
+    private double itemBase;
+    private double itemHeight;
+    private double itemArea;
+    private double areaConsumed;
     private ArrayList<String> tags;
     private double salePrice;
     private String saleDescription;
 
-    SaleItem(double p, String b, int u, int q, String c, double iS) {
-        if (b.equals(null) || c.equals(null)) {
-            throw new NullPointerException();
-        }
-        if (p > 0 && u > 0 && q >= 0 && iS > 0 && b != "" && c != "") {
+    SaleItem(double p, String n, String b, int u, int q, String c, double iB, double iH) {
+        if (p > 0 && u > 0 && q >= 0 && iB > 0 && iH > 0 && !n.equals("")
+                && !b.equals("") && !c.equals("")) {
             price = p;
+            name = n;
             brand = b;
             upc = u;
             quantity = q;
             category = c;
-            itemSize = iS;
-            area = quantity * itemSize;
+            itemBase = iB;
+            itemHeight = iH;
+            itemArea = itemBase * itemHeight;
+            areaConsumed = quantity * itemArea;
             tags = new ArrayList<String>();
         } else {
             throw new IllegalArgumentException();
         }
     }
 
-    SaleItem(double p, String b, int u, int q, String c, double iS, double sp, String sd) {
-        if (b.equals(null) || c.equals(null) || sd.equals(null)) {
+    SaleItem(double p, String n, String b, int u, int q, String c, double iB, double iH, double sP, String sD) {
+        if (b.equals(null) || c.equals(null) || sD.equals(null)) {
             throw new NullPointerException();
         }
-        if (p > 0 && u > 0 && q >= 0 && iS > 0 && sp >= 0) {
+        if (p > 0 && u > 0 && q >= 0 && iB > 0 && iH > 0 && sP >= 0 && sP < p && !n.equals("")
+                && !b.equals("") && !c.equals("") && !sD.equals("")) {
             price = p;
+            name = n;
             brand = b;
             upc = u;
             quantity = q;
             category = c;
-            itemSize = iS;
-            salePrice = sp;
-            saleDescription = sd;
-            area = quantity * itemSize;
+            itemBase = iB;
+            itemHeight = iH;
+            itemArea = itemBase * itemHeight;
+            areaConsumed = quantity * itemArea;
+            salePrice = sP;
+            saleDescription = sD;
             tags = new ArrayList<String>();
         } else {
             throw new IllegalArgumentException();
@@ -55,6 +63,10 @@ public class SaleItem {
 
     public double getPrice() {
         return price;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getBrand() {
@@ -73,18 +85,30 @@ public class SaleItem {
         return category;
     }
 
-    public double getItemSize() {
-        return itemSize;
+    public double getItemBase() {
+        return itemBase;
     }
 
-    public double getArea() {
-        return area;
+    public double getItemHeight() {
+        return itemHeight;
+    }
+
+    public double getItemArea() {
+        return itemArea;
+    }
+
+    public double getTotalAreaConsumed() {
+        return areaConsumed;
     }
 
     public String[] getTags() {
-        String[] theTags = new String[tags.size()];
-        theTags = tags.toArray(theTags);
-        return theTags;
+        if(!tags.isEmpty()) {
+            String[] theTags = new String[tags.size()];
+            theTags = tags.toArray(theTags);
+            return theTags;
+        } else {
+            throw new ArrayStoreException();
+        }
     }
 
     public double getSalePrice() {
@@ -93,5 +117,19 @@ public class SaleItem {
 
     public String getSaleDescription() {
         return saleDescription;
+    }
+
+    public boolean addTag(String t) {
+            return tags.add(t);
+    }
+    public boolean hasTags() {
+        if (tags.size() == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public boolean removeTag(String t) {
+        return tags.remove(t);
     }
 }
