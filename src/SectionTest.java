@@ -45,7 +45,7 @@ class SectionTest {
         Section section = new Section("Section");
         Aisle aisle = new Aisle("Aisle 1");
         section.addAisle(aisle);
-        Assertions.assertTrue(section.getAisles().length == 1);
+        Assertions.assertTrue(section.getAisles().length == 1 & section.getAisles()[0].equals(aisle));
     }
 
     @Test
@@ -64,7 +64,7 @@ class SectionTest {
         section.addAisle(aisle0);
         section.addAisle(aisle1);
         section.removeAisle(aisle0);
-        Assertions.assertTrue(section.getAisles().length == 1);
+        Assertions.assertTrue(section.getAisles().length == 1 & section.getAisles()[0].equals(aisle1));
     }
 
     @Test

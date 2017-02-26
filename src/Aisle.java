@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Aisle {
     private String aisleName;
     private ArrayList<Rack> racks;
+    private Section section;
 
     public Aisle(String n) {
         aisleName = n;
@@ -38,5 +39,12 @@ public class Aisle {
         Rack[] rackArray = new Rack[racks.size()];
         rackArray = racks.toArray(rackArray);
         return rackArray;
+    }
+    public void setSection(Section s){
+        section = s;
+    }
+
+    public Section getSection(){
+        return section;
     }
 }

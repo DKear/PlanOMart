@@ -13,15 +13,17 @@ class AisleTest {
 
     @Test
     public void wrongAisleNameTest() {
-        String aisleName = null;
+        String aisleName = "";
         Aisle aisle;
-        boolean test = false;
+
         try {
             aisle = new Aisle(aisleName);
+            aisle.getAisleName();
+            Assertions.assertFalse(!aisle.getAisleName().equals(""));
         } catch (NullPointerException e) {
-            Assertions.assertTrue(test);
+            Assertions.assertTrue(true);
         }
-        Assertions.assertTrue(test);
+
     }
 
     @Test
@@ -62,5 +64,16 @@ class AisleTest {
         Rack rack = new Rack("Rack 1");
         aisle.addRack(rack);
         Assertions.assertTrue(aisle.hasRacks());
+    }
+    @Test
+    public void aisleSetSection(){
+        Section section = new Section("Section1");
+        Aisle aisle = new Aisle("Aisle 1");
+        Aisle aisle1 = new Aisle("Aisle 2");
+        section.addAisle(aisle);
+        section.addAisle(aisle1);
+        aisle.setSection(section);
+        aisle1.setSection(section);
+        Assertions.assertTrue(aisle1.getSection().equals(section) & section.getAisles()[1].equals(aisle1));
     }
 }
