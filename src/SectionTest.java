@@ -66,4 +66,16 @@ class SectionTest {
         section.removeAisle(aisle0);
         Assertions.assertTrue(section.getAisles().length == 1);
     }
+
+    @Test
+    public void sectionSetStore(){
+        Store store = new Store("Store");
+        Section section0 = new Section("Section 1");
+        Section section1 = new Section ("Section 1");
+        store.addSection(section0);
+        store.addSection(section1);
+        section0.setStore(store);
+        section1.setStore(store);
+        Assertions.assertTrue(section1.getStore().equals(store) & store.getSections()[1].equals(section1));
+    }
 }
