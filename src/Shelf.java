@@ -31,16 +31,20 @@ public class Shelf {
     public double getShelfMaxSize() {
         return maxShelfSize;
     }
-    public SaleItem[] getProductsOnShelf() {
-        SaleItem[] itemsOnShelf = new SaleItem[products.size()];
-        itemsOnShelf = products.toArray(itemsOnShelf);
-        return itemsOnShelf;
+    public SaleItem[] getItemsOnShelf() {
+        if (!products.isEmpty()) {
+            SaleItem[] itemsOnShelf = new SaleItem[products.size()];
+            itemsOnShelf = products.toArray(itemsOnShelf);
+            return itemsOnShelf;
+        } else {
+            throw new ArrayStoreException();
+        }
     }
     public boolean addItem(SaleItem i) {
-        if (availableSize < i.getItemSize()) {
+        if (availableSize < i.getTotalAreaConsumed()) {
             return false;
         } else {
-            availableSize -= i.getItemSize();
+            availableSize -= i.getTotalAreaConsumed();
             return products.add(i);
         }
     }
