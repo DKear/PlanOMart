@@ -17,6 +17,7 @@ public class SaleItem {
     private ArrayList<String> tags;
     private double salePrice;
     private String saleDescription;
+    private Shelf shelf;
 
     SaleItem(double p, String n, String b, int u, int q, String c, double iB, double iH) {
         if (p > 0 && u > 0 && q >= 0 && iB > 0 && iH > 0 && !n.equals("")
@@ -32,6 +33,7 @@ public class SaleItem {
             itemArea = itemBase * itemHeight;
             areaConsumed = quantity * itemArea;
             tags = new ArrayList<String>();
+
         } else {
             throw new IllegalArgumentException();
         }
@@ -131,5 +133,12 @@ public class SaleItem {
     }
     public boolean removeTag(String t) {
         return tags.remove(t);
+    }
+    public void setShelf(Shelf s){
+        shelf = s;
+    }
+
+    public Shelf getShelf(){
+        return shelf;
     }
 }

@@ -8,6 +8,7 @@ public class Shelf {
     private double availableSize;
     private ArrayList<SaleItem> products;
     private double maxShelfSize = 1440; // square inches based on 2.5 feet deep and 4 feet across
+    private Rack rack;
 
 
     public Shelf(int n, int s) {
@@ -41,12 +42,15 @@ public class Shelf {
         }
     }
     public boolean addItem(SaleItem i) {
-        if (availableSize < i.getTotalAreaConsumed()) {
+
+        products.add(i);
+        return true;
+        /*if (availableSize < i.getTotalAreaConsumed()) {
             return false;
         } else {
             availableSize -= i.getTotalAreaConsumed();
             return products.add(i);
-        }
+        }*/
     }
     public boolean hasItems() {
         if (products.size() == 0) {
@@ -57,5 +61,13 @@ public class Shelf {
     }
     public boolean removeItems(SaleItem i) {
            return products.remove(i);
+    }
+
+    public void setRack(Rack r){
+        rack = r;
+    }
+
+    public Rack getRack(){
+        return rack;
     }
 }

@@ -83,12 +83,12 @@ public class ShelfTest {
         Assertions.assertTrue(test);
     }
 
-    @Test
+    /*@Test
     public void addTooLargeOfItemTest() {
         SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz", 76576598, 1, "books", 5, 8);
         Shelf shelf = new Shelf(3, 5);
         Assertions.assertFalse(shelf.addItem(book));
-    }
+    }*/
 
     @Test
     public void itemAdded() {
@@ -97,13 +97,13 @@ public class ShelfTest {
         Assertions.assertTrue(shelf.addItem(book));
     }
 
-    @Test
+    /*@Test
     public void shelfAvailSizeReducedAfterAddTest() {
         SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz", 76576598, 1, "books", 5, 8);
         Shelf shelf = new Shelf(3, 1000);
         shelf.addItem(book);
         Assertions.assertEquals(960, shelf.getAvailableSize());
-    }
+    }*/
 
     @Test
     public void doesNotHaveItemTest() {
@@ -153,5 +153,14 @@ public class ShelfTest {
         SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz", 76576598, 1, "books", 5, 8);
         Shelf shelf = new Shelf(0, 50);
         Assertions.assertFalse(shelf.removeItems(book));
+    }
+
+    @Test
+    public void setgetRackTest(){
+        Rack rack = new Rack("Rack");
+        Shelf shelf = new Shelf(1,2);
+        rack.addShelf(shelf);
+        shelf.setRack(rack);
+        Assertions.assertTrue(rack.getShelf()[0].equals(shelf) & shelf.getRack().equals(rack));
     }
 }

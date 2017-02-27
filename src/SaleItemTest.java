@@ -1,6 +1,7 @@
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 /**
  * Created by joshu on 2/24/2017.
  */
@@ -323,5 +324,14 @@ public class SaleItemTest {
             Assertions.assertTrue(test);
         }
         Assertions.assertTrue(test);
+    }
+    @Test
+    public void setgetShelfTest(){
+        Shelf shelf = new Shelf(10, 10);
+        SaleItem item = new SaleItem(1.39, "White Classic", "Wonder Bread", 832756, 2, "Bread", 56, 4,
+                0, "Buy One Get One");
+        shelf.addItem(item);
+        item.setShelf(shelf);
+        Assertions.assertTrue(item.getShelf().equals(shelf) & shelf.getItemsOnShelf()[0].equals(item));
     }
 }
