@@ -59,14 +59,14 @@ class RackTest {
     }
 
     @Test
-    public void rackSetAisle(){
+    public void rackSetGetAisle(){
     Aisle aisle = new Aisle("Aisle 1");
     Rack rack0 = new Rack("Rack 1");
     Rack rack1 = new Rack ("Rack 2");
         aisle.addRack(rack0);
         aisle.addRack(rack1);
-        rack0.setRackToAisle(aisle);
-        rack1.setRackToAisle(aisle);
-        Assertions.assertTrue(rack1.getRackAisle().equals(aisle) & aisle.getRack()[1].equals(rack1));
+        rack0.setAisle(aisle);
+        rack1.setAisle(aisle);
+        Assertions.assertTrue(rack1.getAisle().equals(aisle) & aisle.getRack()[1].equals(rack1));
 }
 }

@@ -66,7 +66,7 @@ class AisleTest {
         Assertions.assertTrue(aisle.hasRacks());
     }
     @Test
-    public void aisleSetSection(){
+    public void aisleSetGetSectionTest(){
         Section section = new Section("Section1");
         Aisle aisle = new Aisle("Aisle 1");
         Aisle aisle1 = new Aisle("Aisle 2");
@@ -76,4 +76,5 @@ class AisleTest {
         aisle1.setSection(section);
         Assertions.assertTrue(aisle1.getSection().equals(section) & section.getAisles()[1].equals(aisle1));
     }
+
 }

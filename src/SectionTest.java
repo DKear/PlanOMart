@@ -68,7 +68,7 @@ class SectionTest {
     }
 
     @Test
-    public void sectionSetStore(){
+    public void sectionSetGetStoreTest(){
         Store store = new Store("Store");
         Section section0 = new Section("Section 1");
         Section section1 = new Section ("Section 1");

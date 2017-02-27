@@ -43,11 +43,11 @@ public class Rack {
         return false;
     }
 
-    public void setRackToAisle(Aisle a){
+    public void setAisle(Aisle a){
         aisle = a;
     }
 
-    public Aisle getRackAisle(){
+    public Aisle getAisle(){
         return aisle;
     }
 }

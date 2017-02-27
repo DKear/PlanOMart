@@ -156,7 +156,7 @@ public class ShelfTest {
     }
 
     @Test
-    public void setgetRackTest(){
+    public void shelfSetGetRackTest(){
         Rack rack = new Rack("Rack");
         Shelf shelf = new Shelf(1,2);
         rack.addShelf(shelf);
