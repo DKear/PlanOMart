@@ -11,19 +11,7 @@ class RackTest {
         Assertions.assertTrue(rack1.getRackName().equals("rack1"));
     }
 
-    @Test
-    public void emptyRackNameTest() {
-        Rack rack;
-        try {
-            rack = new Rack("");
-            rack.getRackName();
-            Assertions.assertFalse(!rack.getRackName().equals(""));
 
-        } catch (IllegalArgumentException e) {
-            Assertions.assertTrue(true);
-
-        }
-    }
 
     @Test
     public void hasNoShelfTest() {

@@ -18,21 +18,7 @@ class StoreTest {
         Assertions.assertTrue(store.getStoreName().equals(name));
     }
 
-    @Test
-    public void storeInvalidNameTest(){
-        String name = "";
-        Store store;
-        try {
-            store = new Store(name);
-            store.getStoreName();
-            Assertions.assertFalse(!store.getStoreName().equals(""));
 
-
-        }catch (NullPointerException e){
-            Assertions.assertTrue(true);
-        }
-
-    }
 
     @Test
     public void storeHasNoSectionsTest(){

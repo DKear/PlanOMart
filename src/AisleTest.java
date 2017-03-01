@@ -11,20 +11,7 @@ class AisleTest {
         Assertions.assertTrue(aisle.getAisleName().equals(aisleName));
     }
 
-    @Test
-    public void wrongAisleNameTest() {
-        String aisleName = "";
-        Aisle aisle;
 
-        try {
-            aisle = new Aisle(aisleName);
-            aisle.getAisleName();
-            Assertions.assertFalse(!aisle.getAisleName().equals(""));
-        } catch (NullPointerException e) {
-            Assertions.assertTrue(true);
-        }
-
-    }
 
     @Test
     public void aisleHasNoRacksTest() {

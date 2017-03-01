@@ -1,11 +1,16 @@
+import org.junit.Rule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 /**
  * Created by Jamie on 2/24/2017.
  */
 class SectionTest {
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
     @Test
     public void sectionNameTest() {
         String name = "section";
@@ -13,20 +18,7 @@ class SectionTest {
         Assertions.assertTrue(section.getSectionName().equals(name));
     }
 
-    @Test
-    public void sectionInvalidNameTest() {
-        String name = "";
-        Section section;
-        try {
-            section = new Section(name);
-            section.getSectionName();
-            Assertions.assertFalse(!section.getSectionName().equals(""));
 
-        } catch (NullPointerException e) {
-            Assertions.assertTrue(true);
-        }
-
-    }
 
     @Test
     public void sectionHasNoAisleTest(){
