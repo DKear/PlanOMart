@@ -5,13 +5,13 @@ import java.util.ArrayList;
  */
 public class SaleItem {
     private double price;
-    private String name;
-    private String brand;
-    private String category;
+    private String name = "";
+    private String brand = "";
+    private String category = "";
     private ArrayList<String> tags;
     private double salePrice;
-    private String saleDescription;
-    private String description;
+    private String saleDescription = "";
+    private String description = "";
     private Shelf shelf;
 
     SaleItem(double p, String n, String b, String c, double sp, String d) {

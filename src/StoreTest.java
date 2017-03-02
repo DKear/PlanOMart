@@ -15,7 +15,7 @@ class StoreTest {
     public void storeNameTest(){
         String name = "store";
         Store store = new Store(name);
-        Assertions.assertTrue(store.getStoreName().equals(name));
+        Assertions.assertTrue(store.getStoreName().equals("store"));
     }
 
 
