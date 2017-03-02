@@ -1,14 +1,9 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * Created by joshu on 2/24/2017.
  */
-
-
-
 public class ShelfTest {
     @Test
     public void getRowNumTest() {
@@ -38,7 +33,7 @@ public class ShelfTest {
     @Test
     public void getProductsOnShelfTest() {
         Shelf shelf = new Shelf(0, 50);
-        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz", 76576598, 1, "books", 5, 8);
+        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz","books");
         shelf.addItem(book);
         SaleItem[] test = {book};
         Assertions.assertArrayEquals(test, shelf.getItemsOnShelf());
@@ -95,7 +90,7 @@ public class ShelfTest {
 
     @Test
     public void itemAdded() {
-        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz", 76576598, 1, "books", 5, 8);
+        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz","books");
         Shelf shelf = new Shelf(3, 1000);
         Assertions.assertTrue(shelf.addItem(book));
     }
@@ -116,7 +111,7 @@ public class ShelfTest {
 
     @Test
     public void hasItemsTest() {
-        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz", 76576598, 1, "books", 5, 8);
+        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz","books");
         Shelf shelf = new Shelf(0, 50);
         shelf.addItem(book);
         Assertions.assertTrue(shelf.hasItems());
@@ -124,7 +119,7 @@ public class ShelfTest {
 
     @Test
     public void getItemsTest() {
-        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz", 76576598, 1, "books", 5, 8);
+        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz","books");
         Shelf shelf = new Shelf(0, 50);
         shelf.addItem(book);
         Assertions.assertTrue(shelf.getItemsOnShelf()[0] == book);
@@ -145,7 +140,7 @@ public class ShelfTest {
 
     @Test
     public void productRemovedFromShelfPositive() {
-        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz", 76576598, 1, "books", 5, 8);
+        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz","books");
         Shelf shelf = new Shelf(0, 50);
         shelf.addItem(book);
         Assertions.assertTrue(shelf.removeItems(book));
@@ -153,13 +148,13 @@ public class ShelfTest {
 
     @Test
     public void productRemovedFromShelfNegativeTest() {
-        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz", 76576598, 1, "books", 5, 8);
+        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz","books");
         Shelf shelf = new Shelf(0, 50);
         Assertions.assertFalse(shelf.removeItems(book));
     }
 
     @Test
-    public void shelfSetGetRackTest(){
+    public void setgetRackTest(){
         Rack rack = new Rack("Rack");
         Shelf shelf = new Shelf(1,2);
         rack.addShelf(shelf);

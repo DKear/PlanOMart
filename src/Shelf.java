@@ -43,8 +43,8 @@ public class Shelf {
     }
     public boolean addItem(SaleItem i) {
 
-        products.add(i);
-        return true;
+        return products.add(i);
+
         /*if (availableSize < i.getTotalAreaConsumed()) {
             return false;
         } else {
