@@ -23,18 +23,6 @@ public class SaleItemTest {
         Assertions.assertTrue(bread.getName().equals("White Classic"));
     }
 
-    @Test
-    public void nullNameTest() {
-        SaleItem bread;
-        boolean test = false;
-        try {
-            bread = new SaleItem(1.39, null, "Wonder Bread", "bread");
-        } catch (NullPointerException e) {
-            test = true;
-            Assertions.assertTrue(test);
-        }
-        Assertions.assertTrue(test);
-    }
 
     @Test
     public void emptyStringNameTest() {
@@ -48,18 +36,6 @@ public class SaleItemTest {
         Assertions.assertTrue(bread.getBrand().equals("Wonder Bread"));
     }
 
-    @Test
-    public void nullBrandTest() {
-        SaleItem bread;
-        boolean test = false;
-        try {
-            bread = new SaleItem(1.39, "White Classic", null, "bread");
-        } catch (NullPointerException e) {
-            test = true;
-            Assertions.assertTrue(test);
-        }
-        Assertions.assertTrue(test);
-    }
 
     @Test
     public void emptyStringBrandTest() {
@@ -111,7 +87,7 @@ public class SaleItemTest {
     }
 
     @Test
-    public void tagRemovedFromShelfNegativeTest() {
+    public void tagRemovedFromItemNegativeTest() {
         SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
         String tag = "sliced";
         Assertions.assertFalse(bread.removeTag(tag));
