@@ -6,11 +6,13 @@ import java.util.ArrayList;
 public class Section {
     private String sectionName;
     private ArrayList<Aisle> aisles;
+    private ArrayList<String> tags;
     private Store store;
 
     Section (String n){
         sectionName = n;
         aisles = new ArrayList<Aisle>();
+        tags = new ArrayList <String>();
     }
 
     public String getSectionName(){
@@ -50,5 +52,24 @@ public class Section {
 
     public Store getStore(){
         return store;
+    }
+
+    public boolean addTag(String t){
+        tags.add(t);
+        return true;
+    }
+
+    public boolean removeTag(String t){
+        if(tags.contains(t)) {
+            tags.remove(t);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String[] getTags(){
+        String[] tagArray = new String[tags.size()];
+        return tagArray;
     }
 }

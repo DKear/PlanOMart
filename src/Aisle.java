@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Aisle {
     private String aisleName;
     private ArrayList<Rack> racks;
+    private ArrayList<String> tags;
     private Section section;
 
     public Aisle(String n) {
@@ -46,5 +47,24 @@ public class Aisle {
 
     public Section getSection(){
         return section;
+    }
+
+    public boolean addTag(String t){
+        tags.add(t);
+        return true;
+    }
+
+    public boolean removeTag(String t){
+        if(tags.contains(t)) {
+            tags.remove(t);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String[] getTags(){
+        String[] tagArray = new String[tags.size()];
+        return tagArray;
     }
 }

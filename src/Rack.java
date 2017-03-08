@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Rack {
     private String rackName;
     private ArrayList<Shelf> shelves;
+    private ArrayList<String> tags;
     private int rackHeight = 8;
     private Aisle aisle;
 
@@ -49,5 +50,23 @@ public class Rack {
 
     public Aisle getAisle(){
         return aisle;
+    }
+    public boolean addTag(String t){
+        tags.add(t);
+        return true;
+    }
+
+    public boolean removeTag(String t){
+        if(tags.contains(t)) {
+            tags.remove(t);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String[] getTags(){
+        String[] tagArray = new String[tags.size()];
+        return tagArray;
     }
 }

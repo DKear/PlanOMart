@@ -9,6 +9,7 @@ public class Shelf {
     private ArrayList<SaleItem> products;
     private double maxShelfSize = 1440; // square inches based on 2.5 feet deep and 4 feet across
     private Rack rack;
+    private ArrayList<String> tags;
 
 
     public Shelf(int n, int s) {
@@ -69,5 +70,24 @@ public class Shelf {
 
     public Rack getRack(){
         return rack;
+    }
+
+    public boolean addTag(String t){
+        tags.add(t);
+        return true;
+    }
+
+    public boolean removeTag(String t){
+        if(tags.contains(t)) {
+            tags.remove(t);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String[] getTags(){
+        String[] tagArray = new String[tags.size()];
+        return tagArray;
     }
 }

@@ -70,4 +70,10 @@ class SectionTest {
         section1.setStore(store);
         Assertions.assertTrue(section1.getStore().equals(store) & store.getSections()[1].equals(section1));
     }
+
+    @Test
+    public void sectionReturnTagsArrayTest() {
+        Section section = new Section("Section 1");
+        Assertions.assertTrue(section.getTags().length == 0);
+    }
 }
