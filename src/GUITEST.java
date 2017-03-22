@@ -1,5 +1,3 @@
-package com.codebind;
-
 import java.awt.*;
 
 import javax.swing.*;
@@ -7,30 +5,40 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by Jamie on 3/21/2017.
- */
-public class GUI {
-    private JFrame frame;
-    private JDialog dialog;
+public class GUITEST {
+    private JFrame myframe;
+    private JDialog mydialog;
 
-    public GUI() {
+    public GUITEST() {
         super();
-        frame = new JFrame();
-        frame.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        myframe = new JFrame(); // instantiation
+        myframe.setSize(new Dimension(600, 600));
+        myframe.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
-        JButton AdminButton = new JButton("Admin");
-        AdminButton.addActionListener(new ActionListener() {
+        JButton btnNewWindow = new JButton("Admin");
+        btnNewWindow.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                dialog = new JDialog();
-                dialog.setTitle("Admin Window");
-                dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-                dialog.setVisible(true);
+                mydialog = new JDialog();
+                mydialog.setSize(new Dimension(1000, 1000));
+                mydialog.setTitle("Admin Window");
+                mydialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL); // prevent user from doing something else
+                mydialog.setVisible(true);
             }
         });
-        frame.getContentPane().add(AdminButton);
+        myframe.getContentPane().add(btnNewWindow);
+
+        JButton btnCloseProgram = new JButton("Close Program");
+        btnCloseProgram.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myframe.dispose();
+            }
+        });
+        myframe.getContentPane().add(btnCloseProgram);
+        myframe.setVisible(true);
     }
 
     public static void main(String[] args) {
@@ -44,7 +52,7 @@ public class GUI {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new GUI();
+                    new GUITEST();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -72,5 +80,3 @@ public class GUI {
         panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
     }
 }
-
-
