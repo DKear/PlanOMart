@@ -10,12 +10,12 @@ import java.io.IOException;
 public class GUI implements ActionListener {
 
     JPanel cards;
-    String ADMINPANEL = "Admin";
-    String USERPANEL = "User";
+    //String ADMINPANEL = "Admin";
+    //String USERPANEL = "User";
 
     public void addComponentToPane(Container pane){
         JPanel panel = new JPanel();
-        String panelNames[] = {ADMINPANEL, USERPANEL};
+        //String panelNames[] = {ADMINPANEL, USERPANEL};
         JButton switchButton = new JButton("Switch User");
         switchButton.addActionListener(this);
         panel.add(switchButton);
