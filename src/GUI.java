@@ -10,10 +10,14 @@ import java.io.IOException;
 public class GUI implements ActionListener {
 
     JPanel cards;
+
+    private Container controllingContainer;
     //String ADMINPANEL = "Admin";
     //String USERPANEL = "User";
+    int adminInt;
 
     public void addComponentToPane(Container pane){
+        controllingContainer = pane;
         JPanel panel = new JPanel();
         //String panelNames[] = {ADMINPANEL, USERPANEL};
         JButton switchButton = new JButton("Switch User");
@@ -27,8 +31,8 @@ public class GUI implements ActionListener {
         userPanel.add(new JLabel("User"));
 
         cards = new JPanel(new CardLayout());
-        cards.add(adminPanel);
         cards.add(userPanel);
+        cards.add(adminPanel);
 
         pane.add(panel, BorderLayout.PAGE_START);
         pane.add(cards, BorderLayout.CENTER);
@@ -36,11 +40,23 @@ public class GUI implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         CardLayout cl = (CardLayout)(cards.getLayout());
-        cl.next(cards);
+
+        if(adminInt == 0){
+            JOptionPane.showMessageDialog(controllingContainer, "Enter a password");
+            adminInt = 1;
+            cl.next(cards);
+        } else{
+            cl.next(cards);
+            adminInt = 0;
+        }
+
+
+
+
     }
     private static void createAndShowGUI() {
         //Create and set up the window.
-        JFrame frame = new JFrame("CardLayoutDemo");
+        JFrame frame = new JFrame("PLAN-O-MART");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.
