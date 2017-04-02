@@ -64,9 +64,39 @@ public class GUI implements ActionListener {
         aw.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         adminAddPanel = new JPanel();
         adminAddPanel.setLayout(new BoxLayout(adminAddPanel, BoxLayout.Y_AXIS));
-        adminAddPanel.add(aw.storeName);
+        adminAddPanel.add(aw.storeNameField);
         adminAddPanel.add(aw.submitButton);
         aw.add(adminAddPanel);
+
+        //customer comments window
+        GUICustomerComments custComments = new GUICustomerComments(); //creates window based on that class
+        custComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
+        JPanel custComm = new JPanel();// makes a panel to place all the components in
+        custComm.setLayout(new GridBagLayout());//sets layout to grid layout
+        GridBagConstraints grid = new GridBagConstraints();//tells the component where in the grid it will be placed
+        grid.gridx = 0;//uses entire width
+        grid.gridy = 0;//starts at top
+        grid.anchor = GridBagConstraints.WEST;
+        custComm.add(custComments.subjectLabel, grid);// adds the label to this part of the grid
+        grid.anchor = GridBagConstraints.NONE;
+        grid.gridy = 1;//one further down
+        custComm.add(custComments.subjectField, grid);
+        grid.anchor = GridBagConstraints.WEST;
+        grid.gridy = 2;//one further down
+        custComm.add(custComments.commentLabel, grid);
+        grid.anchor = GridBagConstraints.NONE;
+        grid.gridy = 3;//one further down
+        custComm.add(custComments.commentField, grid);
+        grid.anchor = GridBagConstraints.WEST;
+        grid.gridy = 4;//one further down
+        custComm.add(custComments.contactLabel, grid);
+        grid.anchor = GridBagConstraints.NONE;
+        grid.gridy = 5;//one further down
+        custComm.add(custComments.contactField, grid);
+        grid.anchor = GridBagConstraints.EAST;
+        grid.gridy = 6;//one further down
+        custComm.add(custComments.submitButton, grid);
+        custComments.add(custComm);
     }
 
     public void actionPerformed(ActionEvent e){
