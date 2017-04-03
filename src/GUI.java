@@ -7,6 +7,9 @@ import java.awt.event.*;        //for action events
 import java.net.URL;
 import java.io.IOException;
 
+//Strategy design pattern
+//Factory method (creational)
+
 public class GUI implements ActionListener {
 
     JPanel cards;
@@ -14,6 +17,7 @@ public class GUI implements ActionListener {
     private Container controllingContainer;
     String ADMINPANEL = "Admin";
     String USERPANEL = "User";
+    String PASSWORDPANEL = "Password";
     int adminInt;
     JButton switchButton;
     JButton adminEditButton;
@@ -21,13 +25,17 @@ public class GUI implements ActionListener {
     GUIAdminAddWindow aw;
     JPanel adminEditPanel;
     JPanel adminAddPanel;
+    JPanel passwordPanel;
+
 
     public void addComponentToPane(Container pane){
         controllingContainer = pane;
-
         JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(500,50));
+        //panel.setSize(500,500);
         switchButton = new JButton("Switch User");
         switchButton.addActionListener(this);
+        //switchButton.setPreferredSize(new Dimension(100,100));
         panel.add(switchButton);
 
         JPanel adminPanel = new JPanel();
@@ -40,6 +48,7 @@ public class GUI implements ActionListener {
         cards.add(userPanel, USERPANEL);
         cards.add(adminPanel, ADMINPANEL);
 
+
         adminEditButton = new JButton("Edit");
         adminEditButton.addActionListener(this);
 
@@ -49,7 +58,7 @@ public class GUI implements ActionListener {
         adminOrgPanel.add(adminEditButton);
         adminPanel.add(adminOrgPanel);
 
-        pane.add(panel, BorderLayout.WEST);
+        pane.add(panel, BorderLayout.PAGE_START);
         pane.add(cards, BorderLayout.CENTER);
 
         ae = new GUIAdminEdit();
@@ -63,9 +72,14 @@ public class GUI implements ActionListener {
         aw = new GUIAdminAddWindow();
         aw.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         adminAddPanel = new JPanel();
-        adminAddPanel.setLayout(new BoxLayout(adminAddPanel, BoxLayout.Y_AXIS));
-        adminAddPanel.add(aw.storeName);
-        adminAddPanel.add(aw.submitButton);
+        adminAddPanel.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0;
+        c.gridy = 0;
+        adminAddPanel.add(aw.storeNameField, c);
+        c.gridx = 0;
+        c.gridy = 1;
+        adminAddPanel.add(aw.submitButton, c);
         aw.add(adminAddPanel);
     }
 
@@ -92,11 +106,13 @@ public class GUI implements ActionListener {
 
 
 
+
     }
     private static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("PLAN-O-MART");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.
         GUI demo = new GUI();
