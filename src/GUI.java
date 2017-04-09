@@ -6,9 +6,7 @@ import java.awt.event.*;        //for action events
 
 import java.net.URL;
 import java.io.IOException;
-
-//Strategy design pattern
-//Factory method (creational)
+import java.util.ArrayList;
 
 public class GUI implements ActionListener {
 
@@ -17,80 +15,34 @@ public class GUI implements ActionListener {
     private Container controllingContainer;
     String ADMINPANEL = "Admin";
     String USERPANEL = "User";
-    String OPENINGPANEL = "Opening Panel";
-    int panelState = 0;
+    int adminInt;
     JButton switchButton;
     JButton adminEditButton;
+    JButton commentButton = new JButton("Comment");
     GUIAdminEdit ae;
     GUIAdminAddWindow aw;
     JPanel adminEditPanel;
     JPanel adminAddPanel;
-    JPanel openingPanel;
-    JPanel openingContent;
-    JButton openingUserButton;
-    JButton openingAdminButton;
-
+    GUICustomerComments custComments;
+    ArrayList<String> comments = new ArrayList<>();//stores the customers' comments
 
     public void addComponentToPane(Container pane){
         controllingContainer = pane;
+
         JPanel panel = new JPanel();
-        panel.setLayout(new GridBagLayout());
-        GridBagConstraints p = new GridBagConstraints();
-        p.weightx = p.weighty = 1;
-        switchButton = new JButton("Switch User Mode");
+        switchButton = new JButton("Switch User");
         switchButton.addActionListener(this);
-        JPanel openingPanel = new JPanel();
+        panel.add(switchButton);
 
         JPanel adminPanel = new JPanel();
         //adminPanel.add(new JLabel("Admin"));
 
         JPanel userPanel = new JPanel();
-        userPanel.setLayout(new GridBagLayout());
-        GridBagConstraints u = new GridBagConstraints();
-        u.weightx = u.weighty = 1;
-        u.gridx = 0;
-        u.gridy = 1;
-        u.anchor = GridBagConstraints.PAGE_START;
-        userPanel.add(new JLabel("User"), u);
-        u.weightx = u.weighty = 0;
-        u.gridx = 0;
-        u.gridy = 0;
-        u.anchor = GridBagConstraints.FIRST_LINE_START;
-        userPanel.add(switchButton, u);
+        userPanel.add(new JLabel("User"));
 
         cards = new JPanel(new CardLayout());
-        cards.add(openingPanel, OPENINGPANEL);
         cards.add(userPanel, USERPANEL);
         cards.add(adminPanel, ADMINPANEL);
-
-        openingContent = new JPanel();
-        openingContent.setLayout(new GridBagLayout());
-        openingUserButton = new JButton("User");
-        openingUserButton.addActionListener(this);
-        openingAdminButton = new JButton("Admin");
-        openingAdminButton.addActionListener(this);
-        GridBagConstraints o = new GridBagConstraints();
-        o.gridwidth = 2;
-        o.gridx = 0;
-        o.gridy = 0;
-
-        openingContent.add(new JLabel("Select a mode:"),o);
-        o.gridwidth = 1;
-        o.gridx = 0;
-        o.gridy = 1;
-        o.weightx = 1;
-        o.insets = new Insets(0,0,0,10);
-        openingContent.add(openingAdminButton,o);
-
-        //o.gridwidth = 2;
-        o.gridx = 1;
-        o.gridy = 1;
-        o.insets = new Insets(0, 10, 0, 0);
-        openingContent.add(openingUserButton,o);
-
-        openingPanel.add(openingContent);
-
-
 
         adminEditButton = new JButton("Edit");
         adminEditButton.addActionListener(this);
@@ -101,7 +53,7 @@ public class GUI implements ActionListener {
         adminOrgPanel.add(adminEditButton);
         adminPanel.add(adminOrgPanel);
 
-        pane.add(panel, BorderLayout.PAGE_START);
+        pane.add(panel, BorderLayout.WEST);
         pane.add(cards, BorderLayout.CENTER);
 
         ae = new GUIAdminEdit();
@@ -115,60 +67,59 @@ public class GUI implements ActionListener {
         aw = new GUIAdminAddWindow();
         aw.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         adminAddPanel = new JPanel();
-//<<<<<<< HEAD
-        adminAddPanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = 0;
-        adminAddPanel.add(aw.storeNameField, c);
-        c.gridx = 0;
-        c.gridy = 1;
-        adminAddPanel.add(aw.submitButton, c);
-//=======
-//>>>>>>> origin/master
+        adminAddPanel.setLayout(new BoxLayout(adminAddPanel, BoxLayout.Y_AXIS));
+        adminAddPanel.add(aw.storeNameField);
+        adminAddPanel.add(aw.submitButton);
         aw.add(adminAddPanel);
 
         //customer comments window
-        GUICustomerComments custComments = new GUICustomerComments(); //creates window based on that class
+        custComments = new GUICustomerComments(); //creates window based on that class
         custComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
         JPanel custComm = new JPanel();// makes a panel to place all the components in
         custComm.setLayout(new GridBagLayout());//sets layout to grid layout
         GridBagConstraints grid = new GridBagConstraints();//tells the component where in the grid it will be placed
         grid.gridx = 0;//uses entire width
         grid.gridy = 0;//starts at top
-        grid.anchor = GridBagConstraints.WEST;
+        grid.anchor = GridBagConstraints.LINE_START;
         custComm.add(custComments.subjectLabel, grid);// adds the label to this part of the grid
-        grid.anchor = GridBagConstraints.NONE;
+        grid.fill = GridBagConstraints.BOTH;
         grid.gridy = 1;//one further down
         custComm.add(custComments.subjectField, grid);
-        grid.anchor = GridBagConstraints.WEST;
+        grid.anchor = GridBagConstraints.LINE_START;
         grid.gridy = 2;//one further down
         custComm.add(custComments.commentLabel, grid);
-        grid.anchor = GridBagConstraints.NONE;
+        grid.fill = GridBagConstraints.BOTH;
         grid.gridy = 3;//one further down
+        grid.ipady = 40;
         custComm.add(custComments.commentField, grid);
-        grid.anchor = GridBagConstraints.WEST;
+        grid.anchor = GridBagConstraints.LINE_START;
         grid.gridy = 4;//one further down
+        grid.ipady = 0;
         custComm.add(custComments.contactLabel, grid);
-        grid.anchor = GridBagConstraints.NONE;
+        grid.fill = GridBagConstraints.BOTH;
         grid.gridy = 5;//one further down
         custComm.add(custComments.contactField, grid);
-        grid.anchor = GridBagConstraints.EAST;
+        grid.anchor = GridBagConstraints.LINE_END;
         grid.gridy = 6;//one further down
         custComm.add(custComments.submitButton, grid);
-        custComments.add(custComm);
+        custComments.add(custComm);//adds the JPanel with everything in it to the dialog box
+        userPanel.add(commentButton); //adds a button to the userPanel to open this dialog
+        commentButton.addActionListener(this);// allows the button to do something on click
     }
 
     public void actionPerformed(ActionEvent e){
         CardLayout cl = (CardLayout)(cards.getLayout());
-
-        if(e.getSource() == openingAdminButton){
-
+        if(e.getSource() == switchButton) {
+            if (adminInt == 0) {
+                JOptionPane.showMessageDialog(controllingContainer, "Enter a password");
+                adminInt = 1;
+                //cl.next(cards);
+                cl.show(cards, ADMINPANEL);
+            } else {
+                cl.show(cards, USERPANEL);
+                adminInt = 0;
+            }
         }
-        if(e.getSource() == openingUserButton){
-            cl.show(cards, USERPANEL);
-        }
-
         if(e.getSource()==adminEditButton){
             ae.setVisible(true);
         }
@@ -177,15 +128,16 @@ public class GUI implements ActionListener {
             aw.setVisible(true);
         }
 
-
+        if(e.getSource() == commentButton) {
+            custComments.setVisible(true);
+        }
 
 
     }
     private static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("PLAN-O-MART");
-        frame.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create and set up the content pane.
         GUI demo = new GUI();

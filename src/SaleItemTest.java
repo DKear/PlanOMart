@@ -158,12 +158,25 @@ public class SaleItemTest {
         Assertions.assertTrue(test);
     }
     @Test
+    public void noShelvesToGetTest() {
+        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+        boolean test = false;
+        try {
+            bread.getShelvesWithItem();
+        } catch (ArrayStoreException e) {
+            test = true;
+            Assertions.assertTrue(test);
+        }
+        Assertions.assertTrue(test);
+    }
+
+    @Test
     public void setGetShelfTest(){
-        Shelf shelf = new Shelf(10, 10);
+        Shelf shelf = new Shelf(10);
         SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
         shelf.addItem(bread);
-        bread.setShelf(shelf);
-        Assertions.assertTrue(bread.getShelf().equals(shelf) & shelf.getItemsOnShelf()[0].equals(bread));
+        bread.setShelves(shelf);
+        Assertions.assertTrue(bread.getShelvesWithItem()[0].equals(shelf) & shelf.getItemsOnShelf()[0].equals(bread));
     }
 
 }
