@@ -12,7 +12,7 @@ public class GUICustomerComments extends JDialog{
     JTextField contactField;//bottom textfield
     JButton submitButton;//the submit button
     public GUICustomerComments(){
-        setSize(400, 400);
+        setSize(500, 500);
         //the subject label and text field
         subjectLabel = new JLabel("Subject of comment:");//top label for the subject of the comment
         subjectLabel.setLabelFor(subjectField); // don't know if this does anything

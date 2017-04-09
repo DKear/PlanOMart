@@ -12,15 +12,16 @@ public class SaleItem {
     private ArrayList<String> tags;
     private double salePrice;
     private String saleDescription = "";
-    private Shelf shelf;
+    private ArrayList<Shelf> shelves;
 
     SaleItem(double p, String n, String b, String d) {
             price = p;
             name = n;
             brand = b;
-            tags = new ArrayList<String>();
+            tags = new ArrayList<>();
             salePrice = price;
             description = d;
+            shelves = new ArrayList<>();
         }
 
     public double getPrice() {
@@ -88,12 +89,18 @@ public class SaleItem {
         return tags.remove(t);
     }
 
-    public void setShelf(Shelf s){
-        shelf = s;
+    public void setShelves(Shelf s){
+        shelves.add(s);
     }
 
-    public Shelf getShelf(){
-        return shelf;
+    public Shelf[] getShelvesWithItem(){
+        if(!shelves.isEmpty()) {
+            Shelf[] shelvesWithItem = new Shelf[shelves.size()];
+            shelvesWithItem = shelves.toArray(shelvesWithItem);
+            return shelvesWithItem;
+        } else {
+            throw new ArrayStoreException();
+        }
     }
 
     public boolean validateItem(SaleItem i) {
