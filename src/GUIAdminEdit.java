@@ -8,4 +8,5 @@ public class GUIAdminEdit extends JDialog {
         setVisible(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
+
 }

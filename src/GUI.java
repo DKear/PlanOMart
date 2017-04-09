@@ -12,23 +12,24 @@ import java.io.IOException;
 
 public class GUI implements ActionListener {
 
-    JPanel cards;
-    JPanel adminOrgPanel;
+    private JPanel cards;
+    private JPanel adminOrgPanel;
     private Container controllingContainer;
-    String ADMINPANEL = "Admin";
-    String USERPANEL = "User";
-    String OPENINGPANEL = "Opening Panel";
-    int panelState = 0;
-    JButton switchButton;
-    JButton adminEditButton;
-    GUIAdminEdit ae;
-    GUIAdminAddWindow aw;
-    JPanel adminEditPanel;
-    JPanel adminAddPanel;
-    JPanel openingPanel;
-    JPanel openingContent;
-    JButton openingUserButton;
-    JButton openingAdminButton;
+    private String ADMINPANEL = "Admin";
+    private String USERPANEL = "User";
+    private String OPENINGPANEL = "Opening Panel";
+    private int panelState = 0;
+    private JButton userSwitchButton;
+    private JButton adminSwitchButton;
+    private JButton adminEditButton;
+    private GUIAdminEdit ae;
+    private GUIAdminAddWindow aw;
+    private JPanel adminEditPanel;
+    private JPanel adminAddPanel;
+    private JPanel openingPanel;
+    private JPanel openingContent;
+    private JButton openingUserButton;
+    private JButton openingAdminButton;
 
 
     public void addComponentToPane(Container pane){
@@ -37,12 +38,13 @@ public class GUI implements ActionListener {
         panel.setLayout(new GridBagLayout());
         GridBagConstraints p = new GridBagConstraints();
         p.weightx = p.weighty = 1;
-        switchButton = new JButton("Switch User Mode");
-        switchButton.addActionListener(this);
+        userSwitchButton = new JButton("Switch User Mode");
+        userSwitchButton.addActionListener(this);
+        adminSwitchButton = new JButton("Switch User Mode");
+        adminSwitchButton.addActionListener(this);
         JPanel openingPanel = new JPanel();
 
         JPanel adminPanel = new JPanel();
-        //adminPanel.add(new JLabel("Admin"));
 
         JPanel userPanel = new JPanel();
         userPanel.setLayout(new GridBagLayout());
@@ -56,7 +58,7 @@ public class GUI implements ActionListener {
         u.gridx = 0;
         u.gridy = 0;
         u.anchor = GridBagConstraints.FIRST_LINE_START;
-        userPanel.add(switchButton, u);
+        userPanel.add(userSwitchButton, u);
 
         cards = new JPanel(new CardLayout());
         cards.add(openingPanel, OPENINGPANEL);
@@ -81,8 +83,6 @@ public class GUI implements ActionListener {
         o.weightx = 1;
         o.insets = new Insets(0,0,0,10);
         openingContent.add(openingAdminButton,o);
-
-        //o.gridwidth = 2;
         o.gridx = 1;
         o.gridy = 1;
         o.insets = new Insets(0, 10, 0, 0);
@@ -95,11 +95,23 @@ public class GUI implements ActionListener {
         adminEditButton = new JButton("Edit");
         adminEditButton.addActionListener(this);
 
-        adminOrgPanel = new JPanel();
-        adminOrgPanel.setLayout(new BoxLayout(adminOrgPanel, BoxLayout.Y_AXIS));
-        adminOrgPanel.add(new JLabel("Admin"));
-        adminOrgPanel.add(adminEditButton);
-        adminPanel.add(adminOrgPanel);
+        //adminOrgPanel = new JPanel();
+        adminPanel.setLayout(new GridBagLayout());
+        GridBagConstraints a = new GridBagConstraints();
+
+        a.weightx = a.weighty = 0;
+        a.gridx = 0;
+        a.gridy = 0;
+        a.anchor = GridBagConstraints.FIRST_LINE_START;
+        adminPanel.add(adminSwitchButton, a);
+        a.weightx = a.weighty = 1;
+        a.gridx = 0;
+        a.gridy = 1;
+        a.anchor = GridBagConstraints.PAGE_START;
+        adminPanel.add(new JLabel("Admin"), a);
+        a.gridy = 2;
+        adminPanel.add(adminEditButton, a);
+        //adminPanel.add(adminPanel);
 
         pane.add(panel, BorderLayout.PAGE_START);
         pane.add(cards, BorderLayout.CENTER);
@@ -115,7 +127,7 @@ public class GUI implements ActionListener {
         aw = new GUIAdminAddWindow();
         aw.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         adminAddPanel = new JPanel();
-//<<<<<<< HEAD
+
         adminAddPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;
@@ -124,8 +136,7 @@ public class GUI implements ActionListener {
         c.gridx = 0;
         c.gridy = 1;
         adminAddPanel.add(aw.submitButton, c);
-//=======
-//>>>>>>> origin/master
+
         aw.add(adminAddPanel);
 
         //customer comments window
@@ -163,19 +174,22 @@ public class GUI implements ActionListener {
         CardLayout cl = (CardLayout)(cards.getLayout());
 
         if(e.getSource() == openingAdminButton){
-
+            cl.show(cards, ADMINPANEL);
         }
         if(e.getSource() == openingUserButton){
             cl.show(cards, USERPANEL);
+        }
+        if(e.getSource() == userSwitchButton|| e.getSource()==adminSwitchButton){
+            cl.show(cards, OPENINGPANEL);
         }
 
         if(e.getSource()==adminEditButton){
             ae.setVisible(true);
         }
 
-        if(e.getSource() == ae.addButton){
+       /* if(e.getSource() == ae.addButton){
             aw.setVisible(true);
-        }
+        }*/
 
 
 
