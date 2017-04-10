@@ -71,7 +71,7 @@ public class GUI implements ActionListener {
         u.anchor = GridBagConstraints.FIRST_LINE_START;
         userPanel.add(userSwitchButton, u);
 //=======
-        userPanel.add(new JLabel("User"));
+
 //>>>>>>> 58b6a1ce85038e8bbb72147b99febce27024f3dd
 
         cards = new JPanel(new CardLayout());
@@ -155,11 +155,7 @@ public class GUI implements ActionListener {
         c.gridy = 1;
         adminAddPanel.add(aw.submitButton, c);
 
-//=======
-        adminAddPanel.setLayout(new BoxLayout(adminAddPanel, BoxLayout.Y_AXIS));
-        adminAddPanel.add(aw.storeNameField);
-        adminAddPanel.add(aw.submitButton);
-//>>>>>>> 58b6a1ce85038e8bbb72147b99febce27024f3dd
+
         aw.add(adminAddPanel);
 
         //customer comments window

@@ -8,10 +8,9 @@ import javax.swing.*;
 //<<<<<<< HEAD
 
 
-//=======
+
 public class GUIAdminAddWindow extends JDialog{
     JLabel storeNameLabel;
-//>>>>>>> 58b6a1ce85038e8bbb72147b99febce27024f3dd
     JTextField storeNameField;
     JButton submitButton;
 
@@ -20,7 +19,7 @@ public class GUIAdminAddWindow extends JDialog{
         //A label and textfield for where the user will type the store name
         storeNameLabel = new JLabel("Enter your store's name:"); //what the label will output
         storeNameLabel.setLabelFor(storeNameField);// makes it a label for this text field
-        storeNameField = new JTextField();
+        storeNameField = new JTextField(10);
         storeNameField.setColumns(30);//sets the width of the textfield, by characters it can fit
 
         //Button used for the user to submit text entered
