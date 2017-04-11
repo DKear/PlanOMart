@@ -2,9 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Arrays;
 
-/**
- * Created by Jamie on 4/10/2017.
- */
 public class GUIPassword extends JDialog {
     JPasswordField passwordField;
     JButton submitButton;

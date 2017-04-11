@@ -42,6 +42,7 @@ public class GUI implements ActionListener {
 
     public void addComponentToPane(Container pane){
         controllingContainer = pane;
+        pane.setPreferredSize(new Dimension(1920,1080));
 
         JPanel panel = new JPanel();
 
@@ -147,10 +148,8 @@ public class GUI implements ActionListener {
 
         adminAddPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = 0;
+        c.gridx = c.gridy = 0;
         adminAddPanel.add(aw.storeNameField, c);
-        c.gridx = 0;
         c.gridy = 1;
         adminAddPanel.add(aw.submitButton, c);
         aw.add(adminAddPanel);
@@ -175,8 +174,8 @@ public class GUI implements ActionListener {
         JPanel custComm = new JPanel();// makes a panel to place all the components in
         custComm.setLayout(new GridBagLayout());//sets layout to grid layout
         GridBagConstraints grid = new GridBagConstraints();//tells the component where in the grid it will be placed
-        grid.gridx = 0;//uses entire width
-        grid.gridy = 0;//starts at top
+        grid.gridx =  grid.gridy = 0;//uses entire width
+       //starts at top
         grid.anchor = GridBagConstraints.LINE_START;
         custComm.add(custComments.subjectLabel, grid);// adds the label to this part of the grid
         grid.fill = GridBagConstraints.BOTH;
