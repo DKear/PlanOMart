@@ -7,31 +7,26 @@ import java.awt.*;
 public class GUIPassword extends JDialog {
     JPasswordField passwordField;
     JButton submitButton;
-    private char[] password = {'P','l','a','n','O','M','a','r', 't'};
-    private char[] input;
-    private JFrame controllingFrame ;
+    private char[] password = {'P','l','a','n','O','M','a','r','t'};
+
     public GUIPassword(){
         setSize(400,300);
         passwordField = new JPasswordField(20);
         submitButton = new JButton("Submit");
         setVisible(false);
-        addListeners();
+        //addListeners();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setModalityType(ModalityType.APPLICATION_MODAL);
     }
 
-    private void addListeners() {
-        submitButton.addActionListener(e -> {
-            input = passwordField.getPassword();
-            if(input.length != password.length){
-                JOptionPane.showMessageDialog(this, "Incorrect password");
-                passwordField.setText("");
-            } else {
-                if (input.equals(password)){
+    public boolean correctPassword(char[] in){
+        if(in.equals(password)){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-                }
-            }
-        });
 
-}
+
 }

@@ -13,7 +13,7 @@ public class GUI implements ActionListener {
     private JPanel cards;
     private JPanel adminOrgPanel;
     private Container controllingContainer;
-//<<<<<<< HEAD
+
     private String ADMINPANEL = "Admin";
     private String USERPANEL = "User";
     private String OPENINGPANEL = "Opening Panel";
@@ -32,20 +32,19 @@ public class GUI implements ActionListener {
     private Store store;
     private JPanel passwordPanel;
     private GUIPassword pw;
+    private char[] passwordInput;
 
-//=======
     JButton switchButton;
-    //JButton adminEditButton;
     JButton commentButton = new JButton("Comment");
     GUICustomerComments custComments;
     ArrayList<String> comments = new ArrayList<>();//stores the customers' comments
-//>>>>>>> 58b6a1ce85038e8bbb72147b99febce27024f3dd
+
 
     public void addComponentToPane(Container pane){
         controllingContainer = pane;
 
         JPanel panel = new JPanel();
-//<<<<<<< HEAD
+
         panel.setLayout(new GridBagLayout());
         GridBagConstraints p = new GridBagConstraints();
         p.weightx = p.weighty = 1;
@@ -54,13 +53,12 @@ public class GUI implements ActionListener {
         adminSwitchButton = new JButton("Switch User Mode");
         adminSwitchButton.addActionListener(this);
         JPanel openingPanel = new JPanel();
-//=======
-//>>>>>>> 58b6a1ce85038e8bbb72147b99febce27024f3dd
+
 
         JPanel adminPanel = new JPanel();
 
         JPanel userPanel = new JPanel();
-//<<<<<<< HEAD
+
         userPanel.setLayout(new GridBagLayout());
         GridBagConstraints u = new GridBagConstraints();
         u.weightx = u.weighty = 1;
@@ -73,16 +71,13 @@ public class GUI implements ActionListener {
         u.gridy = 0;
         u.anchor = GridBagConstraints.FIRST_LINE_START;
         userPanel.add(userSwitchButton, u);
-//=======
 
-//>>>>>>> 58b6a1ce85038e8bbb72147b99febce27024f3dd
 
         cards = new JPanel(new CardLayout());
         cards.add(openingPanel, OPENINGPANEL);
         cards.add(userPanel, USERPANEL);
         cards.add(adminPanel, ADMINPANEL);
 
-//<<<<<<< HEAD
         openingContent = new JPanel();
         openingContent.setLayout(new GridBagLayout());
         openingUserButton = new JButton("User");
@@ -110,8 +105,6 @@ public class GUI implements ActionListener {
 
 
 
-//=======
-//>>>>>>> 58b6a1ce85038e8bbb72147b99febce27024f3dd
         adminEditButton = new JButton("Edit");
         adminEditButton.addActionListener(this);
 
@@ -151,7 +144,7 @@ public class GUI implements ActionListener {
 
         aw = new GUIAdminAddWindow();
         adminAddPanel = new JPanel();
-//<<<<<<< HEAD
+
         adminAddPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;
@@ -166,16 +159,13 @@ public class GUI implements ActionListener {
         GridBagConstraints pwc = new GridBagConstraints();
         pw = new GUIPassword();
         pwc.gridx = pwc.gridy = 0;
-        passwordPanel.add(new JLabel("Enter password (default is 'PlanOMart' "), pwc);
+        passwordPanel.add(new JLabel("Enter password (default is 'PlanOMart') "), pwc);
         pwc.gridy = 1;
         passwordPanel.add(pw.passwordField, pwc);
         pwc.gridy = 2;
         passwordPanel.add(pw.submitButton, pwc);
+        pw.submitButton.addActionListener(this);
         pw.add(passwordPanel);
-
-
-
-
 
 
 
@@ -216,15 +206,12 @@ public class GUI implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         CardLayout cl = (CardLayout)(cards.getLayout());
-//<<<<<<< HEAD
 
         if(e.getSource() == openingAdminButton){
 
             pw.setVisible(true);
 
 
-            //}
-            cl.show(cards, ADMINPANEL);
         }
         if(e.getSource() == openingUserButton){
             cl.show(cards, USERPANEL);
@@ -233,8 +220,6 @@ public class GUI implements ActionListener {
             cl.show(cards, OPENINGPANEL);
         }
 
-//=======
-//>>>>>>> 58b6a1ce85038e8bbb72147b99febce27024f3dd
         if(e.getSource()==adminEditButton){
             ae.setVisible(true);
         }
@@ -245,6 +230,24 @@ public class GUI implements ActionListener {
 
         if(e.getSource() == commentButton) {
             custComments.setVisible(true);
+        }
+
+        if(e.getSource() == pw.submitButton){
+            passwordInput = pw.passwordField.getPassword();
+            if(pw.correctPassword(passwordInput)){
+                //if(store.equals(null)){
+                    //open setup window
+                    //pw.passwordField.setText("");
+                //} else{
+                    pw.setVisible(false);
+                    cl.show(cards, ADMINPANEL);
+                    pw.passwordField.setText("");
+                //}
+
+            } else {
+                JOptionPane.showMessageDialog(controllingContainer, "Incorrect password");
+                pw.passwordField.setText("");
+            }
         }
 
 
