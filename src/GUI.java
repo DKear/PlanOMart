@@ -235,14 +235,9 @@ public class GUI implements ActionListener {
         if(e.getSource() == pw.submitButton){
             passwordInput = pw.passwordField.getPassword();
             if(pw.correctPassword(passwordInput)){
-                //if(store.equals(null)){
-                    //open setup window
-                    //pw.passwordField.setText("");
-                //} else{
                     pw.setVisible(false);
                     cl.show(cards, ADMINPANEL);
                     pw.passwordField.setText("");
-                //}
 
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Incorrect password");

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 /**
  * Created by Jamie on 4/10/2017.
@@ -10,6 +11,7 @@ public class GUIPassword extends JDialog {
     private char[] password = {'P','l','a','n','O','M','a','r','t'};
 
     public GUIPassword(){
+
         setSize(400,300);
         passwordField = new JPasswordField(20);
         submitButton = new JButton("Submit");
@@ -20,10 +22,10 @@ public class GUIPassword extends JDialog {
     }
 
     public boolean correctPassword(char[] in){
-        if(in.equals(password)){
-            return true;
-        } else {
+        if(in.length != password.length){
             return false;
+        } else {
+            return Arrays.equals(in, password);
         }
     }
 
