@@ -5,6 +5,7 @@ THAT WILL REQUEST WHAT YOU WANT TO ADD, FOR NOW IT JUST CONTAINS THE
 OPTIONS FOR ADDING A STORE NAME
  */
 import javax.swing.*;
+import java.awt.*;
 //<<<<<<< HEAD
 
 
@@ -21,6 +22,7 @@ public class GUIAdminAddWindow extends JDialog{
         storeNameLabel.setLabelFor(storeNameField);// makes it a label for this text field
         storeNameField = new JTextField(10);
         storeNameField.setColumns(30);//sets the width of the textfield, by characters it can fit
+        setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
         //Button used for the user to submit text entered
         submitButton = new JButton("Submit");

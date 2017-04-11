@@ -29,6 +29,9 @@ public class GUI implements ActionListener {
     private JPanel openingContent;
     private JButton openingUserButton;
     private JButton openingAdminButton;
+    private Store store;
+    private JPanel passwordPanel;
+    private GUIPassword pw;
 
 //=======
     JButton switchButton;
@@ -117,12 +120,11 @@ public class GUI implements ActionListener {
         GridBagConstraints a = new GridBagConstraints();
 
         a.weightx = a.weighty = 0;
-        a.gridx = 0;
-        a.gridy = 0;
+        a.gridx = a.gridy = 0;
         a.anchor = GridBagConstraints.FIRST_LINE_START;
         adminPanel.add(adminSwitchButton, a);
         a.weightx = a.weighty = 1;
-        a.gridx = 0;
+        //a.gridx = 0;
         a.gridy = 1;
         a.anchor = GridBagConstraints.PAGE_START;
         adminPanel.add(new JLabel("Admin"), a);
@@ -135,17 +137,21 @@ public class GUI implements ActionListener {
 
         ae = new GUIAdminEdit();
         ae.addButton.addActionListener(this);
-        ae.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         adminEditPanel = new JPanel();
-        adminEditPanel.setLayout(new BoxLayout(adminEditPanel, BoxLayout.Y_AXIS));
-        adminEditPanel.add(ae.addButton);
+        adminEditPanel.setLayout(new GridBagLayout());
+        GridBagConstraints aec = new GridBagConstraints();
+        aec.gridx = aec.gridy = 0;
+        adminEditPanel.add(ae.addButton, aec);
+        aec.gridy = 1;
+        adminEditPanel.add(ae.removeButton, aec);
+        aec.gridy = 2;
+        adminEditPanel.add(ae.viewCommentButton, aec);
+
         ae.add(adminEditPanel);
 
         aw = new GUIAdminAddWindow();
-        aw.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
         adminAddPanel = new JPanel();
 //<<<<<<< HEAD
-
         adminAddPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;
@@ -154,9 +160,24 @@ public class GUI implements ActionListener {
         c.gridx = 0;
         c.gridy = 1;
         adminAddPanel.add(aw.submitButton, c);
-
-
         aw.add(adminAddPanel);
+
+        passwordPanel = new JPanel();
+        GridBagConstraints pwc = new GridBagConstraints();
+        pw = new GUIPassword();
+        pwc.gridx = pwc.gridy = 0;
+        passwordPanel.add(new JLabel("Enter password (default is 'PlanOMart' "), pwc);
+        pwc.gridy = 1;
+        passwordPanel.add(pw.passwordField, pwc);
+        pwc.gridy = 2;
+        passwordPanel.add(pw.submitButton, pwc);
+        pw.add(passwordPanel);
+
+
+
+
+
+
 
         //customer comments window
         custComments = new GUICustomerComments(); //creates window based on that class
@@ -198,12 +219,17 @@ public class GUI implements ActionListener {
 //<<<<<<< HEAD
 
         if(e.getSource() == openingAdminButton){
+
+            pw.setVisible(true);
+
+
+            //}
             cl.show(cards, ADMINPANEL);
         }
         if(e.getSource() == openingUserButton){
             cl.show(cards, USERPANEL);
         }
-        if(e.getSource() == userSwitchButton|| e.getSource()==adminSwitchButton){
+        if(e.getSource() == userSwitchButton || e.getSource()==adminSwitchButton){
             cl.show(cards, OPENINGPANEL);
         }
 
@@ -220,6 +246,8 @@ public class GUI implements ActionListener {
         if(e.getSource() == commentButton) {
             custComments.setVisible(true);
         }
+
+
 
 
     }
