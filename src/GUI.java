@@ -29,10 +29,12 @@ public class GUI implements ActionListener {
     private JPanel openingContent;
     private JButton openingUserButton;
     private JButton openingAdminButton;
-    private Store store;
+    private Boolean storeExists = false;
     private JPanel passwordPanel;
     private GUIPassword pw;
     private char[] passwordInput;
+    private JPanel initialSetupPanel;
+    private GUIInitialSetup is;
 
     JButton switchButton;
     JButton commentButton = new JButton("Comment");
@@ -155,6 +157,7 @@ public class GUI implements ActionListener {
         aw.add(adminAddPanel);
 
         passwordPanel = new JPanel();
+        passwordPanel.setLayout(new GridBagLayout());
         GridBagConstraints pwc = new GridBagConstraints();
         pw = new GUIPassword();
         pwc.gridx = pwc.gridy = 0;
@@ -165,6 +168,48 @@ public class GUI implements ActionListener {
         passwordPanel.add(pw.submitButton, pwc);
         pw.submitButton.addActionListener(this);
         pw.add(passwordPanel);
+
+        initialSetupPanel = new JPanel();
+        initialSetupPanel.setLayout(new GridBagLayout());
+        GridBagConstraints isp = new GridBagConstraints();
+        is = new GUIInitialSetup();
+        isp.gridx = isp.gridy = 0;
+        isp.anchor = GridBagConstraints.PAGE_START;
+        isp.gridwidth = 2;
+        initialSetupPanel.add(new JLabel("Welcome to PlanOMart! Please enter some information about your store."), isp);
+        isp.gridwidth = 1;
+        isp.gridy = 1;
+        isp.anchor = GridBagConstraints.CENTER;
+        initialSetupPanel.add(new JLabel("Store name:"),isp);
+        isp. gridx= 1;
+        initialSetupPanel.add(is.storeNameField, isp);
+        isp.gridx = 0;
+        isp.gridy = 2;
+        initialSetupPanel.add(new JLabel("Number of sections:"),isp);
+        isp. gridx= 1;
+        initialSetupPanel.add(is.numberOfSectionField,isp);
+        isp.gridx = 0;
+        isp.gridy = 3;
+        initialSetupPanel.add(new JLabel("Number of aisles in each section"), isp);
+        isp. gridx= 1;
+        initialSetupPanel.add(is.numberOfAislesField, isp);
+        isp.gridx = 0;
+        isp.gridy = 4;
+        initialSetupPanel.add(new JLabel("Number of racks in each aisle"),isp);
+        isp. gridx= 1;
+        initialSetupPanel.add(is.numberOfRacksField, isp);
+        isp.gridx = 0;
+        isp.gridy = 5;
+        initialSetupPanel.add(new JLabel("Number of shelves in each rack"), isp);
+        isp. gridx= 1;
+        initialSetupPanel.add(is.numberOfShelvesField, isp);
+        isp.gridwidth = 2;
+        isp.gridx = 0;
+        isp.gridy = 6;
+        initialSetupPanel.add(is.submitButton, isp);
+        is.add(initialSetupPanel);
+
+
 
 
 
@@ -235,13 +280,21 @@ public class GUI implements ActionListener {
             passwordInput = pw.passwordField.getPassword();
             if(pw.correctPassword(passwordInput)){
                     pw.setVisible(false);
-                    cl.show(cards, ADMINPANEL);
+                    if(storeExists == false){
+                        is.setVisible(true);
+                    }else {
+                        cl.show(cards, ADMINPANEL);
+                    }
                     pw.passwordField.setText("");
+
 
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Incorrect password");
                 pw.passwordField.setText("");
             }
+        }
+        if(e.getSource() == is.submitButton){
+            
         }
 
 
