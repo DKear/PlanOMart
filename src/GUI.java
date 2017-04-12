@@ -35,6 +35,11 @@ public class GUI implements ActionListener {
     private char[] passwordInput;
     private JPanel initialSetupPanel;
     private GUIInitialSetup is;
+    private Store store;
+    private Section section;
+    private Aisle aisle;
+    private Rack rack;
+    private Shelf shelf;
 
     JButton switchButton;
     JButton commentButton = new JButton("Comment");
@@ -295,6 +300,8 @@ public class GUI implements ActionListener {
         }
         if(e.getSource() == is.submitButton){
             
+
+
         }
 
 
