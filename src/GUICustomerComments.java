@@ -3,6 +3,8 @@
  */
 
 import javax.swing.*;
+import java.awt.*;
+
 public class GUICustomerComments extends JDialog{
     JLabel subjectLabel; //top label
     JTextField subjectField;//top textfield
@@ -11,7 +13,8 @@ public class GUICustomerComments extends JDialog{
     JLabel contactLabel; //bottom label
     JTextField contactField;//bottom textfield
     JButton submitButton;//the submit button
-    public GUICustomerComments(){
+    CustomerComments comm;
+    public GUICustomerComments() {
         setSize(500, 500);
         //the subject label and text field
         subjectLabel = new JLabel("Subject of comment:");//top label for the subject of the comment
@@ -30,7 +33,21 @@ public class GUICustomerComments extends JDialog{
 
         //Button used for the user to submit text entered
         submitButton = new JButton("Submit");
+        addListeners();
         setVisible(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+    private void addListeners() {
+        submitButton.addActionListener(e -> {
+            String subject = subjectField.getText();  //Creating a string to store the text in the storeNameField
+            subjectField.setText("");  //Erasing whatever input is in the text field after submit
+            String comment = commentField.getText();
+            commentField.setText("");
+            String contact = contactField.getText();
+            contactField.setText("");
+            comm = new CustomerComments(subject, comment, contact);
+            setVisible(false);
+            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);   //Closing the dialog box.
+        });
     }
 }

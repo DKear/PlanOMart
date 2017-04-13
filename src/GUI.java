@@ -1,11 +1,8 @@
 import javax.swing.*;
-import javax.swing.text.*;
 
 import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
 
-import java.net.URL;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class GUI implements ActionListener {
@@ -42,7 +39,7 @@ public class GUI implements ActionListener {
     public Shelf shelf;
 
     JButton switchButton;
-    JButton commentButton = new JButton("Comment");
+    JButton commentCreateButton = new JButton("Comment");
     GUICustomerComments custComments;
     ArrayList<String> comments = new ArrayList<>();//stores the customers' comments
 
@@ -251,8 +248,8 @@ public class GUI implements ActionListener {
         grid.gridy = 6;//one further down
         custComm.add(custComments.submitButton, grid);
         custComments.add(custComm);//adds the JPanel with everything in it to the dialog box
-        userPanel.add(commentButton); //adds a button to the userPanel to open this dialog
-        commentButton.addActionListener(this);// allows the button to do something on click
+        userPanel.add(commentCreateButton); //adds a button to the userPanel to open this dialog
+        commentCreateButton.addActionListener(this);// allows the button to do something on click
     }
 
 
@@ -281,7 +278,7 @@ public class GUI implements ActionListener {
             aw.setVisible(true);
         }
 
-        if(e.getSource() == commentButton) {
+        if(e.getSource() == commentCreateButton) {
             custComments.setVisible(true);
         }
 
