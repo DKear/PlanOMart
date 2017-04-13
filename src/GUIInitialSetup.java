@@ -1,6 +1,5 @@
 import javax.swing.*;
-
-
+import java.awt.*;
 
 
 public class GUIInitialSetup extends JDialog {
@@ -12,6 +11,7 @@ public class GUIInitialSetup extends JDialog {
     JButton submitButton;
 
     public GUIInitialSetup(){
+        setSize(new Dimension(600,500));
 
         storeNameField = new JTextField(10);
         numberOfSectionField = new JTextField(10);
@@ -35,5 +35,6 @@ public class GUIInitialSetup extends JDialog {
         }
         return true;
     }
+
 
 }

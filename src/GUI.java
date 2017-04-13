@@ -315,26 +315,26 @@ public class GUI implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(controllingContainer,"Enter a store name");
             }
-            if(is.isNumber(is.numberOfSectionField.getText())){
+            if(is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText())>= 0){
                 sectionInt = Integer.parseInt(is.numberOfSectionField.getText());
                 valid++;
             }else{
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid section input");
             }
 
-            if(is.isNumber(is.numberOfAislesField.getText())){
+            if(is.isNumber(is.numberOfAislesField.getText()) && Integer.parseInt(is.numberOfAislesField.getText())>= 0){
                 aisleInt = Integer.parseInt(is.numberOfAislesField.getText());
                 valid++;
             }else{
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid aisle input");
             }
-            if(is.isNumber(is.numberOfRacksField.getText())){
+            if(is.isNumber(is.numberOfRacksField.getText())&& Integer.parseInt(is.numberOfRacksField.getText())>= 0){
                 rackInt = Integer.parseInt(is.numberOfRacksField.getText());
                 valid++;
             }else{
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid rack input");
             }
-            if(is.isNumber(is.numberOfShelvesField.getText())){
+            if(is.isNumber(is.numberOfShelvesField.getText())&& Integer.parseInt(is.numberOfShelvesField.getText())>= 0){
                 shelfInt = Integer.parseInt(is.numberOfShelvesField.getText());
                 valid++;
             }else{
@@ -363,10 +363,6 @@ public class GUI implements ActionListener {
                 is.setVisible(false);
                 cl.show(cards, ADMINPANEL);
                 storeExists = true;
-
-
-
-
             }
 
 
