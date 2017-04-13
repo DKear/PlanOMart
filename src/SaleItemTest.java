@@ -172,7 +172,7 @@ public class SaleItemTest {
 
     @Test
     public void setGetShelfTest(){
-        Shelf shelf = new Shelf(10);
+        Shelf shelf = new Shelf("10");
         SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
         shelf.addItem(bread);
         bread.setShelves(shelf);

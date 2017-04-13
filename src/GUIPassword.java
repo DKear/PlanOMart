@@ -26,6 +26,11 @@ public class GUIPassword extends JDialog {
         }
     }
 
+    public void changePassword(char[] newPass){
+        password = newPass;
+    }
+
+
 
 
 }

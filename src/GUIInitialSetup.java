@@ -22,6 +22,18 @@ public class GUIInitialSetup extends JDialog {
         setVisible(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setModalityType(ModalityType.APPLICATION_MODAL);
+
+    }
+    public boolean isNumber(String str){
+        try
+        {
+            double d = Double.parseDouble(str);
+        }
+        catch(NumberFormatException nfe)
+        {
+            return false;
+        }
+        return true;
     }
 
 }

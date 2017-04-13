@@ -35,16 +35,17 @@ public class GUI implements ActionListener {
     private char[] passwordInput;
     private JPanel initialSetupPanel;
     private GUIInitialSetup is;
-    private Store store;
-    private Section section;
-    private Aisle aisle;
-    private Rack rack;
-    private Shelf shelf;
+    public Store store;
+    public Section section;
+    public Aisle aisle;
+    public Rack rack;
+    public Shelf shelf;
 
     JButton switchButton;
     JButton commentButton = new JButton("Comment");
     GUICustomerComments custComments;
     ArrayList<String> comments = new ArrayList<>();//stores the customers' comments
+
 
 
     public void addComponentToPane(Container pane){
@@ -212,6 +213,7 @@ public class GUI implements ActionListener {
         isp.gridx = 0;
         isp.gridy = 6;
         initialSetupPanel.add(is.submitButton, isp);
+        is.submitButton.addActionListener(this);
         is.add(initialSetupPanel);
 
 
@@ -252,6 +254,8 @@ public class GUI implements ActionListener {
         userPanel.add(commentButton); //adds a button to the userPanel to open this dialog
         commentButton.addActionListener(this);// allows the button to do something on click
     }
+
+
 
     public void actionPerformed(ActionEvent e){
         CardLayout cl = (CardLayout)(cards.getLayout());
@@ -299,7 +303,72 @@ public class GUI implements ActionListener {
             }
         }
         if(e.getSource() == is.submitButton){
-            
+            String storeName = "";
+            Integer sectionInt = 0;
+            Integer aisleInt = 0;
+            Integer rackInt = 0;
+            Integer shelfInt = 0;
+            int valid = 0;
+            if(!is.storeNameField.getText().equals("")) {
+                storeName = is.storeNameField.getText();
+                valid++;
+            } else {
+                JOptionPane.showMessageDialog(controllingContainer,"Enter a store name");
+            }
+            if(is.isNumber(is.numberOfSectionField.getText())){
+                sectionInt = Integer.parseInt(is.numberOfSectionField.getText());
+                valid++;
+            }else{
+                JOptionPane.showMessageDialog(controllingContainer, "Invalid section input");
+            }
+
+            if(is.isNumber(is.numberOfAislesField.getText())){
+                aisleInt = Integer.parseInt(is.numberOfAislesField.getText());
+                valid++;
+            }else{
+                JOptionPane.showMessageDialog(controllingContainer, "Invalid aisle input");
+            }
+            if(is.isNumber(is.numberOfRacksField.getText())){
+                rackInt = Integer.parseInt(is.numberOfRacksField.getText());
+                valid++;
+            }else{
+                JOptionPane.showMessageDialog(controllingContainer, "Invalid rack input");
+            }
+            if(is.isNumber(is.numberOfShelvesField.getText())){
+                shelfInt = Integer.parseInt(is.numberOfShelvesField.getText());
+                valid++;
+            }else{
+                JOptionPane.showMessageDialog(controllingContainer, "Invalid shelf input");
+            }
+
+            if(valid == 5){
+                store = new Store(storeName);
+                for(int i = 0; i < sectionInt; i++){
+                    section = new Section(Integer.toString(i+1));
+                    store.addSection(section);
+                    for(int j = 0; j < aisleInt; j++ ){
+                        aisle = new Aisle(Integer.toString(j+1));
+                        section.addAisle(aisle);
+                        for(int k = 0; k < rackInt; k++){
+                            rack = new Rack(Integer.toString(k+1));
+                            aisle.addRack(rack);
+                            for(int l = 0; l < shelfInt; l++){
+                                shelf = new Shelf(Integer.toString(l+1));
+                                rack.addShelf(shelf);
+                            }
+                        }
+                    }
+                }
+                JOptionPane.showMessageDialog(controllingContainer,"Store created! You may give names to store objects in the 'Edit' tab. ");
+                is.setVisible(false);
+                cl.show(cards, ADMINPANEL);
+                storeExists = true;
+
+
+
+
+            }
+
 
 
         }

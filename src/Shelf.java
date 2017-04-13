@@ -4,22 +4,19 @@ import java.util.ArrayList;
  * Created by joshu on 2/24/2017.
  */
 public class Shelf {
-    private int rowNum;
+    private String rowName;
     private ArrayList<SaleItem> products;
     private Rack rack;
     private ArrayList<String> tags;
 
 
-    public Shelf(int n) {
-        if(n >= 0) {
-            rowNum = n;
+    public Shelf(String n) {
+            rowName = n;
             products = new ArrayList<SaleItem>();
-        } else {
-            throw new IllegalArgumentException();
-        }
+
     }
-    public int getRowNum(){
-        return rowNum;
+    public String getRowName(){
+        return rowName;
     }
     public int getNumOfItemsOnShelf(){
         return products.size();

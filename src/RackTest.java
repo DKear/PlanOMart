@@ -22,7 +22,7 @@ class RackTest {
     @Test
     public void addShelfTest() {
         Rack rack = new Rack("Rack");
-        Shelf shelf = new Shelf(3);
+        Shelf shelf = new Shelf("3");
         rack.addShelf(shelf);
         Assertions.assertTrue(rack.getShelf().length == 1);
     }
@@ -30,7 +30,7 @@ class RackTest {
     @Test
     public void hasShelfTest() {
         Rack rack = new Rack("testRack");
-        Shelf shelf = new Shelf(4);
+        Shelf shelf = new Shelf("4");
         rack.addShelf(shelf);
         Assertions.assertTrue(rack.hasShelves());
     }
@@ -38,8 +38,8 @@ class RackTest {
     @Test
     public void removeShelfTest() {
         Rack rack = new Rack("TestRack");
-        Shelf shelf = new Shelf(4);
-        Shelf shelf_2 = new Shelf(4);
+        Shelf shelf = new Shelf("4");
+        Shelf shelf_2 = new Shelf("4");
         rack.addShelf(shelf);
         rack.addShelf(shelf_2);
         rack.removeShelf(shelf);
