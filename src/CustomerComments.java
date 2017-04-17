@@ -24,6 +24,7 @@ public class CustomerComments {
             return "No Contact Information.";
         }
     }
+
     public boolean validateComment(CustomerComments c) {
         if (c.getSubject().equals("") || c.getComment().equals(""))  {
             return false;

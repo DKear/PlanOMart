@@ -3,14 +3,12 @@ import javax.swing.*;
 import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
 
-import java.util.ArrayList;
 
 public class GUI implements ActionListener {
 
     private JPanel cards;
     private JPanel adminOrgPanel;
     private Container controllingContainer;
-
     private String ADMINPANEL = "Admin";
     private String USERPANEL = "User";
     private String OPENINGPANEL = "Opening Panel";
@@ -40,9 +38,8 @@ public class GUI implements ActionListener {
 
     JButton switchButton;
     JButton commentCreateButton = new JButton("Comment");
-    GUICustomerComments custComments;
-    ArrayList<String> comments = new ArrayList<>();//stores the customers' comments
-
+    GUICustomerComments createCustomComments;
+    GUICustomerComments viewCustomerComments;
 
 
     public void addComponentToPane(Container pane){
@@ -106,10 +103,7 @@ public class GUI implements ActionListener {
         o.gridy = 1;
         o.insets = new Insets(0, 10, 0, 0);
         openingContent.add(openingUserButton,o);
-
         openingPanel.add(openingContent);
-
-
 
         adminEditButton = new JButton("Edit");
         adminEditButton.addActionListener(this);
@@ -214,42 +208,59 @@ public class GUI implements ActionListener {
         is.add(initialSetupPanel);
 
 
-
-
-
-        //customer comments window
-        custComments = new GUICustomerComments(); //creates window based on that class
-        custComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
-        JPanel custComm = new JPanel();// makes a panel to place all the components in
-        custComm.setLayout(new GridBagLayout());//sets layout to grid layout
-        GridBagConstraints grid = new GridBagConstraints();//tells the component where in the grid it will be placed
-        grid.gridx =  grid.gridy = 0;//uses entire width
+        //create customer comments window
+        createCustomComments = new GUICustomerComments(); //creates window based on that class
+        createCustomComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
+        JPanel createCustComm = new JPanel();// makes a panel to place all the components in
+        createCustComm.setLayout(new GridBagLayout());//sets layout to createCommGrid layout
+        GridBagConstraints createCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
+        createCommGrid.gridx =  createCommGrid.gridy = 0;//uses entire width
        //starts at top
-        grid.anchor = GridBagConstraints.LINE_START;
-        custComm.add(custComments.subjectLabel, grid);// adds the label to this part of the grid
-        grid.fill = GridBagConstraints.BOTH;
-        grid.gridy = 1;//one further down
-        custComm.add(custComments.subjectField, grid);
-        grid.anchor = GridBagConstraints.LINE_START;
-        grid.gridy = 2;//one further down
-        custComm.add(custComments.commentLabel, grid);
-        grid.fill = GridBagConstraints.BOTH;
-        grid.gridy = 3;//one further down
-        grid.ipady = 40;
-        custComm.add(custComments.commentField, grid);
-        grid.anchor = GridBagConstraints.LINE_START;
-        grid.gridy = 4;//one further down
-        grid.ipady = 0;
-        custComm.add(custComments.contactLabel, grid);
-        grid.fill = GridBagConstraints.BOTH;
-        grid.gridy = 5;//one further down
-        custComm.add(custComments.contactField, grid);
-        grid.anchor = GridBagConstraints.LINE_END;
-        grid.gridy = 6;//one further down
-        custComm.add(custComments.submitButton, grid);
-        custComments.add(custComm);//adds the JPanel with everything in it to the dialog box
+        createCommGrid.anchor = GridBagConstraints.LINE_START;
+        createCustComm.add(createCustomComments.subjectLabel, createCommGrid);// adds the label to this part of the createCommGrid
+        createCommGrid.fill = GridBagConstraints.BOTH;
+        createCommGrid.gridy = 1;//one further down
+        createCustComm.add(createCustomComments.subjectField, createCommGrid);
+        createCommGrid.anchor = GridBagConstraints.LINE_START;
+        createCommGrid.gridy = 2;//one further down
+        createCustComm.add(createCustomComments.commentLabel, createCommGrid);
+        createCommGrid.fill = GridBagConstraints.BOTH;
+        createCommGrid.gridy = 3;//one further down
+        createCommGrid.ipady = 40; //makes this cell taller
+        createCustComm.add(createCustomComments.commentField, createCommGrid);
+        createCommGrid.anchor = GridBagConstraints.LINE_START;
+        createCommGrid.gridy = 4;//one further down
+        createCommGrid.ipady = 0;//brings cell height back to default
+        createCustComm.add(createCustomComments.contactLabel, createCommGrid);
+        createCommGrid.fill = GridBagConstraints.BOTH;
+        createCommGrid.gridy = 5;//one further down
+        createCustComm.add(createCustomComments.contactField, createCommGrid);
+        createCommGrid.anchor = GridBagConstraints.LINE_END;
+        createCommGrid.gridy = 6;//one further down
+        createCustComm.add(createCustomComments.submitButton, createCommGrid);
+        createCustomComments.add(createCustComm);//adds the JPanel with everything in it to the dialog box
         userPanel.add(commentCreateButton); //adds a button to the userPanel to open this dialog
         commentCreateButton.addActionListener(this);// allows the button to do something on click
+
+        //view customer comments window
+        viewCustomerComments = new GUICustomerComments();
+        viewCustomerComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
+        JPanel viewCustComm = new JPanel();// makes a panel to place all the components in
+        viewCustComm.setLayout(new GridBagLayout());//sets layout to createCommGrid layout
+        GridBagConstraints viewCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
+        DefaultListModel listOfCommentSubjects = new DefaultListModel();
+        if (!createCustomComments.comments.isEmpty()) {
+            listOfCommentSubjects.clear();
+            for (CustomerComments comm : createCustomComments.comments) {//for every comment in the list
+                listOfCommentSubjects.addElement(comm.getSubject());//add the comment subject to the list
+            }
+        } else{
+            if (listOfCommentSubjects.isEmpty()) listOfCommentSubjects.addElement("No Customer Comments Availiable.");
+        }
+        JList subjectList = new JList(listOfCommentSubjects);
+        JScrollPane paneOfSubjects = new JScrollPane(subjectList);
+        viewCommGrid.gridy = viewCommGrid.gridx = 0;
+        JLabel viewCommentLabel =  new JLabel("")
     }
 
 
@@ -258,10 +269,7 @@ public class GUI implements ActionListener {
         CardLayout cl = (CardLayout)(cards.getLayout());
 
         if(e.getSource() == openingAdminButton){
-
             pw.setVisible(true);
-
-
         }
         if(e.getSource() == openingUserButton){
             cl.show(cards, USERPANEL);
@@ -279,21 +287,19 @@ public class GUI implements ActionListener {
         }
 
         if(e.getSource() == commentCreateButton) {
-            custComments.setVisible(true);
+            createCustomComments.setVisible(true);
         }
 
         if(e.getSource() == pw.submitButton){
             passwordInput = pw.passwordField.getPassword();
             if(pw.correctPassword(passwordInput)){
                     pw.setVisible(false);
-                    if(storeExists == false){
+                    if(!storeExists){
                         is.setVisible(true);
                     }else {
                         cl.show(cards, ADMINPANEL);
                     }
                     pw.passwordField.setText("");
-
-
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Incorrect password");
                 pw.passwordField.setText("");
@@ -361,13 +367,7 @@ public class GUI implements ActionListener {
                 cl.show(cards, ADMINPANEL);
                 storeExists = true;
             }
-
-
-
         }
-
-
-
 
     }
     private static void createAndShowGUI() {
