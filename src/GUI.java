@@ -12,7 +12,6 @@ public class GUI implements ActionListener {
     private String ADMINPANEL = "Admin";
     private String USERPANEL = "User";
     private String OPENINGPANEL = "Opening Panel";
-    private int panelState = 0;
     private JButton userSwitchButton;
     private JButton adminSwitchButton;
     private JButton adminEditButton;
@@ -20,7 +19,6 @@ public class GUI implements ActionListener {
     private GUIAdminAddWindow aw;
     private JPanel adminEditPanel;
     private JPanel adminAddPanel;
-    private JPanel openingPanel;
     private JPanel openingContent;
     private JButton openingUserButton;
     private JButton openingAdminButton;
