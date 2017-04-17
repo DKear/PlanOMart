@@ -17,11 +17,6 @@ public class GUIAdminAddWindow extends JDialog{
 
     public GUIAdminAddWindow() {
         setSize(400, 400);
-        //A label and textfield for where the user will type the store name
-        storeNameLabel = new JLabel("Enter your store's name:"); //what the label will output
-        storeNameLabel.setLabelFor(storeNameField);// makes it a label for this text field
-        storeNameField = new JTextField(10);
-        storeNameField.setColumns(30);//sets the width of the textfield, by characters it can fit
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 
         //Button used for the user to submit text entered
@@ -33,11 +28,7 @@ public class GUIAdminAddWindow extends JDialog{
 
     private void addListeners() {
         submitButton.addActionListener(e -> {
-            String storeName = storeNameField.getText();         //Creating a string to store the text in the storeNameField
-            Store theStore = new Store(storeName);               //Creating a Store object and setting the string, storeName, to it
-            storeNameField.setText("");                          //Erasing whatever input is in the text field after submit
-            setVisible(false);
-            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);   //Closing the dialog box, aw.
+
         });
     }
 }

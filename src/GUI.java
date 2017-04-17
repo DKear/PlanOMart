@@ -7,7 +7,6 @@ import java.awt.event.*;        //for action events
 public class GUI implements ActionListener {
 
     private JPanel cards;
-    private JPanel adminOrgPanel;
     private Container controllingContainer;
     private String ADMINPANEL = "Admin";
     private String USERPANEL = "User";
@@ -106,7 +105,6 @@ public class GUI implements ActionListener {
         adminEditButton = new JButton("Edit");
         adminEditButton.addActionListener(this);
 
-        //adminOrgPanel = new JPanel();
         adminPanel.setLayout(new GridBagLayout());
         GridBagConstraints a = new GridBagConstraints();
 
@@ -115,13 +113,11 @@ public class GUI implements ActionListener {
         a.anchor = GridBagConstraints.FIRST_LINE_START;
         adminPanel.add(adminSwitchButton, a);
         a.weightx = a.weighty = 1;
-        //a.gridx = 0;
         a.gridy = 1;
         a.anchor = GridBagConstraints.PAGE_START;
         adminPanel.add(new JLabel("Admin"), a);
         a.gridy = 2;
         adminPanel.add(adminEditButton, a);
-        //adminPanel.add(adminPanel);
 
         pane.add(panel, BorderLayout.WEST);
         pane.add(cards, BorderLayout.CENTER);
@@ -145,10 +141,7 @@ public class GUI implements ActionListener {
 
         adminAddPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        c.gridx = c.gridy = 0;
-        adminAddPanel.add(aw.storeNameField, c);
-        c.gridy = 1;
-        adminAddPanel.add(aw.submitButton, c);
+
         aw.add(adminAddPanel);
 
         passwordPanel = new JPanel();
@@ -280,9 +273,6 @@ public class GUI implements ActionListener {
             ae.setVisible(true);
         }
 
-        if(e.getSource() == ae.addButton){
-            aw.setVisible(true);
-        }
 
         if(e.getSource() == commentCreateButton) {
             createCustomComments.setVisible(true);
