@@ -2,20 +2,20 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUIAdminEdit extends JDialog {
-    JButton addButton;
-    JButton removeButton;
-    JButton viewCommentButton;
+    JButton locationButton;
+    JButton merchandiseButton;
+    JButton changePassButton;
 
     public GUIAdminEdit(){
         setSize(400,400);
         Dimension buttonSize = new Dimension(150, 30);
-        addButton = new JButton("Add");
+        locationButton = new JButton("Location object");
 
-        addButton.setPreferredSize(buttonSize);
-        removeButton = new JButton("Remove");
-        removeButton.setPreferredSize(buttonSize);
-        viewCommentButton = new JButton("View comments");
-        viewCommentButton.setPreferredSize(buttonSize);
+        locationButton.setPreferredSize(buttonSize);
+        merchandiseButton = new JButton("Merchandise object");
+        merchandiseButton.setPreferredSize(buttonSize);
+        changePassButton = new JButton("Change password");
+        changePassButton.setPreferredSize(buttonSize);
 
         setVisible(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

@@ -16,7 +16,8 @@ public class GUI implements ActionListener {
     private JButton adminEditButton;
     private GUIAdminEdit ae;
     private GUIAdminAddWindow aw;
-    private JPanel adminEditPanel;
+    //private JPanel adminEditPanel;
+    private JPanel adminEditCard;
     private JPanel adminAddPanel;
     private JPanel openingContent;
     private JButton openingUserButton;
@@ -123,18 +124,40 @@ public class GUI implements ActionListener {
         pane.add(cards, BorderLayout.CENTER);
 
         ae = new GUIAdminEdit();
-        ae.addButton.addActionListener(this);
-        adminEditPanel = new JPanel();
+        ae.locationButton.addActionListener(this);
+
+        adminEditCard = new JPanel();
+        adminEditCard.setLayout(new CardLayout());
+
+        JPanel adminEditPanel = new JPanel();
         adminEditPanel.setLayout(new GridBagLayout());
         GridBagConstraints aec = new GridBagConstraints();
         aec.gridx = aec.gridy = 0;
-        adminEditPanel.add(ae.addButton, aec);
+        adminEditPanel.add(ae.locationButton, aec);
+        ae.locationButton.addActionListener(this);
         aec.gridy = 1;
-        adminEditPanel.add(ae.removeButton, aec);
+        adminEditPanel.add(ae.merchandiseButton, aec);
+        ae.merchandiseButton.addActionListener(this);
         aec.gridy = 2;
-        adminEditPanel.add(ae.viewCommentButton, aec);
+        adminEditPanel.add(ae.changePassButton, aec);
+        ae.changePassButton.addActionListener(this);
 
-        ae.add(adminEditPanel);
+        adminEditCard.add(adminEditPanel, "Edit");
+
+        JPanel adminEditLocation = new JPanel();
+
+        adminEditCard.add(adminEditLocation, "Locations");
+
+        JPanel adminEditMerchandise = new JPanel();
+
+        adminEditCard.add(adminEditMerchandise, "Merchandise");
+
+        JPanel adminEditChangePass = new JPanel();
+
+        adminEditCard.add(adminEditChangePass, "Change password");
+
+
+        ae.add(adminEditCard);
 
         aw = new GUIAdminAddWindow();
         adminAddPanel = new JPanel();
@@ -251,13 +274,14 @@ public class GUI implements ActionListener {
         JList subjectList = new JList(listOfCommentSubjects);
         JScrollPane paneOfSubjects = new JScrollPane(subjectList);
         viewCommGrid.gridy = viewCommGrid.gridx = 0;
-        JLabel viewCommentLabel =  new JLabel("")
+        JLabel viewCommentLabel =  new JLabel("");
     }
 
 
 
     public void actionPerformed(ActionEvent e){
         CardLayout cl = (CardLayout)(cards.getLayout());
+        CardLayout ecl = (CardLayout)(adminEditCard.getLayout());
 
         if(e.getSource() == openingAdminButton){
             pw.setVisible(true);
@@ -306,27 +330,27 @@ public class GUI implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(controllingContainer,"Enter a store name");
             }
-            if(is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText())>= 0){
-                sectionInt = Integer.parseInt(is.numberOfSectionField.getText());
+            if(is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText().trim())>= 0){
+                sectionInt = Integer.parseInt(is.numberOfSectionField.getText().trim());
                 valid++;
             }else{
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid section input");
             }
 
-            if(is.isNumber(is.numberOfAislesField.getText()) && Integer.parseInt(is.numberOfAislesField.getText())>= 0){
-                aisleInt = Integer.parseInt(is.numberOfAislesField.getText());
+            if(is.isNumber(is.numberOfAislesField.getText()) && Integer.parseInt(is.numberOfAislesField.getText().trim())>= 0){
+                aisleInt = Integer.parseInt(is.numberOfAislesField.getText().trim());
                 valid++;
             }else{
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid aisle input");
             }
-            if(is.isNumber(is.numberOfRacksField.getText())&& Integer.parseInt(is.numberOfRacksField.getText())>= 0){
-                rackInt = Integer.parseInt(is.numberOfRacksField.getText());
+            if(is.isNumber(is.numberOfRacksField.getText())&& Integer.parseInt(is.numberOfRacksField.getText().trim())>= 0){
+                rackInt = Integer.parseInt(is.numberOfRacksField.getText().trim());
                 valid++;
             }else{
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid rack input");
             }
-            if(is.isNumber(is.numberOfShelvesField.getText())&& Integer.parseInt(is.numberOfShelvesField.getText())>= 0){
-                shelfInt = Integer.parseInt(is.numberOfShelvesField.getText());
+            if(is.isNumber(is.numberOfShelvesField.getText())&& Integer.parseInt(is.numberOfShelvesField.getText().trim())>= 0){
+                shelfInt = Integer.parseInt(is.numberOfShelvesField.getText().trim());
                 valid++;
             }else{
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid shelf input");
@@ -355,6 +379,16 @@ public class GUI implements ActionListener {
                 cl.show(cards, ADMINPANEL);
                 storeExists = true;
             }
+        }
+
+        if(e.getSource() == ae.locationButton){
+            ecl.show(adminEditCard, "Locations");
+        }
+        if(e.getSource() == ae.merchandiseButton){
+            ecl.show(adminEditCard, "Merchandise");
+        }
+        if(e.getSource() == ae.changePassButton){
+            ecl.show(adminEditCard, "Change password");
         }
 
     }
