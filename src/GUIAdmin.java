@@ -1,6 +1,6 @@
-import admin.edit.panel.AdminEditBodyPanel;
-import admin.edit.panel.AdminEditBottomPanel;
-import admin.edit.panel.AdminEditTopPanel;
+import admin.main.panel.AdminEditBodyPanel;
+import admin.main.panel.AdminEditBottomPanel;
+import admin.main.panel.AdminEditTopPanel;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;

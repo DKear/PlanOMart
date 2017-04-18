@@ -1,4 +1,4 @@
-package admin.edit.panel;
+package admin.main.panel;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -40,5 +40,9 @@ public class AdminEditBottomPanel extends JPanel{
         add(addRemoveButton);
         add(viewCommentButton);
         add(mapButton);
+    }
+
+    public void actionPerformed(){
+
     }
 }
