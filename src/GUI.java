@@ -1,3 +1,5 @@
+import store.locations.*;
+
 import javax.swing.*;
 
 import java.awt.*;              //for layout managers and more
@@ -39,9 +41,9 @@ public class GUI implements ActionListener {
     GUICustomerComments viewCustomerComments;
 
 
-    public void addComponentToPane(Container pane){
+    public void addComponentToPane(Container pane) {
         controllingContainer = pane;
-        pane.setPreferredSize(new Dimension(1920,1080));
+        pane.setPreferredSize(new Dimension(1920, 1080));
 
         JPanel panel = new JPanel();
 
@@ -55,7 +57,7 @@ public class GUI implements ActionListener {
         JPanel openingPanel = new JPanel();
 
 
-        JPanel adminPanel = new JPanel();
+        JPanel adminPanel = new GUIAdmin();
 
         JPanel userPanel = new JPanel();
 
@@ -89,35 +91,35 @@ public class GUI implements ActionListener {
         o.gridx = 0;
         o.gridy = 0;
 
-        openingContent.add(new JLabel("Select a mode:"),o);
+        openingContent.add(new JLabel("Select a mode:"), o);
         o.gridwidth = 1;
         o.gridx = 0;
         o.gridy = 1;
         o.weightx = 1;
-        o.insets = new Insets(0,0,0,10);
-        openingContent.add(openingAdminButton,o);
+        o.insets = new Insets(0, 0, 0, 10);
+        openingContent.add(openingAdminButton, o);
         o.gridx = 1;
         o.gridy = 1;
         o.insets = new Insets(0, 10, 0, 0);
-        openingContent.add(openingUserButton,o);
+        openingContent.add(openingUserButton, o);
         openingPanel.add(openingContent);
 
         adminEditButton = new JButton("Edit");
         adminEditButton.addActionListener(this);
 
-        adminPanel.setLayout(new GridBagLayout());
-        GridBagConstraints a = new GridBagConstraints();
-
-        a.weightx = a.weighty = 0;
-        a.gridx = a.gridy = 0;
-        a.anchor = GridBagConstraints.FIRST_LINE_START;
-        adminPanel.add(adminSwitchButton, a);
-        a.weightx = a.weighty = 1;
-        a.gridy = 1;
-        a.anchor = GridBagConstraints.PAGE_START;
-        adminPanel.add(new JLabel("Admin"), a);
-        a.gridy = 2;
-        adminPanel.add(adminEditButton, a);
+//        adminPanel.setLayout(new GridBagLayout());
+//        GridBagConstraints a = new GridBagConstraints();
+//
+//        a.weightx = a.weighty = 0;
+//        a.gridx = a.gridy = 0;
+//        a.anchor = GridBagConstraints.FIRST_LINE_START;
+//        adminPanel.add(adminSwitchButton, a);
+//        a.weightx = a.weighty = 1;
+//        a.gridy = 1;
+//        a.anchor = GridBagConstraints.PAGE_START;
+//        adminPanel.add(new JLabel("Admin"), a);
+//        a.gridy = 2;
+//        adminPanel.add(adminEditButton, a);
 
         pane.add(panel, BorderLayout.WEST);
         pane.add(cards, BorderLayout.CENTER);
@@ -168,28 +170,28 @@ public class GUI implements ActionListener {
         isp.gridwidth = 1;
         isp.gridy = 1;
         isp.anchor = GridBagConstraints.CENTER;
-        initialSetupPanel.add(new JLabel("Store name:"),isp);
-        isp. gridx= 1;
+        initialSetupPanel.add(new JLabel("store.locations.Store name:"), isp);
+        isp.gridx = 1;
         initialSetupPanel.add(is.storeNameField, isp);
         isp.gridx = 0;
         isp.gridy = 2;
-        initialSetupPanel.add(new JLabel("Number of sections:"),isp);
-        isp. gridx= 1;
-        initialSetupPanel.add(is.numberOfSectionField,isp);
+        initialSetupPanel.add(new JLabel("Number of sections:"), isp);
+        isp.gridx = 1;
+        initialSetupPanel.add(is.numberOfSectionField, isp);
         isp.gridx = 0;
         isp.gridy = 3;
         initialSetupPanel.add(new JLabel("Number of aisles in each section"), isp);
-        isp. gridx= 1;
+        isp.gridx = 1;
         initialSetupPanel.add(is.numberOfAislesField, isp);
         isp.gridx = 0;
         isp.gridy = 4;
-        initialSetupPanel.add(new JLabel("Number of racks in each aisle"),isp);
-        isp. gridx= 1;
+        initialSetupPanel.add(new JLabel("Number of racks in each aisle"), isp);
+        isp.gridx = 1;
         initialSetupPanel.add(is.numberOfRacksField, isp);
         isp.gridx = 0;
         isp.gridy = 5;
         initialSetupPanel.add(new JLabel("Number of shelves in each rack"), isp);
-        isp. gridx= 1;
+        isp.gridx = 1;
         initialSetupPanel.add(is.numberOfShelvesField, isp);
         isp.gridwidth = 2;
         isp.gridx = 0;
@@ -205,8 +207,8 @@ public class GUI implements ActionListener {
         JPanel createCustComm = new JPanel();// makes a panel to place all the components in
         createCustComm.setLayout(new GridBagLayout());//sets layout to createCommGrid layout
         GridBagConstraints createCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
-        createCommGrid.gridx =  createCommGrid.gridy = 0;//uses entire width
-       //starts at top
+        createCommGrid.gridx = createCommGrid.gridy = 0;//uses entire width
+        //starts at top
         createCommGrid.anchor = GridBagConstraints.LINE_START;
         createCustComm.add(createCustomComments.subjectLabel, createCommGrid);// adds the label to this part of the createCommGrid
         createCommGrid.fill = GridBagConstraints.BOTH;
@@ -245,112 +247,111 @@ public class GUI implements ActionListener {
             for (CustomerComments comm : createCustomComments.comments) {//for every comment in the list
                 listOfCommentSubjects.addElement(comm.getSubject());//add the comment subject to the list
             }
-        } else{
+        } else {
             if (listOfCommentSubjects.isEmpty()) listOfCommentSubjects.addElement("No Customer Comments Availiable.");
         }
         JList subjectList = new JList(listOfCommentSubjects);
         JScrollPane paneOfSubjects = new JScrollPane(subjectList);
         viewCommGrid.gridy = viewCommGrid.gridx = 0;
-        JLabel viewCommentLabel =  new JLabel("")
+        JLabel viewCommentLabel = new JLabel("");
     }
 
 
+    public void actionPerformed(ActionEvent e) {
+        CardLayout cl = (CardLayout) (cards.getLayout());
 
-    public void actionPerformed(ActionEvent e){
-        CardLayout cl = (CardLayout)(cards.getLayout());
-
-        if(e.getSource() == openingAdminButton){
+        if (e.getSource() == openingAdminButton) {
             pw.setVisible(true);
         }
-        if(e.getSource() == openingUserButton){
+        if (e.getSource() == openingUserButton) {
             cl.show(cards, USERPANEL);
         }
-        if(e.getSource() == userSwitchButton || e.getSource()==adminSwitchButton){
+        if (e.getSource() == userSwitchButton || e.getSource() == adminSwitchButton) {
             cl.show(cards, OPENINGPANEL);
         }
 
-        if(e.getSource()==adminEditButton){
+        if (e.getSource() == adminEditButton) {
             ae.setVisible(true);
         }
 
 
-        if(e.getSource() == commentCreateButton) {
+        if (e.getSource() == commentCreateButton) {
             createCustomComments.setVisible(true);
         }
 
-        if(e.getSource() == pw.submitButton){
+        if (e.getSource() == pw.submitButton) {
             passwordInput = pw.passwordField.getPassword();
-            if(pw.correctPassword(passwordInput)){
-                    pw.setVisible(false);
-                    if(!storeExists){
-                        is.setVisible(true);
-                    }else {
-                        cl.show(cards, ADMINPANEL);
-                    }
-                    pw.passwordField.setText("");
+            if (pw.correctPassword(passwordInput)) {
+                pw.setVisible(false);
+                if (!storeExists) {
+                    is.setVisible(true);
+                } else {
+                    cl.show(cards, ADMINPANEL);
+                }
+                pw.passwordField.setText("");
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Incorrect password");
                 pw.passwordField.setText("");
             }
         }
-        if(e.getSource() == is.submitButton){
+        if (e.getSource() == is.submitButton) {
             String storeName = "";
             Integer sectionInt = 0;
             Integer aisleInt = 0;
             Integer rackInt = 0;
             Integer shelfInt = 0;
             int valid = 0;
-            if(!is.storeNameField.getText().equals("")) {
+            if (!is.storeNameField.getText().equals("")) {
                 storeName = is.storeNameField.getText();
                 valid++;
             } else {
-                JOptionPane.showMessageDialog(controllingContainer,"Enter a store name");
+                JOptionPane.showMessageDialog(controllingContainer, "Enter a store name");
             }
-            if(is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText())>= 0){
+            if (is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText()) >= 0) {
                 sectionInt = Integer.parseInt(is.numberOfSectionField.getText());
                 valid++;
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid section input");
             }
 
-            if(is.isNumber(is.numberOfAislesField.getText()) && Integer.parseInt(is.numberOfAislesField.getText())>= 0){
+            if (is.isNumber(is.numberOfAislesField.getText()) && Integer.parseInt(is.numberOfAislesField.getText()) >= 0) {
                 aisleInt = Integer.parseInt(is.numberOfAislesField.getText());
                 valid++;
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid aisle input");
             }
-            if(is.isNumber(is.numberOfRacksField.getText())&& Integer.parseInt(is.numberOfRacksField.getText())>= 0){
+            if (is.isNumber(is.numberOfRacksField.getText()) && Integer.parseInt(is.numberOfRacksField.getText()) >= 0) {
                 rackInt = Integer.parseInt(is.numberOfRacksField.getText());
                 valid++;
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid rack input");
             }
-            if(is.isNumber(is.numberOfShelvesField.getText())&& Integer.parseInt(is.numberOfShelvesField.getText())>= 0){
+            if (is.isNumber(is.numberOfShelvesField.getText()) && Integer.parseInt(is.numberOfShelvesField.getText()) >= 0) {
                 shelfInt = Integer.parseInt(is.numberOfShelvesField.getText());
                 valid++;
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid shelf input");
             }
 
-            if(valid == 5){
+            if (valid == 5) {
                 store = new Store(storeName);
-                for(int i = 0; i < sectionInt; i++){
-                    section = new Section(Integer.toString(i+1));
+                for (int i = 0; i < sectionInt; i++) {
+                    section = new Section(Integer.toString(i + 1));
                     store.addSection(section);
-                    for(int j = 0; j < aisleInt; j++ ){
-                        aisle = new Aisle(Integer.toString(j+1));
+                    for (int j = 0; j < aisleInt; j++) {
+                        aisle = new Aisle(Integer.toString(j + 1));
                         section.addAisle(aisle);
-                        for(int k = 0; k < rackInt; k++){
-                            rack = new Rack(Integer.toString(k+1));
+                        for (int k = 0; k < rackInt; k++) {
+                            rack = new Rack(Integer.toString(k + 1));
                             aisle.addRack(rack);
-                            for(int l = 0; l < shelfInt; l++){
-                                shelf = new Shelf(Integer.toString(l+1));
+                            for (int l = 0; l < shelfInt; l++) {
+                                shelf = new Shelf(Integer.toString(l + 1));
                                 rack.addShelf(shelf);
                             }
                         }
                     }
                 }
-                JOptionPane.showMessageDialog(controllingContainer,"Store created! You may give names to store objects in the 'Edit' tab. ");
+                JOptionPane.showMessageDialog(controllingContainer, "store.locations.Store created! You may give names to store objects in the 'Edit' tab. ");
                 is.setVisible(false);
                 cl.show(cards, ADMINPANEL);
                 storeExists = true;
@@ -358,6 +359,7 @@ public class GUI implements ActionListener {
         }
 
     }
+
     private static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("PLAN-O-MART");

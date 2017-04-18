@@ -1,3 +1,5 @@
+package store.locations;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -55,6 +57,6 @@ class RackTest {
         aisle.addRack(rack1);
         rack0.setAisle(aisle);
         rack1.setAisle(aisle);
-        Assertions.assertTrue(rack1.getAisle().equals(aisle) & aisle.getRack()[1].equals(rack1));
+        assertTrue(rack1.getAisle().equals(aisle) & aisle.getRack()[1].equals(rack1));
 }
 }

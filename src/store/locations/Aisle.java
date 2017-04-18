@@ -1,3 +1,5 @@
+package store.locations;
+
 import java.util.ArrayList;
 
 public class Aisle {

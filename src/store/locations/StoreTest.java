@@ -1,4 +1,4 @@
-
+package store.locations;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class StoreTest {
     public void storeNameTest(){
         String name = "store";
         Store store = new Store(name);
-        Assertions.assertTrue(store.getStoreName().equals("store"));
+        assertTrue(store.getStoreName().equals("store"));
     }
 
 
@@ -23,7 +23,7 @@ class StoreTest {
     @Test
     public void storeHasNoSectionsTest(){
         Store store = new Store("Store");
-        Assertions.assertFalse(store.hasSections());
+        assertFalse(store.hasSections());
 
     }
 
@@ -46,7 +46,7 @@ class StoreTest {
         Store store = new Store("Store");
         Section section = new Section("Section 1");
         store.addSection(section);
-        Assertions.assertTrue(store.hasSections());
+        assertTrue(store.hasSections());
     }
 
     @Test

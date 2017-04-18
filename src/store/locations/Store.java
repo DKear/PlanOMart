@@ -1,3 +1,5 @@
+package store.locations;
+
 import java.util.ArrayList;
 /**
  * Created by Jamie on 2/23/2017.
@@ -7,7 +9,7 @@ public class Store {
     private ArrayList<Section> sections;
 
 
-    Store(String n){
+    public Store(String n){
         storeName = n;
         sections = new ArrayList<Section>();
     }

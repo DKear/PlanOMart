@@ -1,3 +1,5 @@
+package store.locations;
+
 import java.util.ArrayList;
 
 /**
@@ -9,7 +11,7 @@ public class Section {
     private ArrayList<String> tags;
     private Store store;
 
-    Section (String n){
+    public Section(String n){
         sectionName = n;
         aisles = new ArrayList<Aisle>();
         tags = new ArrayList <String>();

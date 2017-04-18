@@ -1,3 +1,5 @@
+package store.locations;
+
 import org.junit.Rule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,7 +17,7 @@ class SectionTest {
     public void sectionNameTest() {
         String name = "section";
         Section section = new Section(name);
-        Assertions.assertTrue(section.getSectionName().equals(name));
+        assertTrue(section.getSectionName().equals(name));
     }
 
 
@@ -23,7 +25,7 @@ class SectionTest {
     @Test
     public void sectionHasNoAisleTest(){
         Section section = new Section("Section 1");
-        Assertions.assertFalse(section.hasAisle());
+        assertFalse(section.hasAisle());
     }
 
     @Test
@@ -37,7 +39,7 @@ class SectionTest {
         Section section = new Section("Section");
         Aisle aisle = new Aisle("Aisle 1");
         section.addAisle(aisle);
-        Assertions.assertTrue(section.getAisles().length == 1 & section.getAisles()[0].equals(aisle));
+        assertTrue(section.getAisles().length == 1 & section.getAisles()[0].equals(aisle));
     }
 
     @Test
@@ -45,7 +47,7 @@ class SectionTest {
         Section section = new Section("Section");
         Aisle aisle = new Aisle("Aisle 1");
         section.addAisle(aisle);
-        Assertions.assertTrue(section.hasAisle());
+        assertTrue(section.hasAisle());
     }
 
     @Test
@@ -56,7 +58,7 @@ class SectionTest {
         section.addAisle(aisle0);
         section.addAisle(aisle1);
         section.removeAisle(aisle0);
-        Assertions.assertTrue(section.getAisles().length == 1 & section.getAisles()[0].equals(aisle1));
+        assertTrue(section.getAisles().length == 1 & section.getAisles()[0].equals(aisle1));
     }
 
     @Test
@@ -68,7 +70,7 @@ class SectionTest {
         store.addSection(section1);
         section0.setStore(store);
         section1.setStore(store);
-        Assertions.assertTrue(section1.getStore().equals(store) & store.getSections()[1].equals(section1));
+        assertTrue(section1.getStore().equals(store) & store.getSections()[1].equals(section1));
     }
 
     @Test

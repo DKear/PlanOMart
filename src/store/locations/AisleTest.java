@@ -1,3 +1,5 @@
+package store.locations;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +10,7 @@ class AisleTest {
     public void aisleNameTest() {
         String aisleName = "3B";
         Aisle aisle = new Aisle(aisleName);
-        Assertions.assertTrue(aisle.getAisleName().equals(aisleName));
+        assertTrue(aisle.getAisleName().equals(aisleName));
     }
 
 
@@ -16,7 +18,7 @@ class AisleTest {
     @Test
     public void aisleHasNoRacksTest() {
         Aisle aisle = new Aisle("Aisle");
-        Assertions.assertFalse(aisle.hasRacks());
+        assertFalse(aisle.hasRacks());
 
     }
 
@@ -50,7 +52,7 @@ class AisleTest {
         Aisle aisle = new Aisle("Aisle");
         Rack rack = new Rack("Rack 1");
         aisle.addRack(rack);
-        Assertions.assertTrue(aisle.hasRacks());
+        assertTrue(aisle.hasRacks());
     }
     @Test
     public void aisleSetGetSectionTest(){
@@ -61,7 +63,7 @@ class AisleTest {
         section.addAisle(aisle1);
         aisle.setSection(section);
         aisle1.setSection(section);
-        Assertions.assertTrue(aisle1.getSection().equals(section) & section.getAisles()[1].equals(aisle1));
+        assertTrue(aisle1.getSection().equals(section) & section.getAisles()[1].equals(aisle1));
     }
 
 }
