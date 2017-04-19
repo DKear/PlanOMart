@@ -349,7 +349,6 @@ public class GUI implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Enter a store name");
             }
-//<<<<<<< HEAD
             if(is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText().trim())>= 0){
                 sectionInt = Integer.parseInt(is.numberOfSectionField.getText().trim());
 
@@ -357,8 +356,6 @@ public class GUI implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid section input");
             }
-
-//<<<<< HEAD
             if(is.isNumber(is.numberOfAislesField.getText()) && Integer.parseInt(is.numberOfAislesField.getText().trim())>= 0){
                 aisleInt = Integer.parseInt(is.numberOfAislesField.getText().trim());
 
@@ -366,14 +363,12 @@ public class GUI implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid aisle input");
             }
-//<<<<<<< HEAD
             if(is.isNumber(is.numberOfRacksField.getText())&& Integer.parseInt(is.numberOfRacksField.getText().trim())>= 0){
                 rackInt = Integer.parseInt(is.numberOfRacksField.getText().trim());
                 valid++;
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid rack input");
             }
-//<<<<<<< HEAD
             if(is.isNumber(is.numberOfShelvesField.getText())&& Integer.parseInt(is.numberOfShelvesField.getText().trim())>= 0){
                 shelfInt = Integer.parseInt(is.numberOfShelvesField.getText().trim());
 
