@@ -48,7 +48,7 @@ public class AdminAddRemovePanelTop extends JPanel {
         setLayout(new MigLayout("","[align center]","[align center]"));
             add(dropBoxLabel, "cell 0 0");
             add(objectDropBox, "cell 1 0");
-            add(removeButton, "cell 2,0");
-            add(objectTable, "cell 2 0");
+            add(removeButton, "cell 2 0");
+            add(objectTable, "cell 3 0");
     }
 }

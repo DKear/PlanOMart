@@ -1,16 +1,16 @@
-package admin.main.panel;
+package admin.main.panels;
 
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AdminEditBodyPanel extends JPanel{
+public class AdminMainBodyPanel extends JPanel{
 
     private JTable returnField;
     private DropBoxPanel dropBoxPanel;
 
-    public AdminEditBodyPanel(){
+    public AdminMainBodyPanel(){
         //ADDING DUMBY DATA (delete after)
         String[] columns = {
                 "Hello",

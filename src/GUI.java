@@ -1,3 +1,4 @@
+import admin.GUIAdminMain;
 import store.locations.*;
 
 import javax.swing.*;
@@ -57,7 +58,7 @@ public class GUI implements ActionListener {
         JPanel openingPanel = new JPanel();
 
 
-        JPanel adminPanel = new GUIAdmin();
+        JPanel adminPanel = new GUIAdminMain();
 
         JPanel userPanel = new JPanel();
 
@@ -204,7 +205,7 @@ public class GUI implements ActionListener {
         //create customer comments window
         createCustomComments = new GUICustomerComments(); //creates window based on that class
         createCustomComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
-        JPanel createCustComm = new JPanel();// makes a panel to place all the components in
+        JPanel createCustComm = new JPanel();// makes a panels to place all the components in
         createCustComm.setLayout(new GridBagLayout());//sets layout to createCommGrid layout
         GridBagConstraints createCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
         createCommGrid.gridx = createCommGrid.gridy = 0;//uses entire width
@@ -238,7 +239,7 @@ public class GUI implements ActionListener {
         //view customer comments window
         viewCustomerComments = new GUICustomerComments();
         viewCustomerComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
-        JPanel viewCustComm = new JPanel();// makes a panel to place all the components in
+        JPanel viewCustComm = new JPanel();// makes a panels to place all the components in
         viewCustComm.setLayout(new GridBagLayout());//sets layout to createCommGrid layout
         GridBagConstraints viewCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
         DefaultListModel listOfCommentSubjects = new DefaultListModel();

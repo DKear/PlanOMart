@@ -28,6 +28,6 @@ public class AdminAddRemovePanelBottom extends JPanel {
         setLayout(new MigLayout("","[align center]","[align center]"));
         add(returnButton, "cell 0 0");
         add(addItemButton, "cell 1 0");
-        add(addStructure, "cell 2,0");
+        add(addStructure, "cell 2 0");
     }
 }
