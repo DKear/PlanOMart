@@ -35,6 +35,7 @@ public class GUI implements ActionListener {
     public Aisle aisle;
     public Rack rack;
     public Shelf shelf;
+    public GUIAdmin adminPanel;
 
     JButton switchButton;
     JButton commentCreateButton = new JButton("Comment");
@@ -58,7 +59,8 @@ public class GUI implements ActionListener {
         JPanel openingPanel = new JPanel();
 
 
-        JPanel adminPanel = new GUIAdmin();
+        adminPanel = new GUIAdmin();
+        adminPanel.adminEditBottomPanel.switchUserButton.addActionListener(this);
 
         JPanel userPanel = new JPanel();
 
@@ -193,7 +195,7 @@ public class GUI implements ActionListener {
         isp.gridwidth = 1;
         isp.gridy = 1;
         isp.anchor = GridBagConstraints.CENTER;
-        initialSetupPanel.add(new JLabel("store.locations.Store name:"), isp);
+        initialSetupPanel.add(new JLabel("Store name:"), isp);
         isp.gridx = 1;
         initialSetupPanel.add(is.storeNameField, isp);
         isp.gridx = 0;
@@ -297,7 +299,7 @@ public class GUI implements ActionListener {
         if (e.getSource() == openingUserButton) {
             cl.show(cards, USERPANEL);
         }
-        if (e.getSource() == userSwitchButton || e.getSource() == adminSwitchButton) {
+        if (e.getSource() == userSwitchButton || e.getSource() == adminPanel.adminEditBottomPanel.switchUserButton) {
             cl.show(cards, OPENINGPANEL);
         }
 
@@ -389,7 +391,7 @@ public class GUI implements ActionListener {
                         }
                     }
                 }
-                JOptionPane.showMessageDialog(controllingContainer, "store.locations.Store created! You may give names to store objects in the 'Edit' tab. ");
+                JOptionPane.showMessageDialog(controllingContainer, "Store created! You may give names to store objects in the 'Edit' tab. ");
                 is.setVisible(false);
                 cl.show(cards, ADMINPANEL);
                 storeExists = true;

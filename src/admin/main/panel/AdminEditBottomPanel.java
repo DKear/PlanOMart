@@ -7,11 +7,11 @@ import java.awt.*;
 
 public class AdminEditBottomPanel extends JPanel{
 
-    private JButton switchUserButton;
-    private JButton editButton;
-    private JButton addRemoveButton;
-    private JButton viewCommentButton;
-    private JButton mapButton;
+    public JButton switchUserButton;
+    public JButton editButton;
+    public JButton addRemoveButton;
+    public JButton viewCommentButton;
+    public JButton mapButton;
 
     public AdminEditBottomPanel() {
         switchUserButton = new JButton("Switch User");
