@@ -1,3 +1,5 @@
+package admin;
+
 import net.miginfocom.swing.MigLayout;
 import store.locations.*;
 
@@ -91,7 +93,7 @@ class AddItemDialogPanel extends JPanel {
         submitButton.setPreferredSize(new Dimension(100, 50));
         submitButton.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        //Adding the elements above to the panel
+        //Adding the elements above to the panels
         setLayout(new MigLayout("", "[align center]", "[align center]"));
         add(itemNameField, "cell 0 1");
         add(itemPriceField, "cell 1 1");

@@ -1,3 +1,4 @@
+import admin.GUIAdminMain;
 import store.locations.*;
 
 import javax.swing.*;
@@ -35,7 +36,7 @@ public class GUI implements ActionListener {
     public Aisle aisle;
     public Rack rack;
     public Shelf shelf;
-    public GUIAdmin adminPanel;
+    public GUIAdminMain adminPanel;
 
     JButton switchButton;
     JButton commentCreateButton = new JButton("Comment");
@@ -59,8 +60,13 @@ public class GUI implements ActionListener {
         JPanel openingPanel = new JPanel();
 
 
-        adminPanel = new GUIAdmin();
+//<<<<<<< HEAD
+
+        //adminPanel.adminEditBottomPanel();
+//=======
+        adminPanel = new GUIAdminMain();
         adminPanel.adminEditBottomPanel.switchUserButton.addActionListener(this);
+//>>>>>>> origin/master
 
         JPanel userPanel = new JPanel();
 
@@ -229,7 +235,7 @@ public class GUI implements ActionListener {
         //create customer comments window
         createCustomComments = new GUICustomerComments(); //creates window based on that class
         createCustomComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
-        JPanel createCustComm = new JPanel();// makes a panel to place all the components in
+        JPanel createCustComm = new JPanel();// makes a panels to place all the components in
         createCustComm.setLayout(new GridBagLayout());//sets layout to createCommGrid layout
         GridBagConstraints createCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
         createCommGrid.gridx = createCommGrid.gridy = 0;//uses entire width
@@ -260,10 +266,10 @@ public class GUI implements ActionListener {
         userPanel.add(commentCreateButton); //adds a button to the userPanel to open this dialog
         commentCreateButton.addActionListener(this);// allows the button to do something on click
 
-        //view customer comments window
+//view customer comments window
         viewCustomerComments = new GUICustomerComments();
         viewCustomerComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
-        JPanel viewCustComm = new JPanel();// makes a panel to place all the components in
+        JPanel viewCustComm = new JPanel();// makes a panels to place all the components in
         viewCustComm.setLayout(new GridBagLayout());//sets layout to createCommGrid layout
         GridBagConstraints viewCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
         DefaultListModel listOfCommentSubjects = new DefaultListModel();
@@ -272,15 +278,25 @@ public class GUI implements ActionListener {
             for (CustomerComments comm : createCustomComments.comments) {//for every comment in the list
                 listOfCommentSubjects.addElement(comm.getSubject());//add the comment subject to the list
             }
-        } else {
+        } else{
             if (listOfCommentSubjects.isEmpty()) listOfCommentSubjects.addElement("No Customer Comments Availiable.");
         }
         JList subjectList = new JList(listOfCommentSubjects);
         JScrollPane paneOfSubjects = new JScrollPane(subjectList);
         viewCommGrid.gridy = viewCommGrid.gridx = 0;
-//<<<<<<< HEAD
-        JLabel viewCommentLabel =  new JLabel("");
-
+        JLabel viewCommentLabel =  new JLabel("Subject of Messages. Click a subject then the View button to view the comment.");
+        viewCommGrid.anchor = GridBagConstraints.LINE_START;
+        viewCustComm.add(viewCommentLabel, viewCommGrid);//puts label on top
+        viewCommGrid.fill = GridBagConstraints.BOTH;
+        viewCommGrid.gridy = 1;
+        viewCommGrid.ipady = 50;
+        viewCustComm.add(paneOfSubjects, viewCommGrid);//puts scroll list of subjects under label
+        viewCommGrid.gridx = 1;
+        viewCommGrid.anchor = GridBagConstraints.PAGE_START;
+        viewCustComm.add(viewCustomerComments.viewCommentButton, viewCommGrid);//places view button to the upper right of the scroll pane
+        viewCommGrid.anchor = GridBagConstraints.CENTER;
+        viewCustComm.add(viewCustomerComments.deleteButton, viewCommGrid);//places delete button under view button
+        viewCustomerComments.add(viewCustComm);
     }
 
 

@@ -1,3 +1,5 @@
+package admin;
+
 import admin.add.remove.panels.AdminAddRemovePanelBottom;
 import admin.add.remove.panels.AdminAddRemovePanelTop;
 import net.miginfocom.swing.MigLayout;
