@@ -3,6 +3,7 @@ package admin.main.panels;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 
 public class AdminMainBodyPanel extends JPanel{
@@ -11,6 +12,8 @@ public class AdminMainBodyPanel extends JPanel{
     private DropBoxPanel dropBoxPanel;
 
     public AdminMainBodyPanel(){
+        setBorder(new BevelBorder(BevelBorder.RAISED));
+
         //ADDING DUMBY DATA (delete after)
         String[] columns = {
                 "Hello",
@@ -29,12 +32,18 @@ public class AdminMainBodyPanel extends JPanel{
                 }
         };
         returnField = new JTable(data, columns);
+        returnField.setFont(new Font("Arial", Font.PLAIN, 42));
+        returnField.setRowHeight(50);
 
         dropBoxPanel = new DropBoxPanel();
 
-        setLayout(new MigLayout("","[grow]","[grow]"));
-        add(returnField, "grow");
+        setLayout(new MigLayout("insets 0 0","[fill,75%][fill,25%]","[grow]"));
+        add(returnField, "grow, span 4");
         add(dropBoxPanel, "grow");
+    }
+
+    public JTable getReturnField() {
+        return returnField;
     }
 }
 
@@ -52,6 +61,7 @@ class DropBoxPanel extends JPanel {
     private JButton searchButton;
 
     DropBoxPanel() {
+        setBorder(new BevelBorder(BevelBorder.RAISED));
 
         sectionLabel = new JLabel("Sections: ");
         sectionLabel.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -81,18 +91,18 @@ class DropBoxPanel extends JPanel {
         searchButton.setPreferredSize(new Dimension(100,50));
         searchButton.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        setLayout(new MigLayout("", "[align center]", "[align center]"));
+        setLayout(new MigLayout("", "[align center]", "[align center fill,20%]"));
         add(sectionLabel, "cell 0 0");
-        add(sectionDropbox, "cell 1 0");
+        add(sectionDropbox, "cell 1 0, gapy 50px");
 
         add(aisleLabel, "cell 0 1");
-        add(aisleDropbox, "cell 1 1");
+        add(aisleDropbox, "cell 1 1, gapy 50px");
 
         add(rackLabel, "cell 0 2");
-        add(rackDropbox, "cell 1 2");
+        add(rackDropbox, "cell 1 2, gapy 50px");
 
         add(shelfLabel, "cell 0 3");
-        add(shelfDropbox, "cell 1 3");
+        add(shelfDropbox, "cell 1 3, gapy 50px");
 
         add(searchButton, "cell 1 4");
     }

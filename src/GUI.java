@@ -41,7 +41,7 @@ public class GUI implements ActionListener {
     JButton commentCreateButton = new JButton("Comment");
     GUICustomerComments createCustomComments;
     GUICustomerComments viewCustomerComments;
-
+    JPanel adminPanel;
 
     public void addComponentToPane(Container pane) {
         controllingContainer = pane;
@@ -59,7 +59,7 @@ public class GUI implements ActionListener {
         JPanel openingPanel = new JPanel();
 
 
-        JPanel adminPanel = new GUIAdminMain();
+        adminPanel = new GUIAdminMain();
 
         JPanel userPanel = new JPanel();
 
@@ -301,8 +301,9 @@ public class GUI implements ActionListener {
         CardLayout ecl = (CardLayout)(adminEditCard.getLayout());
 
         if(e.getSource() == openingAdminButton){
-//=======
 
+            //Insert That one thing here Dylan to bypass initial setup!!!!!!!!!!!!!!!!!!!
+            //Comment out this thing ↓
             pw.setVisible(true);
         }
         if (e.getSource() == openingUserButton) {

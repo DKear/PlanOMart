@@ -1,8 +1,10 @@
 package admin.add.remove.panels;
 
+import admin.main.panels.AdminMainBodyPanel;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableColumnModel;
 import java.awt.*;
 
 public class AdminAddRemovePanelTop extends JPanel {
@@ -10,6 +12,7 @@ public class AdminAddRemovePanelTop extends JPanel {
     private JLabel dropBoxLabel;
     private JComboBox<Object> objectDropBox;
     private JButton removeButton;
+
     private JTable objectTable;
 
     public AdminAddRemovePanelTop() {
@@ -24,31 +27,19 @@ public class AdminAddRemovePanelTop extends JPanel {
         removeButton = new JButton("Remove");
         removeButton.setPreferredSize(new Dimension(100, 50));
         removeButton.setFont(new Font("Arial", Font.PLAIN, 16));
+        objectTable = new JTable();
 
-        //ADDING DUMBY DATA (delete after)
-        String[] columns = {
-                "Hello",
-                "Goodbye"
-        };
+        setLayout(new MigLayout("","[]push[]","[align center][grow]"));
+            add(dropBoxLabel, "");
+            add(objectDropBox, "");
+            add(removeButton, "wrap");
+            add(objectTable, "span, grow");
+    }
 
-        Object[][] data = {
-                {
-                        "Hi", 5
-                },
-                {
-                        "Bye", 8
-                },
-                {
-                        "Cya", 42
-                }
-        };
-
-        objectTable = new JTable(data, columns);
-
-        setLayout(new MigLayout("","[align center]","[align center]"));
-            add(dropBoxLabel, "cell 0 0");
-            add(objectDropBox, "cell 1 0");
-            add(removeButton, "cell 2 0");
-            add(objectTable, "cell 3 0");
+    public void setObjectTable(JTable objectTable) {
+        objectTable.getSelectionModel().addListSelectionListener(System.out::println);
+        remove(this.objectTable);
+        this.objectTable = objectTable;
+        add(objectTable, "span, grow");
     }
 }

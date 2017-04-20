@@ -21,5 +21,4 @@ public class GUIAdminEdit extends JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
     }
-
 }

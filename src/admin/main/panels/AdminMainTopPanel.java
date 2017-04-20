@@ -3,6 +3,7 @@ package admin.main.panels;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 
 public class AdminMainTopPanel extends JPanel {
@@ -10,6 +11,7 @@ public class AdminMainTopPanel extends JPanel {
     private JTextField searchField;
 
     public AdminMainTopPanel(){
+        setBorder(new BevelBorder(BevelBorder.RAISED));
         title = new JLabel("Plan-O-Mart");
         title.setPreferredSize(new Dimension(400,600));
         title.setFont(new Font("Arial", Font.BOLD, 64));

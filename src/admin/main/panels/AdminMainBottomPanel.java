@@ -4,6 +4,7 @@ import admin.GUIAddRemoveWindow;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
@@ -15,8 +16,12 @@ public class AdminMainBottomPanel extends JPanel {
     private JButton viewCommentButton;
     //    private JButton mapButton;
     private GUIAddRemoveWindow guiAddRemoveWindow;
+    private AdminMainBodyPanel adminPanel;
 
-    public AdminMainBottomPanel() {
+    public AdminMainBottomPanel(AdminMainBodyPanel panel) {
+        setBorder(new BevelBorder(BevelBorder.RAISED));
+        adminPanel = panel;
+
         //switchUserButton is created and given functionality with a lambda expression
         switchUserButton = new JButton("Switch User");
         switchUserButton.setPreferredSize(new Dimension(100, 50));
@@ -55,27 +60,30 @@ public class AdminMainBottomPanel extends JPanel {
         add(viewCommentButton);
 //        add(mapButton);
 
-        //initializing the JDialogs used
+        //initializing the JPanel used
         guiAddRemoveWindow = new GUIAddRemoveWindow();
     }
 
     //Below are the actual methods that the lambda expressions use
-
-    public void switchUserButtonClicked(ActionEvent e) {
+    private void switchUserButtonClicked(ActionEvent e) {
         getParent().setVisible(false);
     }
 
-    public void editButtonClicked(ActionEvent e) {
+    private void editButtonClicked(ActionEvent e) {
 
     }
 
-    public void addRemoveButtonClicked(ActionEvent e) {
-        if (e.getSource() == addRemoveButton) {
-            guiAddRemoveWindow.setVisible(true);
-        }
+    private void addRemoveButtonClicked(ActionEvent e) {
+        JDialog addRemovePopUp = new JDialog();
+        addRemovePopUp.setContentPane(guiAddRemoveWindow);
+        guiAddRemoveWindow.setObjectTable(adminPanel.getReturnField());
+        addRemovePopUp.setTitle("Add & Remove");
+        addRemovePopUp.pack();
+        addRemovePopUp.setVisible(true);
+
     }
 
-    public void viewCommentButtonClicked(ActionEvent e) {
+    private void viewCommentButtonClicked(ActionEvent e) {
 
     }
 

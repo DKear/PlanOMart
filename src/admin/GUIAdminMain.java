@@ -20,7 +20,7 @@ public class GUIAdminMain extends JPanel {
 
         adminEditBodyPanel = new AdminMainBodyPanel();
 
-        adminEditBottomPanel = new AdminMainBottomPanel();
+        adminEditBottomPanel = new AdminMainBottomPanel(adminEditBodyPanel);
 
         setLayout(new MigLayout("", "[grow]", "[][grow][]"));
         add(adminEditTopPanel, "wrap, growx, height 100px");

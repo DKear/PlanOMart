@@ -2,12 +2,13 @@ package admin;
 
 import admin.add.remove.panels.AdminAddRemovePanelBottom;
 import admin.add.remove.panels.AdminAddRemovePanelTop;
+import admin.main.panels.AdminMainBodyPanel;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class GUIAddRemoveWindow extends JDialog {
+public class GUIAddRemoveWindow extends JPanel {
 
     private AdminAddRemovePanelTop adminAddRemovePanelTop;
     private AdminAddRemovePanelBottom adminAddRemovePanelBottom;
@@ -25,5 +26,9 @@ public class GUIAddRemoveWindow extends JDialog {
         setLayout(new MigLayout("", "[grow]", "[][grow][]"));
         add(adminAddRemovePanelTop, "wrap, growx, height 300px");
         add(adminAddRemovePanelBottom, "growx, wrap, growy");
+    }
+
+    public void setObjectTable(JTable objectTable) {
+        adminAddRemovePanelTop.setObjectTable(objectTable);
     }
 }
