@@ -48,7 +48,7 @@ public class GUI implements ActionListener {
 
     public void addComponentToPane(Container pane) {
         store = new Store("store");
-        store.sections.add(new Section("Dank"));
+        //store.sections.add(new Section("Dank"));
         controllingContainer = pane;
         pane.setPreferredSize(new Dimension(1920, 1080));
 
@@ -409,16 +409,17 @@ public class GUI implements ActionListener {
             if (valid == 5) {
                 store.storeName = storeName;
                 for (int i = 0; i < sectionInt; i++) {
-                    section = new Section(Integer.toString(i + 1));
+                    section = new Section("Section: " + Integer.toString(i + 1));
                     store.addSection(section);
+                    locationComboBox.addItem(store.getSectionsNames(store.getSections())[i]);
                     for (int j = 0; j < aisleInt; j++) {
-                        aisle = new Aisle(Integer.toString(j + 1));
+                        aisle = new Aisle("Section: " + i + "Aisle: " + Integer.toString(j+ 1));
                         section.addAisle(aisle);
                         for (int k = 0; k < rackInt; k++) {
-                            rack = new Rack(Integer.toString(k + 1));
+                            rack = new Rack("Section: " + i + "Aisle: " + j + "Rack: " + Integer.toString(k + 1));
                             aisle.addRack(rack);
                             for (int l = 0; l < shelfInt; l++) {
-                                shelf = new Shelf(Integer.toString(l + 1));
+                                shelf = new Shelf("Section: " + i + "Aisle: " + j + "Rack: " + k + "Shelf: " + Integer.toString(l + 1));
                                 rack.addShelf(shelf);
                             }
                         }
