@@ -5,8 +5,8 @@ import java.util.ArrayList;
  * Created by Jamie on 2/23/2017.
  */
 public class Store {
-    private String storeName;
-    private ArrayList<Section> sections;
+    public String storeName;
+    public ArrayList<Section> sections;
 
 
     public Store(String n){
@@ -42,6 +42,14 @@ public class Store {
             return true;
         }
         return false;
+    }
+
+    public String[] getSectionsNames(Section[] s){
+        String[] nameArray = new String[s.length];
+        for(int i = 0; i < s.length; i++){
+            nameArray[i] = s[i].getSectionName();
+        }
+        return nameArray;
     }
 
 
