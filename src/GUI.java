@@ -1,3 +1,4 @@
+import UserSide.GUICreateComments;
 import admin.GUIAdminMain;
 import store.locations.*;
 
@@ -41,9 +42,8 @@ public class GUI implements ActionListener {
     public JPanel adminEditLocation;
 
     JButton switchButton;
-    JButton commentCreateButton = new JButton("Comment");
-    GUICustomerComments createCustomComments;
-    GUICustomerComments viewCustomerComments;
+    private JButton commentCreateButton = new JButton("Comment");
+    GUICreateComments createCustomComments = new GUICreateComments();
 
 
     public void addComponentToPane(Container pane) {
@@ -248,76 +248,9 @@ public class GUI implements ActionListener {
         is.add(initialSetupPanel);
 
 
-        //create customer comments window
-        createCustomComments = new GUICustomerComments(); //creates window based on that class
-        createCustomComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
-        JPanel createCustComm = new JPanel();// makes a panels to place all the components in
-        createCustComm.setLayout(new GridBagLayout());//sets layout to createCommGrid layout
-        GridBagConstraints createCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
-        createCommGrid.gridx = createCommGrid.gridy = 0;//uses entire width
-        //starts at top
-        createCommGrid.anchor = GridBagConstraints.LINE_START;
-        createCustComm.add(createCustomComments.subjectLabel, createCommGrid);// adds the label to this part of the createCommGrid
-        createCommGrid.fill = GridBagConstraints.BOTH;
-        createCommGrid.gridy = 1;//one further down
-        createCustComm.add(createCustomComments.subjectField, createCommGrid);
-        createCommGrid.anchor = GridBagConstraints.LINE_START;
-        createCommGrid.gridy = 2;//one further down
-        createCustComm.add(createCustomComments.commentLabel, createCommGrid);
-        createCommGrid.fill = GridBagConstraints.BOTH;
-        createCommGrid.gridy = 3;//one further down
-        createCommGrid.ipady = 40; //makes this cell taller
-        createCustComm.add(createCustomComments.commentField, createCommGrid);
-        createCommGrid.anchor = GridBagConstraints.LINE_START;
-        createCommGrid.gridy = 4;//one further down
-        createCommGrid.ipady = 0;//brings cell height back to default
-        createCustComm.add(createCustomComments.contactLabel, createCommGrid);
-        createCommGrid.fill = GridBagConstraints.BOTH;
-        createCommGrid.gridy = 5;//one further down
-        createCustComm.add(createCustomComments.contactField, createCommGrid);
-        createCommGrid.anchor = GridBagConstraints.LINE_END;
-        createCommGrid.gridy = 6;//one further down
-        createCustComm.add(createCustomComments.submitButton, createCommGrid);
-        createCustomComments.add(createCustComm);//adds the JPanel with everything in it to the dialog box
-        userPanel.add(commentCreateButton); //adds a button to the userPanel to open this dialog
-        commentCreateButton.addActionListener(this);// allows the button to do something on click
-
-//view customer comments window
-        viewCustomerComments = new GUICustomerComments();
-        viewCustomerComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
-        JPanel viewCustComm = new JPanel();// makes a panels to place all the components in
-        viewCustComm.setLayout(new GridBagLayout());//sets layout to createCommGrid layout
-        GridBagConstraints viewCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
-        DefaultListModel listOfCommentSubjects = new DefaultListModel();
-        if (!createCustomComments.comments.isEmpty()) {
-            listOfCommentSubjects.clear();
-            for (CustomerComments comm : createCustomComments.comments) {//for every comment in the list
-                listOfCommentSubjects.addElement(comm.getSubject());//add the comment subject to the list
-            }
-        } else{
-            if (listOfCommentSubjects.isEmpty()) listOfCommentSubjects.addElement("No Customer Comments Availiable.");
-        }
-        JList subjectList = new JList(listOfCommentSubjects);
-        JScrollPane paneOfSubjects = new JScrollPane(subjectList);
-        viewCommGrid.gridy = viewCommGrid.gridx = 0;
-        JLabel viewCommentLabel =  new JLabel("Subject of Messages. Click a subject then the View button to view the comment.");
-        viewCommGrid.anchor = GridBagConstraints.LINE_START;
-        viewCustComm.add(viewCommentLabel, viewCommGrid);//puts label on top
-        viewCommGrid.fill = GridBagConstraints.BOTH;
-        viewCommGrid.gridy = 1;
-        viewCommGrid.ipady = 50;
-        viewCustComm.add(paneOfSubjects, viewCommGrid);//puts scroll list of subjects under label
-        viewCommGrid.gridx = 1;
-        viewCommGrid.anchor = GridBagConstraints.PAGE_START;
-        viewCustComm.add(viewCustomerComments.viewCommentButton, viewCommGrid);//places view button to the upper right of the scroll pane
-        viewCommGrid.anchor = GridBagConstraints.CENTER;
-        viewCustComm.add(viewCustomerComments.deleteButton, viewCommGrid);//places delete button under view button
-        viewCustomerComments.add(viewCustComm);
+        userPanel.add(commentCreateButton); //adds a button to the userPanel to the create comment dialog
+        commentCreateButton.addActionListener(this);// allows the button to do above on click
     }
-
-
-
-
 //<<<<<<< HEAD
     public void actionPerformed(ActionEvent e){
         CardLayout cl = (CardLayout)(cards.getLayout());

@@ -1,6 +1,7 @@
 package admin.main.panels;
 
 import admin.GUIAddRemoveWindow;
+import admin.GUIViewComments;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -74,7 +75,10 @@ public class AdminMainBottomPanel extends JPanel{
     }
 
     public void viewCommentButtonClicked(ActionEvent e){
-
+        if(e.getSource() == viewCommentButton) {
+            GUIViewComments view = new GUIViewComments();
+            view.setVisible(true);
+        }
     }
 
 //    public void mapButtonClicked(ActionEvent e){
