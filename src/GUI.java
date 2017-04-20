@@ -37,6 +37,8 @@ public class GUI implements ActionListener {
     public Rack rack;
     public Shelf shelf;
     public GUIAdminMain adminPanel;
+    public JComboBox locationComboBox;
+    public JPanel adminEditLocation;
 
     JButton switchButton;
     JButton commentCreateButton = new JButton("Comment");
@@ -45,6 +47,8 @@ public class GUI implements ActionListener {
 
 
     public void addComponentToPane(Container pane) {
+        store = new Store("store");
+        store.sections.add(new Section("Dank"));
         controllingContainer = pane;
         pane.setPreferredSize(new Dimension(1920, 1080));
 
@@ -66,6 +70,7 @@ public class GUI implements ActionListener {
 //=======
         adminPanel = new GUIAdminMain();
         adminPanel.adminEditBottomPanel.switchUserButton.addActionListener(this);
+        adminPanel.adminEditBottomPanel.editButton.addActionListener(this);
 //>>>>>>> origin/master
 
         JPanel userPanel = new JPanel();
@@ -154,9 +159,16 @@ public class GUI implements ActionListener {
 
         adminEditCard.add(adminEditPanel, "Edit");
 
-        JPanel adminEditLocation = new JPanel();
+        adminEditLocation = new JPanel();
+        adminEditLocation.setLayout(new GridBagLayout());
+        GridBagConstraints ael = new GridBagConstraints();
+        ael.gridx = ael.gridy = 0;
+        locationComboBox = new JComboBox(store.getSectionsNames(store.getSections()));
+        locationComboBox.setPreferredSize(new Dimension(200,50));
+        adminEditLocation.add(locationComboBox, ael);
 
         adminEditCard.add(adminEditLocation, "Locations");
+
 
         JPanel adminEditMerchandise = new JPanel();
 
@@ -168,6 +180,10 @@ public class GUI implements ActionListener {
 
 
         ae.add(adminEditCard);
+
+
+
+
 
         aw = new GUIAdminAddWindow();
         adminAddPanel = new JPanel();
@@ -321,6 +337,7 @@ public class GUI implements ActionListener {
 
         if (e.getSource() == adminEditButton) {
             ae.setVisible(true);
+
         }
 
 
@@ -390,7 +407,7 @@ public class GUI implements ActionListener {
             }
 
             if (valid == 5) {
-                store = new Store(storeName);
+                store.storeName = storeName;
                 for (int i = 0; i < sectionInt; i++) {
                     section = new Section(Integer.toString(i + 1));
                     store.addSection(section);
@@ -412,6 +429,12 @@ public class GUI implements ActionListener {
                 cl.show(cards, ADMINPANEL);
                 storeExists = true;
             }
+        }
+
+        if(e.getSource() == adminPanel.adminEditBottomPanel.editButton){
+            locationComboBox.add;
+            ae.setVisible(true);
+
         }
 
         if(e.getSource() == ae.locationButton){

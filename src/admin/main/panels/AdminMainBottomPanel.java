@@ -27,7 +27,7 @@ public class AdminMainBottomPanel extends JPanel{
         editButton = new JButton("Edit Items");
         editButton.setPreferredSize(new Dimension(100,50));
         editButton.setFont(new Font("Arial", Font.PLAIN, 16));
-        editButton.addActionListener(this::editButtonClicked);
+        //editButton.addActionListener(this::editButtonClicked);
 
         //addRemoveButton is created and given functionality with a lambda expression
         addRemoveButton = new JButton("Add/Remove Objects");
@@ -65,9 +65,9 @@ public class AdminMainBottomPanel extends JPanel{
         getParent().setVisible(false);
     }
 
-    public void editButtonClicked(ActionEvent e){
+    /*public void editButtonClicked(ActionEvent e){
         guiAddRemoveWindow.setVisible(true);
-    }
+    }*/
 
     public void addRemoveButtonClicked(ActionEvent e){
 
