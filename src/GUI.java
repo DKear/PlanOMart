@@ -432,7 +432,7 @@ public class GUI implements ActionListener {
         }
 
         if(e.getSource() == adminPanel.adminEditBottomPanel.editButton){
-            locationComboBox.add;
+            //locationComboBox.add;
             ae.setVisible(true);
 
         }

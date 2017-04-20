@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1dfc2a13-cc39-4e46-9ce1-c3633fa3c87d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PlanOMart/GUI$1.class" afterPath="$PROJECT_DIR$/out/production/PlanOMart/GUI$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PlanOMart/GUI.class" afterPath="$PROJECT_DIR$/out/production/PlanOMart/GUI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PlanOMart/store/locations/Store.class" afterPath="$PROJECT_DIR$/out/production/PlanOMart/store/locations/Store.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/PlanOMart/GUI$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/PlanOMart/GUI.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI.java" afterPath="$PROJECT_DIR$/src/GUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/main/panels/AdminMainBottomPanel.java" afterPath="$PROJECT_DIR$/src/admin/main/panels/AdminMainBottomPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/locations/Store.java" afterPath="$PROJECT_DIR$/src/store/locations/Store.java" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,12 +21,12 @@
       <file leaf-file-name="GUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="165" column="24" lean-forward="false" selection-start-line="165" selection-start-column="8" selection-end-line="165" selection-end-column="24" />
+            <state relative-caret-position="156">
+              <caret line="434" column="14" lean-forward="false" selection-start-line="434" selection-start-column="14" selection-end-line="434" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1492653179123" expanded="false" signature="19717:19736" ph=" { " />
-                <marker date="1492653179123" expanded="false" signature="19755:19769" ph=" }" />
+                <marker date="1492655550703" expanded="false" signature="19719:19738" ph=" { " />
+                <marker date="1492655550703" expanded="false" signature="19757:19771" ph=" }" />
               </folding>
             </state>
           </provider>
@@ -510,7 +506,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990867" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3344749" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3344749" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -613,7 +609,7 @@
         <state relative-caret-position="15050">
           <caret line="652" column="10" lean-forward="false" selection-start-line="652" selection-start-column="10" selection-end-line="652" selection-end-column="10" />
           <folding>
-            <marker date="1492653179160" expanded="true" signature="43553:43570" ph="..." />
+            <marker date="1492655550788" expanded="true" signature="42566:42583" ph="..." />
           </folding>
         </state>
       </provider>
@@ -678,12 +674,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="165" column="24" lean-forward="false" selection-start-line="165" selection-start-column="8" selection-end-line="165" selection-end-column="24" />
+        <state relative-caret-position="156">
+          <caret line="434" column="14" lean-forward="false" selection-start-line="434" selection-start-column="14" selection-end-line="434" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1492653179123" expanded="false" signature="19717:19736" ph=" { " />
-            <marker date="1492653179123" expanded="false" signature="19755:19769" ph=" }" />
+            <marker date="1492655550703" expanded="false" signature="19719:19738" ph=" { " />
+            <marker date="1492655550703" expanded="false" signature="19757:19771" ph=" }" />
           </folding>
         </state>
       </provider>
