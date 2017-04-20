@@ -1,3 +1,5 @@
+import UserSide.GUICreateComments;
+import admin.GUIAdminMain;
 import store.locations.*;
 
 import javax.swing.*;
@@ -35,14 +37,18 @@ public class GUI implements ActionListener {
     public Aisle aisle;
     public Rack rack;
     public Shelf shelf;
+    public GUIAdminMain adminPanel;
+    public JComboBox locationComboBox;
+    public JPanel adminEditLocation;
 
     JButton switchButton;
-    JButton commentCreateButton = new JButton("Comment");
-    GUICustomerComments createCustomComments;
-    GUICustomerComments viewCustomerComments;
+    private JButton commentCreateButton = new JButton("Comment");
+    GUICreateComments createCustomComments = new GUICreateComments();
 
 
     public void addComponentToPane(Container pane) {
+        store = new Store("store");
+        //store.sections.add(new Section("Dank"));
         controllingContainer = pane;
         pane.setPreferredSize(new Dimension(1920, 1080));
 
@@ -58,7 +64,13 @@ public class GUI implements ActionListener {
         JPanel openingPanel = new JPanel();
 
 
-        JPanel adminPanel = new GUIAdmin();
+
+
+        //adminPanel.adminEditBottomPanel();
+
+        adminPanel = new GUIAdminMain();
+        adminPanel.adminEditBottomPanel.switchUserButton.addActionListener(this);
+        adminPanel.adminEditBottomPanel.editButton.addActionListener(this);
 
         JPanel userPanel = new JPanel();
 
@@ -146,9 +158,16 @@ public class GUI implements ActionListener {
 
         adminEditCard.add(adminEditPanel, "Edit");
 
-        JPanel adminEditLocation = new JPanel();
+        adminEditLocation = new JPanel();
+        adminEditLocation.setLayout(new GridBagLayout());
+        GridBagConstraints ael = new GridBagConstraints();
+        ael.gridx = ael.gridy = 0;
+        locationComboBox = new JComboBox(store.getSectionsNames(store.getSections()));
+        locationComboBox.setPreferredSize(new Dimension(200,50));
+        adminEditLocation.add(locationComboBox, ael);
 
         adminEditCard.add(adminEditLocation, "Locations");
+
 
         JPanel adminEditMerchandise = new JPanel();
 
@@ -160,6 +179,10 @@ public class GUI implements ActionListener {
 
 
         ae.add(adminEditCard);
+
+
+
+
 
         aw = new GUIAdminAddWindow();
         adminAddPanel = new JPanel();
@@ -193,7 +216,7 @@ public class GUI implements ActionListener {
         isp.gridwidth = 1;
         isp.gridy = 1;
         isp.anchor = GridBagConstraints.CENTER;
-        initialSetupPanel.add(new JLabel("store.locations.Store name:"), isp);
+        initialSetupPanel.add(new JLabel("Store name:"), isp);
         isp.gridx = 1;
         initialSetupPanel.add(is.storeNameField, isp);
         isp.gridx = 0;
@@ -224,95 +247,34 @@ public class GUI implements ActionListener {
         is.add(initialSetupPanel);
 
 
-        //create customer comments window
-        createCustomComments = new GUICustomerComments(); //creates window based on that class
-        createCustomComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
-        JPanel createCustComm = new JPanel();// makes a panel to place all the components in
-        createCustComm.setLayout(new GridBagLayout());//sets layout to createCommGrid layout
-        GridBagConstraints createCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
-        createCommGrid.gridx = createCommGrid.gridy = 0;//uses entire width
-        //starts at top
-        createCommGrid.anchor = GridBagConstraints.LINE_START;
-        createCustComm.add(createCustomComments.subjectLabel, createCommGrid);// adds the label to this part of the createCommGrid
-        createCommGrid.fill = GridBagConstraints.BOTH;
-        createCommGrid.gridy = 1;//one further down
-        createCustComm.add(createCustomComments.subjectField, createCommGrid);
-        createCommGrid.anchor = GridBagConstraints.LINE_START;
-        createCommGrid.gridy = 2;//one further down
-        createCustComm.add(createCustomComments.commentLabel, createCommGrid);
-        createCommGrid.fill = GridBagConstraints.BOTH;
-        createCommGrid.gridy = 3;//one further down
-        createCommGrid.ipady = 40; //makes this cell taller
-        createCustComm.add(createCustomComments.commentField, createCommGrid);
-        createCommGrid.anchor = GridBagConstraints.LINE_START;
-        createCommGrid.gridy = 4;//one further down
-        createCommGrid.ipady = 0;//brings cell height back to default
-        createCustComm.add(createCustomComments.contactLabel, createCommGrid);
-        createCommGrid.fill = GridBagConstraints.BOTH;
-        createCommGrid.gridy = 5;//one further down
-        createCustComm.add(createCustomComments.contactField, createCommGrid);
-        createCommGrid.anchor = GridBagConstraints.LINE_END;
-        createCommGrid.gridy = 6;//one further down
-        createCustComm.add(createCustomComments.submitButton, createCommGrid);
-        createCustomComments.add(createCustComm);//adds the JPanel with everything in it to the dialog box
-        userPanel.add(commentCreateButton); //adds a button to the userPanel to open this dialog
-        commentCreateButton.addActionListener(this);// allows the button to do something on click
-
-//view customer comments window
-        viewCustomerComments = new GUICustomerComments();
-        viewCustomerComments.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);//makes into a dialog box
-        JPanel viewCustComm = new JPanel();// makes a panel to place all the components in
-        viewCustComm.setLayout(new GridBagLayout());//sets layout to createCommGrid layout
-        GridBagConstraints viewCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
-        DefaultListModel listOfCommentSubjects = new DefaultListModel();
-        if (!createCustomComments.comments.isEmpty()) {
-            listOfCommentSubjects.clear();
-            for (CustomerComments comm : createCustomComments.comments) {//for every comment in the list
-                listOfCommentSubjects.addElement(comm.getSubject());//add the comment subject to the list
-            }
-        } else{
-            if (listOfCommentSubjects.isEmpty()) listOfCommentSubjects.addElement("No Customer Comments Availiable.");
-        }
-        JList subjectList = new JList(listOfCommentSubjects);
-        JScrollPane paneOfSubjects = new JScrollPane(subjectList);
-        viewCommGrid.gridy = viewCommGrid.gridx = 0;
-        JLabel viewCommentLabel =  new JLabel("Subject of Messages. Click a subject then the View button to view the comment.");
-        viewCommGrid.anchor = GridBagConstraints.LINE_START;
-        viewCustComm.add(viewCommentLabel, viewCommGrid);//puts label on top
-        viewCommGrid.fill = GridBagConstraints.BOTH;
-        viewCommGrid.gridy = 1;
-        viewCommGrid.ipady = 50;
-        viewCustComm.add(paneOfSubjects, viewCommGrid);//puts scroll list of subjects under label
-        viewCommGrid.gridx = 1;
-        viewCommGrid.anchor = GridBagConstraints.PAGE_START;
-        viewCustComm.add(viewCustomerComments.viewCommentButton, viewCommGrid);//places view button to the upper right of the scroll pane
-        viewCommGrid.anchor = GridBagConstraints.CENTER;
-        viewCustComm.add(viewCustomerComments.deleteButton, viewCommGrid);//places delete button under view button
-        viewCustomerComments.add(viewCustComm);
+        userPanel.add(commentCreateButton); //adds a button to the userPanel to the create comment dialog
+        commentCreateButton.addActionListener(this);// allows the button to do above on click
     }
-
-
-
-
 //<<<<<<< HEAD
+
+
+
+
+
+//>>>>>>> origin/master
     public void actionPerformed(ActionEvent e){
         CardLayout cl = (CardLayout)(cards.getLayout());
         CardLayout ecl = (CardLayout)(adminEditCard.getLayout());
 
         if(e.getSource() == openingAdminButton){
-//=======
 
             pw.setVisible(true);
         }
         if (e.getSource() == openingUserButton) {
             cl.show(cards, USERPANEL);
         }
-        if (e.getSource() == userSwitchButton || e.getSource() == adminSwitchButton) {
+        if (e.getSource() == userSwitchButton || e.getSource() == adminPanel.adminEditBottomPanel.switchUserButton) {
             cl.show(cards, OPENINGPANEL);
         }
 
         if (e.getSource() == adminEditButton) {
             ae.setVisible(true);
+
         }
 
 
@@ -348,7 +310,6 @@ public class GUI implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Enter a store name");
             }
-//<<<<<<< HEAD
             if(is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText().trim())>= 0){
                 sectionInt = Integer.parseInt(is.numberOfSectionField.getText().trim());
 
@@ -357,7 +318,7 @@ public class GUI implements ActionListener {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid section input");
             }
 
-//<<<<< HEAD
+
             if(is.isNumber(is.numberOfAislesField.getText()) && Integer.parseInt(is.numberOfAislesField.getText().trim())>= 0){
                 aisleInt = Integer.parseInt(is.numberOfAislesField.getText().trim());
 
@@ -365,14 +326,14 @@ public class GUI implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid aisle input");
             }
-//<<<<<<< HEAD
+
             if(is.isNumber(is.numberOfRacksField.getText())&& Integer.parseInt(is.numberOfRacksField.getText().trim())>= 0){
                 rackInt = Integer.parseInt(is.numberOfRacksField.getText().trim());
                 valid++;
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid rack input");
             }
-//<<<<<<< HEAD
+
             if(is.isNumber(is.numberOfShelvesField.getText())&& Integer.parseInt(is.numberOfShelvesField.getText().trim())>= 0){
                 shelfInt = Integer.parseInt(is.numberOfShelvesField.getText().trim());
 
@@ -382,28 +343,35 @@ public class GUI implements ActionListener {
             }
 
             if (valid == 5) {
-                store = new Store(storeName);
+                store.storeName = storeName;
                 for (int i = 0; i < sectionInt; i++) {
-                    section = new Section(Integer.toString(i + 1));
+                    section = new Section("Section: " + Integer.toString(i + 1));
                     store.addSection(section);
+                    locationComboBox.addItem(store.getSectionsNames(store.getSections())[i]);
                     for (int j = 0; j < aisleInt; j++) {
-                        aisle = new Aisle(Integer.toString(j + 1));
+                        aisle = new Aisle("Section: " + i + "Aisle: " + Integer.toString(j+ 1));
                         section.addAisle(aisle);
                         for (int k = 0; k < rackInt; k++) {
-                            rack = new Rack(Integer.toString(k + 1));
+                            rack = new Rack("Section: " + i + "Aisle: " + j + "Rack: " + Integer.toString(k + 1));
                             aisle.addRack(rack);
                             for (int l = 0; l < shelfInt; l++) {
-                                shelf = new Shelf(Integer.toString(l + 1));
+                                shelf = new Shelf("Section: " + i + "Aisle: " + j + "Rack: " + k + "Shelf: " + Integer.toString(l + 1));
                                 rack.addShelf(shelf);
                             }
                         }
                     }
                 }
-                JOptionPane.showMessageDialog(controllingContainer, "store.locations.Store created! You may give names to store objects in the 'Edit' tab. ");
+                JOptionPane.showMessageDialog(controllingContainer, "Store created! You may give names to store objects in the 'Edit' tab. ");
                 is.setVisible(false);
                 cl.show(cards, ADMINPANEL);
                 storeExists = true;
             }
+        }
+
+        if(e.getSource() == adminPanel.adminEditBottomPanel.editButton){
+
+            ae.setVisible(true);
+
         }
 
         if(e.getSource() == ae.locationButton){

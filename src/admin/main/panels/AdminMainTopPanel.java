@@ -1,15 +1,15 @@
-package admin.main.panel;
+package admin.main.panels;
 
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AdminEditTopPanel extends JPanel {
+public class AdminMainTopPanel extends JPanel {
     private JLabel title;
     private JTextField searchField;
 
-    public AdminEditTopPanel(){
+    public AdminMainTopPanel(){
         title = new JLabel("Plan-O-Mart");
         title.setPreferredSize(new Dimension(400,600));
         title.setFont(new Font("Arial", Font.BOLD, 64));
