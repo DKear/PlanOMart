@@ -2,9 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUIAdminEdit extends JDialog {
-    JButton locationButton;
-    JButton merchandiseButton;
-    JButton changePassButton;
+    public JButton locationButton;
+    public JButton merchandiseButton;
+    public JButton changePassButton;
 
     public GUIAdminEdit(){
         setSize(400,400);
