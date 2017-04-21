@@ -37,6 +37,9 @@ public class GUI implements ActionListener {
     public Aisle aisle;
     public Rack rack;
     public Shelf shelf;
+    public GUIAdminMain adminPanel;
+    public JComboBox locationComboBox;
+    public JPanel adminEditLocation;
 
     JButton switchButton;
     private JButton commentCreateButton = new JButton("Comment");
@@ -44,6 +47,8 @@ public class GUI implements ActionListener {
 
 
     public void addComponentToPane(Container pane) {
+        store = new Store("store");
+        //store.sections.add(new Section("Dank"));
         controllingContainer = pane;
         pane.setPreferredSize(new Dimension(1920, 1080));
 
@@ -59,7 +64,14 @@ public class GUI implements ActionListener {
         JPanel openingPanel = new JPanel();
 
 
-        JPanel adminPanel = new GUIAdminMain();
+//<<<<<<< HEAD
+
+        //adminPanel.adminEditBottomPanel();
+//=======
+        adminPanel = new GUIAdminMain();
+        adminPanel.adminEditBottomPanel.switchUserButton.addActionListener(this);
+        adminPanel.adminEditBottomPanel.editButton.addActionListener(this);
+//>>>>>>> origin/master
 
         JPanel userPanel = new JPanel();
 
@@ -147,9 +159,16 @@ public class GUI implements ActionListener {
 
         adminEditCard.add(adminEditPanel, "Edit");
 
-        JPanel adminEditLocation = new JPanel();
+        adminEditLocation = new JPanel();
+        adminEditLocation.setLayout(new GridBagLayout());
+        GridBagConstraints ael = new GridBagConstraints();
+        ael.gridx = ael.gridy = 0;
+        locationComboBox = new JComboBox(store.getSectionsNames(store.getSections()));
+        locationComboBox.setPreferredSize(new Dimension(200,50));
+        adminEditLocation.add(locationComboBox, ael);
 
         adminEditCard.add(adminEditLocation, "Locations");
+
 
         JPanel adminEditMerchandise = new JPanel();
 
@@ -161,6 +180,10 @@ public class GUI implements ActionListener {
 
 
         ae.add(adminEditCard);
+
+
+
+
 
         aw = new GUIAdminAddWindow();
         adminAddPanel = new JPanel();
@@ -194,7 +217,7 @@ public class GUI implements ActionListener {
         isp.gridwidth = 1;
         isp.gridy = 1;
         isp.anchor = GridBagConstraints.CENTER;
-        initialSetupPanel.add(new JLabel("store.locations.Store name:"), isp);
+        initialSetupPanel.add(new JLabel("Store name:"), isp);
         isp.gridx = 1;
         initialSetupPanel.add(is.storeNameField, isp);
         isp.gridx = 0;
@@ -241,12 +264,13 @@ public class GUI implements ActionListener {
         if (e.getSource() == openingUserButton) {
             cl.show(cards, USERPANEL);
         }
-        if (e.getSource() == userSwitchButton || e.getSource() == adminSwitchButton) {
+        if (e.getSource() == userSwitchButton || e.getSource() == adminPanel.adminEditBottomPanel.switchUserButton) {
             cl.show(cards, OPENINGPANEL);
         }
 
         if (e.getSource() == adminEditButton) {
             ae.setVisible(true);
+
         }
 
 
@@ -316,28 +340,35 @@ public class GUI implements ActionListener {
             }
 
             if (valid == 5) {
-                store = new Store(storeName);
+                store.storeName = storeName;
                 for (int i = 0; i < sectionInt; i++) {
-                    section = new Section(Integer.toString(i + 1));
+                    section = new Section("Section: " + Integer.toString(i + 1));
                     store.addSection(section);
+                    locationComboBox.addItem(store.getSectionsNames(store.getSections())[i]);
                     for (int j = 0; j < aisleInt; j++) {
-                        aisle = new Aisle(Integer.toString(j + 1));
+                        aisle = new Aisle("Section: " + i + "Aisle: " + Integer.toString(j+ 1));
                         section.addAisle(aisle);
                         for (int k = 0; k < rackInt; k++) {
-                            rack = new Rack(Integer.toString(k + 1));
+                            rack = new Rack("Section: " + i + "Aisle: " + j + "Rack: " + Integer.toString(k + 1));
                             aisle.addRack(rack);
                             for (int l = 0; l < shelfInt; l++) {
-                                shelf = new Shelf(Integer.toString(l + 1));
+                                shelf = new Shelf("Section: " + i + "Aisle: " + j + "Rack: " + k + "Shelf: " + Integer.toString(l + 1));
                                 rack.addShelf(shelf);
                             }
                         }
                     }
                 }
-                JOptionPane.showMessageDialog(controllingContainer, "store.locations.Store created! You may give names to store objects in the 'Edit' tab. ");
+                JOptionPane.showMessageDialog(controllingContainer, "Store created! You may give names to store objects in the 'Edit' tab. ");
                 is.setVisible(false);
                 cl.show(cards, ADMINPANEL);
                 storeExists = true;
             }
+        }
+
+        if(e.getSource() == adminPanel.adminEditBottomPanel.editButton){
+            //locationComboBox.add;
+            ae.setVisible(true);
+
         }
 
         if(e.getSource() == ae.locationButton){

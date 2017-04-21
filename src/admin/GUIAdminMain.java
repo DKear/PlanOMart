@@ -9,9 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUIAdminMain extends JPanel {
-    private AdminMainTopPanel adminEditTopPanel;
-    private AdminMainBodyPanel adminEditBodyPanel;
-    private AdminMainBottomPanel adminEditBottomPanel;
+    public AdminMainTopPanel adminEditTopPanel;
+    public AdminMainBodyPanel adminEditBodyPanel;
+    public AdminMainBottomPanel adminEditBottomPanel;
 
     public GUIAdminMain() {
         setPreferredSize(new Dimension(1290, 1080));
