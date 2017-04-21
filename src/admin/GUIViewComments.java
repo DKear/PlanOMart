@@ -19,6 +19,7 @@ public class GUIViewComments extends JDialog{
     private JList subjectList;//list populated by subjects of comments. Placed in scrollPane
     private JScrollPane paneOfSubjects;
     private JLabel viewCommentLabel;//placed above scroll pane
+    private ReadComment read = new ReadComment();
 
 
     public GUIViewComments() {
@@ -32,6 +33,7 @@ public class GUIViewComments extends JDialog{
         //view button will make the comment appear on in a separate dialog box
         viewCommentButton = new JButton("View Comment");//
         viewCommentButton.setPreferredSize(new Dimension(100, 30));
+        viewCommentButton.addActionListener(this::viewButtonListener);
 
 
         //view customer comments window
@@ -83,9 +85,16 @@ public class GUIViewComments extends JDialog{
             }
         }
     }
-   /* public void viewButtonListener(ActionEvent e) {
+   public void viewButtonListener(ActionEvent e) {
         if (e.getSource() == viewCommentButton) {
-
+            int index = subjectList.getSelectedIndex();
+            if (index != -1 && !listOfCommentSubjects.elementAt(index).equals("No Customer Comments Available.")) {
+                CustomerComments entireComm = GUICreateComments.comments.get(index);
+                read.subjectArea.setText(entireComm.getSubject());
+                read.commentArea.setText(entireComm.getComment());
+                read.contactArea.setText(entireComm.getContact());
+                read.setVisible(true);
+            }
         }
-    } */
+    }
 }
