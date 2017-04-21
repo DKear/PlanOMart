@@ -10,7 +10,7 @@ import java.awt.*;
 public class GUIAddItemDialog extends JDialog {
 
     public GUIAddItemDialog() {
-
+        setModalityType(ModalityType.APPLICATION_MODAL);
     }
 }
 

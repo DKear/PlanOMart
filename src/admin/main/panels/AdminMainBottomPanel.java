@@ -1,6 +1,7 @@
 package admin.main.panels;
 
 import admin.GUIAddRemoveWindow;
+import admin.add.remove.panels.AdminAddRemovePanelBottom;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -15,8 +16,9 @@ public class AdminMainBottomPanel extends JPanel {
     private JButton addRemoveButton;
     private JButton viewCommentButton;
     //    private JButton mapButton;
-    private GUIAddRemoveWindow guiAddRemoveWindow;
-    private AdminMainBodyPanel adminPanel;
+    public GUIAddRemoveWindow guiAddRemoveWindow;
+    public AdminMainBodyPanel adminPanel;
+    public static JDialog addRemovePopUp;
 
     public AdminMainBottomPanel(AdminMainBodyPanel panel) {
         setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -74,13 +76,12 @@ public class AdminMainBottomPanel extends JPanel {
     }
 
     private void addRemoveButtonClicked(ActionEvent e) {
-        JDialog addRemovePopUp = new JDialog();
+        addRemovePopUp = new JDialog();
         addRemovePopUp.setContentPane(guiAddRemoveWindow);
         guiAddRemoveWindow.setObjectTable(adminPanel.getReturnField());
         addRemovePopUp.setTitle("Add & Remove");
         addRemovePopUp.pack();
         addRemovePopUp.setVisible(true);
-
     }
 
     private void viewCommentButtonClicked(ActionEvent e) {

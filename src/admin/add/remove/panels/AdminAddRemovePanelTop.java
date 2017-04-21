@@ -4,6 +4,7 @@ import admin.main.panels.AdminMainBodyPanel;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableColumnModel;
 import java.awt.*;
 
@@ -16,6 +17,7 @@ public class AdminAddRemovePanelTop extends JPanel {
     private JTable objectTable;
 
     public AdminAddRemovePanelTop() {
+        setBorder(new BevelBorder(BevelBorder.RAISED));
 
         dropBoxLabel = new JLabel("Select Type of Object: ");
         dropBoxLabel.setFont(new Font("Arial", Font.PLAIN, 16));

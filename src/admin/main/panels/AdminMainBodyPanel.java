@@ -48,6 +48,8 @@ public class AdminMainBodyPanel extends JPanel{
 }
 
 class DropBoxPanel extends JPanel {
+    public JTextField searchField;
+
     private JComboBox<String> sectionDropbox;
     private JComboBox<Integer> aisleDropbox;
     private JComboBox<String> rackDropbox;
@@ -62,6 +64,9 @@ class DropBoxPanel extends JPanel {
 
     DropBoxPanel() {
         setBorder(new BevelBorder(BevelBorder.RAISED));
+        searchField = new JTextField("Search");
+        searchField.setPreferredSize(new Dimension(300, 50));
+        searchField.setFont(new Font("Arial", Font.PLAIN, 16));
 
         sectionLabel = new JLabel("Sections: ");
         sectionLabel.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -91,19 +96,21 @@ class DropBoxPanel extends JPanel {
         searchButton.setPreferredSize(new Dimension(100,50));
         searchButton.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        setLayout(new MigLayout("", "[align center]", "[align center fill,20%]"));
-        add(sectionLabel, "cell 0 0");
-        add(sectionDropbox, "cell 1 0, gapy 50px");
+        setLayout(new MigLayout("", "[align center]", "[align center fill,10%]"));
+        add(searchField, "cell 0 0, span");
 
-        add(aisleLabel, "cell 0 1");
-        add(aisleDropbox, "cell 1 1, gapy 50px");
+        add(sectionLabel, "cell 0 1");
+        add(sectionDropbox, "cell 1 1 , span");
 
-        add(rackLabel, "cell 0 2");
-        add(rackDropbox, "cell 1 2, gapy 50px");
+        add(aisleLabel, "cell 0 2");
+        add(aisleDropbox, "cell 1 2, span");
 
-        add(shelfLabel, "cell 0 3");
-        add(shelfDropbox, "cell 1 3, gapy 50px");
+        add(rackLabel, "cell 0 3");
+        add(rackDropbox, "cell 1 3, span");
 
-        add(searchButton, "cell 1 4");
+        add(shelfLabel, "cell 0 4");
+        add(shelfDropbox, "cell 1 4, span");
+
+        add(searchButton, "cell 1 5");
     }
 }
