@@ -4,6 +4,8 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AdminMainTopPanel extends JPanel {
     private JLabel title;
@@ -17,6 +19,12 @@ public class AdminMainTopPanel extends JPanel {
         searchField = new JTextField("Search");
         searchField.setFont(new Font("Arial", Font.PLAIN, 16));
         searchField.setPreferredSize(new Dimension(300,50));
+        searchField.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                searchField.setText("");
+            }
+        });
 
         setLayout(new MigLayout("", "[grow]", "[]push[]"));
 
