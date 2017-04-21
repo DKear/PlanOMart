@@ -7,12 +7,12 @@ import java.awt.*;
  * Created by joshu on 4/20/2017.
  */
 public class ReadComment extends JDialog {
-    private JLabel subjectLabel = new JLabel("Subject: ");
-    private JTextArea subjectArea;
-    private JLabel commentLabel = new JLabel("Customer's Comment: ");
-    private JTextArea commentArea;
-    private JLabel contactLabel = new JLabel("Contact Information:");
-    private JTextArea contactArea;
+    private JLabel subjectLabel;
+    public JTextField subjectArea;
+    private JLabel commentLabel;
+    public JTextField commentArea;
+    private JLabel contactLabel;
+    public JTextField contactArea;
     private JPanel readComm; //panel all things are placed in
     private GridBagConstraints createCommGrid; //layout used
 
@@ -20,19 +20,22 @@ public class ReadComment extends JDialog {
         setSize(600, 600);
         //making the customer side
         //the subject label and text field
-        subjectLabel = new JLabel("Subject of comment:");//top label for the subject of the comment
+        subjectLabel  = new JLabel("Subject: ");//top label for the subject of the comment
         subjectLabel.setLabelFor(subjectArea); // don't know if this does anything
-        subjectArea = new JTextArea();
+        subjectArea = new JTextField("No Subject");
+        subjectArea.setEditable(false);
 
         //the comment label and comment text field
-        commentLabel = new JLabel("Comment:");
+        commentLabel = new JLabel("Customer's Comment: ");
         commentLabel.setLabelFor(commentArea);
-        commentArea = new JTextArea();
+        commentArea = new JTextField("No Comment was selected.");
+        commentArea.setEditable(false);
 
         //the contact label and text field
-        contactLabel = new JLabel("Contact info (Used to provide you with a discount next time you shop):");
+        contactLabel = new JLabel("Contact Information:");
         contactLabel.setLabelFor(contactArea);
-        contactArea = new JTextArea();
+        contactArea = new JTextField("No Contact Given");
+        contactArea.setEditable(false);
 
         this.setModalityType(ModalityType.APPLICATION_MODAL);//makes into a dialog box
         readComm = new JPanel();// makes a panels to place all the components in
