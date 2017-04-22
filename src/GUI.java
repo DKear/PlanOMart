@@ -42,6 +42,10 @@ public class GUI implements ActionListener {
     public JPanel adminEditLocation;
 
     JButton switchButton;
+    JButton commentCreateButton = new JButton("Comment");
+    GUICustomerComments createCustomComments;
+    GUICustomerComments viewCustomerComments;
+    JPanel adminPanel;
     private JButton commentCreateButton = new JButton("Comment");
     GUICreateComments createCustomComments = new GUICreateComments();
 
@@ -250,6 +254,10 @@ public class GUI implements ActionListener {
         userPanel.add(commentCreateButton); //adds a button to the userPanel to the create comment dialog
         commentCreateButton.addActionListener(this);// allows the button to do above on click
     }
+
+
+
+
 //<<<<<<< HEAD
 
 
@@ -263,6 +271,8 @@ public class GUI implements ActionListener {
 
         if(e.getSource() == openingAdminButton){
 
+            //Insert That one thing here Dylan to bypass initial setup!!!!!!!!!!!!!!!!!!!
+            //Comment out this thing ↓
             pw.setVisible(true);
         }
         if (e.getSource() == openingUserButton) {
@@ -310,6 +320,7 @@ public class GUI implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Enter a store name");
             }
+//<<<<<<< HEAD
             if(is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText().trim())>= 0){
                 sectionInt = Integer.parseInt(is.numberOfSectionField.getText().trim());
 
