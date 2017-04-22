@@ -1,6 +1,7 @@
 import UserSide.GUICreateComments;
 import admin.GUIAdminMain;
 import store.locations.*;
+import UserSide.CustomerComments;
 
 import javax.swing.*;
 
@@ -41,14 +42,8 @@ public class GUI implements ActionListener {
     public JComboBox locationComboBox;
     public JPanel adminEditLocation;
 
-    JButton switchButton;
-    JButton commentCreateButton = new JButton("Comment");
-    GUICustomerComments createCustomComments;
-    GUICustomerComments viewCustomerComments;
-    JPanel adminPanel;
     private JButton commentCreateButton = new JButton("Comment");
     GUICreateComments createCustomComments = new GUICreateComments();
-
 
     public void addComponentToPane(Container pane) {
         store = new Store("store");
