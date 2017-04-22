@@ -5,6 +5,8 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AdminMainBodyPanel extends JPanel{
 
@@ -67,6 +69,12 @@ class DropBoxPanel extends JPanel {
         searchField = new JTextField("Search");
         searchField.setPreferredSize(new Dimension(300, 50));
         searchField.setFont(new Font("Arial", Font.PLAIN, 16));
+        searchField.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                searchField.setText("");
+            }
+        });
 
         sectionLabel = new JLabel("Sections: ");
         sectionLabel.setFont(new Font("Arial", Font.PLAIN, 16));
