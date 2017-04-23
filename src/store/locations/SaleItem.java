@@ -15,8 +15,11 @@ public class SaleItem {
     private double salePrice;
     private String saleDescription = "";
     private ArrayList<Shelf> shelves;
+    private DecimalFormat df = new DecimalFormat("#.##");
+
 
     SaleItem(double p, String n, String b, String d) {
+            df.format(p);
             price = p;
             name = n;
             brand = b;
@@ -51,7 +54,6 @@ public class SaleItem {
     public void setSalePercentage(int salePercentage) {
         if (salePercentage > 0) {
             double amountOff = salePercentage * .01 * price;
-            DecimalFormat df = new DecimalFormat("#.##");
             amountOff = Double.parseDouble(df.format(amountOff));
             salePrice = price - amountOff;
         } else {

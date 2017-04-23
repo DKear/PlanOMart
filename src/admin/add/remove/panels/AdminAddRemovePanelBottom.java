@@ -16,7 +16,6 @@ public class AdminAddRemovePanelBottom extends JPanel {
 
     public JButton returnButton;
     private JButton addItemButton;
-    private JButton addStructure;
     public GUIAddItemDialog guiAddItemDialog;
 
     public AdminAddRemovePanelBottom() {
@@ -32,31 +31,18 @@ public class AdminAddRemovePanelBottom extends JPanel {
         addItemButton.setFont(new Font("Arial", Font.PLAIN, 16));
         addItemButton.addActionListener(this::addItemButtonClicked);
 
-        addStructure = new JButton("Add Structure");
-        addStructure.setPreferredSize(new Dimension(100, 50));
-        addStructure.setFont(new Font("Arial", Font.PLAIN, 16));
-        addStructure.addActionListener(this::addStructureClicked);
-
         setLayout(new MigLayout("", "[align center]", "[align center]"));
         add(returnButton, "cell 0 0");
         add(addItemButton, "cell 1 0");
-        add(addStructure, "cell 2 0");
-
         guiAddItemDialog = new GUIAddItemDialog();
-
     }
 
-    //THIS IS METHOD STILL NEEDS TO BE FIXED ↓↓↓↓
     public void returnButtonClicked(ActionEvent e) {
-        AdminMainBottomPanel.addRemovePopUp.setVisible(false);
+        AdminMainBottomPanel.guiAddRemoveWindow.setVisible(false);
     }
 
     public void addItemButtonClicked(ActionEvent e) {
         guiAddItemDialog.pack();
         guiAddItemDialog.setVisible(true);
-    }
-
-    public void addStructureClicked(ActionEvent e) {
-
     }
 }

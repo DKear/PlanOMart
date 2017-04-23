@@ -12,6 +12,11 @@ public class SaleItemTest {
         SaleItem bread = new SaleItem(1.39, "White Bread", "Wonder Bread", "bread");
         Assertions.assertEquals(1.39, bread.getPrice());
     }
+    @Test
+    public void getPriceFormattedTest() {
+        SaleItem bread = new SaleItem(1, "White Bread", "Wonder Bread", "bread");
+        Assertions.assertEquals(1.00, bread.getPrice());
+    }
 
     @Test
     public void tooLowOfPriceTest() {
@@ -179,6 +184,11 @@ public class SaleItemTest {
         shelf.addItem(bread);
         bread.setShelves(shelf);
         Assertions.assertTrue(bread.getShelvesWithItem()[0].equals(shelf) & shelf.getItemsOnShelf()[0].equals(bread));
+    }
+    @Test
+    public void validateSaleItemPositiveTest() {
+        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+
     }
 
 }
