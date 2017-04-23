@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class AdminAddSectionPanel extends JPanel {
 
@@ -44,5 +45,7 @@ public class AdminAddSectionPanel extends JPanel {
         submitButton = new JButton("Submit");
         submitButton.setPreferredSize(new Dimension(100, 50));
         submitButton.setFont(new Font("Arial", Font.PLAIN, 16));
+    }
+    public void returnButtonClicked(ActionEvent e) {
     }
 }
