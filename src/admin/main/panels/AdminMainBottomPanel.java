@@ -2,43 +2,51 @@ package admin.main.panels;
 
 import admin.GUIAddRemoveWindow;
 import admin.GUIViewComments;
+import admin.add.remove.panels.AdminAddRemovePanelBottom;
+import admin.add.remove.panels.AdminAddRemovePanelBottom;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class AdminMainBottomPanel extends JPanel{
+public class AdminMainBottomPanel extends JPanel {
 
     public JButton switchUserButton;
     public JButton editButton;
     public JButton addRemoveButton;
     public JButton viewCommentButton;
-//    private JButton mapButton;
+    //    private JButton mapButton;
     public GUIAddRemoveWindow guiAddRemoveWindow;
+    public AdminMainBodyPanel adminPanel;
+    public static JDialog addRemovePopUp;
 
-    public AdminMainBottomPanel() {
+    public AdminMainBottomPanel(AdminMainBodyPanel panel) {
+        setBorder(new BevelBorder(BevelBorder.RAISED));
+        adminPanel = panel;
+
         //switchUserButton is created and given functionality with a lambda expression
         switchUserButton = new JButton("Switch User");
-        switchUserButton.setPreferredSize(new Dimension(100,50));
+        switchUserButton.setPreferredSize(new Dimension(100, 50));
         switchUserButton.setFont(new Font("Arial", Font.PLAIN, 16));
         switchUserButton.addActionListener(this::switchUserButtonClicked);
 
         //editButton is created and given functionality with a lambda expression
         editButton = new JButton("Edit Items");
-        editButton.setPreferredSize(new Dimension(100,50));
+        editButton.setPreferredSize(new Dimension(100, 50));
         editButton.setFont(new Font("Arial", Font.PLAIN, 16));
         //editButton.addActionListener(this::editButtonClicked);
 
         //addRemoveButton is created and given functionality with a lambda expression
         addRemoveButton = new JButton("Add/Remove Objects");
-        addRemoveButton.setPreferredSize(new Dimension(100,50));
+        addRemoveButton.setPreferredSize(new Dimension(100, 50));
         addRemoveButton.setFont(new Font("Arial", Font.PLAIN, 16));
         addRemoveButton.addActionListener(this::addRemoveButtonClicked);
 
         //viewCommentButton is created and given functionality with a lambda expression
         viewCommentButton = new JButton("View Comments");
-        viewCommentButton.setPreferredSize(new Dimension(100,50));
+        viewCommentButton.setPreferredSize(new Dimension(100, 50));
         viewCommentButton.setFont(new Font("Arial", Font.PLAIN, 16));
         viewCommentButton.addActionListener(this::viewCommentButtonClicked);
 
@@ -56,13 +64,12 @@ public class AdminMainBottomPanel extends JPanel{
         add(viewCommentButton);
 //        add(mapButton);
 
-        //initializing the JDialogs used
+        //initializing the JPanel used
         guiAddRemoveWindow = new GUIAddRemoveWindow();
     }
 
     //Below are the actual methods that the lambda expressions use
-
-    public void switchUserButtonClicked(ActionEvent e){
+    private void switchUserButtonClicked(ActionEvent e) {
         getParent().setVisible(false);
     }
 
@@ -70,8 +77,13 @@ public class AdminMainBottomPanel extends JPanel{
         guiAddRemoveWindow.setVisible(true);
     }*/
 
-    public void addRemoveButtonClicked(ActionEvent e){
-
+    private void addRemoveButtonClicked(ActionEvent e) {
+        addRemovePopUp = new JDialog();
+        addRemovePopUp.setContentPane(guiAddRemoveWindow);
+        guiAddRemoveWindow.setObjectTable(adminPanel.getReturnField());
+        addRemovePopUp.setTitle("Add & Remove");
+        addRemovePopUp.pack();
+        addRemovePopUp.setVisible(true);
     }
 
     public void viewCommentButtonClicked(ActionEvent e){
@@ -82,7 +94,9 @@ public class AdminMainBottomPanel extends JPanel{
     }
 
 //    public void mapButtonClicked(ActionEvent e){
-//
+//        if (e.getSource() == mapButton) {
+//            mapDialogWindow.setVisible(true);
+//        }
 //    }
 
 }

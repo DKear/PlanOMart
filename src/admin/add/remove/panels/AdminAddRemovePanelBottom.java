@@ -1,33 +1,62 @@
 package admin.add.remove.panels;
 
+import admin.GUIAddItemDialog;
+import admin.GUIAddRemoveWindow;
+import admin.GUIAdminMain;
+import admin.main.panels.AdminMainBottomPanel;
+
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class AdminAddRemovePanelBottom extends JPanel {
 
-    private JButton returnButton;
+    public JButton returnButton;
     private JButton addItemButton;
     private JButton addStructure;
+    public GUIAddItemDialog guiAddItemDialog;
 
     public AdminAddRemovePanelBottom() {
+        setBorder(new BevelBorder(BevelBorder.RAISED));
 
         returnButton = new JButton("Return");
         returnButton.setPreferredSize(new Dimension(100, 50));
         returnButton.setFont(new Font("Arial", Font.PLAIN, 16));
+        returnButton.addActionListener(this::returnButtonClicked);
 
         addItemButton = new JButton("Add Item");
         addItemButton.setPreferredSize(new Dimension(100, 50));
         addItemButton.setFont(new Font("Arial", Font.PLAIN, 16));
+        addItemButton.addActionListener(this::addItemButtonClicked);
 
         addStructure = new JButton("Add Structure");
         addStructure.setPreferredSize(new Dimension(100, 50));
         addStructure.setFont(new Font("Arial", Font.PLAIN, 16));
+        addStructure.addActionListener(this::addStructureClicked);
 
-        setLayout(new MigLayout("","[align center]","[align center]"));
+        setLayout(new MigLayout("", "[align center]", "[align center]"));
         add(returnButton, "cell 0 0");
         add(addItemButton, "cell 1 0");
         add(addStructure, "cell 2 0");
+
+        guiAddItemDialog = new GUIAddItemDialog();
+
+    }
+
+    //THIS IS METHOD STILL NEEDS TO BE FIXED ↓↓↓↓
+    public void returnButtonClicked(ActionEvent e) {
+        AdminMainBottomPanel.addRemovePopUp.setVisible(false);
+    }
+
+    public void addItemButtonClicked(ActionEvent e) {
+        guiAddItemDialog.pack();
+        guiAddItemDialog.setVisible(true);
+    }
+
+    public void addStructureClicked(ActionEvent e) {
+
     }
 }
