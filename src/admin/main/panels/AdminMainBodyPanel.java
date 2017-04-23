@@ -8,7 +8,7 @@ import java.awt.*;
 public class AdminMainBodyPanel extends JPanel{
 
     private JTable returnField;
-    private DropBoxPanel dropBoxPanel;
+    public DropBoxPanel dropBoxPanel;
 
     public AdminMainBodyPanel(){
         //ADDING DUMBY DATA (delete after)
@@ -39,10 +39,10 @@ public class AdminMainBodyPanel extends JPanel{
 }
 
 class DropBoxPanel extends JPanel {
-    private JComboBox<String> sectionDropbox;
-    private JComboBox<Integer> aisleDropbox;
-    private JComboBox<String> rackDropbox;
-    private JComboBox<Integer> shelfDropbox;
+    public JComboBox<String> sectionDropbox;
+    public JComboBox<Integer> aisleDropbox;
+    public JComboBox<String> rackDropbox;
+    public JComboBox<Integer> shelfDropbox;
 
     private JLabel sectionLabel;
     private JLabel aisleLabel;
@@ -95,5 +95,14 @@ class DropBoxPanel extends JPanel {
         add(shelfDropbox, "cell 1 3");
 
         add(searchButton, "cell 1 4");
+
+
     }
+    /*public void populateComboBox(String[] s){
+    for(int i = 0; i < s.length; i++ ) {
+        sectionDropbox.addItem(s[i]);
+
+    }
+
+    }*/
 }

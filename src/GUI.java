@@ -348,6 +348,7 @@ public class GUI implements ActionListener {
                     section = new Section("Section: " + Integer.toString(i + 1));
                     store.addSection(section);
                     locationComboBox.addItem(store.getSectionsNames(store.getSections())[i]);
+                    //adminPanel.adminEditBodyPanel.dropBoxPanel.populateComboBox
                     for (int j = 0; j < aisleInt; j++) {
                         aisle = new Aisle("Section: " + i + "Aisle: " + Integer.toString(j+ 1));
                         section.addAisle(aisle);
