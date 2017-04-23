@@ -250,16 +250,6 @@ public class GUI implements ActionListener {
         commentCreateButton.addActionListener(this);// allows the button to do above on click
     }
 
-
-
-
-//<<<<<<< HEAD
-
-
-
-
-
-//>>>>>>> origin/master
     public void actionPerformed(ActionEvent e){
         CardLayout cl = (CardLayout)(cards.getLayout());
         CardLayout ecl = (CardLayout)(adminEditCard.getLayout());

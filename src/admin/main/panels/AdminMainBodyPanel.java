@@ -74,7 +74,7 @@ class DropBoxPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 searchField.setText("");
             }
-        });
+        }); //makes search disappear after click
 
         sectionLabel = new JLabel("Sections: ");
         sectionLabel.setFont(new Font("Arial", Font.PLAIN, 16));

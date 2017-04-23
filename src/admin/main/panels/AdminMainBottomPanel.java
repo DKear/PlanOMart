@@ -18,9 +18,8 @@ public class AdminMainBottomPanel extends JPanel {
     public JButton addRemoveButton;
     public JButton viewCommentButton;
     //    private JButton mapButton;
-    public GUIAddRemoveWindow guiAddRemoveWindow;
+    public static GUIAddRemoveWindow guiAddRemoveWindow;
     public AdminMainBodyPanel adminPanel;
-    public static JDialog addRemovePopUp;
 
     public AdminMainBottomPanel(AdminMainBodyPanel panel) {
         setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -78,12 +77,10 @@ public class AdminMainBottomPanel extends JPanel {
     }*/
 
     private void addRemoveButtonClicked(ActionEvent e) {
-        addRemovePopUp = new JDialog();
-        addRemovePopUp.setContentPane(guiAddRemoveWindow);
-        guiAddRemoveWindow.setObjectTable(adminPanel.getReturnField());
-        addRemovePopUp.setTitle("Add & Remove");
-        addRemovePopUp.pack();
-        addRemovePopUp.setVisible(true);
+        if (e.getSource() == addRemoveButton) {
+            guiAddRemoveWindow.setObjectTable(adminPanel.getReturnField());
+            guiAddRemoveWindow.setVisible(true);
+        }
     }
 
     public void viewCommentButtonClicked(ActionEvent e){
