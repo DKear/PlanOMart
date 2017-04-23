@@ -17,9 +17,7 @@ public class GUIAddItemDialog extends JDialog {
 class AddItemDialogPanel extends JPanel {
 
     private JTextField itemNameField;
-    private String itemName;
-
-    private JLabel item;
+    private JLabel itemNameLabel;
     private JFormattedTextField itemPriceField;
     private double itemPrice;
 
@@ -43,7 +41,7 @@ class AddItemDialogPanel extends JPanel {
         itemNameField.setFont(new Font("Arial", Font.PLAIN, 16));
         itemNameField.setPreferredSize(new Dimension(300, 50));
 
-        itemName = itemNameField.getText();
+        //itemName = itemNameField.getText();
 
         //Constructing and designing itemPrice stuff
         itemPriceField = new JFormattedTextField(new NumberFormatter());

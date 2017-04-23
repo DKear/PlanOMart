@@ -25,6 +25,11 @@ public class AdminAddRemovePanelTop extends JPanel {
         objectDropBox = new JComboBox<>();
         objectDropBox.setPreferredSize(new Dimension(300, 50));
         objectDropBox.setFont(new Font("Arial", Font.PLAIN, 16));
+        objectDropBox.addItem("Section");
+        objectDropBox.addItem("Aisle");
+        objectDropBox.addItem("Rack");
+        objectDropBox.addItem("Shelf");
+        objectDropBox.addItem("Sale Item");
 
         removeButton = new JButton("Remove");
         removeButton.setPreferredSize(new Dimension(100, 50));
