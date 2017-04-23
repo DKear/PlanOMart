@@ -74,4 +74,12 @@ public class Section {
         String[] tagArray = new String[tags.size()];
         return tagArray;
     }
+
+    public String[] getAisleNames(Aisle[] s){
+        String[] nameArray = new String[s.length];
+        for(int i = 0; i < s.length; i++){
+            nameArray[i] = s[i].getAisleName();
+        }
+        return nameArray;
+    }
 }

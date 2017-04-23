@@ -70,6 +70,13 @@ public class GUI implements ActionListener {
         adminPanel = new GUIAdminMain();
         adminPanel.adminEditBottomPanel.switchUserButton.addActionListener(this);
         adminPanel.adminEditBottomPanel.editButton.addActionListener(this);
+        /*adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if (adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedItem().equals(store.sections.get(adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedIndex()-1).getAisleNames(store.sections.get(adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedIndex()-1).getAisles()))){
+                    adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.setModel(new DefaultComboBoxModel(store.sections.get(adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedIndex()-1).getAisleNames(store.sections.get(adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedIndex()-1).getAisles())));
+                }
+            }
+        });*/
 
         JPanel userPanel = new JPanel();
 
@@ -354,7 +361,7 @@ public class GUI implements ActionListener {
                     section = new Section("Section: " + Integer.toString(i + 1));
                     store.addSection(section);
                     locationComboBox.addItem(store.getSectionsNames(store.getSections())[i]);
-                    //adminPanel.adminEditBodyPanel.dropBoxPanel.populateComboBox
+                    adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(store.getSectionsNames(store.getSections())[i]);
                     for (int j = 0; j < aisleInt; j++) {
                         aisle = new Aisle("Section: " + i + "Aisle: " + Integer.toString(j+ 1));
                         section.addAisle(aisle);
@@ -389,6 +396,15 @@ public class GUI implements ActionListener {
         }
         if(e.getSource() == ae.changePassButton){
             ecl.show(adminEditCard, "Change password");
+        }
+
+        if(e.getSource() == adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox) {
+            JOptionPane.showMessageDialog(controllingContainer, "Aaa");
+            for (int i = 0; i < store.sections.size(); i++) {
+                if (adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.getSelectedItem().equals(store.getSectionsNames(store.getSections())[i])) {
+                    adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.setModel(new DefaultComboBoxModel(store.sections.get(i).getAisleNames(store.sections.get(i).getAisles())));
+                }
+            }
         }
 
     }

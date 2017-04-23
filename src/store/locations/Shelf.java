@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by joshu on 2/24/2017.
  */
 public class Shelf {
-    private String rowName;
+    public String rowName;
     private ArrayList<SaleItem> products;
     private Rack rack;
     private ArrayList<String> tags;

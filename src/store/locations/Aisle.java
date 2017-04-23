@@ -3,7 +3,7 @@ package store.locations;
 import java.util.ArrayList;
 
 public class Aisle {
-    private String aisleName;
+    public String aisleName;
     private ArrayList<Rack> racks;
     private ArrayList<String> tags;
     private Section section;
