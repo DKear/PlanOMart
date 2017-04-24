@@ -367,6 +367,7 @@ public class GUI implements ActionListener {
                             for (int l = 0; l < shelfInt; l++) {
                                 shelf = new Shelf(Integer.toString(l + 1));
                                 rack.addShelf(shelf);
+                                shelf.setRack(rack);
                                 adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem("Section: " + aisle.getSection().getSectionName() + " Aisle: " + aisle.getAisleName() + " Rack: " + rack.getRackName() +" Shelf: " + shelf.getRowName());
                             }
                         }
