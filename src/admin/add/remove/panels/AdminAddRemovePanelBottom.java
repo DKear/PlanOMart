@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 public class AdminAddRemovePanelBottom extends JPanel {
 
     public JButton returnButton;
-    private JButton addItemButton;
+    public JButton addItemButton;
     public GUIAddItemDialog guiAddItemDialog;
 
     public AdminAddRemovePanelBottom() {
@@ -42,7 +42,6 @@ public class AdminAddRemovePanelBottom extends JPanel {
     }
 
     public void addItemButtonClicked(ActionEvent e) {
-        guiAddItemDialog.pack();
         guiAddItemDialog.setVisible(true);
     }
 }

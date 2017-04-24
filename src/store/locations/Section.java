@@ -40,6 +40,16 @@ public class Section {
         return aisleArray;
     }
 
+    public String [] getAislesNames() {
+        String[] nameArray = new String[aisles.size()];
+        int i = 0;
+        for (Aisle a : aisles) {
+            nameArray[i] = a.getAisleName();
+            i++;
+        }
+        return nameArray;
+    }
+
     public boolean removeAisle(Aisle a){
         if(aisles.contains(a)){
             aisles.remove(a);

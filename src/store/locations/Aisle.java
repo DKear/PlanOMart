@@ -17,6 +17,15 @@ public class Aisle {
         return aisleName;
     }
 
+    public String [] getRacksNames() {
+        String[] nameArray = new String[racks.size()];
+        int i = 0;
+        for (Rack r : racks) {
+            nameArray[i] = r.getRackName();
+            i++;
+        }
+        return nameArray;
+    }
     public boolean hasRacks() {
         if (racks.size() == 0) {
             return false;
