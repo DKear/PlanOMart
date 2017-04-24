@@ -25,6 +25,16 @@ public class Rack {
         return shelfArray;
     }
 
+    public String[] getShelvesNames() {
+        String[] nameArray = new String[shelves.size()];
+        int i = 0;
+        for (Shelf s : shelves) {
+            nameArray[i] = s.getRowName();
+            i++;
+        }
+        return nameArray;
+    }
+
     public boolean hasShelves() {
         if (shelves.size() == 0) {
             return false;

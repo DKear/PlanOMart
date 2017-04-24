@@ -1,10 +1,9 @@
 import UserSide.GUICreateComments;
+import admin.GUIAddItemDialog;
 import admin.GUIAdminMain;
 import store.locations.*;
-import UserSide.CustomerComments;
 
 import javax.swing.*;
-
 import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
 
@@ -21,7 +20,6 @@ public class GUI implements ActionListener {
     private JButton adminEditButton;
     private GUIAdminEdit ae;
     private GUIAdminAddWindow aw;
-    //private JPanel adminEditPanel;
     private JPanel adminEditCard;
     private JPanel adminAddPanel;
     private JPanel openingContent;
@@ -41,7 +39,7 @@ public class GUI implements ActionListener {
     public GUIAdminMain adminPanel;
     public JComboBox locationComboBox;
     public JPanel adminEditLocation;
-
+    private GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
     GUICreateComments createCustomComments = new GUICreateComments();
 
@@ -61,9 +59,6 @@ public class GUI implements ActionListener {
         adminSwitchButton = new JButton("Switch User Mode");
         adminSwitchButton.addActionListener(this);
         JPanel openingPanel = new JPanel();
-
-
-
 
         //adminPanel.adminEditBottomPanel();
 
@@ -176,12 +171,7 @@ public class GUI implements ActionListener {
 
         adminEditCard.add(adminEditChangePass, "Change password");
 
-
         ae.add(adminEditCard);
-
-
-
-
 
         aw = new GUIAdminAddWindow();
         adminAddPanel = new JPanel();
@@ -248,6 +238,7 @@ public class GUI implements ActionListener {
 
         userPanel.add(commentCreateButton); //adds a button to the userPanel to the create comment dialog
         commentCreateButton.addActionListener(this);// allows the button to do above on click
+
     }
 
     public void actionPerformed(ActionEvent e){
@@ -305,7 +296,6 @@ public class GUI implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Enter a store name");
             }
-//<<<<<<< HEAD
             if(is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText().trim())>= 0){
                 sectionInt = Integer.parseInt(is.numberOfSectionField.getText().trim());
 
@@ -381,8 +371,38 @@ public class GUI implements ActionListener {
             ecl.show(adminEditCard, "Change password");
         }
 
+        //int shelfIndex = addItemDialog.shelfDropBox.getSelectedIndex();
+        if(e.getSource() == adminPanel.adminEditBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
+           //populating the combo boxes in GUIAddItemDialog, populates sections
+            addItemDialog.sectionDropBox = new JComboBox(store.getSectionsNames(store.getSections()));
+            addItemDialog.sectionDropBox.addActionListener(this::populateAisleComboBox);
+            }
     }
 
+    public void populateAisleComboBox(ActionEvent e) {
+        int sectionIndex = addItemDialog.sectionDropBox.getSelectedIndex();
+        if (sectionIndex != -1) {//makes sure an index is selected first, populates aisles
+            addItemDialog.aisleDropBox = new JComboBox(store.getSections()[sectionIndex].getAislesNames());
+            addItemDialog.aisleDropBox.addActionListener(this::populateRackComboBox);
+            }
+        }
+
+    public void populateRackComboBox(ActionEvent e) {
+        int sectionIndex = addItemDialog.sectionDropBox.getSelectedIndex();
+        int aisleIndex = addItemDialog.aisleDropBox.getSelectedIndex();;
+        if (aisleIndex != -1) {//makes sure an index is selected first, populates racks
+            addItemDialog.rackDropBox = new JComboBox(store.getSections()[sectionIndex].getAisles()[aisleIndex].getRacksNames());
+            addItemDialog.rackDropBox.addActionListener(this::populateShelfComboBox);
+        }
+    }
+    public void populateShelfComboBox(ActionEvent e) {
+        int sectionIndex = addItemDialog.sectionDropBox.getSelectedIndex();
+        int aisleIndex = addItemDialog.aisleDropBox.getSelectedIndex();
+        int rackIndex = addItemDialog.rackDropBox.getSelectedIndex();
+        if (rackIndex != -1) {
+            addItemDialog.shelfDropBox = new JComboBox(store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelvesNames());
+        }
+    }
     private static void createAndShowGUI() {
         //Create and set up the window.
         JFrame frame = new JFrame("PLAN-O-MART");

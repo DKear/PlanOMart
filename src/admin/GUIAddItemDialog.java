@@ -2,93 +2,78 @@ package admin;
 
 import net.miginfocom.swing.MigLayout;
 import store.locations.*;
-
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class GUIAddItemDialog extends JDialog {
-    private JTextField itemNameField;
-    private JLabel itemNameLabel;
-    private JFormattedTextField itemPriceField;
-    private double itemPrice;
+    private JLabel itemNameLabel = new JLabel("Place item name here:");
+    private JTextField itemNameField = new JTextField();
+    private JLabel itemPriceLabel = new JLabel("Enter item price here:");
+    private JFormattedTextField itemPriceField = new JFormattedTextField(new NumberFormatter());
+    private JLabel itemBrandLabel = new JLabel("Enter item brand here:");
+    private JTextField itemBrandField = new JTextField();
+    private JLabel itemDescriptionLabel = new JLabel("Enter item description here");
+    private JTextField itemDescriptionField = new JTextField();
+    private JLabel locationLabel = new JLabel("Location of Item:");;
+    public JComboBox<Section> sectionDropBox;
+    public JComboBox<Aisle> aisleDropBox;
+    public JComboBox<Rack> rackDropBox;
+    public JComboBox<Shelf> shelfDropBox;
+    private JButton submitButton = new JButton("Submit");
 
-    private JTextField itemDescriptionField;
-    private String itemDecription;
-
-    private JLabel locationLabel;
-
-    private JComboBox<Section> sectionDropBox;
-    private JComboBox<Aisle> aisleDropBox;
-    private JComboBox<Rack> rackDropBox;
-    private JComboBox<Shelf> shelfDropBox;
-
-    private JButton submitButton;
-    
     public GUIAddItemDialog() {
         setModalityType(ModalityType.APPLICATION_MODAL);
+        setVisible(false);
+        setSize(1024, 512);
 
         //Constructing and designing itemName stuff
-        itemNameField = new JTextField();
-        itemNameField.setFont(new Font("Arial", Font.PLAIN, 16));
         itemNameField.setPreferredSize(new Dimension(300, 50));
 
         //itemName = itemNameField.getText();
 
         //Constructing and designing itemPrice stuff
-        itemPriceField = new JFormattedTextField(new NumberFormatter());
-        itemPriceField.setFont(new Font("Arial", Font.PLAIN, 16));
         itemPriceField.setPreferredSize(new Dimension(300, 50));
 
-        itemPrice = Double.parseDouble(itemPriceField.getText());
+        //itemPrice = Double.parseDouble(itemPriceField.getText());
+        itemBrandField.setPreferredSize((new Dimension(300, 50)));
 
         //Constructing and designing itemDescription stuff
-        itemDescriptionField = new JTextField("<Item Description>");
-        itemDescriptionField.setFont(new Font("Arial", Font.PLAIN, 16));
         itemDescriptionField.setPreferredSize(new Dimension(300, 50));
 
-        itemDecription = itemDescriptionField.getText();
-
-        //Constructing and designing locationLabel
-        locationLabel = new JLabel("Location of Item: ");
-        locationLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        //itemDecription = itemDescriptionField.getText();
 
         //Constructing and designing sectionDropBox
-        sectionDropBox = new JComboBox<>();
         sectionDropBox.setPreferredSize(new Dimension(300, 50));
-        sectionDropBox.setFont(new Font("Arial", Font.PLAIN, 16));
 
         //Constructing and designing aisleDropBox
-        aisleDropBox = new JComboBox<>();
         aisleDropBox.setPreferredSize(new Dimension(300, 50));
-        aisleDropBox.setFont(new Font("Arial", Font.PLAIN, 16));
 
         //Constructing and designing rackDropBox
-        rackDropBox = new JComboBox<>();
         rackDropBox.setPreferredSize(new Dimension(300, 50));
-        rackDropBox.setFont(new Font("Arial", Font.PLAIN, 16));
 
         //Constructing and designing shelfDropBox
-        shelfDropBox = new JComboBox<>();
         shelfDropBox.setPreferredSize(new Dimension(300, 50));
-        shelfDropBox.setFont(new Font("Arial", Font.PLAIN, 16));
 
         //Constructing and designing submitButton
-        submitButton = new JButton("Submit");
         submitButton.setPreferredSize(new Dimension(100, 50));
-        submitButton.setFont(new Font("Arial", Font.PLAIN, 16));
 
         //Adding the elements above to the panels
         setLayout(new MigLayout("", "[align center]", "[align center]"));
-        add(itemNameField, "cell 0 1");
-        add(itemPriceField, "cell 1 1");
-        add(itemDescriptionField, "cell 2,1");
-        add(locationLabel, "cell 3 0");
-        add(sectionDropBox, "cell 3 1");
-        add(aisleDropBox, "cell 4 1");
-        add(shelfDropBox, "cell 5 1");
-        add(rackDropBox, "cell 6 1");
-        add(shelfDropBox, "cell 7 1");
-        add(submitButton,"cell 8 1");
+        add(itemNameLabel, " cell 2 0");
+        add(itemNameField, "cell 3 0");
+        add(itemPriceLabel, "cell 2 1");
+        add(itemPriceField, "cell 3 1");
+        add(itemBrandLabel, "cell 2 2");
+        add(itemBrandField, "cell 3 2");
+        add(itemDescriptionLabel, "cell 2 3");
+        add(itemDescriptionField, "cell 3 3");
+        add(locationLabel, "cell 0 0");
+        add(sectionDropBox, "cell 1 0");
+        add(aisleDropBox, "cell 1 1");
+        add(rackDropBox, "cell 1 2");
+        add(shelfDropBox, "cell 1 3");
+        add(submitButton,"cell 1 4");
     }
 }
