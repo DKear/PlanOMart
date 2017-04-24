@@ -348,19 +348,26 @@ public class GUI implements ActionListener {
             if (valid == 5) {
                 store.storeName = storeName;
                 for (int i = 0; i < sectionInt; i++) {
-                    section = new Section("Section: " + Integer.toString(i + 1));
+                    //section = new Section("Section: " + Integer.toString(i + 1));
+                    section = new Section(Integer.toString(i + 1));
                     store.addSection(section);
-                    locationComboBox.addItem(store.getSectionsNames(store.getSections())[i]);
-                    adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(store.getSectionsNames(store.getSections())[i]);
+                    locationComboBox.addItem(section.getSectionName());
+                    adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem("Section: " + section.getSectionName());
                     for (int j = 0; j < aisleInt; j++) {
-                        aisle = new Aisle("Section: " + i + "Aisle: " + Integer.toString(j+ 1));
+                        //aisle = new Aisle("Section: " + (i + 1) + " Aisle: " + Integer.toString(j+ 1));
+                        aisle = new Aisle(Integer.toString(j + 1));
                         section.addAisle(aisle);
+                        aisle.setSection(section);
+                        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem("Section: " + aisle.getSection().getSectionName() + " Aisle: " + aisle.getAisleName());
                         for (int k = 0; k < rackInt; k++) {
-                            rack = new Rack("Section: " + i + "Aisle: " + j + "Rack: " + Integer.toString(k + 1));
+                            rack = new Rack( Integer.toString(k + 1));
                             aisle.addRack(rack);
+                            rack.setAisle(aisle);
+                            adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem("Section: " + aisle.getSection().getSectionName() + " Aisle: " + aisle.getAisleName() + " Rack: " + rack.getRackName());
                             for (int l = 0; l < shelfInt; l++) {
-                                shelf = new Shelf("Section: " + i + "Aisle: " + j + "Rack: " + k + "Shelf: " + Integer.toString(l + 1));
+                                shelf = new Shelf(Integer.toString(l + 1));
                                 rack.addShelf(shelf);
+                                adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem("Section: " + aisle.getSection().getSectionName() + " Aisle: " + aisle.getAisleName() + " Rack: " + rack.getRackName() +" Shelf: " + shelf.getRowName());
                             }
                         }
                     }
