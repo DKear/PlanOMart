@@ -81,4 +81,11 @@ public class Rack {
         String[] tagArray = new String[tags.size()];
         return tagArray;
     }
+    public String[] getShelfNames(Shelf[] s){
+        String[] nameArray = new String[s.length];
+        for(int i = 0; i < s.length; i++){
+            nameArray[i] = s[i].getRowName();
+        }
+        return nameArray;
+    }
 }
