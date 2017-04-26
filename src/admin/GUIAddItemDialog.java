@@ -30,7 +30,6 @@ public class GUIAddItemDialog extends JDialog {
 
         //Constructing and designing itemName stuff
         itemNameField.setPreferredSize(new Dimension(300, 50));
-
         //itemName = itemNameField.getText();
 
         //Constructing and designing itemPrice stuff
@@ -47,18 +46,22 @@ public class GUIAddItemDialog extends JDialog {
         //Constructing and designing sectionDropBox
         sectionDropBox = new JComboBox<>();
         sectionDropBox.setPreferredSize(new Dimension(300, 50));
+        sectionDropBox.addItem("Select a Section...");
 
         //Constructing and designing aisleDropBox
         aisleDropBox = new JComboBox<>();
         aisleDropBox.setPreferredSize(new Dimension(300, 50));
+        aisleDropBox.addItem("Select an Aisle...");
 
         //Constructing and designing rackDropBox
         rackDropBox = new JComboBox<>();
         rackDropBox.setPreferredSize(new Dimension(300, 50));
+        rackDropBox.addItem("Select a Rack...");
 
         //Constructing and designing shelfDropBox
         shelfDropBox = new JComboBox<>();
         shelfDropBox.setPreferredSize(new Dimension(300, 50));
+        shelfDropBox.addItem("Select a Shelf...");
 
         //Constructing and designing submitButton
         submitButton.setPreferredSize(new Dimension(100, 50));

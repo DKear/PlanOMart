@@ -399,7 +399,7 @@ public class GUI implements ActionListener {
                     editSectionComboBox.addItem(section.getSectionName());
                     adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
                     addItemDialog.sectionDropBox.addItem(store.getSectionsNames(store.getSections())[i]);
-                    adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(store.getSectionsNames(store.getSections())[i]);
+                    //adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(store.getSectionsNames(store.getSections())[i]);
                     for (int j = 0; j < aisleInt; j++) {
                         //aisle = new Aisle("Section: " + (i + 1) + " Aisle: " + Integer.toString(j+ 1));
                         aisle = new Aisle("Section: " + (i + 1) + " Aisle: " + Integer.toString(j + 1));
