@@ -2,6 +2,7 @@ import UserSide.GUICreateComments;
 import admin.GUIAddItemDialog;
 import admin.GUIAdminMain;
 import admin.GUIEditSectionPanel;
+import admin.main.panels.AdminMainBottomPanel;
 import store.locations.*;
 
 import javax.swing.*;
@@ -50,9 +51,10 @@ public class GUI implements ActionListener {
     public JPanel adminEditLocation;
     public JButton editReturn;
     public GUIEditSectionPanel es;
+    public String selected;
     private GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
-    GUICreateComments createCustomComments = new GUICreateComments();
+    private GUICreateComments createCustomComments = new GUICreateComments();
 
     public void addComponentToPane(Container pane) {
         store = new Store("store");
@@ -298,7 +300,7 @@ public class GUI implements ActionListener {
         commentCreateButton.addActionListener(this);// allows the button to do above on click
 
         //writing listener so on click will do the event in this class too
-        adminPanel.adminEditBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton.addActionListener(this);
+        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton.addActionListener(this);
         addItemDialog = new GUIAddItemDialog();
         addItemDialog.sectionDropBox.addActionListener(this::populateAisleComboBox);
     }
@@ -398,7 +400,7 @@ public class GUI implements ActionListener {
                     store.addSection(section);
                     editSectionComboBox.addItem(section.getSectionName());
                     adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
-                    addItemDialog.sectionDropBox.addItem(store.getSectionsNames(store.getSections())[i]);
+                    addItemDialog.sectionDropBox.addItem(section.getSectionName());
                     //adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(store.getSectionsNames(store.getSections())[i]);
                     for (int j = 0; j < aisleInt; j++) {
                         //aisle = new Aisle("Section: " + (i + 1) + " Aisle: " + Integer.toString(j+ 1));
@@ -460,7 +462,18 @@ public class GUI implements ActionListener {
         }
 
         if(e.getSource() == editSectionButton){
+            selected = editSectionComboBox.getSelectedItem().toString();
+            for(int i = 0; i < store.sections.size(); i++){
+                if(store.sections.get(i).getSectionName().equals(selected)){
+                    section = store.sections.get(i);
+                }
+            }
+            es.removeTagComboBox.addItem("remove tag...");
+            for(int i = 0; i < section.getTags().length; i++){
+                es.removeTagComboBox.addItem(section.getTags()[i]);
+            }
 
+            es.editNameField.setText(selected);
             ecl.show(adminEditCard, "Edit Section");
         }
 
