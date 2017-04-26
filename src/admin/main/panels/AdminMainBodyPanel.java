@@ -5,11 +5,13 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AdminMainBodyPanel extends JPanel{
 
     private JTable returnField;
-    private DropBoxPanel dropBoxPanel;
+    public DropBoxPanel dropBoxPanel;
 
     public AdminMainBodyPanel(){
         setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -48,12 +50,14 @@ public class AdminMainBodyPanel extends JPanel{
 }
 
 class DropBoxPanel extends JPanel {
+//<<<<<<< HEAD
+    public JComboBox<String> sectionDropbox;
+    public JComboBox<Integer> aisleDropbox;
+    public JComboBox<String> rackDropbox;
+    public JComboBox<Integer> shelfDropbox;
+//=======
     public JTextField searchField;
 
-    private JComboBox<String> sectionDropbox;
-    private JComboBox<Integer> aisleDropbox;
-    private JComboBox<String> rackDropbox;
-    private JComboBox<Integer> shelfDropbox;
 
     private JLabel sectionLabel;
     private JLabel aisleLabel;
@@ -67,6 +71,12 @@ class DropBoxPanel extends JPanel {
         searchField = new JTextField("Search");
         searchField.setPreferredSize(new Dimension(300, 50));
         searchField.setFont(new Font("Arial", Font.PLAIN, 16));
+        searchField.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                searchField.setText("");
+            }
+        }); //makes search disappear after click
 
         sectionLabel = new JLabel("Sections: ");
         sectionLabel.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -111,6 +121,16 @@ class DropBoxPanel extends JPanel {
         add(shelfLabel, "cell 0 4");
         add(shelfDropbox, "cell 1 4, span");
 
+//<<<<<<< HEAD
+
         add(searchButton, "cell 1 5");
+//>>>>>>> origin/master
     }
+    /*public void populateComboBox(String[] s){
+    for(int i = 0; i < s.length; i++ ) {
+        sectionDropbox.addItem(s[i]);
+
+    }
+
+    }*/
 }

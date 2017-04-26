@@ -67,7 +67,7 @@ public class AdminAddRemovePanelBottom extends JPanel {
     //The ActionListener Methods that the Lambda Expressions use:
 
     public void returnButtonClicked(ActionEvent e) {
-        AdminMainBottomPanel.addRemovePopUp.setVisible(false);
+        AdminMainBottomPanel.guiAddRemoveWindow.setVisible(false);
     }
 
     public void addSectionButtonClicked(ActionEvent e) {
