@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1dfc2a13-cc39-4e46-9ce1-c3633fa3c87d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/PlanOMart/GUI$1.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/PlanOMart/GUI.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/PlanOMart/store/locations/SaleItem.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/PlanOMart/store/locations/SaleItemTest.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/PlanOMart/store/locations/Store.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/admin/GUIAddAisleDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddAislePanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRackPanel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/admin/main/panels/GUIAddRackDialog.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/PlanOMart/admin/main/panel/AdminEditBottomPanel.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PlanOMart/GUIAdminEdit.class" afterPath="$PROJECT_DIR$/out/production/PlanOMart/GUIAdminEdit.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI.java" afterPath="$PROJECT_DIR$/src/GUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/GUIAddItemDialog.java" afterPath="$PROJECT_DIR$/src/admin/GUIAddItemDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/GUIAddRemoveWindow.java" afterPath="$PROJECT_DIR$/src/admin/GUIAddRemoveWindow.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/GUIAddSectionDialog.java" afterPath="$PROJECT_DIR$/src/admin/GUIAddSectionDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRemovePanelBottom.java" afterPath="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRemovePanelBottom.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRemovePanelTop.java" afterPath="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRemovePanelTop.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddSectionPanel.java" afterPath="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddSectionPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/main/panels/AdminMainBodyPanel.java" afterPath="$PROJECT_DIR$/src/admin/main/panels/AdminMainBodyPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/main/panels/AdminMainBottomPanel.java" afterPath="$PROJECT_DIR$/src/admin/main/panels/AdminMainBottomPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/main/panels/AdminMainTopPanel.java" afterPath="$PROJECT_DIR$/src/admin/main/panels/AdminMainTopPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/locations/SaleItem.java" afterPath="$PROJECT_DIR$/src/store/locations/SaleItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/locations/SaleItemTest.java" afterPath="$PROJECT_DIR$/src/store/locations/SaleItemTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,24 +21,26 @@
       <file leaf-file-name="AdminAddRemovePanelBottom.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRemovePanelBottom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="82" column="52" lean-forward="true" selection-start-line="82" selection-start-column="52" selection-end-line="82" selection-end-column="52" />
-              <folding />
+            <state relative-caret-position="506">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2699#2700#0" expanded="true" />
+                <element signature="e#2772#2773#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -73,13 +52,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/admin/main/panels/AdminMainBodyPanel.java" />
         <option value="$PROJECT_DIR$/src/admin/GUIAddItemDialog.java" />
-        <option value="$PROJECT_DIR$/src/admin/main/panels/AdminMainBottomPanel.java" />
-        <option value="$PROJECT_DIR$/src/admin/GUIAddSectionDialog.java" />
-        <option value="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddSectionPanel.java" />
-        <option value="$PROJECT_DIR$/src/admin/GUIAddAisleDialog.java" />
-        <option value="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddAislePanel.java" />
-        <option value="$PROJECT_DIR$/src/admin/main/panels/GUIAddRackDialog.java" />
-        <option value="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRackPanel.java" />
         <option value="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRemovePanelBottom.java" />
       </list>
     </option>
@@ -139,57 +111,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PlanOMart" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PlanOMart" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PlanOMart" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PlanOMart" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="panels" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="js.eslint.eslintPackage" value="" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -622,14 +548,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1dfc2a13-cc39-4e46-9ce1-c3633fa3c87d" name="Default" comment="" />
+      <changelist id="195e1d97-6f77-4803-861c-d118237299f0" name="Default" comment="" />
       <created>1492971559338</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1492971559338</updated>
-      <workItem from="1493057330165" duration="2475000" />
-      <workItem from="1493063462833" duration="425000" />
-      <workItem from="1493241427380" duration="446000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branches 'DylanBranch' and 'master' of https://github.com/DKear/PlanOMart&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;out/production/PlanOMart/GUI$1.class&#10;#&#9;out/production/PlanOMart/GUI.class&#10;#&#9;out/production/PlanOMart/GUIAdminEdit.class&#10;#&#9;out/production/PlanOMart/store/locations/Store.class&#10;#&#9;src/GUI.java&#10;#&#9;src/admin/main/panels/AdminMainBottomPanel.java&#10;#&#9;src/admin/main/panels/AdminMainTopPanel.java">
       <created>1492975845146</created>
@@ -642,7 +565,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14967000" />
+    <option name="totallyTimeSpent" value="2963000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -668,7 +591,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.49785176" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21291053" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21291053" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21804512" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -680,9 +603,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290571" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -701,6 +621,20 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Section.java" />
+    <entry file="file://$PROJECT_DIR$/src/SectionTest.java" />
+    <entry file="file://$PROJECT_DIR$/PlanOMart.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Store.java" />
+    <entry file="file://$PROJECT_DIR$/src/StoreTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/Section.java" />
+    <entry file="file://$PROJECT_DIR$/src/SectionTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/StoreTest.java" />
     <entry file="file://$PROJECT_DIR$/src/Section.java" />
     <entry file="file://$PROJECT_DIR$/src/StoreTest2.java" />
     <entry file="file://$PROJECT_DIR$/PlanOMart.iml">
@@ -757,6 +691,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/admin/GUIAddRemoveWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="657">
+          <caret line="24" column="65" lean-forward="false" selection-start-line="24" selection-start-column="65" selection-end-line="24" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1114#1115#0" expanded="true" />
+            <element signature="e#1180#1181#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRemovePanelTop.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -779,10 +725,28 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/admin/GUIAddStructureDialog.java" />
+    <entry file="file://$PROJECT_DIR$/src/admin/GUIAdminMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="18" column="52" lean-forward="true" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUIAdminEdit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="6" column="11" lean-forward="false" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/admin/main/panels/AdminMainBottomPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1069">
+          <caret line="81" column="48" lean-forward="false" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -807,10 +771,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/admin/main/panels/AdminMainTopPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="858">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/admin/main/panels/AdminMainBodyPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1549">
           <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/admin/main/panels/AdminMainBodyPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="126" column="2" lean-forward="false" selection-start-line="126" selection-start-column="2" selection-end-line="126" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -821,127 +799,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/admin/main/panels/AdminMainTopPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRemovePanelBottom.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/java/awt/Dialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="1004" column="0" lean-forward="false" selection-start-line="1004" selection-start-column="0" selection-end-line="1004" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_121/src.zip!/javax/swing/plaf/basic/BasicButtonListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="251" column="0" lean-forward="false" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
+        <state relative-caret-position="506">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2699#2700#0" expanded="true" />
+            <element signature="e#2772#2773#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/admin/GUIAddItemDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="42" column="20" lean-forward="true" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-          <folding>
-            <marker date="1492978070850" expanded="true" signature="3522:3533" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/admin/GUIAddRemoveWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="17" column="42" lean-forward="true" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/admin/main/panels/AdminMainBottomPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="87" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/admin/GUIAdminMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="52" lean-forward="true" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/admin/main/panels/AdminMainBodyPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="84" column="66" lean-forward="true" selection-start-line="84" selection-start-column="66" selection-end-line="84" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/admin/GUIAddSectionDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddSectionPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="77" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/admin/main/panels/GUIAddRackDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRackPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1342">
-          <caret line="61" column="48" lean-forward="false" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddAislePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="56" column="45" lean-forward="true" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/admin/GUIAddAisleDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRemovePanelBottom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="82" column="52" lean-forward="true" selection-start-line="82" selection-start-column="52" selection-end-line="82" selection-end-column="52" />
+        <state relative-caret-position="-1033">
+          <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
           <folding />
         </state>
       </provider>
