@@ -92,4 +92,10 @@ public class Section {
         }
         return nameArray;
     }
+
+    @Override
+    public String toString()
+    {
+        return getSectionName();
+    }
 }
