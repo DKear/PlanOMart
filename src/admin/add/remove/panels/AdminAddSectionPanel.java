@@ -2,7 +2,6 @@ package admin.add.remove.panels;
 
 import javax.swing.*;
 
-import admin.GUIAddSectionDialog;
 import admin.main.panels.AdminMainBodyPanel;
 import net.miginfocom.swing.MigLayout;
 
@@ -11,8 +10,6 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class AdminAddSectionPanel extends JPanel {
 
@@ -22,6 +19,7 @@ public class AdminAddSectionPanel extends JPanel {
 
     public JTextField sectionTagField;
     public JLabel sectionTagDescLabel;
+
     public JButton submitButton;
 
 
@@ -46,7 +44,7 @@ public class AdminAddSectionPanel extends JPanel {
         sectionTagField.setPreferredSize(new Dimension(300, 50));
         sectionTagField.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        sectionTagDescLabel = new JLabel("Use a comma then a space to separate tags.");
+        sectionTagDescLabel = new JLabel("Use a coma followed by a space to separate tags.");
         sectionTagDescLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 
         submitButton = new JButton("Submit");

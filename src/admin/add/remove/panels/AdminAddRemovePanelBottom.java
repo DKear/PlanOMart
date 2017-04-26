@@ -92,7 +92,7 @@ public class AdminAddRemovePanelBottom extends JPanel {
     public void addShelfButtonClicked(ActionEvent e) {
 
     }
-    
+
     public void addItemButtonClicked(ActionEvent e) {
         guiAddItemDialog = new GUIAddItemDialog();
         guiAddItemDialog.pack();
