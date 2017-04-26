@@ -50,6 +50,7 @@ public class GUI implements ActionListener {
     public JPanel adminEditLocation;
     public JButton editReturn;
     public GUIEditSectionPanel es;
+    public String selected;
     private GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
     GUICreateComments createCustomComments = new GUICreateComments();
@@ -454,7 +455,18 @@ public class GUI implements ActionListener {
         }
 
         if(e.getSource() == editSectionButton){
-            
+            selected = editSectionComboBox.getSelectedItem().toString();
+            for(int i = 0; i < store.sections.size(); i++){
+                if(store.sections.get(i).getSectionName().equals(selected)){
+                    section = store.sections.get(i);
+                }
+            }
+            es.removeTagComboBox.addItem("remove tag...");
+            for(int i = 0; i < section.getTags().length; i++){
+                es.removeTagComboBox.addItem(section.getTags()[i]);
+            }
+
+            es.editNameField.setText(selected);
             ecl.show(adminEditCard, "Edit Section");
         }
 
