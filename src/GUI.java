@@ -2,6 +2,7 @@ import UserSide.GUICreateComments;
 import admin.GUIAddItemDialog;
 import admin.GUIAdminMain;
 import admin.GUIEditSectionPanel;
+import admin.main.panels.AdminMainBottomPanel;
 import store.locations.*;
 
 import javax.swing.*;
@@ -51,9 +52,9 @@ public class GUI implements ActionListener {
     public JButton editReturn;
     public GUIEditSectionPanel es;
     public String selected;
-    private GUIAddItemDialog addItemDialog;
+    public GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
-    GUICreateComments createCustomComments = new GUICreateComments();
+    private GUICreateComments createCustomComments = new GUICreateComments();
 
     public void addComponentToPane(Container pane) {
         store = new Store("store");
@@ -298,6 +299,10 @@ public class GUI implements ActionListener {
         userPanel.add(commentCreateButton); //adds a button to the userPanel to the create comment dialog
         commentCreateButton.addActionListener(this);// allows the button to do above on click
 
+        //writing listener so on click will do the event in this class too
+        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton.addActionListener(this);
+        addItemDialog = new GUIAddItemDialog();
+        //addItemDialog.sectionDropBox.addActionListener(this::populateAisleComboBox);
     }
 
     public void actionPerformed(ActionEvent e){
@@ -395,6 +400,9 @@ public class GUI implements ActionListener {
                     store.addSection(section);
                     editSectionComboBox.addItem(section.getSectionName());
                     adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
+                    addItemDialog.sectionDropBox.addItem(section.getSectionName());
+                    //addItemDialog.sectionDropBox.addItem(section.getSectionName());
+                    //adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(store.getSectionsNames(store.getSections())[i]);
                     for (int j = 0; j < aisleInt; j++) {
                         //aisle = new Aisle("Section: " + (i + 1) + " Aisle: " + Integer.toString(j+ 1));
                         aisle = new Aisle("Section: " + (i + 1) + " Aisle: " + Integer.toString(j + 1));
@@ -471,11 +479,12 @@ public class GUI implements ActionListener {
         }
 
         //int shelfIndex = addItemDialog.shelfDropBox.getSelectedIndex();
-        if(e.getSource() == adminPanel.adminEditBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
-           //populating the combo boxes in GUIAddItemDialog, populates sections
-            addItemDialog.sectionDropBox = new JComboBox(store.getSectionsNames(store.getSections()));
-            addItemDialog.sectionDropBox.addActionListener(this::populateAisleComboBox);
-            }
+//        if(e.getSource() == adminPanel.adminEditBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
+//           //populating the combo boxes in GUIAddItemDialog, populates sections
+//            addItemDialog.sectionDropBox = new JComboBox<String[]>(store.getSectionsNames(store.getSections()));
+//
+//            }
+
     }
 
     public void populateAisleComboBox(ActionEvent e) {
@@ -490,7 +499,7 @@ public class GUI implements ActionListener {
         int sectionIndex = addItemDialog.sectionDropBox.getSelectedIndex();
         int aisleIndex = addItemDialog.aisleDropBox.getSelectedIndex();;
         if (aisleIndex != -1) {//makes sure an index is selected first, populates racks
-            addItemDialog.rackDropBox = new JComboBox(store.getSections()[sectionIndex].getAisles()[aisleIndex].getRacksNames());
+            addItemDialog.rackDropBox = new JComboBox<>(store.getSections()[sectionIndex].getAisles()[aisleIndex].getRacksNames());
             addItemDialog.rackDropBox.addActionListener(this::populateShelfComboBox);
         }
     }
@@ -499,7 +508,7 @@ public class GUI implements ActionListener {
         int aisleIndex = addItemDialog.aisleDropBox.getSelectedIndex();
         int rackIndex = addItemDialog.rackDropBox.getSelectedIndex();
         if (rackIndex != -1) {
-            addItemDialog.shelfDropBox = new JComboBox(store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelvesNames());
+            addItemDialog.shelfDropBox = new JComboBox<>(store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelvesNames());
         }
     }
     private static void createAndShowGUI() {
