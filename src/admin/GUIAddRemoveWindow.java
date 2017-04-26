@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 
 public class GUIAddRemoveWindow extends JDialog {
     private AdminAddRemovePanelTop adminAddRemovePanelTop;
-    private AdminAddRemovePanelBottom adminAddRemovePanelBottom;
+    public AdminAddRemovePanelBottom adminAddRemovePanelBottom;
 
     public GUIAddRemoveWindow() {
         setSize(new Dimension(1024, 512));

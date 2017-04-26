@@ -25,6 +25,16 @@ public class Rack {
         return shelfArray;
     }
 
+    public String[] getShelvesNames() {
+        String[] nameArray = new String[shelves.size()];
+        int i = 0;
+        for (Shelf s : shelves) {
+            nameArray[i] = s.getRowName();
+            i++;
+        }
+        return nameArray;
+    }
+
     public boolean hasShelves() {
         if (shelves.size() == 0) {
             return false;
@@ -70,5 +80,12 @@ public class Rack {
     public String[] getTags(){
         String[] tagArray = new String[tags.size()];
         return tagArray;
+    }
+    public String[] getShelfNames(Shelf[] s){
+        String[] nameArray = new String[s.length];
+        for(int i = 0; i < s.length; i++){
+            nameArray[i] = s[i].getRowName();
+        }
+        return nameArray;
     }
 }
