@@ -45,15 +45,19 @@ public class GUIAddItemDialog extends JDialog {
         //itemDecription = itemDescriptionField.getText();
 
         //Constructing and designing sectionDropBox
+        sectionDropBox = new JComboBox<>();
         sectionDropBox.setPreferredSize(new Dimension(300, 50));
 
         //Constructing and designing aisleDropBox
+        aisleDropBox = new JComboBox<>();
         aisleDropBox.setPreferredSize(new Dimension(300, 50));
 
         //Constructing and designing rackDropBox
+        rackDropBox = new JComboBox<>();
         rackDropBox.setPreferredSize(new Dimension(300, 50));
 
         //Constructing and designing shelfDropBox
+        shelfDropBox = new JComboBox<>();
         shelfDropBox.setPreferredSize(new Dimension(300, 50));
 
         //Constructing and designing submitButton

@@ -15,9 +15,9 @@ import java.awt.event.MouseEvent;
 public class DropBoxPanel extends JPanel{
         //<<<<<<< HEAD
         public JComboBox<String> sectionDropbox;
-        public JComboBox<Integer> aisleDropbox;
+        public JComboBox<String> aisleDropbox;
         public JComboBox<String> rackDropbox;
-        public JComboBox<Integer> shelfDropbox;
+        public JComboBox<String> shelfDropbox;
         //=======
         public JTextField searchField;
 
