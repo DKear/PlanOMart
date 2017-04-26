@@ -1,10 +1,10 @@
 package admin.add.remove.panels;
 
-import admin.GUIAddItemDialog;
-import admin.GUIAddRemoveWindow;
-import admin.GUIAdminMain;
+import admin.*;
 import admin.main.panels.AdminMainBottomPanel;
+import admin.add.remove.panels.AdminAddSectionPanel;
 
+import admin.main.panels.GUIAddRackDialog;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -20,7 +20,11 @@ public class AdminAddRemovePanelBottom extends JPanel {
     public JButton addRackButton;
     public JButton addShelfButton;
     public JButton addItemButton;
+
     public GUIAddItemDialog guiAddItemDialog;
+    public static GUIAddSectionDialog guiAddSectionDialog;
+    public static GUIAddAisleDialog guiAddAisleDialog;
+    public static GUIAddRackDialog guiAddRackDialog;
 
     public AdminAddRemovePanelBottom() {
         setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -71,15 +75,18 @@ public class AdminAddRemovePanelBottom extends JPanel {
     }
 
     public void addSectionButtonClicked(ActionEvent e) {
-
+        guiAddSectionDialog = new GUIAddSectionDialog();
+        guiAddSectionDialog.setVisible(true);
     }
 
     public void addAisleButtonClicked(ActionEvent e) {
-
+        guiAddAisleDialog = new GUIAddAisleDialog();
+        guiAddAisleDialog.setVisible(true);
     }
 
     public void addRackButtonClicked(ActionEvent e) {
-
+        guiAddRackDialog = new GUIAddRackDialog();
+        guiAddRackDialog.setVisible(true);
     }
 
     public void addShelfButtonClicked(ActionEvent e) {
@@ -87,6 +94,7 @@ public class AdminAddRemovePanelBottom extends JPanel {
     }
     
     public void addItemButtonClicked(ActionEvent e) {
+        guiAddItemDialog = new GUIAddItemDialog();
         guiAddItemDialog.pack();
         guiAddItemDialog.setVisible(true);
     }
