@@ -17,10 +17,10 @@ public class GUIAddItemDialog extends JDialog {
     private JLabel itemDescriptionLabel = new JLabel("Enter item description here");
     private JTextField itemDescriptionField = new JTextField();
     private JLabel locationLabel = new JLabel("Location of Item:");;
-    public JComboBox<Section> sectionDropBox;
-    public JComboBox<Aisle> aisleDropBox;
-    public JComboBox<Rack> rackDropBox;
-    public JComboBox<Shelf> shelfDropBox;
+    public JComboBox<String> sectionDropBox = new JComboBox<>();
+    public JComboBox<String> aisleDropBox = new JComboBox<>();
+    public JComboBox<String> rackDropBox = new JComboBox<>();
+    public JComboBox<String> shelfDropBox = new JComboBox<>();
     private JButton submitButton = new JButton("Submit");
 
     public GUIAddItemDialog() {
