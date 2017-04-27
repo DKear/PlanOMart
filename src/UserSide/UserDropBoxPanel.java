@@ -1,18 +1,14 @@
-package admin.main.panels;
+package UserSide;
 
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- * Created by Jamie on 4/23/2017.
- */
-public class DropBoxPanel extends JPanel {
+public class UserDropBoxPanel extends JPanel{
 
     public JComboBox<String> sectionDropbox;
     public JComboBox<String> aisleDropbox;
@@ -25,7 +21,6 @@ public class DropBoxPanel extends JPanel {
     public DefaultComboBoxModel rackModel;
     public DefaultComboBoxModel shelfModel;
 
-
     private JLabel sectionLabel;
     private JLabel aisleLabel;
     private JLabel rackLabel;
@@ -33,7 +28,7 @@ public class DropBoxPanel extends JPanel {
 
     private JButton searchButton;
 
-    DropBoxPanel() {
+    UserDropBoxPanel() {
         setBorder(new BevelBorder(BevelBorder.RAISED));
         searchField = new JTextField("Search");
         searchField.setPreferredSize(new Dimension(300, 50));
@@ -93,7 +88,4 @@ public class DropBoxPanel extends JPanel {
 
         add(searchButton, "cell 1 5");
     }
-
 }
-
-

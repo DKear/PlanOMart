@@ -1,7 +1,9 @@
 import UserSide.GUICreateComments;
+import UserSide.GUIUserMain;
 import admin.GUIAddItemDialog;
 import admin.GUIAdminMain;
 import admin.GUIEditSectionPanel;
+import admin.main.panels.AdminMainBottomPanel;
 import store.locations.*;
 
 import javax.swing.*;
@@ -51,6 +53,7 @@ public class GUI implements ActionListener {
     public JButton editReturn;
     public GUIEditSectionPanel es;
     public String selected;
+    public static GUIUserMain guiUserMain;
     private GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
     GUICreateComments createCustomComments = new GUICreateComments();
@@ -252,6 +255,8 @@ public class GUI implements ActionListener {
         passwordPanel.add(pw.submitButton, pwc);
         pw.submitButton.addActionListener(this);
         pw.add(passwordPanel);
+
+        guiUserMain = new GUIUserMain();
 
         initialSetupPanel = new JPanel();
         initialSetupPanel.setLayout(new GridBagLayout());
@@ -471,7 +476,7 @@ public class GUI implements ActionListener {
         }
 
         //int shelfIndex = addItemDialog.shelfDropBox.getSelectedIndex();
-        if(e.getSource() == adminPanel.adminEditBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
+        if(e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
            //populating the combo boxes in GUIAddItemDialog, populates sections
             addItemDialog.sectionDropBox = new JComboBox(store.getSectionsNames(store.getSections()));
             addItemDialog.sectionDropBox.addActionListener(this::populateAisleComboBox);
