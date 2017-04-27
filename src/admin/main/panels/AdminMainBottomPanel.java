@@ -62,9 +62,6 @@ public class AdminMainBottomPanel extends JPanel {
         add(addRemoveButton);
         add(viewCommentButton);
 //        add(mapButton);
-
-        //initializing the JPanel used
-        guiAddRemoveWindow = new GUIAddRemoveWindow();
     }
 
     //Below are the actual methods that the lambda expressions use
@@ -78,6 +75,7 @@ public class AdminMainBottomPanel extends JPanel {
 
     private void addRemoveButtonClicked(ActionEvent e) {
         if (e.getSource() == addRemoveButton) {
+            guiAddRemoveWindow = new GUIAddRemoveWindow();
             guiAddRemoveWindow.setObjectTable(adminPanel.getReturnField());
             guiAddRemoveWindow.setVisible(true);
         }
