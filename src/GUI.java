@@ -309,11 +309,11 @@ public class GUI implements ActionListener {
         addItemDialog.sectionDropBox.addActionListener(this);
     }
 
-    public void actionPerformed(ActionEvent e){
-        CardLayout cl = (CardLayout)(cards.getLayout());
-        CardLayout ecl = (CardLayout)(adminEditCard.getLayout());
+    public void actionPerformed(ActionEvent e) {
+        CardLayout cl = (CardLayout) (cards.getLayout());
+        CardLayout ecl = (CardLayout) (adminEditCard.getLayout());
 
-        if(e.getSource() == openingAdminButton){
+        if (e.getSource() == openingAdminButton) {
 
             //Insert That one thing here Dylan to bypass initial setup!!!!!!!!!!!!!!!!!!!
             //Comment out this thing ↓
@@ -364,7 +364,7 @@ public class GUI implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Enter a store name");
             }
-            if(is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText().trim())>= 0){
+            if (is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText().trim()) >= 0) {
                 sectionInt = Integer.parseInt(is.numberOfSectionField.getText().trim());
 
                 valid++;
@@ -373,7 +373,7 @@ public class GUI implements ActionListener {
             }
 
 
-            if(is.isNumber(is.numberOfAislesField.getText()) && Integer.parseInt(is.numberOfAislesField.getText().trim())>= 0){
+            if (is.isNumber(is.numberOfAislesField.getText()) && Integer.parseInt(is.numberOfAislesField.getText().trim()) >= 0) {
                 aisleInt = Integer.parseInt(is.numberOfAislesField.getText().trim());
 
                 valid++;
@@ -381,14 +381,14 @@ public class GUI implements ActionListener {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid aisle input");
             }
 
-            if(is.isNumber(is.numberOfRacksField.getText())&& Integer.parseInt(is.numberOfRacksField.getText().trim())>= 0){
+            if (is.isNumber(is.numberOfRacksField.getText()) && Integer.parseInt(is.numberOfRacksField.getText().trim()) >= 0) {
                 rackInt = Integer.parseInt(is.numberOfRacksField.getText().trim());
                 valid++;
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid rack input");
             }
 
-            if(is.isNumber(is.numberOfShelvesField.getText())&& Integer.parseInt(is.numberOfShelvesField.getText().trim())>= 0){
+            if (is.isNumber(is.numberOfShelvesField.getText()) && Integer.parseInt(is.numberOfShelvesField.getText().trim()) >= 0) {
                 shelfInt = Integer.parseInt(is.numberOfShelvesField.getText().trim());
 
                 valid++;
@@ -402,9 +402,7 @@ public class GUI implements ActionListener {
                     //section = new Section("Section: " + Integer.toString(i + 1));
                     section = new Section("Section: " + Integer.toString(i + 1));
                     store.addSection(section);
-                    editSectionComboBoxM.addElement(section.getSectionName());
-                    editSectionComboBox.setModel(editSectionComboBoxM);
-                    //editSectionComboBox.addItem(section.getSectionName());
+                    editSectionComboBox.addItem(section.getSectionName());
                     adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
                     addItemDialog.sectionDropBox.addItem(section.getSectionName());
 
