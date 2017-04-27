@@ -17,6 +17,10 @@ public class Section {
         tags = new ArrayList <String>();
     }
 
+    public void setSectionName(String s){
+        sectionName = s;
+    }
+
     public String getSectionName(){
         return sectionName;
     }

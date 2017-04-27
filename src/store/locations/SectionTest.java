@@ -78,4 +78,12 @@ class SectionTest {
         Section section = new Section("Section 1");
         Assertions.assertTrue(section.getTags().length == 0);
     }
+
+    @Test
+    public void setSectionNameTest(){
+        Section section = new Section("original name");
+        section.setSectionName("new name");
+        Assertions.assertTrue(section.getSectionName().equals("new name"));
+
+    }
 }

@@ -41,6 +41,7 @@ public class GUI implements ActionListener {
     public Shelf shelf;
     public GUIAdminMain adminPanel;
     public JComboBox editSectionComboBox;
+    public DefaultComboBoxModel editSectionComboBoxM;
     public JButton editSectionButton;
     public JComboBox editAisleComboBox;
     public JButton editAisleButton;
@@ -52,7 +53,7 @@ public class GUI implements ActionListener {
     public JButton editReturn;
     public GUIEditSectionPanel es;
     public String selected;
-    private GUIAddItemDialog addItemDialog;
+    public GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
     private GUICreateComments createCustomComments = new GUICreateComments();
 
@@ -177,6 +178,7 @@ public class GUI implements ActionListener {
         GridBagConstraints ael = new GridBagConstraints();
         ael.gridx = ael.gridy = 0;
         editSectionComboBox = new JComboBox();
+        editSectionComboBoxM = new DefaultComboBoxModel();
         editSectionComboBox.setPreferredSize(new Dimension(250,50));
         adminEditLocation.add(editSectionComboBox, ael);
         ael.gridx = 1;
@@ -228,6 +230,8 @@ public class GUI implements ActionListener {
         adminEditCard.add(adminEditChangePass, "Change password");
 
         es = new GUIEditSectionPanel();
+        es.editNameButton.addActionListener(this);
+        es.backButton.addActionListener(this);
 
         adminEditCard.add(es, "Edit Section");
 
@@ -305,11 +309,11 @@ public class GUI implements ActionListener {
         addItemDialog.sectionDropBox.addActionListener(this);
     }
 
-    public void actionPerformed(ActionEvent e) {
-        CardLayout cl = (CardLayout) (cards.getLayout());
-        CardLayout ecl = (CardLayout) (adminEditCard.getLayout());
+    public void actionPerformed(ActionEvent e){
+        CardLayout cl = (CardLayout)(cards.getLayout());
+        CardLayout ecl = (CardLayout)(adminEditCard.getLayout());
 
-        if (e.getSource() == openingAdminButton) {
+        if(e.getSource() == openingAdminButton){
 
             //Insert That one thing here Dylan to bypass initial setup!!!!!!!!!!!!!!!!!!!
             //Comment out this thing ↓
@@ -360,7 +364,7 @@ public class GUI implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Enter a store name");
             }
-            if (is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText().trim()) >= 0) {
+            if(is.isNumber(is.numberOfSectionField.getText()) && Integer.parseInt(is.numberOfSectionField.getText().trim())>= 0){
                 sectionInt = Integer.parseInt(is.numberOfSectionField.getText().trim());
 
                 valid++;
@@ -369,7 +373,7 @@ public class GUI implements ActionListener {
             }
 
 
-            if (is.isNumber(is.numberOfAislesField.getText()) && Integer.parseInt(is.numberOfAislesField.getText().trim()) >= 0) {
+            if(is.isNumber(is.numberOfAislesField.getText()) && Integer.parseInt(is.numberOfAislesField.getText().trim())>= 0){
                 aisleInt = Integer.parseInt(is.numberOfAislesField.getText().trim());
 
                 valid++;
@@ -377,14 +381,14 @@ public class GUI implements ActionListener {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid aisle input");
             }
 
-            if (is.isNumber(is.numberOfRacksField.getText()) && Integer.parseInt(is.numberOfRacksField.getText().trim()) >= 0) {
+            if(is.isNumber(is.numberOfRacksField.getText())&& Integer.parseInt(is.numberOfRacksField.getText().trim())>= 0){
                 rackInt = Integer.parseInt(is.numberOfRacksField.getText().trim());
                 valid++;
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Invalid rack input");
             }
 
-            if (is.isNumber(is.numberOfShelvesField.getText()) && Integer.parseInt(is.numberOfShelvesField.getText().trim()) >= 0) {
+            if(is.isNumber(is.numberOfShelvesField.getText())&& Integer.parseInt(is.numberOfShelvesField.getText().trim())>= 0){
                 shelfInt = Integer.parseInt(is.numberOfShelvesField.getText().trim());
 
                 valid++;
@@ -398,10 +402,12 @@ public class GUI implements ActionListener {
                     //section = new Section("Section: " + Integer.toString(i + 1));
                     section = new Section("Section: " + Integer.toString(i + 1));
                     store.addSection(section);
-                    editSectionComboBox.addItem(section.getSectionName());
+                    editSectionComboBoxM.addElement(section.getSectionName());
+                    editSectionComboBox.setModel(editSectionComboBoxM);
+                    //editSectionComboBox.addItem(section.getSectionName());
                     adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
                     addItemDialog.sectionDropBox.addItem(section.getSectionName());
-                    //adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(store.getSectionsNames(store.getSections())[i]);
+
                     for (int j = 0; j < aisleInt; j++) {
                         //aisle = new Aisle("Section: " + (i + 1) + " Aisle: " + Integer.toString(j+ 1));
                         aisle = new Aisle("Section: " + (i + 1) + " Aisle: " + Integer.toString(j + 1));
@@ -457,7 +463,7 @@ public class GUI implements ActionListener {
             }
         }
 
-        if (e.getSource() == editReturn) {
+        if(e.getSource() == editReturn || e.getSource() == es.backButton){
             ecl.show(adminEditCard, "Edit");
         }
 
@@ -476,6 +482,29 @@ public class GUI implements ActionListener {
             es.editNameField.setText(selected);
             ecl.show(adminEditCard, "Edit Section");
         }
+
+
+
+        if(e.getSource() == es.editNameButton){
+            String oldName = section.getSectionName();
+            String newName = es.editNameField.getText();
+            DefaultComboBoxModel newComboBox = new DefaultComboBoxModel();
+            section.setSectionName(newName);
+            editSectionComboBoxM.addElement(section.getSectionName());
+            editSectionComboBox.setModel(editSectionComboBoxM);
+            adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
+            for(int i = 0; i < section.getAisles().length; i++){
+                //section.getAisles()[i].getAisleName()
+            }
+        }
+
+        //int shelfIndex = addItemDialog.shelfDropBox.getSelectedIndex();
+//        if(e.getSource() == adminPanel.adminEditBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
+//           //populating the combo boxes in GUIAddItemDialog, populates sections
+//            addItemDialog.sectionDropBox = new JComboBox<String[]>(store.getSectionsNames(store.getSections()));
+//
+//            }
+
 
         if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
             addItemDialog.setVisible(true);
