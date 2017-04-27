@@ -402,7 +402,8 @@ public class GUI implements ActionListener {
                     //section = new Section("Section: " + Integer.toString(i + 1));
                     section = new Section("Section: " + Integer.toString(i + 1));
                     store.addSection(section);
-                    editSectionComboBox.addItem(section.getSectionName());
+                    editSectionComboBoxM.addElement(section.getSectionName());
+                    editSectionComboBox.setModel(editSectionComboBoxM);
                     adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
                     addItemDialog.sectionDropBox.addItem(section.getSectionName());
 

@@ -13,8 +13,8 @@ public class Section {
 
     public Section(String n){
         sectionName = n;
-        aisles = new ArrayList<Aisle>();
-        tags = new ArrayList <String>();
+        aisles = new ArrayList<>();
+        tags = new ArrayList <>();
     }
 
     public void setSectionName(String s){
