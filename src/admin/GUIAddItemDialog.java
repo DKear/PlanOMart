@@ -24,9 +24,8 @@ public class GUIAddItemDialog extends JDialog {
     private JButton submitButton = new JButton("Submit");
 
     public GUIAddItemDialog() {
-        setModalityType(ModalityType.APPLICATION_MODAL);
-        setVisible(false);
         setSize(1024, 512);
+        JPanel panel = new JPanel();
 
         //Constructing and designing itemName stuff
         itemNameField.setPreferredSize(new Dimension(300, 50));
@@ -66,21 +65,28 @@ public class GUIAddItemDialog extends JDialog {
         //Constructing and designing submitButton
         submitButton.setPreferredSize(new Dimension(100, 50));
 
-        //Adding the elements above to the panels
-        setLayout(new MigLayout("", "[align center]", "[align center]"));
-        add(itemNameLabel, " cell 2 0");
-        add(itemNameField, "cell 3 0");
-        add(itemPriceLabel, "cell 2 1");
-        add(itemPriceField, "cell 3 1");
-        add(itemBrandLabel, "cell 2 2");
-        add(itemBrandField, "cell 3 2");
-        add(itemDescriptionLabel, "cell 2 3");
-        add(itemDescriptionField, "cell 3 3");
-        add(locationLabel, "cell 0 0");
-        add(sectionDropBox, "cell 1 0");
-        add(aisleDropBox, "cell 1 1");
-        add(rackDropBox, "cell 1 2");
-        add(shelfDropBox, "cell 1 3");
-        add(submitButton,"cell 1 4");
+        //Adding the elements above to the panel
+        panel.setLayout(new MigLayout("", "[align center]", "[align center]"));
+        panel.add(itemNameLabel, " cell 2 0");
+        panel.add(itemNameField, "cell 3 0");
+        panel.add(itemPriceLabel, "cell 2 1");
+        panel.add(itemPriceField, "cell 3 1");
+        panel.add(itemBrandLabel, "cell 2 2");
+        panel.add(itemBrandField, "cell 3 2");
+        panel.add(itemDescriptionLabel, "cell 2 3");
+        panel.add(itemDescriptionField, "cell 3 3");
+        panel.add(locationLabel, "cell 0 0");
+        panel.add(sectionDropBox, "cell 1 0");
+        panel.add(aisleDropBox, "cell 1 1");
+        panel.add(rackDropBox, "cell 1 2");
+        panel.add(shelfDropBox, "cell 1 3");
+        panel.add(submitButton,"cell 3 4");
+
+        add(panel);
+        setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(1000, 600);
+
+        setVisible(false);
     }
 }
