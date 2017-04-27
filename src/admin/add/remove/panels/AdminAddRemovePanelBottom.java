@@ -1,8 +1,6 @@
 package admin.add.remove.panels;
 
 import admin.GUIAddItemDialog;
-import admin.GUIAddRemoveWindow;
-import admin.GUIAdminMain;
 import admin.main.panels.AdminMainBottomPanel;
 
 import net.miginfocom.swing.MigLayout;
