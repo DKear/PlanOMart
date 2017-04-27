@@ -41,7 +41,7 @@ public class GUI implements ActionListener {
     public Shelf shelf;
     public GUIAdminMain adminPanel;
     public JComboBox editSectionComboBox;
-    public DefaultComboBoxModel editSectionComboBoxM;
+    public MutableComboBoxModel editSectionComboBoxM;
     public JButton editSectionButton;
     public JComboBox editAisleComboBox;
     public JButton editAisleButton;
@@ -410,19 +410,19 @@ public class GUI implements ActionListener {
 
                     for (int j = 0; j < aisleInt; j++) {
                         //aisle = new Aisle("Section: " + (i + 1) + " Aisle: " + Integer.toString(j+ 1));
-                        aisle = new Aisle("Section: " + (i + 1) + " Aisle: " + Integer.toString(j + 1));
+                        aisle = new Aisle("Aisle: " + Integer.toString(j + 1));
                         section.addAisle(aisle);
                         aisle.setSection(section);
                         editAisleComboBox.addItem(aisle.getAisleName());
                         adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleName());
                         for (int k = 0; k < rackInt; k++) {
-                            rack = new Rack( "Section: " + (i + 1) + " Aisle: " + (j + 1 ) + " Rack: " + Integer.toString(k + 1));
+                            rack = new Rack( "Rack: " + Integer.toString(k + 1));
                             aisle.addRack(rack);
                             rack.setAisle(aisle);
                             editRackComboBox.addItem(rack.getRackName());
                             adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackName());
                             for (int l = 0; l < shelfInt; l++) {
-                                shelf = new Shelf("Section: " + (i + 1) + " Aisle: " + (j + 1 ) + " Rack: " + (k+1) + " Shelf: " + Integer.toString(l + 1));
+                                shelf = new Shelf("Shelf: " + Integer.toString(l + 1));
                                 rack.addShelf(shelf);
                                 shelf.setRack(rack);
                                 editShelfComboBox.addItem(shelf.getRowName());
@@ -488,10 +488,12 @@ public class GUI implements ActionListener {
         if(e.getSource() == es.editNameButton){
             String oldName = section.getSectionName();
             String newName = es.editNameField.getText();
-            DefaultComboBoxModel newComboBox = new DefaultComboBoxModel();
+            editSectionComboBoxM.removeElement(section.getSectionName());
+            //DefaultComboBoxModel newComboBox = new DefaultComboBoxModel();
             section.setSectionName(newName);
             editSectionComboBoxM.addElement(section.getSectionName());
-            editSectionComboBox.setModel(editSectionComboBoxM);
+            editSectionComboBoxM.removeElement(oldName);
+            //editSectionComboBox.setModel(editSectionComboBoxM);
             adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
             for(int i = 0; i < section.getAisles().length; i++){
                 //section.getAisles()[i].getAisleName()

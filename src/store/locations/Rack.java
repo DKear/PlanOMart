@@ -8,6 +8,7 @@ public class Rack {
     private ArrayList<String> tags;
     private int rackHeight = 8;
     private Aisle aisle;
+    private Section section;
 
     public Rack(String n) {
         rackName = n;
@@ -16,7 +17,7 @@ public class Rack {
 
 
     public String getRackName() {
-        return rackName;
+        return aisle.getAisleName() + " " + rackName;
     }
 
     public Shelf[] getShelf() {
@@ -59,6 +60,7 @@ public class Rack {
     public void setAisle(Aisle a){
         aisle = a;
     }
+    public void setSection(Section s){ section= s;}
 
     public Aisle getAisle(){
         return aisle;

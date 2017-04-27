@@ -9,6 +9,8 @@ public class Shelf {
     public String rowName;
     private ArrayList<SaleItem> products;
     private Rack rack;
+    private Aisle aisle;
+    private Section section;
     private ArrayList<String> tags;
 
 
@@ -18,7 +20,7 @@ public class Shelf {
 
     }
     public String getRowName(){
-        return rowName;
+        return rack.getRackName() + " " + rowName;
     }
     public int getNumOfItemsOnShelf(){
         return products.size();
@@ -47,6 +49,9 @@ public class Shelf {
     public Rack getRack(){
         return rack;
     }
+    public void setAisle(Aisle a){aisle = a;}
+    public void setSection(Section s){section = s;}
+    public Aisle getAisle(){return aisle;}
     public boolean addTag(String t){
         tags.add(t);
         return true;

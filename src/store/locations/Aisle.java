@@ -14,7 +14,7 @@ public class Aisle {
     }
 
     public String getAisleName() {
-        return aisleName;
+        return section.getSectionName() + " " + aisleName;
     }
 
     public String[] getRacksNames() {
