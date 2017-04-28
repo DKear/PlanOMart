@@ -20,6 +20,10 @@ public class Rack {
         return aisle.getAisleName() + " " + rackName;
     }
 
+    public void setRackName(String s){
+        rackName = s;
+    }
+
     public Shelf[] getShelf() {
         Shelf[] shelfArray = new Shelf[shelves.size()];
         shelfArray = shelves.toArray(shelfArray);

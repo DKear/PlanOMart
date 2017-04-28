@@ -22,6 +22,11 @@ public class Shelf {
     public String getRowName(){
         return rack.getRackName() + " " + rowName;
     }
+
+    public void setRowName(String s){
+        rowName = s;
+    }
+
     public int getNumOfItemsOnShelf(){
         return products.size();
     }

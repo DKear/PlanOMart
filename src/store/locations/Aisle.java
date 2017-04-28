@@ -13,8 +13,13 @@ public class Aisle {
         racks = new ArrayList<Rack>();
     }
 
+
     public String getAisleName() {
         return section.getSectionName() + " " + aisleName;
+    }
+
+    public void setAisleName(String s){
+        aisleName = s;
     }
 
     public String[] getRacksNames() {
