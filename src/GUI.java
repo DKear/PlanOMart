@@ -333,16 +333,16 @@ public class GUI implements ActionListener {
             adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
             for(int j = 0; j < section.getAisles().length; j++ ){
                 aisle = section.getAisles()[j];
-                editAisleComboBox.addItem(aisle.getAisleName());
-                adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleName());
+                editAisleComboBox.addItem(aisle.getAisleDisplayName());
+                adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
                 for (int k = 0; k < aisle.getRack().length; k++){
                     rack = aisle.getRack()[k];
-                    editRackComboBox.addItem(rack.getRackName());
-                    adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackName());
+                    editRackComboBox.addItem(rack.getRackDisplayName());
+                    adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
                     for(int l = 0; l < rack.getShelf().length; l++){
                         shelf = rack.getShelf()[l];
-                        editShelfComboBox.addItem(shelf.getRowName());
-                        adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowName());
+                        editShelfComboBox.addItem(shelf.getRowDisplayName());
+                        adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
 
                     }
                 }
@@ -456,22 +456,22 @@ public class GUI implements ActionListener {
                         aisle = new Aisle("Aisle: " + Integer.toString(j + 1));
                         section.addAisle(aisle);
                         aisle.setSection(section);
-                        editAisleComboBox.addItem(aisle.getAisleName());
-                        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleName());
+                        editAisleComboBox.addItem(aisle.getAisleDisplayName());
+                        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
                         for (int k = 0; k < rackInt; k++) {
                             rack = new Rack( "Rack: " + Integer.toString(k + 1));
                             aisle.addRack(rack);
                             rack.setAisle(aisle);
-                            editRackComboBox.addItem(rack.getRackName());
-                            adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackName());
+                            editRackComboBox.addItem(rack.getRackDisplayName());
+                            adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
                             for (int l = 0; l < shelfInt; l++) {
 
                                 shelf = new Shelf("Shelf: " + Integer.toString(l + 1));
 
                                 rack.addShelf(shelf);
                                 shelf.setRack(rack);
-                                editShelfComboBox.addItem(shelf.getRowName());
-                                adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowName());
+                                editShelfComboBox.addItem(shelf.getRowDisplayName());
+                                adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
                             }
                         }
                     }
@@ -508,14 +508,14 @@ public class GUI implements ActionListener {
             }
         }
 
-        if(e.getSource() == editReturn || e.getSource() == es.backButton){
+        if(e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton){
             ecl.show(adminEditCard, "Edit");
         }
 
         if (e.getSource() == editSectionButton) {
             selected = editSectionComboBox.getSelectedItem().toString();
-            for (int i = 0; i < store.sections.size(); i++) {
-                if (store.sections.get(i).getSectionName().equals(selected)) {
+            for (int i = 0; i < store.getSections().length; i++) {
+                if (store.getSections()[i].getSectionName().equals(selected)) {
                     section = store.sections.get(i);
                 }
             }
@@ -528,6 +528,70 @@ public class GUI implements ActionListener {
             ecl.show(adminEditCard, "Edit Section");
         }
 
+        if(e.getSource() == editAisleButton){
+            selected = editAisleComboBox.getSelectedItem().toString();
+            for (int i = 0; i < store.getSections().length; i++){
+                section = store.sections.get(i);
+                for(int j = 0; j < section.getAisles().length; j++){
+                    if(section.getAisles()[j].getAisleDisplayName().equals(selected)){
+                        aisle = section.getAisles()[j];
+                    }
+                }
+            }
+            ea.removeTagComboBox.addItem("remove tag...");
+            for(int i = 0; i < aisle.getTags().length; i++){
+                ea.removeTagComboBox.addItem(aisle.getTags()[i]);
+            }
+            ea.editNameField.setText(aisle.getAisleName());
+            ecl.show(adminEditCard, "Edit Aisle");
+        }
+
+        if(e.getSource() == editRackButton){
+            selected = editRackComboBox.getSelectedItem().toString();
+            for (int i = 0; i < store.getSections().length; i++){
+                section = store.sections.get(i);
+                for(int j = 0; j < section.getAisles().length; j++){
+                    aisle = section.getAisles()[j];
+                    for (int k = 0; k < aisle.getRack().length; k++ ){
+                        if(aisle.getRack()[k].getRackDisplayName().equals(selected)){
+                            rack = aisle.getRack()[k];
+                        }
+                    }
+                }
+            }
+            er.removeTagComboBox.addItem("remove tag...");
+            for(int i = 0; i < rack.getTags().length; i++){
+                er.removeTagComboBox.addItem(rack.getTags()[i]);
+            }
+            er.editNameField.setText(rack.getRackName());
+            ecl.show(adminEditCard, "Edit Rack");
+
+        }
+
+        if(e.getSource() == editShelfButton){
+            selected = editShelfComboBox.getSelectedItem().toString();
+            for (int i = 0; i < store.getSections().length; i++){
+                section = store.sections.get(i);
+                for(int j = 0; j < section.getAisles().length; j++){
+                    aisle = section.getAisles()[j];
+                    for (int k = 0; k < aisle.getRack().length; k++ ){
+                        rack = aisle.getRack()[k];
+                        for(int l = 0; l <rack.getShelf().length; l++){
+                            if(rack.getShelf()[l].getRowDisplayName().equals(selected)){
+                                shelf = rack.getShelf()[l];
+                            }
+                        }
+                    }
+                }
+            }
+            esh.removeTagComboBox.addItem("remove tag...");
+            for(int i = 0; i <shelf.getTags().length; i++){
+                esh.removeTagComboBox.addItem(shelf.getTags()[i]);
+            }
+            esh.editNameField.setText(shelf.getRowName());
+            ecl.show(adminEditCard, "Edit Shelf");
+        }
+
 
 
 
@@ -536,7 +600,24 @@ public class GUI implements ActionListener {
             String newName = es.editNameField.getText();
             section.setSectionName(newName);
             reloadComboBoxes();
-            //editSectionComboBox.repaint();
+        }
+
+        if(e.getSource() == ea.editNameButton){
+            String newName = ea.editNameField.getText();
+            aisle.setAisleName(newName);
+            reloadComboBoxes();
+        }
+
+        if (e.getSource() == er.editNameButton){
+            String newName = er.editNameField.getText();
+            rack.setRackName(newName);
+            reloadComboBoxes();
+        }
+
+        if(e.getSource() == esh.editNameButton){
+            String newName = esh.editNameField.getText();
+            shelf.setRowName(newName);
+            reloadComboBoxes();
         }
 
         //int shelfIndex = addItemDialog.shelfDropBox.getSelectedIndex();

@@ -13,11 +13,16 @@ public class Rack {
     public Rack(String n) {
         rackName = n;
         shelves =  new ArrayList<Shelf>();
+        tags = new ArrayList<String>();
     }
 
 
     public String getRackName() {
-        return aisle.getAisleName() + " " + rackName;
+        return rackName;
+    }
+
+    public String getRackDisplayName(){
+        return aisle.getAisleDisplayName() + " " + rackName;
     }
 
     public void setRackName(String s){

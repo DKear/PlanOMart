@@ -17,10 +17,15 @@ public class Shelf {
     public Shelf(String n) {
             rowName = n;
             products = new ArrayList<SaleItem>();
+        tags = new ArrayList<String>();
 
     }
     public String getRowName(){
-        return rack.getRackName() + " " + rowName;
+        return rowName;
+    }
+
+    public String getRowDisplayName(){
+        return rack.getRackDisplayName() + " " + rowName;
     }
 
     public void setRowName(String s){

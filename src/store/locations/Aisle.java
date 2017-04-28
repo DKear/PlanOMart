@@ -6,17 +6,23 @@ public class Aisle {
     public String aisleName;
     private ArrayList<Rack> racks;
     private ArrayList<String> tags;
-    private Section section;
+    public Section section;
 
     public Aisle(String n) {
         aisleName = n;
         racks = new ArrayList<Rack>();
+        tags = new ArrayList<String>();
     }
 
 
     public String getAisleName() {
-        return section.getSectionName() + " " + aisleName;
+        return aisleName;
     }
+
+    public String getAisleDisplayName(){ return section.getSectionName() + " " + aisleName; }
+
+
+    //public String getEditedName(){return section.getSectionName();}
 
     public void setAisleName(String s){
         aisleName = s;
