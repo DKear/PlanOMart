@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="195e1d97-6f77-4803-861c-d118237299f0" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/PlanOMart/store/locations/SaleItem.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/PlanOMart/store/locations/Section.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI.java" afterPath="$PROJECT_DIR$/src/GUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/GUIAddItemDialog.java" afterPath="$PROJECT_DIR$/src/admin/GUIAddItemDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/locations/SaleItem.java" afterPath="$PROJECT_DIR$/src/store/locations/SaleItem.java" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +34,8 @@
       <file leaf-file-name="GUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="687" column="0" lean-forward="false" selection-start-line="687" selection-start-column="0" selection-end-line="687" selection-end-column="0" />
+            <state relative-caret-position="193">
+              <caret line="688" column="0" lean-forward="false" selection-start-line="688" selection-start-column="0" selection-end-line="688" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -187,27 +190,9 @@
       <find>arrays</find>
     </findStrings>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
-    </option>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/store/locations/SectionTest.java" />
-        <option value="$PROJECT_DIR$/src/admin/GUIEditPanel.java" />
-        <option value="$PROJECT_DIR$/src/store/locations/Section.java" />
-        <option value="$PROJECT_DIR$/src/store/locations/Aisle.java" />
-        <option value="$PROJECT_DIR$/src/store/locations/Rack.java" />
-        <option value="$PROJECT_DIR$/src/store/locations/Shelf.java" />
-        <option value="$PROJECT_DIR$/src/admin/main/panels/DropBoxPanel.java" />
-        <option value="$PROJECT_DIR$/src/admin/main/panels/GUIPasswordChange.java" />
-        <option value="$PROJECT_DIR$/src/GUI.java" />
-      </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
@@ -597,13 +582,6 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="195e1d97-6f77-4803-861c-d118237299f0" name="Default" comment="" />
-      <created>1493360630550</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1493360630550</updated>
-    </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -645,14 +623,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GUI.java</url>
-          <line>687</line>
-          <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="11" />
     </breakpoint-manager>
     <watches-manager>
@@ -1133,8 +1103,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="687" column="0" lean-forward="false" selection-start-line="687" selection-start-column="0" selection-end-line="687" selection-end-column="0" />
+        <state relative-caret-position="193">
+          <caret line="688" column="0" lean-forward="false" selection-start-line="688" selection-start-column="0" selection-end-line="688" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
