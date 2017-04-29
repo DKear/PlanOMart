@@ -8,15 +8,25 @@ public class Rack {
     private ArrayList<String> tags;
     private int rackHeight = 8;
     private Aisle aisle;
+    private Section section;
 
     public Rack(String n) {
         rackName = n;
         shelves =  new ArrayList<Shelf>();
+        tags = new ArrayList<String>();
     }
 
 
     public String getRackName() {
         return rackName;
+    }
+
+    public String getRackDisplayName(){
+        return aisle.getAisleDisplayName() + " " + rackName;
+    }
+
+    public void setRackName(String s){
+        rackName = s;
     }
 
     public Shelf[] getShelf() {
@@ -59,6 +69,7 @@ public class Rack {
     public void setAisle(Aisle a){
         aisle = a;
     }
+    public void setSection(Section s){ section= s;}
 
     public Aisle getAisle(){
         return aisle;
@@ -77,8 +88,9 @@ public class Rack {
         }
     }
 
-    public String[] getTags(){
-        String[] tagArray = new String[tags.size()];
+    public Object[] getTagsArray(){
+        Object[] tagArray;
+        tagArray = tags.toArray();
         return tagArray;
     }
     public String[] getShelfNames(Shelf[] s){
@@ -87,5 +99,9 @@ public class Rack {
             nameArray[i] = s[i].getRowName();
         }
         return nameArray;
+    }
+
+    public ArrayList<String> getTags(){
+        return tags;
     }
 }

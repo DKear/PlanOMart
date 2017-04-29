@@ -12,7 +12,7 @@ import static java.awt.GridBagConstraints.LINE_START;
 /**
  * Created by Jamie on 4/25/2017.
  */
-public class GUIEditSectionPanel extends JPanel {
+public class GUIEditPanel extends JPanel {
     public JTextField editNameField;
     public JButton editNameButton;
     public JTextField addTagsField;
@@ -20,7 +20,7 @@ public class GUIEditSectionPanel extends JPanel {
     public JComboBox removeTagComboBox;
     public JButton removeTagButton;
     public JButton backButton;
-    public GUIEditSectionPanel(){
+    public GUIEditPanel(){
 
         this.setLayout(new GridBagLayout());
         setPreferredSize(new Dimension(800,600));
@@ -34,7 +34,7 @@ public class GUIEditSectionPanel extends JPanel {
 
         GridBagConstraints es = new GridBagConstraints();
         es.gridx = es.gridy = 0;
-        add(new JLabel("Change Section Name: "), es);
+        add(new JLabel("Change Location Name: "), es);
         es.gridx = 1;
         add(editNameField, es);
         es.gridx = 0;
