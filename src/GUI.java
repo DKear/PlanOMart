@@ -528,11 +528,14 @@ public class GUI implements ActionListener {
             }
         }
         if (e.getSource() == addItemDialog.submitButton) {//making a new item with click of submit button
-            //Pattern p = new Pattern.compile("[a-zA-Z]+");
             String name = addItemDialog.itemNameField.getText();
             double price;
-            if (!addItemDialog.itemPriceField.getText().equals("") && !addItemDialog.itemPriceField.getText().contains("[a-zA-Z]+")) {
-                price = Double.parseDouble(addItemDialog.itemPriceField.getText());
+            if (!addItemDialog.itemPriceField.getText().equals("")) {
+                try {
+                    price = Double.parseDouble(addItemDialog.itemPriceField.getText());
+                } catch (NumberFormatException n){
+                    price = -1;
+                }
             } else {
                 price = -1;
             }
