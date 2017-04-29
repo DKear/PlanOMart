@@ -18,7 +18,7 @@ public class GUIAddItemDialog extends JDialog {
     public JTextField itemBrandField = new JTextField();
     private JLabel itemDescriptionLabel = new JLabel("Enter item description here");
     public JTextField itemDescriptionField = new JTextField();
-    private JLabel locationLabel = new JLabel("Location of Item:");;
+    private JLabel locationLabel = new JLabel("Location of Item:");
 
     public JComboBox<String> sectionDropBox = new JComboBox<>();
     public JComboBox<String> aisleDropBox = new JComboBox<>();
