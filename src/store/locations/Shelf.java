@@ -74,8 +74,12 @@ public class Shelf {
             return false;
         }
     }
-    public String[] getTags(){
-        String[] tagArray = new String[tags.size()];
+    public Object[] getTagsArray(){
+        Object[] tagArray;
+        tagArray = tags.toArray();
         return tagArray;
+    }
+    public ArrayList<String> getTags(){
+        return tags;
     }
 }

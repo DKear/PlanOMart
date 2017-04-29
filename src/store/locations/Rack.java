@@ -88,8 +88,9 @@ public class Rack {
         }
     }
 
-    public String[] getTags(){
-        String[] tagArray = new String[tags.size()];
+    public Object[] getTagsArray(){
+        Object[] tagArray;
+        tagArray = tags.toArray();
         return tagArray;
     }
     public String[] getShelfNames(Shelf[] s){
@@ -98,5 +99,9 @@ public class Rack {
             nameArray[i] = s[i].getRowName();
         }
         return nameArray;
+    }
+
+    public ArrayList<String> getTags(){
+        return tags;
     }
 }

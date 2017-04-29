@@ -222,18 +222,26 @@ public class GUI implements ActionListener {
         es = new GUIEditPanel();
         es.editNameButton.addActionListener(this);
         es.backButton.addActionListener(this);
+        es.addTagsButton.addActionListener(this);
+        es.removeTagButton.addActionListener(this);
 
         ea = new GUIEditPanel();
         ea.editNameButton.addActionListener(this);
         ea.backButton.addActionListener(this);
+        ea.addTagsButton.addActionListener(this);
+        ea.removeTagButton.addActionListener(this);
 
         er = new GUIEditPanel();
         er.editNameButton.addActionListener(this);
         er.backButton.addActionListener(this);
+        er.removeTagButton.addActionListener(this);
+        er.addTagsButton.addActionListener(this);
 
         esh = new GUIEditPanel();
         esh.editNameButton.addActionListener(this);
         esh.backButton.addActionListener(this);
+        esh.addTagsButton.addActionListener(this);
+        esh.removeTagButton.addActionListener(this);
 
         adminEditCard.add(es, "Edit Section");
         adminEditCard.add(ea, "Edit Aisle");
@@ -509,6 +517,10 @@ public class GUI implements ActionListener {
         }
 
         if(e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton){
+            es.removeTagComboBox.removeAllItems();
+            ea.removeTagComboBox.removeAllItems();
+            er.removeTagComboBox.removeAllItems();
+            esh.removeTagComboBox.removeAllItems();
             ecl.show(adminEditCard, "Edit");
         }
 
@@ -519,9 +531,9 @@ public class GUI implements ActionListener {
                     section = store.sections.get(i);
                 }
             }
-            es.removeTagComboBox.addItem("remove tag...");
-            for (int i = 0; i < section.getTags().length; i++) {
-                es.removeTagComboBox.addItem(section.getTags()[i]);
+            //es.removeTagComboBox.addItem("remove tag...");
+            for (int i = 0; i < section.getTags().size(); i++) {
+                es.removeTagComboBox.addItem(section.getTagsArray()[i]);
             }
 
             es.editNameField.setText(selected);
@@ -538,9 +550,9 @@ public class GUI implements ActionListener {
                     }
                 }
             }
-            ea.removeTagComboBox.addItem("remove tag...");
-            for(int i = 0; i < aisle.getTags().length; i++){
-                ea.removeTagComboBox.addItem(aisle.getTags()[i]);
+            //ea.removeTagComboBox.addItem("remove tag...");
+            for(int i = 0; i < aisle.getTags().size(); i++){
+                ea.removeTagComboBox.addItem(aisle.getTagsArray()[i]);
             }
             ea.editNameField.setText(aisle.getAisleName());
             ecl.show(adminEditCard, "Edit Aisle");
@@ -559,9 +571,9 @@ public class GUI implements ActionListener {
                     }
                 }
             }
-            er.removeTagComboBox.addItem("remove tag...");
-            for(int i = 0; i < rack.getTags().length; i++){
-                er.removeTagComboBox.addItem(rack.getTags()[i]);
+            //er.removeTagComboBox.addItem("remove tag...");
+            for(int i = 0; i < rack.getTags().size(); i++){
+                er.removeTagComboBox.addItem(rack.getTagsArray()[i]);
             }
             er.editNameField.setText(rack.getRackName());
             ecl.show(adminEditCard, "Edit Rack");
@@ -584,9 +596,9 @@ public class GUI implements ActionListener {
                     }
                 }
             }
-            esh.removeTagComboBox.addItem("remove tag...");
-            for(int i = 0; i <shelf.getTags().length; i++){
-                esh.removeTagComboBox.addItem(shelf.getTags()[i]);
+            //esh.removeTagComboBox.addItem("remove tag...");
+            for(int i = 0; i <shelf.getTags().size(); i++){
+                esh.removeTagComboBox.addItem(shelf.getTagsArray()[i]);
             }
             esh.editNameField.setText(shelf.getRowName());
             ecl.show(adminEditCard, "Edit Shelf");
@@ -620,12 +632,68 @@ public class GUI implements ActionListener {
             reloadComboBoxes();
         }
 
-        //int shelfIndex = addItemDialog.shelfDropBox.getSelectedIndex();
-//        if(e.getSource() == adminPanel.adminEditBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
-//           //populating the combo boxes in GUIAddItemDialog, populates sections
-//            addItemDialog.sectionDropBox = new JComboBox<String[]>(store.getSectionsNames(store.getSections()));
-//
-//            }
+        if (e.getSource()== es.addTagsButton){
+            section.addTag(es.addTagsField.getText());
+            es.removeTagComboBox.addItem(es.addTagsField.getText());
+            es.addTagsField.setText("");
+        }
+
+        if(e.getSource() == es.removeTagButton){
+            for (int i = 0; i < section.getTags().size(); i++){
+                if(es.removeTagComboBox.getSelectedItem().toString().equals(section.getTagsArray()[i])) {
+                        section.removeTag(es.removeTagComboBox.getSelectedItem().toString());
+                        es.removeTagComboBox.removeItem(es.removeTagComboBox.getSelectedItem().toString());
+                }
+            }
+        }
+
+        if(e.getSource() == ea.addTagsButton){
+            aisle.addTag(ea.addTagsField.getText());
+            ea.removeTagComboBox.addItem(ea.addTagsField.getText());
+            ea.addTagsField.setText("");
+        }
+
+        if(e.getSource() == ea.removeTagButton){
+            for(int i = 0; i< aisle.getTags().size(); i++){
+                if(ea.removeTagComboBox.getSelectedItem().toString().equals(aisle.getTagsArray()[i])){
+                    aisle.removeTag(ea.removeTagComboBox.getSelectedItem().toString());
+                    ea.removeTagComboBox.removeItem(ea.removeTagComboBox.getSelectedItem().toString());
+                }
+
+            }
+        }
+
+        if(e.getSource() == er.addTagsButton){
+            rack.addTag(er.addTagsField.getText());
+            er.removeTagComboBox.addItem(er.addTagsField.getText());
+            er.addTagsField.setText("");
+        }
+
+        if(e.getSource() == er.removeTagButton){
+            for(int i = 0; i< rack.getTags().size(); i++){
+                if(er.removeTagComboBox.getSelectedItem().toString().equals(rack.getTagsArray()[i])){
+                    rack.removeTag(er.removeTagComboBox.getSelectedItem().toString());
+                    er.removeTagComboBox.removeItem(er.removeTagComboBox.getSelectedItem().toString());
+                }
+
+            }
+        }
+
+        if(e.getSource() == esh.addTagsButton){
+            shelf.addTag(esh.addTagsField.getText());
+            esh.removeTagComboBox.addItem(esh.addTagsField.getText());
+            esh.addTagsField.setText("");
+        }
+
+        if(e.getSource() == esh.removeTagButton){
+            for(int i = 0; i< shelf.getTags().size(); i++){
+                if(esh.removeTagComboBox.getSelectedItem().toString().equals(shelf.getTagsArray()[i])){
+                    shelf.removeTag(esh.removeTagComboBox.getSelectedItem().toString());
+                    esh.removeTagComboBox.removeItem(esh.removeTagComboBox.getSelectedItem().toString());
+                }
+
+            }
+        }
 
 
         if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
