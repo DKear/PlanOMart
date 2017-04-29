@@ -1,16 +1,17 @@
 import UserSide.GUICreateComments;
 import admin.GUIAddItemDialog;
 import admin.GUIAdminMain;
-import admin.GUIEditSectionPanel;
+import admin.GUIEditPanel;
 import admin.main.panels.AdminMainBottomPanel;
+import admin.main.panels.GUIPasswordChange;
 import store.locations.*;
 
 import javax.swing.*;
 
 import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
+import java.util.Arrays;
 import java.text.ParseException;
-import java.util.regex.Pattern;
 
 
 public class GUI implements ActionListener {
@@ -42,8 +43,7 @@ public class GUI implements ActionListener {
     public Rack rack;
     public Shelf shelf;
     public GUIAdminMain adminPanel;
-    public JComboBox editSectionComboBox;
-    public DefaultComboBoxModel editSectionComboBoxM;
+    public JComboBox<String> editSectionComboBox;
     public JButton editSectionButton;
     public JComboBox editAisleComboBox;
     public JButton editAisleButton;
@@ -53,8 +53,12 @@ public class GUI implements ActionListener {
     public JButton editShelfButton;
     public JPanel adminEditLocation;
     public JButton editReturn;
-    public GUIEditSectionPanel es;
+    public GUIEditPanel es;
+    public GUIEditPanel ea;
+    public GUIEditPanel er;
+    public GUIEditPanel esh;
     public String selected;
+    public GUIPasswordChange pc;
     public GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
     private GUICreateComments createCustomComments = new GUICreateComments();
@@ -137,20 +141,6 @@ public class GUI implements ActionListener {
         adminEditButton = new JButton("Edit");
         adminEditButton.addActionListener(this);
 
-//        adminPanel.setLayout(new GridBagLayout());
-//        GridBagConstraints a = new GridBagConstraints();
-//
-//        a.weightx = a.weighty = 0;
-//        a.gridx = a.gridy = 0;
-//        a.anchor = GridBagConstraints.FIRST_LINE_START;
-//        adminPanel.add(adminSwitchButton, a);
-//        a.weightx = a.weighty = 1;
-//        a.gridy = 1;
-//        a.anchor = GridBagConstraints.PAGE_START;
-//        adminPanel.add(new JLabel("Admin"), a);
-//        a.gridy = 2;
-//        adminPanel.add(adminEditButton, a);
-
         pane.add(panel, BorderLayout.WEST);
         pane.add(cards, BorderLayout.CENTER);
 
@@ -179,8 +169,7 @@ public class GUI implements ActionListener {
         adminEditLocation.setLayout(new GridBagLayout());
         GridBagConstraints ael = new GridBagConstraints();
         ael.gridx = ael.gridy = 0;
-        editSectionComboBox = new JComboBox();
-        editSectionComboBoxM = new DefaultComboBoxModel();
+        editSectionComboBox = new JComboBox<>();
         editSectionComboBox.setPreferredSize(new Dimension(250,50));
         adminEditLocation.add(editSectionComboBox, ael);
         ael.gridx = 1;
@@ -194,6 +183,7 @@ public class GUI implements ActionListener {
         adminEditLocation.add(editAisleComboBox, ael);
         ael.gridx = 1;
         editAisleButton = new JButton("Edit Aisle");
+        editAisleButton.addActionListener(this);
         adminEditLocation.add(editAisleButton, ael);
         ael.gridx = 0;
         ael.gridy  =2;
@@ -202,6 +192,7 @@ public class GUI implements ActionListener {
         adminEditLocation.add(editRackComboBox, ael);
         ael.gridx = 1;
         editRackButton = new JButton("Edit Rack");
+        editRackButton.addActionListener(this);
         adminEditLocation.add(editRackButton, ael);
         ael.gridx = 0;
         ael.gridy = 3;
@@ -210,6 +201,7 @@ public class GUI implements ActionListener {
         adminEditLocation.add(editShelfComboBox, ael);
         ael.gridx = 1;
         editShelfButton = new JButton("Edit Shelf");
+        editShelfButton.addActionListener(this);
         adminEditLocation.add(editShelfButton, ael);
         ael.gridwidth = 2;
         ael.gridx = 0;
@@ -227,15 +219,40 @@ public class GUI implements ActionListener {
 
         adminEditCard.add(adminEditMerchandise, "Merchandise");
 
-        JPanel adminEditChangePass = new JPanel();
 
-        adminEditCard.add(adminEditChangePass, "Change password");
-
-        es = new GUIEditSectionPanel();
+        es = new GUIEditPanel();
         es.editNameButton.addActionListener(this);
         es.backButton.addActionListener(this);
+        es.addTagsButton.addActionListener(this);
+        es.removeTagButton.addActionListener(this);
+
+        ea = new GUIEditPanel();
+        ea.editNameButton.addActionListener(this);
+        ea.backButton.addActionListener(this);
+        ea.addTagsButton.addActionListener(this);
+        ea.removeTagButton.addActionListener(this);
+
+        er = new GUIEditPanel();
+        er.editNameButton.addActionListener(this);
+        er.backButton.addActionListener(this);
+        er.removeTagButton.addActionListener(this);
+        er.addTagsButton.addActionListener(this);
+
+        esh = new GUIEditPanel();
+        esh.editNameButton.addActionListener(this);
+        esh.backButton.addActionListener(this);
+        esh.addTagsButton.addActionListener(this);
+        esh.removeTagButton.addActionListener(this);
+
+        pc = new GUIPasswordChange();
+        pc.backButton.addActionListener(this);
+        pc.changePasswordButton.addActionListener(this);
 
         adminEditCard.add(es, "Edit Section");
+        adminEditCard.add(ea, "Edit Aisle");
+        adminEditCard.add(er, "Edit Rack");
+        adminEditCard.add(esh, "Edit Shelf");
+        adminEditCard.add(pc, "Change password");
 
         ae.add(adminEditCard);
 
@@ -312,9 +329,45 @@ public class GUI implements ActionListener {
         addItemDialog.submitButton.addActionListener(this);
     }
 
-    public void actionPerformed(ActionEvent e) {
-        CardLayout cl = (CardLayout) (cards.getLayout());
-        CardLayout ecl = (CardLayout) (adminEditCard.getLayout());
+    public void reloadComboBoxes(){
+        editSectionComboBox.removeAllItems();
+        editAisleComboBox.removeAllItems();
+        editRackComboBox.removeAllItems();
+        editShelfComboBox.removeAllItems();
+        adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.removeAllItems();
+        adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem("Select section...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.removeAllItems();
+        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem("Select aisle...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.removeAllItems();
+        adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem("Select rack...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.removeAllItems();
+        adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem("Select shelf...");
+        for(int i = 0; i < store.getSections().length; i++){
+            section = store.getSections()[i];
+            editSectionComboBox.addItem(section.getSectionName());
+            adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
+            for(int j = 0; j < section.getAisles().length; j++ ){
+                aisle = section.getAisles()[j];
+                editAisleComboBox.addItem(aisle.getAisleDisplayName());
+                adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
+                for (int k = 0; k < aisle.getRack().length; k++){
+                    rack = aisle.getRack()[k];
+                    editRackComboBox.addItem(rack.getRackDisplayName());
+                    adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
+                    for(int l = 0; l < rack.getShelf().length; l++){
+                        shelf = rack.getShelf()[l];
+                        editShelfComboBox.addItem(shelf.getRowDisplayName());
+                        adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
+
+                    }
+                }
+            }
+        }
+    }
+
+    public void actionPerformed(ActionEvent e){
+        CardLayout cl = (CardLayout)(cards.getLayout());
+        CardLayout ecl = (CardLayout)(adminEditCard.getLayout());
 
         if (e.getSource() == openingAdminButton) {
 
@@ -405,30 +458,34 @@ public class GUI implements ActionListener {
                     //section = new Section("Section: " + Integer.toString(i + 1));
                     section = new Section("Section: " + Integer.toString(i + 1));
                     store.addSection(section);
-                    editSectionComboBoxM.addElement(section.getSectionName());
-                    editSectionComboBox.setModel(editSectionComboBoxM);
+
+                    editSectionComboBox.addItem(section.getSectionName());
+
+
                     adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
                     addItemDialog.sectionDropBox.addItem(section.getSectionName());
 
                     for (int j = 0; j < aisleInt; j++) {
                         //aisle = new Aisle("Section: " + (i + 1) + " Aisle: " + Integer.toString(j+ 1));
-                        aisle = new Aisle("Section: " + (i + 1) + " Aisle: " + Integer.toString(j + 1));
+                        aisle = new Aisle("Aisle: " + Integer.toString(j + 1));
                         section.addAisle(aisle);
                         aisle.setSection(section);
-                        editAisleComboBox.addItem(aisle.getAisleName());
-                        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleName());
+                        editAisleComboBox.addItem(aisle.getAisleDisplayName());
+                        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
                         for (int k = 0; k < rackInt; k++) {
-                            rack = new Rack("Section: " + (i + 1) + " Aisle: " + (j + 1) + " Rack: " + Integer.toString(k + 1));
+                            rack = new Rack( "Rack: " + Integer.toString(k + 1));
                             aisle.addRack(rack);
                             rack.setAisle(aisle);
-                            editRackComboBox.addItem(rack.getRackName());
-                            adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackName());
+                            editRackComboBox.addItem(rack.getRackDisplayName());
+                            adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
                             for (int l = 0; l < shelfInt; l++) {
-                                shelf = new Shelf("Section: " + (i + 1) + " Aisle: " + (j + 1) + " Rack: " + (k + 1) + " Shelf: " + Integer.toString(l + 1));
+
+                                shelf = new Shelf("Shelf: " + Integer.toString(l + 1));
+
                                 rack.addShelf(shelf);
                                 shelf.setRack(rack);
-                                editShelfComboBox.addItem(shelf.getRowName());
-                                adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowName());
+                                editShelfComboBox.addItem(shelf.getRowDisplayName());
+                                adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
                             }
                         }
                     }
@@ -465,47 +522,199 @@ public class GUI implements ActionListener {
             }
         }
 
-        if(e.getSource() == editReturn || e.getSource() == es.backButton){
+        if(e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton || e.getSource() == pc.backButton){
+            es.removeTagComboBox.removeAllItems();
+            ea.removeTagComboBox.removeAllItems();
+            er.removeTagComboBox.removeAllItems();
+            esh.removeTagComboBox.removeAllItems();
             ecl.show(adminEditCard, "Edit");
         }
 
         if (e.getSource() == editSectionButton) {
             selected = editSectionComboBox.getSelectedItem().toString();
-            for (int i = 0; i < store.sections.size(); i++) {
-                if (store.sections.get(i).getSectionName().equals(selected)) {
+            for (int i = 0; i < store.getSections().length; i++) {
+                if (store.getSections()[i].getSectionName().equals(selected)) {
                     section = store.sections.get(i);
                 }
             }
-            es.removeTagComboBox.addItem("remove tag...");
-            for (int i = 0; i < section.getTags().length; i++) {
-                es.removeTagComboBox.addItem(section.getTags()[i]);
+            //es.removeTagComboBox.addItem("remove tag...");
+            for (int i = 0; i < section.getTags().size(); i++) {
+                es.removeTagComboBox.addItem(section.getTagsArray()[i]);
             }
 
             es.editNameField.setText(selected);
             ecl.show(adminEditCard, "Edit Section");
         }
 
+        if(e.getSource() == editAisleButton){
+            selected = editAisleComboBox.getSelectedItem().toString();
+            for (int i = 0; i < store.getSections().length; i++){
+                section = store.sections.get(i);
+                for(int j = 0; j < section.getAisles().length; j++){
+                    if(section.getAisles()[j].getAisleDisplayName().equals(selected)){
+                        aisle = section.getAisles()[j];
+                    }
+                }
+            }
+            //ea.removeTagComboBox.addItem("remove tag...");
+            for(int i = 0; i < aisle.getTags().size(); i++){
+                ea.removeTagComboBox.addItem(aisle.getTagsArray()[i]);
+            }
+            ea.editNameField.setText(aisle.getAisleName());
+            ecl.show(adminEditCard, "Edit Aisle");
+        }
+
+        if(e.getSource() == editRackButton){
+            selected = editRackComboBox.getSelectedItem().toString();
+            for (int i = 0; i < store.getSections().length; i++){
+                section = store.sections.get(i);
+                for(int j = 0; j < section.getAisles().length; j++){
+                    aisle = section.getAisles()[j];
+                    for (int k = 0; k < aisle.getRack().length; k++ ){
+                        if(aisle.getRack()[k].getRackDisplayName().equals(selected)){
+                            rack = aisle.getRack()[k];
+                        }
+                    }
+                }
+            }
+            //er.removeTagComboBox.addItem("remove tag...");
+            for(int i = 0; i < rack.getTags().size(); i++){
+                er.removeTagComboBox.addItem(rack.getTagsArray()[i]);
+            }
+            er.editNameField.setText(rack.getRackName());
+            ecl.show(adminEditCard, "Edit Rack");
+
+        }
+
+        if(e.getSource() == editShelfButton){
+            selected = editShelfComboBox.getSelectedItem().toString();
+            for (int i = 0; i < store.getSections().length; i++){
+                section = store.sections.get(i);
+                for(int j = 0; j < section.getAisles().length; j++){
+                    aisle = section.getAisles()[j];
+                    for (int k = 0; k < aisle.getRack().length; k++ ){
+                        rack = aisle.getRack()[k];
+                        for(int l = 0; l <rack.getShelf().length; l++){
+                            if(rack.getShelf()[l].getRowDisplayName().equals(selected)){
+                                shelf = rack.getShelf()[l];
+                            }
+                        }
+                    }
+                }
+            }
+            //esh.removeTagComboBox.addItem("remove tag...");
+            for(int i = 0; i <shelf.getTags().size(); i++){
+                esh.removeTagComboBox.addItem(shelf.getTagsArray()[i]);
+            }
+            esh.editNameField.setText(shelf.getRowName());
+            ecl.show(adminEditCard, "Edit Shelf");
+        }
+
+
+
 
 
         if(e.getSource() == es.editNameButton){
-            String oldName = section.getSectionName();
             String newName = es.editNameField.getText();
-            DefaultComboBoxModel newComboBox = new DefaultComboBoxModel();
             section.setSectionName(newName);
-            editSectionComboBoxM.addElement(section.getSectionName());
-            editSectionComboBox.setModel(editSectionComboBoxM);
-            adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
-            for(int i = 0; i < section.getAisles().length; i++){
-                //section.getAisles()[i].getAisleName()
+            reloadComboBoxes();
+        }
+
+        if(e.getSource() == ea.editNameButton){
+            String newName = ea.editNameField.getText();
+            aisle.setAisleName(newName);
+            reloadComboBoxes();
+        }
+
+        if (e.getSource() == er.editNameButton){
+            String newName = er.editNameField.getText();
+            rack.setRackName(newName);
+            reloadComboBoxes();
+        }
+
+        if(e.getSource() == esh.editNameButton){
+            String newName = esh.editNameField.getText();
+            shelf.setRowName(newName);
+            reloadComboBoxes();
+        }
+
+        if (e.getSource()== es.addTagsButton){
+            section.addTag(es.addTagsField.getText());
+            es.removeTagComboBox.addItem(es.addTagsField.getText());
+            es.addTagsField.setText("");
+        }
+
+        if(e.getSource() == es.removeTagButton){
+            for (int i = 0; i < section.getTags().size(); i++){
+                if(es.removeTagComboBox.getSelectedItem().toString().equals(section.getTagsArray()[i])) {
+                        section.removeTag(es.removeTagComboBox.getSelectedItem().toString());
+                        es.removeTagComboBox.removeItem(es.removeTagComboBox.getSelectedItem().toString());
+                }
             }
         }
 
-        //int shelfIndex = addItemDialog.shelfDropBox.getSelectedIndex();
-//        if(e.getSource() == adminPanel.adminEditBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
-//           //populating the combo boxes in GUIAddItemDialog, populates sections
-//            addItemDialog.sectionDropBox = new JComboBox<String[]>(store.getSectionsNames(store.getSections()));
-//
-//            }
+        if(e.getSource() == ea.addTagsButton){
+            aisle.addTag(ea.addTagsField.getText());
+            ea.removeTagComboBox.addItem(ea.addTagsField.getText());
+            ea.addTagsField.setText("");
+        }
+
+        if(e.getSource() == ea.removeTagButton){
+            for(int i = 0; i< aisle.getTags().size(); i++){
+                if(ea.removeTagComboBox.getSelectedItem().toString().equals(aisle.getTagsArray()[i])){
+                    aisle.removeTag(ea.removeTagComboBox.getSelectedItem().toString());
+                    ea.removeTagComboBox.removeItem(ea.removeTagComboBox.getSelectedItem().toString());
+                }
+
+            }
+        }
+
+        if(e.getSource() == er.addTagsButton){
+            rack.addTag(er.addTagsField.getText());
+            er.removeTagComboBox.addItem(er.addTagsField.getText());
+            er.addTagsField.setText("");
+        }
+
+        if(e.getSource() == er.removeTagButton){
+            for(int i = 0; i< rack.getTags().size(); i++){
+                if(er.removeTagComboBox.getSelectedItem().toString().equals(rack.getTagsArray()[i])){
+                    rack.removeTag(er.removeTagComboBox.getSelectedItem().toString());
+                    er.removeTagComboBox.removeItem(er.removeTagComboBox.getSelectedItem().toString());
+                }
+
+            }
+        }
+
+        if(e.getSource() == esh.addTagsButton){
+            shelf.addTag(esh.addTagsField.getText());
+            esh.removeTagComboBox.addItem(esh.addTagsField.getText());
+            esh.addTagsField.setText("");
+        }
+
+        if(e.getSource() == esh.removeTagButton){
+            for(int i = 0; i< shelf.getTags().size(); i++){
+                if(esh.removeTagComboBox.getSelectedItem().toString().equals(shelf.getTagsArray()[i])){
+                    shelf.removeTag(esh.removeTagComboBox.getSelectedItem().toString());
+                    esh.removeTagComboBox.removeItem(esh.removeTagComboBox.getSelectedItem().toString());
+                }
+
+            }
+        }
+
+        if(e.getSource() == pc.changePasswordButton)
+            if(pc.changePasswordField.getPassword().length == 0){
+                JOptionPane.showMessageDialog(controllingContainer, "Enter a new password");
+            } else {
+                if(Arrays.equals(pc.changePasswordField.getPassword(), pc.changePasswordFieldVerify.getPassword())){
+                    pw.changePassword(pc.changePasswordField.getPassword());
+                    pc.changePasswordField.setText("");
+                    pc.changePasswordFieldVerify.setText("");
+                    JOptionPane.showMessageDialog(controllingContainer, "Password successfully changed");
+                    } else{
+                    JOptionPane.showMessageDialog(controllingContainer, "Passwords do not match");
+
+                }
+            }
 
 
         if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {

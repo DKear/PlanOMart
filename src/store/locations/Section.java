@@ -14,7 +14,7 @@ public class Section {
     public Section(String n){
         sectionName = n;
         aisles = new ArrayList<>();
-        tags = new ArrayList <>();
+        tags = new ArrayList <String>();
     }
 
     public void setSectionName(String s){
@@ -84,9 +84,14 @@ public class Section {
         }
     }
 
-    public String[] getTags(){
-        String[] tagArray = new String[tags.size()];
+    public Object[] getTagsArray(){
+        Object[] tagArray;
+        tagArray = tags.toArray();
         return tagArray;
+    }
+
+    public ArrayList<String> getTags(){
+        return tags;
     }
 
     public String[] getAisleNames(Aisle[] s){

@@ -55,20 +55,21 @@ public class DropBoxPanel extends JPanel{
             aisleLabel = new JLabel("Aisle: ");
             aisleLabel.setFont(new Font("Arial", Font.PLAIN, 16));
             aisleDropbox = new JComboBox<>();
-
-
             aisleDropbox.setPreferredSize(new Dimension(300,50));
+            aisleDropbox.addItem("Select a Aisle...");
             aisleDropbox.setFont(new Font("Arial", Font.PLAIN, 16));
 
             rackLabel = new JLabel("Rack: ");
             rackLabel.setFont(new Font("Arial", Font.PLAIN, 16));
             rackDropbox = new JComboBox<>();
             rackDropbox.setPreferredSize(new Dimension(300,50));
+            rackDropbox.addItem("Select a Rack...");
             rackLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 
             shelfLabel = new JLabel("Shelf: ");
             shelfLabel.setFont(new Font("Arial", Font.PLAIN, 16));
             shelfDropbox = new JComboBox<>();
+            shelfDropbox.addItem("Select a Shelf...");
             shelfDropbox.setPreferredSize(new Dimension(300,50));
             shelfDropbox.setFont(new Font("Arial", Font.PLAIN, 16));
 
