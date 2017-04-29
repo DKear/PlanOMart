@@ -9,6 +9,8 @@ import javax.swing.*;
 
 import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
+import java.text.ParseException;
+import java.util.regex.Pattern;
 
 
 public class GUI implements ActionListener {
@@ -307,6 +309,7 @@ public class GUI implements ActionListener {
         AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton.addActionListener(this);
         addItemDialog = new GUIAddItemDialog();
         addItemDialog.sectionDropBox.addActionListener(this);
+        addItemDialog.submitButton.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -530,7 +533,7 @@ public class GUI implements ActionListener {
                 addItemDialog.rackDropBox.addItem("Select a rack...");
                 for (int i = 0;
                      i < store.getSections()[sectionIndex - 1].getAisles()[aisleIndex - 1].getRack().length;
-                     i++) {//first index is the select a ...
+                     i++) {//first index is the "select a ..."
                     addItemDialog.rackDropBox.addItem(store.getSections()[sectionIndex - 1].getAisles()[aisleIndex - 1].getRack()[i].getRackName());
                     addItemDialog.rackDropBox.addActionListener(this);
                 }
@@ -546,10 +549,45 @@ public class GUI implements ActionListener {
                 addItemDialog.shelfDropBox.addItem("Select a shelf...");
                 for (int i = 0;
                      i < store.getSections()[sectionIndex - 1].getAisles()[aisleIndex - 1].getRack()[rackIndex - 1].getShelf().length;
-                     i++) {//first index is the select a ...
+                     i++) {//first index is the "select a ..."
 
                     addItemDialog.shelfDropBox.addItem(store.getSections()[sectionIndex - 1].getAisles()[aisleIndex - 1].getRack()[rackIndex - 1].getShelf()[i].getRowName());
                 }
+            }
+        }
+        if (e.getSource() == addItemDialog.submitButton) {//making a new item with click of submit button
+            String name = addItemDialog.itemNameField.getText();
+            double price;
+            if (!addItemDialog.itemPriceField.getText().equals("")) {
+                try {
+                    price = Double.parseDouble(addItemDialog.itemPriceField.getText());
+                } catch (NumberFormatException n){
+                    price = -1;
+                }
+            } else {
+                price = -1;
+            }
+            String brand = addItemDialog.itemBrandField.getText();
+            String desc = addItemDialog.itemDescriptionField.getText();
+            SaleItem newItem = new SaleItem(price, name, brand, desc);
+            int sectionIndex = addItemDialog.sectionDropBox.getSelectedIndex() - 1;
+            int aisleIndex = addItemDialog.aisleDropBox.getSelectedIndex() - 1;
+            int rackIndex = addItemDialog.rackDropBox.getSelectedIndex() - 1;
+            int shelfIndex = addItemDialog.shelfDropBox.getSelectedIndex() - 1;
+            if (newItem.validateItem(newItem) && sectionIndex != -1 && aisleIndex != -1 && rackIndex != -1 && shelfIndex != -1) {
+                store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex].addItem(newItem);
+                addItemDialog.setVisible(false);
+                addItemDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            } else if (sectionIndex == -1) {
+                JOptionPane.showMessageDialog(controllingContainer, "Select a section first.");
+            } else if (aisleIndex == -1) {
+                JOptionPane.showMessageDialog(controllingContainer, "Select an aisle first.");
+            } else if (rackIndex == -1) {
+                JOptionPane.showMessageDialog(controllingContainer, "Select a rack first.");
+            } else if (shelfIndex == -1) {
+                JOptionPane.showMessageDialog(controllingContainer, "Select a shelf first.");
+            } else if (!newItem.validateItem(newItem)) {
+                JOptionPane.showMessageDialog(controllingContainer, "Make sure all item fields are filled out properly. Ex. price #.##");
             }
         }
     }

@@ -18,7 +18,7 @@ public class SaleItem {
     private DecimalFormat df = new DecimalFormat("#.##");
 
 
-    SaleItem(double p, String n, String b, String d) {
+    public SaleItem(double p, String n, String b, String d) {
             df.format(p);
             price = p;
             name = n;
@@ -108,7 +108,7 @@ public class SaleItem {
     }
 
     public boolean validateItem(SaleItem i) {
-        if (i.getPrice() > 0 || !i.getName().equals("") || !i.getBrand().equals("") || !i.getDescription().equals("")) {
+        if (i.getPrice() <= 0 || i.getName().equals("") || i.getBrand().equals("") || i.getDescription().equals("")) {
             return false;
         } else {
             return true;

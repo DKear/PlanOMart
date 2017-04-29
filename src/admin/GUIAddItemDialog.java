@@ -6,22 +6,26 @@ import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.Format;
+import java.text.NumberFormat;
 
 public class GUIAddItemDialog extends JDialog {
     private JLabel itemNameLabel = new JLabel("Place item name here:");
-    private JTextField itemNameField = new JTextField();
-    private JLabel itemPriceLabel = new JLabel("Enter item price here:");
-    private JFormattedTextField itemPriceField = new JFormattedTextField(new NumberFormatter());
+    public JTextField itemNameField = new JTextField();
+    private JLabel itemPriceLabel = new JLabel("Enter item price here in the format of #.##:");
+    public JTextField itemPriceField = new JTextField();
     private JLabel itemBrandLabel = new JLabel("Enter item brand here:");
-    private JTextField itemBrandField = new JTextField();
+    public JTextField itemBrandField = new JTextField();
     private JLabel itemDescriptionLabel = new JLabel("Enter item description here");
-    private JTextField itemDescriptionField = new JTextField();
+    public JTextField itemDescriptionField = new JTextField();
     private JLabel locationLabel = new JLabel("Location of Item:");;
-    public JComboBox<String> sectionDropBox;
-    public JComboBox<String> aisleDropBox;
-    public JComboBox<String> rackDropBox;
-    public JComboBox<String> shelfDropBox;
-    private JButton submitButton = new JButton("Submit");
+
+    public JComboBox<String> sectionDropBox = new JComboBox<>();
+    public JComboBox<String> aisleDropBox = new JComboBox<>();
+    public JComboBox<String> rackDropBox = new JComboBox<>();
+    public JComboBox<String> shelfDropBox = new JComboBox<>();
+    public JButton submitButton = new JButton("Submit");
+
 
     public GUIAddItemDialog() {
         setSize(1024, 512);
