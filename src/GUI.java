@@ -3,12 +3,14 @@ import admin.GUIAddItemDialog;
 import admin.GUIAdminMain;
 import admin.GUIEditPanel;
 import admin.main.panels.AdminMainBottomPanel;
+import admin.main.panels.GUIPasswordChange;
 import store.locations.*;
 
 import javax.swing.*;
 
 import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
+import java.util.Arrays;
 
 
 public class GUI implements ActionListener {
@@ -55,6 +57,7 @@ public class GUI implements ActionListener {
     public GUIEditPanel er;
     public GUIEditPanel esh;
     public String selected;
+    public GUIPasswordChange pc;
     public GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
     private GUICreateComments createCustomComments = new GUICreateComments();
@@ -215,9 +218,6 @@ public class GUI implements ActionListener {
 
         adminEditCard.add(adminEditMerchandise, "Merchandise");
 
-        JPanel adminEditChangePass = new JPanel();
-
-        adminEditCard.add(adminEditChangePass, "Change password");
 
         es = new GUIEditPanel();
         es.editNameButton.addActionListener(this);
@@ -243,10 +243,15 @@ public class GUI implements ActionListener {
         esh.addTagsButton.addActionListener(this);
         esh.removeTagButton.addActionListener(this);
 
+        pc = new GUIPasswordChange();
+        pc.backButton.addActionListener(this);
+        pc.changePasswordButton.addActionListener(this);
+
         adminEditCard.add(es, "Edit Section");
         adminEditCard.add(ea, "Edit Aisle");
         adminEditCard.add(er, "Edit Rack");
         adminEditCard.add(esh, "Edit Shelf");
+        adminEditCard.add(pc, "Change password");
 
         ae.add(adminEditCard);
 
@@ -516,7 +521,7 @@ public class GUI implements ActionListener {
             }
         }
 
-        if(e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton){
+        if(e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton || e.getSource() == pc.backButton){
             es.removeTagComboBox.removeAllItems();
             ea.removeTagComboBox.removeAllItems();
             er.removeTagComboBox.removeAllItems();
@@ -694,6 +699,21 @@ public class GUI implements ActionListener {
 
             }
         }
+
+        if(e.getSource() == pc.changePasswordButton)
+            if(pc.changePasswordField.getPassword().length == 0){
+                JOptionPane.showMessageDialog(controllingContainer, "Enter a new password");
+            } else {
+                if(Arrays.equals(pc.changePasswordField.getPassword(), pc.changePasswordFieldVerify.getPassword())){
+                    pw.changePassword(pc.changePasswordField.getPassword());
+                    pc.changePasswordField.setText("");
+                    pc.changePasswordFieldVerify.setText("");
+                    JOptionPane.showMessageDialog(controllingContainer, "Password successfully changed");
+                    } else{
+                    JOptionPane.showMessageDialog(controllingContainer, "Passwords do not match");
+
+                }
+            }
 
 
         if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
