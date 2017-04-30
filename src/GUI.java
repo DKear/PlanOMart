@@ -345,6 +345,22 @@ public class GUI implements ActionListener {
         addAisleDialog.submitButton.addActionListener(this);
         addSectionDialog.submitButton.addActionListener(this);
     }
+    public void reloadAddSectionDropBoxes() {
+        addItemDialog.sectionDropBox.removeAllItems();
+        addItemDialog.sectionDropBox.addItem("Select a Section...");
+        addShelfDialog.sectionDropBox.removeAllItems();
+        addShelfDialog.sectionDropBox.addItem("Select a Section...");
+        addRackDialog.sectionDropBox.removeAllItems();
+        addRackDialog.sectionDropBox.addItem("Select a Section...");
+        addAisleDialog.sectionDropBox.removeAllItems();
+        addAisleDialog.sectionDropBox.addItem("Select a Section...");
+        for (Section s : store.getSections()) {
+            addItemDialog.sectionDropBox.addItem(s.getSectionName());
+            addShelfDialog.sectionDropBox.addItem(s.getSectionName());
+            addRackDialog.sectionDropBox.addItem(s.getSectionName());
+            addAisleDialog.sectionDropBox.addItem(s.getSectionName());
+        }
+    }
 
     public void reloadComboBoxes() {
         editSectionComboBox.removeAllItems();
@@ -727,6 +743,7 @@ public class GUI implements ActionListener {
 
         //starts methods for adding an item
         if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
+            reloadAddSectionDropBoxes();
             addItemDialog.setVisible(true);
         }
 
@@ -839,6 +856,7 @@ public class GUI implements ActionListener {
         }
         //starts methods for adding a shelf
         if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addShelfButton) {
+            reloadAddSectionDropBoxes();
             addShelfDialog.setVisible(true);
         }
         if (e.getSource() == addShelfDialog.sectionDropBox) {//populate the aisle box
@@ -917,6 +935,7 @@ public class GUI implements ActionListener {
         }
         //starts methods for adding a rack
         if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addRackButton) {
+            reloadAddSectionDropBoxes();
             addRackDialog.setVisible(true);
         }
         if (e.getSource() == addRackDialog.sectionDropBox) {//populate the aisle box
@@ -976,6 +995,7 @@ public class GUI implements ActionListener {
         }
         //start of adding aisles
         if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addAisleButton) {
+            reloadAddSectionDropBoxes();
             addAisleDialog.setVisible(true);
         }
         if (e.getSource() == addAisleDialog.submitButton) {//making a new aisle with click of submit button
@@ -1045,7 +1065,7 @@ public class GUI implements ActionListener {
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Section already exists in Store.");
                     }
-            } else if (!newSection.validateSection()) {
+            } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Make sure the name is filled out.");
             }
         }

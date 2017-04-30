@@ -2,8 +2,6 @@ package admin.main.panels;
 
 import admin.GUIAddRemoveWindow;
 import admin.GUIViewComments;
-import admin.add.remove.panels.AdminAddRemovePanelBottom;
-import admin.add.remove.panels.AdminAddRemovePanelBottom;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
