@@ -84,6 +84,15 @@ class SectionTest {
         Section section = new Section("original name");
         section.setSectionName("new name");
         Assertions.assertTrue(section.getSectionName().equals("new name"));
-
+    }
+    @Test
+    public void validateSectionPositiveTest() {
+        Section s = new Section("Name");
+        Assertions.assertTrue(s.validateSection());
+    }
+    @Test
+    public void validateSectionNegativeTest() {
+        Section s = new Section("");
+        Assertions.assertFalse(s.validateSection());
     }
 }
