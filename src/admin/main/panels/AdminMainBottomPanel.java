@@ -55,8 +55,6 @@ public class AdminMainBottomPanel extends JPanel {
 //        mapButton.setFont(new Font("Arial", Font.PLAIN, 16));
 //        mapButton.addActionListener(this::mapButtonClicked);
 
-        guiAddRemoveWindow = new GUIAddRemoveWindow();
-
         //setting the general layout (position) of the buttons that were constructed
         setLayout(new MigLayout("", "[align center]", "[align center]"));
         add(switchUserButton);
@@ -64,6 +62,9 @@ public class AdminMainBottomPanel extends JPanel {
         add(addRemoveButton);
         add(viewCommentButton);
 //        add(mapButton);
+
+        //initializing the JPanel used
+        guiAddRemoveWindow = new GUIAddRemoveWindow();
     }
 
     //Below are the actual methods that the lambda expressions use
@@ -77,7 +78,6 @@ public class AdminMainBottomPanel extends JPanel {
 
     private void addRemoveButtonClicked(ActionEvent e) {
         if (e.getSource() == addRemoveButton) {
-            guiAddRemoveWindow = new GUIAddRemoveWindow();
             guiAddRemoveWindow.setObjectTable(adminPanel.getReturnField());
             guiAddRemoveWindow.setVisible(true);
         }

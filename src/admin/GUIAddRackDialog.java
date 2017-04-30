@@ -1,4 +1,4 @@
-package admin.add.remove.panels;
+package admin;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -7,77 +7,54 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-public class AdminAddRackPanel extends JPanel {
-    public JLabel rackNameLabel;
-    public JTextField rackNameField;
+public class GUIAddRackDialog extends JDialog {
+    private JLabel rackNameLabel = new JLabel("Place rack name here:");
+    public JTextField rackNameField = new JTextField();
+    private JLabel rackTagLabel = new JLabel("Place item tags here, separated by a comma and space. Ex. sliced, white");
+    public JTextField rackTagField = new JTextField();
+    public JComboBox<String> sectionDropBox = new JComboBox<>();
+    public JComboBox<String> aisleDropBox = new JComboBox<>();
+    private JLabel locationLabel = new JLabel("Location of Rack:");
+    public JButton submitButton = new JButton("Submit");
 
-    public JLabel rackTagLabel;
-    public JTextField rackTagField;
-    public JLabel rackTagDescLabel;
+    public GUIAddRackDialog() {
+        setSize(1024, 412);
+        JPanel panel = new JPanel();
 
-    public JLabel rackLocationLabel;
-    public JComboBox rackLocationDropBox;
-
-    public JButton submitButton;
-
-    public String rackName;
-    public String tag;
-    public String[] tagArray;
-
-    public AdminAddRackPanel() {
-        setBorder(new BevelBorder(BevelBorder.RAISED));
-
-        rackNameLabel = new JLabel("Rack Name: ");
-        rackNameLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-
-        rackNameField = new JTextField();
+        //Constructing and designing itemName stuff
         rackNameField.setPreferredSize(new Dimension(300, 50));
-        rackNameField.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        rackTagLabel = new JLabel("Tags: ");
-        rackTagLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        //Constructing and designing sectionDropBox
+        sectionDropBox = new JComboBox<>();
+        sectionDropBox.setPreferredSize(new Dimension(300, 50));
+        sectionDropBox.addItem("Select a Section...");
 
-        rackTagField = new JTextField();
+        //Constructing and designing aisleDropBox
+        aisleDropBox = new JComboBox<>();
+        aisleDropBox.setPreferredSize(new Dimension(300, 50));
+        aisleDropBox.addItem("Select an Aisle...");
+
         rackTagField.setPreferredSize(new Dimension(300, 50));
-        rackTagField.setFont(new Font("Arial", Font.PLAIN, 16));
 
-        rackTagDescLabel = new JLabel("Use a comma then a space to separate tags.");
-        rackTagDescLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-
-        rackLocationLabel = new JLabel("Location: ");
-        rackLocationLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-
-        rackLocationDropBox = new JComboBox<>();
-        rackLocationDropBox.setPreferredSize(new Dimension(300, 50));
-        rackLocationDropBox.setFont(new Font("Arial", Font.PLAIN, 16));
-
-        submitButton = new JButton("Submit");
+        //Constructing and designing submitButton
         submitButton.setPreferredSize(new Dimension(100, 50));
-        submitButton.setFont(new Font("Arial", Font.PLAIN, 16));
-        submitButton.addActionListener(this::submitButtonClicked);
-
-        rackName = new String();
-        tag = new String();
 
         //Adding the elements above to the panel
-        setLayout(new MigLayout("", "[]push[]", "[]"));
-        add(rackNameLabel, "cell 0 0");
-        add(rackNameField, "cell 1 0, wrap, growx");
-        add(rackTagLabel, "cell 0 1");
-        add(rackTagField, "cell 1 1, wrap, growx");
-        add(rackTagDescLabel, "cell 1 2, wrap");
-        add(rackLocationLabel, "cell 0 3");
-        add(rackLocationDropBox, "cell 1 3, wrap");
-        add(submitButton, "cell 1 4");
-    }
+        panel.setLayout(new MigLayout("", "[align center]", "[align center]"));
+        panel.add(rackNameLabel, "cell 2 0");
+        panel.add(rackNameField, "cell 3 0");
+        panel.add(rackTagLabel, "cell 2 1");
+        panel.add(rackTagField, "cell 3 1");
+        panel.add(locationLabel, "cell 0 0");
+        panel.add(sectionDropBox, "cell 1 0");
+        panel.add(aisleDropBox, "cell 1 1");
+        panel.add(submitButton, "cell 3 2");
 
-    //ActionListener Method for above Lambda Expression:
-    public void submitButtonClicked(ActionEvent e) {
-/*        rackName = rackNameField.getText();
-        tag = rackTagField.getText();
-        tagArray = tag.split(", ");
-        rackTagField.setText("");
-        rackTagField.setText("");
-        AdminAddRemovePanelBottom.guiAddRackDialog.setVisible(false);*/
+        add(panel);
+        setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(1000, 600);
+
+        setVisible(false);
     }
 }

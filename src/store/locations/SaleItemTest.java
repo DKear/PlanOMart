@@ -21,7 +21,7 @@ public class SaleItemTest {
     @Test
     public void tooLowOfPriceTest() {
         SaleItem bread = new SaleItem(-1.39, "White Classic", "Wonder Bread", "bread");
-        Assertions.assertFalse(bread.validateItem(bread));
+        Assertions.assertFalse(bread.validateItem());
     }
 
     @Test
@@ -34,7 +34,7 @@ public class SaleItemTest {
     @Test
     public void emptyStringNameTest() {
         SaleItem bread = new SaleItem(1.39, "", "Wonder Bread", "bread");
-        Assertions.assertFalse(bread.validateItem(bread));
+        Assertions.assertFalse(bread.validateItem());
     }
 
     @Test
@@ -47,7 +47,7 @@ public class SaleItemTest {
     @Test
     public void emptyStringBrandTest() {
         SaleItem bread = new SaleItem(1.39, "White Classic", "", "bread");
-        Assertions.assertFalse(bread.validateItem(bread));
+        Assertions.assertFalse(bread.validateItem());
     }
 
     @Test
@@ -188,7 +188,7 @@ public class SaleItemTest {
     @Test
     public void validateSaleItemPositiveTest() {
         SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
-
+        Assertions.assertTrue(bread.validateItem());
     }
 
 }

@@ -82,4 +82,12 @@ public class Shelf {
     public ArrayList<String> getTags(){
         return tags;
     }
+
+    public boolean validateShelf() {
+        if (!this.getRowName().equals("")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

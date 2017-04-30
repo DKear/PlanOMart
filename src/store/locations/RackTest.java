@@ -14,7 +14,6 @@ class RackTest {
     }
 
 
-
     @Test
     public void hasNoShelfTest() {
         Rack rack = new Rack("testRack");
@@ -49,14 +48,24 @@ class RackTest {
     }
 
     @Test
-    public void rackSetGetAisle(){
-    Aisle aisle = new Aisle("Aisle 1");
-    Rack rack0 = new Rack("Rack 1");
-    Rack rack1 = new Rack ("Rack 2");
+    public void rackSetGetAisle() {
+        Aisle aisle = new Aisle("Aisle 1");
+        Rack rack0 = new Rack("Rack 1");
+        Rack rack1 = new Rack("Rack 2");
         aisle.addRack(rack0);
         aisle.addRack(rack1);
         rack0.setAisle(aisle);
         rack1.setAisle(aisle);
         assertTrue(rack1.getAisle().equals(aisle) & aisle.getRack()[1].equals(rack1));
-}
+    }
+    @Test
+    public void validateRackPositiveTest() {
+        Rack rack = new Rack("Name");
+        Assertions.assertTrue(rack.validateRack());
+    }
+    @Test
+    public void validateRackNegativeTest() {
+        Rack rack = new Rack("");
+        Assertions.assertFalse(rack.validateRack());
+    }
 }

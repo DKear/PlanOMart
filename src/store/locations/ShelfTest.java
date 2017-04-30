@@ -95,4 +95,14 @@ public class ShelfTest {
         shelf.setRack(rack);
         Assertions.assertTrue(rack.getShelf()[0].equals(shelf) & shelf.getRack().equals(rack));
     }
+    @Test
+    public void validateShelfPositiveTest() {
+        Shelf shelf = new Shelf("Name");
+        Assertions.assertTrue(shelf.validateShelf());
+    }
+    @Test
+    public void validateShelfNegativeTest() {
+        Shelf shelf = new Shelf("");
+        Assertions.assertFalse(shelf.validateShelf());
+    }
 }
