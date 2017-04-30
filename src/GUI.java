@@ -1,5 +1,5 @@
 import UserSide.GUICreateComments;
-//import UserSide.GUIUserMain;
+import UserSide.GUIUserMain;
 import admin.GUIAddItemDialog;
 import admin.GUIAdminMain;
 import admin.GUIEditPanel;
@@ -59,8 +59,7 @@ public class GUI implements ActionListener {
     public GUIEditPanel er;
     public GUIEditPanel esh;
     public String selected;
-//    public static GUIUserMain guiUserMain;
-//    private GUIAddItemDialog addItemDialog;
+    public static GUIUserMain guiUserMain;
     public GUIPasswordChange pc;
     public GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
@@ -173,7 +172,7 @@ public class GUI implements ActionListener {
         GridBagConstraints ael = new GridBagConstraints();
         ael.gridx = ael.gridy = 0;
         editSectionComboBox = new JComboBox<>();
-        editSectionComboBox.setPreferredSize(new Dimension(250, 50));
+        editSectionComboBox.setPreferredSize(new Dimension(250,50));
         adminEditLocation.add(editSectionComboBox, ael);
         ael.gridx = 1;
         editSectionButton = new JButton("Edit Section");
@@ -182,16 +181,16 @@ public class GUI implements ActionListener {
         ael.gridx = 0;
         ael.gridy = 1;
         editAisleComboBox = new JComboBox();
-        editAisleComboBox.setPreferredSize(new Dimension(250, 50));
+        editAisleComboBox.setPreferredSize(new Dimension(250,50));
         adminEditLocation.add(editAisleComboBox, ael);
         ael.gridx = 1;
         editAisleButton = new JButton("Edit Aisle");
         editAisleButton.addActionListener(this);
         adminEditLocation.add(editAisleButton, ael);
         ael.gridx = 0;
-        ael.gridy = 2;
+        ael.gridy  =2;
         editRackComboBox = new JComboBox();
-        editRackComboBox.setPreferredSize(new Dimension(250, 50));
+        editRackComboBox.setPreferredSize(new Dimension(250,50));
         adminEditLocation.add(editRackComboBox, ael);
         ael.gridx = 1;
         editRackButton = new JButton("Edit Rack");
@@ -279,7 +278,7 @@ public class GUI implements ActionListener {
         pw.submitButton.addActionListener(this);
         pw.add(passwordPanel);
 
-//        guiUserMain = new GUIUserMain();
+        guiUserMain = new GUIUserMain();
 
         initialSetupPanel = new JPanel();
         initialSetupPanel.setLayout(new GridBagLayout());
