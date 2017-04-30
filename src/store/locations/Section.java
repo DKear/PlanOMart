@@ -13,8 +13,12 @@ public class Section {
 
     public Section(String n){
         sectionName = n;
-        aisles = new ArrayList<Aisle>();
-        tags = new ArrayList <String>();
+        aisles = new ArrayList<>();
+        tags = new ArrayList <>();
+    }
+
+    public void setSectionName(String s){
+        sectionName = s;
     }
 
     public String getSectionName(){
@@ -91,5 +95,11 @@ public class Section {
             nameArray[i] = s[i].getAisleName();
         }
         return nameArray;
+    }
+
+    @Override
+    public String toString()
+    {
+        return getSectionName();
     }
 }
