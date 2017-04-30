@@ -101,10 +101,11 @@ public class Section {
         }
         return nameArray;
     }
-
-    @Override
-    public String toString()
-    {
-        return getSectionName();
+    public boolean validateSection() {
+        if (!this.getSectionName().equals("")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

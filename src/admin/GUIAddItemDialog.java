@@ -19,13 +19,13 @@ public class GUIAddItemDialog extends JDialog {
     private JLabel itemDescriptionLabel = new JLabel("Enter item description here");
     public JTextField itemDescriptionField = new JTextField();
     private JLabel locationLabel = new JLabel("Location of Item:");
-
+    private JLabel itemTagLabel = new JLabel("Place item tags here, separated by a comma and space. Ex. sliced, white");
+    public JTextField itemTagField = new JTextField();
     public JComboBox<String> sectionDropBox = new JComboBox<>();
     public JComboBox<String> aisleDropBox = new JComboBox<>();
     public JComboBox<String> rackDropBox = new JComboBox<>();
     public JComboBox<String> shelfDropBox = new JComboBox<>();
     public JButton submitButton = new JButton("Submit");
-
 
     public GUIAddItemDialog() {
         setSize(1024, 512);
@@ -33,18 +33,11 @@ public class GUIAddItemDialog extends JDialog {
 
         //Constructing and designing itemName stuff
         itemNameField.setPreferredSize(new Dimension(300, 50));
-        //itemName = itemNameField.getText();
-
-        //Constructing and designing itemPrice stuff
         itemPriceField.setPreferredSize(new Dimension(300, 50));
-
-        //itemPrice = Double.parseDouble(itemPriceField.getText());
         itemBrandField.setPreferredSize((new Dimension(300, 50)));
-
-        //Constructing and designing itemDescription stuff
         itemDescriptionField.setPreferredSize(new Dimension(300, 50));
+        itemTagField.setPreferredSize(new Dimension(300, 50));
 
-        //itemDecription = itemDescriptionField.getText();
 
         //Constructing and designing sectionDropBox
         sectionDropBox = new JComboBox<>();
@@ -79,12 +72,14 @@ public class GUIAddItemDialog extends JDialog {
         panel.add(itemBrandField, "cell 3 2");
         panel.add(itemDescriptionLabel, "cell 2 3");
         panel.add(itemDescriptionField, "cell 3 3");
+        panel.add(itemTagLabel, "cell 2 4");
+        panel.add(itemTagField, "cell 3 4");
         panel.add(locationLabel, "cell 0 0");
         panel.add(sectionDropBox, "cell 1 0");
         panel.add(aisleDropBox, "cell 1 1");
         panel.add(rackDropBox, "cell 1 2");
         panel.add(shelfDropBox, "cell 1 3");
-        panel.add(submitButton,"cell 3 4");
+        panel.add(submitButton,"cell 3 5");
 
         add(panel);
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
