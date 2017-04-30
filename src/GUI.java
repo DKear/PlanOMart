@@ -1,4 +1,5 @@
 import UserSide.GUICreateComments;
+import UserSide.GUIUserMain;
 import admin.GUIAddItemDialog;
 import admin.GUIAdminMain;
 import admin.GUIEditPanel;
@@ -58,6 +59,8 @@ public class GUI implements ActionListener {
     public GUIEditPanel er;
     public GUIEditPanel esh;
     public String selected;
+    public static GUIUserMain guiUserMain;
+//    private GUIAddItemDialog addItemDialog;
     public GUIPasswordChange pc;
     public GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
@@ -275,6 +278,8 @@ public class GUI implements ActionListener {
         passwordPanel.add(pw.submitButton, pwc);
         pw.submitButton.addActionListener(this);
         pw.add(passwordPanel);
+
+        guiUserMain = new GUIUserMain();
 
         initialSetupPanel = new JPanel();
         initialSetupPanel.setLayout(new GridBagLayout());
