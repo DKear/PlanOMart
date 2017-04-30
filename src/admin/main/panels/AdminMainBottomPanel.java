@@ -55,6 +55,8 @@ public class AdminMainBottomPanel extends JPanel {
 //        mapButton.setFont(new Font("Arial", Font.PLAIN, 16));
 //        mapButton.addActionListener(this::mapButtonClicked);
 
+        guiAddRemoveWindow = new GUIAddRemoveWindow();
+
         //setting the general layout (position) of the buttons that were constructed
         setLayout(new MigLayout("", "[align center]", "[align center]"));
         add(switchUserButton);

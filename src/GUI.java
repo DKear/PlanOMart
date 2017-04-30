@@ -60,7 +60,7 @@ public class GUI implements ActionListener {
     public GUIEditPanel esh;
     public String selected;
     public static GUIUserMain guiUserMain;
-    private GUIAddItemDialog addItemDialog;
+//    private GUIAddItemDialog addItemDialog;
     public GUIPasswordChange pc;
     public GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
