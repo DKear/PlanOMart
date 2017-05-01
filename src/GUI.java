@@ -4,6 +4,7 @@ import admin.GUIAddItemDialog;
 import admin.GUIAdminMain;
 import admin.GUIEditPanel;
 import admin.main.panels.AdminMainBottomPanel;
+import admin.main.panels.GUIEditMerch;
 import admin.main.panels.GUIPasswordChange;
 import store.locations.*;
 
@@ -43,6 +44,7 @@ public class GUI implements ActionListener {
     public Aisle aisle;
     public Rack rack;
     public Shelf shelf;
+    public SaleItem item;
     public GUIAdminMain adminPanel;
     public JComboBox<String> editSectionComboBox;
     public JButton editSectionButton;
@@ -53,6 +55,10 @@ public class GUI implements ActionListener {
     public JComboBox editShelfComboBox;
     public JButton editShelfButton;
     public JPanel adminEditLocation;
+    public JPanel adminEditMerchPanel;
+    public JComboBox editMerchCombobox;
+    public JButton editMerchButton;
+    public JButton merchReturn;
     public JButton editReturn;
     public GUIEditPanel es;
     public GUIEditPanel ea;
@@ -60,6 +66,7 @@ public class GUI implements ActionListener {
     public GUIEditPanel esh;
     public String selected;
     public static GUIUserMain guiUserMain;
+    public GUIEditMerch em;
 //    private GUIAddItemDialog addItemDialog;
     public GUIPasswordChange pc;
     public GUIAddItemDialog addItemDialog;
@@ -218,10 +225,24 @@ public class GUI implements ActionListener {
         adminEditCard.add(adminEditLocation, "Locations");
 
 
-        JPanel adminEditMerchandise = new JPanel();
+        adminEditMerchPanel = new JPanel();
+        adminEditMerchPanel.setLayout(new GridBagLayout());
+        GridBagConstraints aem = new GridBagConstraints();
+        aem.gridx = aem.gridy = 0;
+        editMerchCombobox = new JComboBox();
+        adminEditMerchPanel.add(editMerchCombobox, aem);
+        aem.gridx = 1;
+        editMerchButton = new JButton("Edit merchandise");
+        editMerchButton.addActionListener(this);
+        adminEditMerchPanel.add(editMerchButton, aem);
+        aem.gridx = 0;
+        aem.gridy = 1;
+        aem.gridwidth = 2;
+        merchReturn = new JButton("Return");
+        merchReturn.addActionListener(this);
+        adminEditMerchPanel.add(merchReturn, aem);
 
-        adminEditCard.add(adminEditMerchandise, "Merchandise");
-
+        em = new GUIEditMerch();
 
         es = new GUIEditPanel();
         es.editNameButton.addActionListener(this);
@@ -256,6 +277,8 @@ public class GUI implements ActionListener {
         adminEditCard.add(er, "Edit Rack");
         adminEditCard.add(esh, "Edit Shelf");
         adminEditCard.add(pc, "Change password");
+        adminEditCard.add(adminEditMerchPanel, "Merchandise");
+        adminEditCard.add(em , "Edit Merchandise");
 
         ae.add(adminEditCard);
 
@@ -527,7 +550,7 @@ public class GUI implements ActionListener {
             }
         }
 
-        if(e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton || e.getSource() == pc.backButton){
+        if(e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton || e.getSource() == pc.backButton || e.getSource() == merchReturn){
             es.removeTagComboBox.removeAllItems();
             ea.removeTagComboBox.removeAllItems();
             er.removeTagComboBox.removeAllItems();
@@ -706,20 +729,55 @@ public class GUI implements ActionListener {
             }
         }
 
-        if(e.getSource() == pc.changePasswordButton)
-            if(pc.changePasswordField.getPassword().length == 0){
+        if(e.getSource() == pc.changePasswordButton) {
+            if (pc.changePasswordField.getPassword().length == 0) {
                 JOptionPane.showMessageDialog(controllingContainer, "Enter a new password");
             } else {
-                if(Arrays.equals(pc.changePasswordField.getPassword(), pc.changePasswordFieldVerify.getPassword())){
+                if (Arrays.equals(pc.changePasswordField.getPassword(), pc.changePasswordFieldVerify.getPassword())) {
                     pw.changePassword(pc.changePasswordField.getPassword());
                     pc.changePasswordField.setText("");
                     pc.changePasswordFieldVerify.setText("");
                     JOptionPane.showMessageDialog(controllingContainer, "Password successfully changed");
-                    } else{
+                } else {
                     JOptionPane.showMessageDialog(controllingContainer, "Passwords do not match");
 
                 }
             }
+        }
+
+        if(e.getSource() == editMerchButton){
+            selected = editMerchCombobox.getSelectedItem().toString();
+            for (int i = 0; i < store.getSections().length; i++){
+                section = store.sections.get(i);
+                for(int j = 0; j < section.getAisles().length; j++){
+                    aisle = section.getAisles()[j];
+                    for (int k = 0; k < aisle.getRack().length; k++ ){
+                        rack = aisle.getRack()[k];
+                        for(int l = 0; l <rack.getShelf().length; l++){
+                            shelf = rack.getShelf()[l];
+                            for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                                if(shelf.getItemsOnShelf()[m].getName().equals(selected)){
+                                    item = shelf.getItemsOnShelf()[m];
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+            for(int i = 0; i < item.getTags().length; i++){
+                em.merchRemoveTagBox.addItem(item.getTags()[i]);
+            }
+            em.merchNameField.setText(item.getName());
+            em.merchPriceField.setText(String.valueOf(item.getPrice()));
+            em.merchSalePriceField.setText(String.valueOf(item.getSalePrice()));
+            if(item.onSale()){
+                em.saleButton.setSelected(true);
+            } else{
+                em.saleButton.setSelected(false);
+            }
+
+        }
 
 
         if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {

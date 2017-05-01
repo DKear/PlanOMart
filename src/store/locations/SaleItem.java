@@ -12,6 +12,7 @@ public class SaleItem {
     private String brand = "";
     private String description = "";
     private ArrayList<String> tags;
+    private boolean sale = false;
     private double salePrice;
     private String saleDescription = "";
     private ArrayList<Shelf> shelves;
@@ -113,5 +114,8 @@ public class SaleItem {
         } else {
             return true;
         }
+    }
+    public boolean onSale(){
+        return sale;
     }
 }
