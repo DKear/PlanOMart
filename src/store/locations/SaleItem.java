@@ -118,4 +118,17 @@ public class SaleItem {
     public boolean onSale(){
         return sale;
     }
+
+    public void setSaleTrue(){
+        sale = true;
+    }
+    public void setSaleFalse(){
+        sale = false;
+    }
+    public void setName(String s){
+        name = s;
+    }
+    public void setPrice(Double d){
+        price = d;
+    }
 }
