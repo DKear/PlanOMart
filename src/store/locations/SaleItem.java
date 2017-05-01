@@ -108,8 +108,8 @@ public class SaleItem {
         }
     }
 
-    public boolean validateItem(SaleItem i) {
-        if (i.getPrice() <= 0 || i.getName().equals("") || i.getBrand().equals("") || i.getDescription().equals("")) {
+    public boolean validateItem() {
+        if (this.getPrice() <= 0 || this.getName().equals("") || this.getBrand().equals("") || this.getDescription().equals("")) {
             return false;
         } else {
             return true;

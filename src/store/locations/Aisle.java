@@ -93,4 +93,12 @@ public class Aisle {
     public ArrayList<String> getTags(){
         return tags;
     }
+
+    public boolean validateAisle() {
+        if (!this.getAisleName().equals("")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

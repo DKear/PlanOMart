@@ -65,5 +65,14 @@ class AisleTest {
         aisle1.setSection(section);
         assertTrue(aisle1.getSection().equals(section) & section.getAisles()[1].equals(aisle1));
     }
-
+    @Test
+    public void validateAislePositiveTest() {
+        Aisle a = new Aisle("Name");
+        Assertions.assertTrue(a.validateAisle());
+    }
+    @Test
+    public void validateAisleNegativeTest() {
+        Aisle a = new Aisle("");
+        Assertions.assertFalse(a.validateAisle());
+    }
 }

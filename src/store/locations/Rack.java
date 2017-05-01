@@ -104,4 +104,12 @@ public class Rack {
     public ArrayList<String> getTags(){
         return tags;
     }
+
+    public boolean validateRack() {
+        if (!this.getRackName().equals("")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
