@@ -3,6 +3,7 @@ package admin.main.panels;
 import admin.GUIAddRemoveWindow;
 import admin.GUIViewComments;
 import net.miginfocom.swing.MigLayout;
+import store.locations.*;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -19,7 +20,7 @@ public class AdminMainBottomPanel extends JPanel {
     public static GUIAddRemoveWindow guiAddRemoveWindow;
     public AdminMainBodyPanel adminPanel;
 
-    public AdminMainBottomPanel(AdminMainBodyPanel panel) {
+    public AdminMainBottomPanel(AdminMainBodyPanel panel, Store store) {
         setBorder(new BevelBorder(BevelBorder.RAISED));
         adminPanel = panel;
 
@@ -62,7 +63,7 @@ public class AdminMainBottomPanel extends JPanel {
 //        add(mapButton);
 
         //initializing the JPanel used
-        guiAddRemoveWindow = new GUIAddRemoveWindow();
+        guiAddRemoveWindow = new GUIAddRemoveWindow(store);
     }
 
     //Below are the actual methods that the lambda expressions use
@@ -76,7 +77,6 @@ public class AdminMainBottomPanel extends JPanel {
 
     private void addRemoveButtonClicked(ActionEvent e) {
         if (e.getSource() == addRemoveButton) {
-            guiAddRemoveWindow.setObjectTable(adminPanel.getReturnField());
             guiAddRemoveWindow.setVisible(true);
         }
     }
