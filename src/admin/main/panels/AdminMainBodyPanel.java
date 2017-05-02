@@ -14,24 +14,7 @@ public class AdminMainBodyPanel extends JPanel{
 
     public AdminMainBodyPanel(){
         setBorder(new BevelBorder(BevelBorder.RAISED));
-
-        //ADDING DUMBY DATA (delete after)
-        String[] columns = {
-                "Hello",
-                "Goodbye"
-        };
-
-        Object[][] data ={
-                {
-                        "Hi", 5
-                },
-                {
-                        "Bye", 8
-                },
-                {
-                        "Cya", 42
-                }
-        };
+        
         returnField = new JTextArea();
         returnField.setLineWrap(true);
         returnField.setWrapStyleWord(true);
