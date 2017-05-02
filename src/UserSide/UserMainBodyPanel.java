@@ -22,7 +22,7 @@ public class UserMainBodyPanel extends JPanel {
 
         userDropBoxPanel = new UserDropBoxPanel();
 
-        setLayout(new MigLayout("insets 0 0","[fill,75%][fill,25%]","[grow]"));
+        setLayout(new MigLayout("insets 0 0","[fill,70%][fill,30%]","[grow]"));
         add(returnField, "grow, span 4");
         add(userDropBoxPanel, "grow");
     }

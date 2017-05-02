@@ -14,7 +14,7 @@ public class AdminMainBodyPanel extends JPanel{
 
     public AdminMainBodyPanel(){
         setBorder(new BevelBorder(BevelBorder.RAISED));
-        
+
         returnField = new JTextArea();
         returnField.setLineWrap(true);
         returnField.setWrapStyleWord(true);
