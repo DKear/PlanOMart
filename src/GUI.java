@@ -44,6 +44,7 @@ public class GUI implements ActionListener {
     public Aisle aisle;
     public Rack rack;
     public Shelf shelf;
+    public SaleItem saleItem;
     public SaleItem item;
     public GUIAdminMain adminPanel;
     public JComboBox<String> editSectionComboBox;
@@ -97,7 +98,7 @@ public class GUI implements ActionListener {
 
         //adminPanel.adminEditBottomPanel();
 
-        adminPanel = new GUIAdminMain(store);
+        adminPanel = new GUIAdminMain();
         adminPanel.adminEditBottomPanel.switchUserButton.addActionListener(this);
         adminPanel.adminEditBottomPanel.editButton.addActionListener(this);
         /*adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addActionListener(new ActionListener(){
@@ -384,6 +385,9 @@ public class GUI implements ActionListener {
         addAisleDialog.sectionDropBox.addActionListener(this);
         addAisleDialog.submitButton.addActionListener(this);
         addSectionDialog.submitButton.addActionListener(this);
+
+        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.removeButton.addActionListener(this::removeButtonClicked);
+        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.objectDropBox.addActionListener(this::populatingAddRemoveJList);
     }
 
     public void reloadAddSectionDropBoxes() {
@@ -433,7 +437,7 @@ public class GUI implements ActionListener {
                         shelf = rack.getShelf()[l];
                         editShelfComboBox.addItem(shelf.getRowDisplayName());
                         adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
-                        for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                        for (int m = 0; m < shelf.getItemsOnShelf().length; m++) {
                             editMerchCombobox.addItem(item.getName());
                         }
                     }
@@ -464,7 +468,6 @@ public class GUI implements ActionListener {
             ae.setVisible(true);
 
         }
-
 
 
         if (e.getSource() == pw.submitButton) {
@@ -786,18 +789,18 @@ public class GUI implements ActionListener {
                 }
             }
 
-        if(e.getSource() == editMerchButton){
+        if (e.getSource() == editMerchButton) {
             selected = editMerchCombobox.getSelectedItem().toString();
-            for (int i = 0; i < store.getSections().length; i++){
+            for (int i = 0; i < store.getSections().length; i++) {
                 section = store.sections.get(i);
-                for(int j = 0; j < section.getAisles().length; j++){
+                for (int j = 0; j < section.getAisles().length; j++) {
                     aisle = section.getAisles()[j];
-                    for (int k = 0; k < aisle.getRack().length; k++ ){
+                    for (int k = 0; k < aisle.getRack().length; k++) {
                         rack = aisle.getRack()[k];
-                        for(int l = 0; l <rack.getShelf().length; l++){
+                        for (int l = 0; l < rack.getShelf().length; l++) {
                             shelf = rack.getShelf()[l];
-                            for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
-                                if(shelf.getItemsOnShelf()[m].getName().equals(selected)){
+                            for (int m = 0; m < shelf.getItemsOnShelf().length; m++) {
+                                if (shelf.getItemsOnShelf()[m].getName().equals(selected)) {
                                     item = shelf.getItemsOnShelf()[m];
                                 }
                             }
@@ -806,7 +809,7 @@ public class GUI implements ActionListener {
                     }
                 }
             }
-            for(int i = 0; i < item.getTags().size(); i++){
+            for (int i = 0; i < item.getTags().size(); i++) {
                 em.merchRemoveTagBox.addItem(item.getTagsArray()[i]);
             }
             em.merchNameField.setText(item.getName());
@@ -814,35 +817,35 @@ public class GUI implements ActionListener {
             em.merchSalePriceField.setText(String.valueOf(item.getSalePrice()));
             em.saleDescriptionField.setText(item.getSaleDescription());
             em.merchEditDescriptionField.setText(item.getDescription());
-            if(item.onSale()){
+            if (item.onSale()) {
                 em.saleButton.setSelected(true);
-            } else{
+            } else {
                 em.saleButton.setSelected(false);
             }
             ecl.show(adminEditCard, "Edit Merchandise");
 
         }
 
-        if (e.getSource() == em.saleButton){
-            if (em.saleButton.isSelected()){
+        if (e.getSource() == em.saleButton) {
+            if (em.saleButton.isSelected()) {
                 item.setSaleTrue();
-            } else{
+            } else {
                 item.setSaleFalse();
             }
         }
 
-        if(e.getSource() == em.merchNameSubmit){
+        if (e.getSource() == em.merchNameSubmit) {
             String newName = em.merchNameField.getText();
             item.setName(newName);
             reloadComboBoxes();
         }
 
-        if(e.getSource() == em.merchPriceSubmit){
+        if (e.getSource() == em.merchPriceSubmit) {
             Double newPrice = Double.parseDouble(em.merchPriceField.getText());
             item.setPrice(newPrice);
         }
 
-        if (e.getSource() == em.merchAddTagSubmit){
+        if (e.getSource() == em.merchAddTagSubmit) {
             item.addTag(em.merchAddTagField.getText());
             em.merchRemoveTagBox.addItem(em.merchAddTagField.getText());
             em.merchAddTagField.setText("");
@@ -857,11 +860,11 @@ public class GUI implements ActionListener {
             }
         }
 
-        if(e.getSource() == em.merchEditDescriptionSubmit){
+        if (e.getSource() == em.merchEditDescriptionSubmit) {
             item.setDescription(em.merchEditDescriptionField.getText());
         }
 
-        if (e.getSource() == em.merchSaleSubmit){
+        if (e.getSource() == em.merchSaleSubmit) {
             item.setSalePrice(Double.parseDouble(em.merchSalePriceField.getText()));
             item.setSaleDescription(em.saleDescriptionField.getText());
         }
@@ -1199,27 +1202,89 @@ public class GUI implements ActionListener {
                 }
             }
             if (newSection.validateSection()) {//if it's a valid section name
-                    for (Section s : store.getSections()) {
-                        boolean check = newSection.getSectionName().equals(s.getSectionName());//checking to see if it already exists
-                        fcheck = check || fcheck; //will return false unless a section with that name already exists in the store
-                    }
-                    if (fcheck == false) {
-                        store.addSection(newSection);
-                        newSection.setStore(store);
-                        editSectionComboBox.addItem(newSection.getSectionName());
-                        adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(newSection.getSectionName());
-                        addSectionDialog.sectionNameField.setText("");
-                        addSectionDialog.sectionTagField.setText("");
-                        addSectionDialog.setVisible(false);
-                        addSectionDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        reloadComboBoxes();
-                    } else {
-                        JOptionPane.showMessageDialog(controllingContainer, "Section already exists in Store.");
-                    }
+                for (Section s : store.getSections()) {
+                    boolean check = newSection.getSectionName().equals(s.getSectionName());//checking to see if it already exists
+                    fcheck = check || fcheck; //will return false unless a section with that name already exists in the store
+                }
+                if (!fcheck) {
+                    store.addSection(newSection);
+                    newSection.setStore(store);
+                    editSectionComboBox.addItem(newSection.getSectionName());
+                    adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(newSection.getSectionName());
+                    addSectionDialog.sectionNameField.setText("");
+                    addSectionDialog.sectionTagField.setText("");
+                    addSectionDialog.setVisible(false);
+                    addSectionDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    reloadComboBoxes();
+                } else {
+                    JOptionPane.showMessageDialog(controllingContainer, "Section already exists in Store.");
+                }
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Make sure the name is filled out.");
             }
         }
+    }
+
+    //******************************************************
+    //***Populating the JList for the AdminAddRemovePanelTop
+    public void populatingAddRemoveJList(ActionEvent e) {
+        AdminAddRemovePanelTop adminAddRemovePanelTop = AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop;
+        adminAddRemovePanelTop.modelObjectList.clear();
+        String obj = (String) adminAddRemovePanelTop.objectDropBox.getSelectedItem();
+        if (Objects.equals(obj, "Section")) {
+            for (String s : store.getSectionsNames(store.getSections())) {
+                adminAddRemovePanelTop.modelObjectList.addElement(s);
+            }
+        } else if (Objects.equals(obj, "Aisle")) {
+            for (String s : section.getAisleNames(section.getAisles())) {
+                adminAddRemovePanelTop.modelObjectList.addElement(s);
+            }
+        } else if (Objects.equals(obj, "Rack")) {
+            for (String s : aisle.getRacksNames(aisle.getRack())) {
+                adminAddRemovePanelTop.modelObjectList.addElement(s);
+            }
+        } else if (Objects.equals(obj, "Shelf")) {
+            for (String s : rack.getShelfNames(rack.getShelf())) {
+                adminAddRemovePanelTop.modelObjectList.addElement(s);
+            }
+        } else if (Objects.equals(obj, "Sale Item")) {
+            for (SaleItem s : shelf.getItemsOnShelf()) {
+                adminAddRemovePanelTop.modelObjectList.addElement(s.toString());
+            }
+        }
+        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.repaint();
+    }
+    //*********************************************************************************
+    //***Lambda Expression for Removing selected object from JList though the JComboBox
+    public void removeButtonClicked(ActionEvent e) {
+        String selectedValue = AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.objectList.getSelectedValue();
+        for (Section s : store.getSections()) {
+            if (s.getSectionName().equals(selectedValue)) {
+                store.removeSection(s);
+            }
+        }
+        for (Aisle a : section.getAisles()) {
+            if (a.getAisleName().equals(selectedValue)) {
+                section.removeAisle(a);
+            }
+        }
+        for (Rack r : aisle.getRack()) {
+            if (r.getRackName().equals(selectedValue)) {
+                aisle.removeRack(r);
+            }
+        }
+        for (Shelf s : rack.getShelf()) {
+            if (s.getRowName().equals(selectedValue)) {
+                rack.removeShelf(s);
+            }
+        }
+        for (SaleItem i : shelf.getItemsOnShelf()) {
+            if (i.getName().equals(selectedValue)) {
+                shelf.removeItems(i);
+            }
+        }
+        populatingAddRemoveJList(e);
+        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.repaint();
     }
 
     private static void createAndShowGUI() {
