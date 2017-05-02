@@ -27,18 +27,14 @@ public class GUI implements ActionListener {
     private JButton adminSwitchButton;
     private JButton adminEditButton;
     private GUIAdminEdit ae;
-    private GUIAdminAddWindow aw;
     private JPanel adminEditCard;
     private JPanel adminAddPanel;
     private JPanel openingContent;
     private JButton openingUserButton;
     private JButton openingAdminButton;
     private Boolean storeExists = false;
-    private JPanel passwordPanel;
-    private GUIPassword pw;
+    private GUIPassword pw = new GUIPassword();
     private char[] passwordInput;
-    private JPanel initialSetupPanel;
-    private GUIInitialSetup is;
     public Store store;
     public Section section;
     public Aisle aisle;
@@ -78,6 +74,7 @@ public class GUI implements ActionListener {
     private GUIAddRackDialog addRackDialog = new GUIAddRackDialog();
     private GUIAddAisleDialog addAisleDialog = new GUIAddAisleDialog();
     private GUIAddSectionDialog addSectionDialog = new GUIAddSectionDialog();
+    private GUIInitialSetup is = new GUIInitialSetup();
 
     public void addComponentToPane(Container pane) {
         store = new Store("store");
@@ -298,69 +295,11 @@ public class GUI implements ActionListener {
 
         ae.add(adminEditCard);
 
-        aw = new GUIAdminAddWindow();
-        adminAddPanel = new JPanel();
-
-        adminAddPanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-
-        aw.add(adminAddPanel);
-
-        passwordPanel = new JPanel();
-        passwordPanel.setLayout(new GridBagLayout());
-        GridBagConstraints pwc = new GridBagConstraints();
-        pw = new GUIPassword();
-        pwc.gridx = pwc.gridy = 0;
-        passwordPanel.add(new JLabel("Enter password (default is 'PlanOMart') "), pwc);
-        pwc.gridy = 1;
-        passwordPanel.add(pw.passwordField, pwc);
-        pwc.gridy = 2;
-        passwordPanel.add(pw.submitButton, pwc);
-        pw.submitButton.addActionListener(this);
-        pw.add(passwordPanel);
+        pw.submitButton.addActionListener(this);//after password is entered submit button
 
         guiUserMain = new GUIUserMain();
 
-        initialSetupPanel = new JPanel();
-        initialSetupPanel.setLayout(new GridBagLayout());
-        GridBagConstraints isp = new GridBagConstraints();
-        is = new GUIInitialSetup();
-        isp.gridx = isp.gridy = 0;
-        isp.anchor = GridBagConstraints.PAGE_START;
-        isp.gridwidth = 2;
-        initialSetupPanel.add(new JLabel("Welcome to PlanOMart! Please enter some information about your store."), isp);
-        isp.gridwidth = 1;
-        isp.gridy = 1;
-        isp.anchor = GridBagConstraints.CENTER;
-        initialSetupPanel.add(new JLabel("Store name:"), isp);
-        isp.gridx = 1;
-        initialSetupPanel.add(is.storeNameField, isp);
-        isp.gridx = 0;
-        isp.gridy = 2;
-        initialSetupPanel.add(new JLabel("Number of sections:"), isp);
-        isp.gridx = 1;
-        initialSetupPanel.add(is.numberOfSectionField, isp);
-        isp.gridx = 0;
-        isp.gridy = 3;
-        initialSetupPanel.add(new JLabel("Number of aisles in each section"), isp);
-        isp.gridx = 1;
-        initialSetupPanel.add(is.numberOfAislesField, isp);
-        isp.gridx = 0;
-        isp.gridy = 4;
-        initialSetupPanel.add(new JLabel("Number of racks in each aisle"), isp);
-        isp.gridx = 1;
-        initialSetupPanel.add(is.numberOfRacksField, isp);
-        isp.gridx = 0;
-        isp.gridy = 5;
-        initialSetupPanel.add(new JLabel("Number of shelves in each rack"), isp);
-        isp.gridx = 1;
-        initialSetupPanel.add(is.numberOfShelvesField, isp);
-        isp.gridwidth = 2;
-        isp.gridx = 0;
-        isp.gridy = 6;
-        initialSetupPanel.add(is.submitButton, isp);
-        is.submitButton.addActionListener(this);
-        is.add(initialSetupPanel);
+        is.submitButton.addActionListener(this);//the submit button during initial setup
 
 /*
         userPanel.add(commentCreateButton); //adds a button to the userPanel to the create comment dialog
