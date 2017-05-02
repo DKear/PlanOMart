@@ -128,7 +128,8 @@ public class SaleItemTest {
             Assertions.assertTrue(test);
         }
         Assertions.assertTrue(test);
-    }*/
+    }
+    */
     @Test
     public void getSaleDescriptionTest() {
         SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");

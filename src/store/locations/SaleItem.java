@@ -50,10 +50,11 @@ public class SaleItem {
         }
 
     }
+    */
     public double getSalePrice() {
         return salePrice;
     }
-*/
+
     public void setSalePrice(Double d){
         df.format(d);
         salePrice = d;}
