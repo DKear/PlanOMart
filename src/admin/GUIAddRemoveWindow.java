@@ -4,6 +4,7 @@ import admin.add.remove.panels.AdminAddRemovePanelBottom;
 import admin.add.remove.panels.AdminAddRemovePanelTop;
 import admin.main.panels.AdminMainBodyPanel;
 import net.miginfocom.swing.MigLayout;
+import store.locations.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,10 +15,10 @@ public class GUIAddRemoveWindow extends JDialog {
     private AdminAddRemovePanelTop adminAddRemovePanelTop;
     public AdminAddRemovePanelBottom adminAddRemovePanelBottom;
 
-    public GUIAddRemoveWindow() {
+    public GUIAddRemoveWindow(Store store) {
         setSize(new Dimension(1024, 512));
 
-        adminAddRemovePanelTop = new AdminAddRemovePanelTop();
+        adminAddRemovePanelTop = new AdminAddRemovePanelTop(store);
 
         adminAddRemovePanelBottom = new AdminAddRemovePanelBottom();
 
@@ -29,7 +30,7 @@ public class GUIAddRemoveWindow extends JDialog {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    public void setObjectTable(JTable objectTable) {
-        adminAddRemovePanelTop.setObjectTable(objectTable);
-    }
+//    public void setObjectTable(JTable objectTable) {
+//        adminAddRemovePanelTop.setObjectTable(objectTable);
+//    }
 }

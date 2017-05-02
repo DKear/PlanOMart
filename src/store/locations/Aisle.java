@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public class Aisle {
     public String aisleName;
-    private ArrayList<Rack> racks;
-    private ArrayList<String> tags;
+    public ArrayList<Rack> racks;
+    public ArrayList<String> tags;
     public Section section;
 
     public Aisle(String n) {
         aisleName = n;
-        racks = new ArrayList<Rack>();
-        tags = new ArrayList<String>();
+        racks = new ArrayList<>();
+        tags = new ArrayList<>();
     }
 
 
@@ -63,6 +63,7 @@ public class Aisle {
         rackArray = racks.toArray(rackArray);
         return rackArray;
     }
+
     public void setSection(Section s){
         section = s;
     }

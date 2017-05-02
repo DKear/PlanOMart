@@ -1,6 +1,7 @@
 import UserSide.GUICreateComments;
 import UserSide.GUIUserMain;
 import admin.*;
+import admin.add.remove.panels.AdminAddRemovePanelTop;
 import admin.main.panels.AdminMainBottomPanel;
 import admin.main.panels.GUIPasswordChange;
 import store.locations.*;
@@ -10,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
 import java.util.Arrays;
+import java.util.Objects;
 
 
 public class GUI implements ActionListener {
@@ -86,7 +88,7 @@ public class GUI implements ActionListener {
 
         //adminPanel.adminEditBottomPanel();
 
-        adminPanel = new GUIAdminMain();
+        adminPanel = new GUIAdminMain(store);
         adminPanel.adminEditBottomPanel.switchUserButton.addActionListener(this);
         adminPanel.adminEditBottomPanel.editButton.addActionListener(this);
         /*adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addActionListener(new ActionListener(){
@@ -97,8 +99,10 @@ public class GUI implements ActionListener {
             }
         });*/
 
-        JPanel userPanel = new JPanel();
+        GUIUserMain userPanel = new GUIUserMain();
 
+        //Changing the userPanel so this is commented out
+/*
         userPanel.setLayout(new GridBagLayout());
         GridBagConstraints u = new GridBagConstraints();
         u.weightx = u.weighty = 1;
@@ -111,7 +115,7 @@ public class GUI implements ActionListener {
         u.gridy = 0;
         u.anchor = GridBagConstraints.FIRST_LINE_START;
         userPanel.add(userSwitchButton, u);
-
+*/
 
         cards = new JPanel(new CardLayout());
         cards.add(openingPanel, OPENINGPANEL);
@@ -323,8 +327,10 @@ public class GUI implements ActionListener {
         is.submitButton.addActionListener(this);
         is.add(initialSetupPanel);
 
+/*
         userPanel.add(commentCreateButton); //adds a button to the userPanel to the create comment dialog
         commentCreateButton.addActionListener(this);// allows the button to do above on click
+*/
 
         //writing listener so on click will do the event in this class too
         //this will add an item
@@ -408,6 +414,7 @@ public class GUI implements ActionListener {
             pw.setVisible(true);
         }
         if (e.getSource() == openingUserButton) {
+
             cl.show(cards, USERPANEL);
         }
         if (e.getSource() == userSwitchButton || e.getSource() == adminPanel.adminEditBottomPanel.switchUserButton) {
@@ -420,9 +427,6 @@ public class GUI implements ActionListener {
         }
 
 
-        if (e.getSource() == commentCreateButton) {
-            createCustomComments.setVisible(true);
-        }
 
         if (e.getSource() == pw.submitButton) {
             passwordInput = pw.passwordField.getPassword();

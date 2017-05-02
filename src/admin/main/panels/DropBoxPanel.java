@@ -33,7 +33,7 @@ public class DropBoxPanel extends JPanel {
 
     private JButton searchButton;
 
-    DropBoxPanel() {
+    public DropBoxPanel() {
         setBorder(new BevelBorder(BevelBorder.RAISED));
         searchField = new JTextField("Search");
         searchField.setPreferredSize(new Dimension(300, 50));
