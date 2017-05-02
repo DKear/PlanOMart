@@ -3,9 +3,7 @@ package admin;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class GUIAddRackDialog extends JDialog {
     private JLabel rackNameLabel = new JLabel("Place rack name here:");

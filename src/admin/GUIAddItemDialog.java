@@ -1,21 +1,14 @@
 package admin;
 
 import net.miginfocom.swing.MigLayout;
-import store.locations.*;
 import javax.swing.*;
-import javax.swing.text.NumberFormatter;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.text.Format;
-import java.text.NumberFormat;
 
 public class GUIAddItemDialog extends JDialog {
-    private JLabel itemNameLabel = new JLabel("Place item name here:");
+    private JLabel itemNameLabel = new JLabel("Place item brand name then item name here, Ex Vans Shoes");
     public JTextField itemNameField = new JTextField();
     private JLabel itemPriceLabel = new JLabel("Enter item price here in the format of #.##:");
     public JTextField itemPriceField = new JTextField();
-    private JLabel itemBrandLabel = new JLabel("Enter item brand here:");
-    public JTextField itemBrandField = new JTextField();
     private JLabel itemDescriptionLabel = new JLabel("Enter item description here");
     public JTextField itemDescriptionField = new JTextField();
     private JLabel locationLabel = new JLabel("Location of Item:");
@@ -34,10 +27,8 @@ public class GUIAddItemDialog extends JDialog {
         //Constructing and designing itemName stuff
         itemNameField.setPreferredSize(new Dimension(300, 50));
         itemPriceField.setPreferredSize(new Dimension(300, 50));
-        itemBrandField.setPreferredSize((new Dimension(300, 50)));
         itemDescriptionField.setPreferredSize(new Dimension(300, 50));
         itemTagField.setPreferredSize(new Dimension(300, 50));
-
 
         //Constructing and designing sectionDropBox
         sectionDropBox = new JComboBox<>();
@@ -68,18 +59,16 @@ public class GUIAddItemDialog extends JDialog {
         panel.add(itemNameField, "cell 3 0");
         panel.add(itemPriceLabel, "cell 2 1");
         panel.add(itemPriceField, "cell 3 1");
-        panel.add(itemBrandLabel, "cell 2 2");
-        panel.add(itemBrandField, "cell 3 2");
-        panel.add(itemDescriptionLabel, "cell 2 3");
-        panel.add(itemDescriptionField, "cell 3 3");
-        panel.add(itemTagLabel, "cell 2 4");
-        panel.add(itemTagField, "cell 3 4");
+        panel.add(itemDescriptionLabel, "cell 2 2");
+        panel.add(itemDescriptionField, "cell 3 2");
+        panel.add(itemTagLabel, "cell 2 3");
+        panel.add(itemTagField, "cell 3 3");
         panel.add(locationLabel, "cell 0 0");
         panel.add(sectionDropBox, "cell 1 0");
         panel.add(aisleDropBox, "cell 1 1");
         panel.add(rackDropBox, "cell 1 2");
         panel.add(shelfDropBox, "cell 1 3");
-        panel.add(submitButton,"cell 3 5");
+        panel.add(submitButton,"cell 3 4");
 
         add(panel);
         setModalityType(Dialog.ModalityType.APPLICATION_MODAL);

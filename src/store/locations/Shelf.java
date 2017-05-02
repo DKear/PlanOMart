@@ -2,9 +2,6 @@ package store.locations;
 
 import java.util.ArrayList;
 
-/**
- * Created by joshu on 2/24/2017.
- */
 public class Shelf {
     public String rowName;
     private ArrayList<SaleItem> products;
@@ -84,10 +81,6 @@ public class Shelf {
     }
 
     public boolean validateShelf() {
-        if (!this.getRowName().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+        return !this.getRowName().equals("");
     }
 }

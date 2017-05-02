@@ -1,7 +1,5 @@
 package admin;
 
-import sun.plugin.javascript.navig.Anchor;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,9 +7,6 @@ import static java.awt.GridBagConstraints.CENTER;
 import static java.awt.GridBagConstraints.LINE_END;
 import static java.awt.GridBagConstraints.LINE_START;
 
-/**
- * Created by Jamie on 4/25/2017.
- */
 public class GUIEditPanel extends JPanel {
     public JTextField editNameField;
     public JButton editNameButton;

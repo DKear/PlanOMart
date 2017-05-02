@@ -10,8 +10,8 @@ public class Aisle {
 
     public Aisle(String n) {
         aisleName = n;
-        racks = new ArrayList<Rack>();
-        tags = new ArrayList<String>();
+        racks = new ArrayList<>();
+        tags = new ArrayList<>();
     }
 
 
@@ -20,7 +20,6 @@ public class Aisle {
     }
 
     public String getAisleDisplayName(){ return section.getSectionName() + " " + aisleName; }
-
 
     //public String getEditedName(){return section.getSectionName();}
 
@@ -38,11 +37,7 @@ public class Aisle {
         return nameArray;
     }
     public boolean hasRacks() {
-        if (racks.size() == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return !racks.isEmpty();
     }
 
     public boolean addRack(Rack r) {
@@ -95,10 +90,6 @@ public class Aisle {
     }
 
     public boolean validateAisle() {
-        if (!this.getAisleName().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+        return !this.getAisleName().equals("");
     }
 }

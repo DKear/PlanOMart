@@ -1,9 +1,7 @@
 package store.locations;
 
 import java.util.ArrayList;
-/**
- * Created by Jamie on 2/23/2017.
- */
+
 public class Store {
     public String storeName;
     public ArrayList<Section> sections;
@@ -18,11 +16,7 @@ public class Store {
     }
 
     public boolean hasSections(){
-        if(sections.size()==0){
-            return false;
-        } else {
-            return true;
-        }
+        return !sections.isEmpty();
     }
 
     public boolean addSection(Section s){
