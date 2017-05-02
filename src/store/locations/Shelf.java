@@ -33,13 +33,9 @@ public class Shelf {
         return products.size();
     }
     public SaleItem[] getItemsOnShelf() {
-        if (!products.isEmpty()) {
-            SaleItem[] itemsOnShelf = new SaleItem[products.size()];
-            itemsOnShelf = products.toArray(itemsOnShelf);
-            return itemsOnShelf;
-        } else {
-            throw new ArrayStoreException();
-        }
+        SaleItem[] itemsOnShelf = new SaleItem[products.size()];
+        itemsOnShelf = products.toArray(itemsOnShelf);
+        return itemsOnShelf;
     }
     public boolean addItem(SaleItem i) {
         return products.add(i);

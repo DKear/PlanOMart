@@ -2,6 +2,7 @@ import UserSide.GUICreateComments;
 import UserSide.GUIUserMain;
 import admin.*;
 import admin.main.panels.AdminMainBottomPanel;
+import admin.main.panels.GUIEditMerch;
 import admin.main.panels.GUIPasswordChange;
 import store.locations.*;
 
@@ -9,6 +10,7 @@ import javax.swing.*;
 
 import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 
@@ -40,6 +42,7 @@ public class GUI implements ActionListener {
     public Aisle aisle;
     public Rack rack;
     public Shelf shelf;
+    public SaleItem item;
     public GUIAdminMain adminPanel;
     public JComboBox<String> editSectionComboBox;
     public JButton editSectionButton;
@@ -50,6 +53,10 @@ public class GUI implements ActionListener {
     public JComboBox editShelfComboBox;
     public JButton editShelfButton;
     public JPanel adminEditLocation;
+    public JPanel adminEditMerchPanel;
+    public JComboBox editMerchCombobox;
+    public JButton editMerchButton;
+    public JButton merchReturn;
     public JButton editReturn;
     public GUIEditPanel es;
     public GUIEditPanel ea;
@@ -57,6 +64,8 @@ public class GUI implements ActionListener {
     public GUIEditPanel esh;
     public String selected;
     public static GUIUserMain guiUserMain;
+    public GUIEditMerch em;
+    //    private GUIAddItemDialog addItemDialog;
     public GUIPasswordChange pc;
     public GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
@@ -218,10 +227,30 @@ public class GUI implements ActionListener {
         adminEditCard.add(adminEditLocation, "Locations");
 
 
-        JPanel adminEditMerchandise = new JPanel();
+        adminEditMerchPanel = new JPanel();
+        adminEditMerchPanel.setLayout(new GridBagLayout());
+        GridBagConstraints aem = new GridBagConstraints();
+        aem.gridx = aem.gridy = 0;
+        editMerchCombobox = new JComboBox();
+        adminEditMerchPanel.add(editMerchCombobox, aem);
+        aem.gridx = 1;
+        editMerchButton = new JButton("Edit merchandise");
+        editMerchButton.addActionListener(this);
+        adminEditMerchPanel.add(editMerchButton, aem);
+        aem.gridx = 0;
+        aem.gridy = 1;
+        aem.gridwidth = 2;
+        merchReturn = new JButton("Return");
+        merchReturn.addActionListener(this);
+        adminEditMerchPanel.add(merchReturn, aem);
 
-        adminEditCard.add(adminEditMerchandise, "Merchandise");
-
+        em = new GUIEditMerch();
+        em.saleButton.addActionListener(this);
+        em.backButton.addActionListener(this);
+        em.merchPriceField.addActionListener(this);
+        em.merchNameSubmit.addActionListener(this);
+        em.merchAddTagSubmit.addActionListener(this);
+        em.saleDescriptionSubmit.addActionListener(this);
 
         es = new GUIEditPanel();
         es.editNameButton.addActionListener(this);
@@ -256,6 +285,8 @@ public class GUI implements ActionListener {
         adminEditCard.add(er, "Edit Rack");
         adminEditCard.add(esh, "Edit Shelf");
         adminEditCard.add(pc, "Change password");
+        adminEditCard.add(adminEditMerchPanel, "Merchandise");
+        adminEditCard.add(em, "Edit Merchandise");
 
         ae.add(adminEditCard);
 
@@ -345,6 +376,7 @@ public class GUI implements ActionListener {
         addAisleDialog.submitButton.addActionListener(this);
         addSectionDialog.submitButton.addActionListener(this);
     }
+
     public void reloadAddSectionDropBoxes() {
         addItemDialog.sectionDropBox.removeAllItems();
         addItemDialog.sectionDropBox.addItem("Select a Section...");
@@ -554,11 +586,13 @@ public class GUI implements ActionListener {
             }
         }
 
-        if (e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton || e.getSource() == pc.backButton) {
+        if (e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton || e.getSource() == pc.backButton || e.getSource() == merchReturn || e.getSource() == em.backButton) {
+
             es.removeTagComboBox.removeAllItems();
             ea.removeTagComboBox.removeAllItems();
             er.removeTagComboBox.removeAllItems();
             esh.removeTagComboBox.removeAllItems();
+            em.merchRemoveTagBox.removeAllItems();
             ecl.show(adminEditCard, "Edit");
         }
 
@@ -741,6 +775,61 @@ public class GUI implements ActionListener {
                 }
             }
 
+        if(e.getSource() == editMerchButton){
+            selected = editMerchCombobox.getSelectedItem().toString();
+            for (int i = 0; i < store.getSections().length; i++){
+                section = store.sections.get(i);
+                for(int j = 0; j < section.getAisles().length; j++){
+                    aisle = section.getAisles()[j];
+                    for (int k = 0; k < aisle.getRack().length; k++ ){
+                        rack = aisle.getRack()[k];
+                        for(int l = 0; l <rack.getShelf().length; l++){
+                            shelf = rack.getShelf()[l];
+                            for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                                if(shelf.getItemsOnShelf()[m].getName().equals(selected)){
+                                    item = shelf.getItemsOnShelf()[m];
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+            for(int i = 0; i < item.getTags().length; i++){
+                em.merchRemoveTagBox.addItem(item.getTags()[i]);
+            }
+            em.merchNameField.setText(item.getName());
+            em.merchPriceField.setText(String.valueOf(item.getPrice()));
+            em.merchSalePriceField.setText(String.valueOf(item.getSalePrice()));
+            if(item.onSale()){
+                em.saleButton.setSelected(true);
+            } else{
+                em.saleButton.setSelected(false);
+            }
+            ecl.show(adminEditCard, "Edit Merchandise");
+
+        }
+
+        if (e.getSource() == em.saleButton){
+            if (em.saleButton.isSelected()){
+                item.setSaleTrue();
+            } else{
+                item.setSaleFalse();
+            }
+        }
+
+        if(e.getSource() == em.merchNameSubmit){
+            String newName = em.merchNameField.getText();
+            item.setName(newName);
+        }
+
+        if(e.getSource() == em.merchPriceSubmit){
+            Double newPrice = Double.parseDouble(em.merchSalePriceField.getText());
+            DecimalFormat df = new DecimalFormat("#.##");
+            df.format(newPrice);
+            item.setPrice(newPrice);
+        }
+
         //starts methods for adding an item
         if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
             reloadAddSectionDropBoxes();
@@ -812,6 +901,7 @@ public class GUI implements ActionListener {
             }
             String desc = addItemDialog.itemDescriptionField.getText();
             SaleItem newItem = new SaleItem(price, name, desc);
+            editMerchCombobox.addItem(name);
             String tagsTogether = addItemDialog.itemTagField.getText();
             if (!tagsTogether.equals("")) { //adds tags if there are any
                 String[] allTags = tagsTogether.split(", ");
@@ -1080,6 +1170,8 @@ public class GUI implements ActionListener {
                     if (fcheck == false) {
                         store.addSection(newSection);
                         newSection.setStore(store);
+                        editSectionComboBox.addItem(newSection.getSectionName());
+                        adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(newSection.getSectionName());
                         addSectionDialog.sectionNameField.setText("");
                         addSectionDialog.sectionTagField.setText("");
                         addSectionDialog.setVisible(false);

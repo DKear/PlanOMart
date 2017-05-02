@@ -8,6 +8,7 @@ public class SaleItem {
     private String name = "";
     private String description = "";
     private ArrayList<String> tags;
+    private boolean sale = false;
     private double salePrice;
     private String saleDescription = "";
     private Shelf shelf;
@@ -93,5 +94,20 @@ public class SaleItem {
     public boolean validateItem() {
         return !(this.getPrice() <= 0 || this.getName().equals("") || this.getDescription().equals(""));
     }
+    public boolean onSale(){
+        return sale;
+    }
 
+    public void setSaleTrue(){
+        sale = true;
+    }
+    public void setSaleFalse(){
+        sale = false;
+    }
+    public void setName(String s){
+        name = s;
+    }
+    public void setPrice(Double d){
+        price = d;
+    }
 }
