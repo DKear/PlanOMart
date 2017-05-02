@@ -1,7 +1,6 @@
 import UserSide.GUICreateComments;
 import UserSide.GUIUserMain;
 import admin.*;
-import admin.add.remove.panels.AdminAddRemovePanelTop;
 import admin.main.panels.AdminMainBottomPanel;
 import admin.main.panels.GUIEditMerch;
 import admin.main.panels.GUIPasswordChange;
@@ -13,7 +12,6 @@ import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
 import java.text.DecimalFormat;
 import java.util.Arrays;
-import java.util.Objects;
 
 
 public class GUI implements ActionListener {
@@ -33,7 +31,8 @@ public class GUI implements ActionListener {
     private JButton openingUserButton;
     private JButton openingAdminButton;
     private Boolean storeExists = false;
-    private GUIPassword pw = new GUIPassword();
+    private JPanel passwordPanel;
+    private GUIPassword pw;
     private char[] passwordInput;
     public Store store;
     public Section section;
@@ -106,22 +105,6 @@ public class GUI implements ActionListener {
         });*/
 
         GUIUserMain userPanel = new GUIUserMain();
-
-        //Changing the userPanel so this is commented out
-/*
-        userPanel.setLayout(new GridBagLayout());
-        GridBagConstraints u = new GridBagConstraints();
-        u.weightx = u.weighty = 1;
-        u.gridx = 0;
-        u.gridy = 1;
-        u.anchor = GridBagConstraints.PAGE_START;
-        userPanel.add(new JLabel("User"), u);
-        u.weightx = u.weighty = 0;
-        u.gridx = 0;
-        u.gridy = 0;
-        u.anchor = GridBagConstraints.FIRST_LINE_START;
-        userPanel.add(userSwitchButton, u);
-*/
 
         cards = new JPanel(new CardLayout());
         cards.add(openingPanel, OPENINGPANEL);
@@ -294,16 +277,25 @@ public class GUI implements ActionListener {
 
         ae.add(adminEditCard);
 
-        pw.submitButton.addActionListener(this);//after password is entered submit button
+        passwordPanel = new JPanel();
+        passwordPanel.setLayout(new GridBagLayout());
+        GridBagConstraints pwc = new GridBagConstraints();
+        pw = new GUIPassword();
+        pwc.gridx = pwc.gridy = 0;
+        passwordPanel.add(new JLabel("Enter password (default is 'PlanOMart') "), pwc);
+        pwc.gridy = 1;
+        passwordPanel.add(pw.passwordField, pwc);
+        pwc.gridy = 2;
+        passwordPanel.add(pw.submitButton, pwc);
+        pw.submitButton.addActionListener(this);
+        pw.add(passwordPanel);
 
         guiUserMain = new GUIUserMain();
 
-        is.submitButton.addActionListener(this);//the submit button during initial setup
+        is.submitButton.addActionListener(this);
 
-/*
         userPanel.add(commentCreateButton); //adds a button to the userPanel to the create comment dialog
         commentCreateButton.addActionListener(this);// allows the button to do above on click
-*/
 
         //writing listener so on click will do the event in this class too
         //this will add an item
@@ -392,7 +384,6 @@ public class GUI implements ActionListener {
             pw.setVisible(true);
         }
         if (e.getSource() == openingUserButton) {
-
             cl.show(cards, USERPANEL);
         }
         if (e.getSource() == userSwitchButton || e.getSource() == adminPanel.adminEditBottomPanel.switchUserButton) {
@@ -405,6 +396,9 @@ public class GUI implements ActionListener {
         }
 
 
+        if (e.getSource() == commentCreateButton) {
+            createCustomComments.setVisible(true);
+        }
 
         if (e.getSource() == pw.submitButton) {
             passwordInput = pw.passwordField.getPassword();
@@ -902,6 +896,7 @@ public class GUI implements ActionListener {
                         reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Item already exists on shelf.");
+                        fcheck = false;
                     }
                 } else { //if it's a valid item and no other items are on the shelf, it adds it immediately
                     store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex].addItem(newItem);
@@ -987,6 +982,7 @@ public class GUI implements ActionListener {
                         reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Shelf already exists on Rack.");
+                        fcheck = false;
                     }
                 } else {//if it's a valid shelf and no other shelves are in the rack, it adds it immediately
                     store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].addShelf(newShelf);
@@ -1056,6 +1052,7 @@ public class GUI implements ActionListener {
                         reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Rack already exists in Aisle.");
+                        fcheck = false;
                     }
                 } else { //if it's a valid rack and no other racks are in the aisle, it adds it immediately
                     store.getSections()[sectionIndex].getAisles()[aisleIndex].addRack(newRack);
@@ -1107,6 +1104,7 @@ public class GUI implements ActionListener {
                         reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Aisle already exists in Section.");
+                        fcheck = false;
                     }
                 } else { //if it's a valid aisle and no other aisles are in that section, it adds it immediately
                     store.getSections()[sectionIndex].addAisle(newAisle);
@@ -1154,6 +1152,7 @@ public class GUI implements ActionListener {
                         reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Section already exists in Store.");
+                        fcheck = false;
                     }
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Make sure the name is filled out.");
