@@ -247,10 +247,13 @@ public class GUI implements ActionListener {
         em = new GUIEditMerch();
         em.saleButton.addActionListener(this);
         em.backButton.addActionListener(this);
-        em.merchPriceField.addActionListener(this);
+        em.merchRemoveTagBox.addActionListener(this);
+        em.merchPriceSubmit.addActionListener(this);
         em.merchNameSubmit.addActionListener(this);
         em.merchAddTagSubmit.addActionListener(this);
-        em.saleDescriptionSubmit.addActionListener(this);
+        em.merchRemoveSubmit.addActionListener(this);
+        em.merchSaleSubmit.addActionListener(this);
+        em.merchEditDescriptionSubmit.addActionListener(this);
 
         es = new GUIEditPanel();
         es.editNameButton.addActionListener(this);
@@ -399,6 +402,7 @@ public class GUI implements ActionListener {
         editAisleComboBox.removeAllItems();
         editRackComboBox.removeAllItems();
         editShelfComboBox.removeAllItems();
+        editMerchCombobox.removeAllItems();
         adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.removeAllItems();
         adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem("Select section...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.removeAllItems();
@@ -423,6 +427,9 @@ public class GUI implements ActionListener {
                         shelf = rack.getShelf()[l];
                         editShelfComboBox.addItem(shelf.getRowDisplayName());
                         adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
+                        for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                            editMerchCombobox.addItem(item.getName());
+                        }
                     }
                 }
             }
@@ -795,12 +802,14 @@ public class GUI implements ActionListener {
                     }
                 }
             }
-            for(int i = 0; i < item.getTags().length; i++){
-                em.merchRemoveTagBox.addItem(item.getTags()[i]);
+            for(int i = 0; i < item.getTags().size(); i++){
+                em.merchRemoveTagBox.addItem(item.getTagsArray()[i]);
             }
             em.merchNameField.setText(item.getName());
             em.merchPriceField.setText(String.valueOf(item.getPrice()));
             em.merchSalePriceField.setText(String.valueOf(item.getSalePrice()));
+            em.saleDescriptionField.setText(item.getSaleDescription());
+            em.merchEditDescriptionField.setText(item.getDescription());
             if(item.onSale()){
                 em.saleButton.setSelected(true);
             } else{
@@ -821,13 +830,36 @@ public class GUI implements ActionListener {
         if(e.getSource() == em.merchNameSubmit){
             String newName = em.merchNameField.getText();
             item.setName(newName);
+            reloadComboBoxes();
         }
 
         if(e.getSource() == em.merchPriceSubmit){
-            Double newPrice = Double.parseDouble(em.merchSalePriceField.getText());
-            DecimalFormat df = new DecimalFormat("#.##");
-            df.format(newPrice);
+            Double newPrice = Double.parseDouble(em.merchPriceField.getText());
             item.setPrice(newPrice);
+        }
+
+        if (e.getSource() == em.merchAddTagSubmit){
+            item.addTag(em.merchAddTagField.getText());
+            em.merchRemoveTagBox.addItem(em.merchAddTagField.getText());
+            em.merchAddTagField.setText("");
+        }
+
+        if (e.getSource() == em.merchRemoveSubmit) {
+            for (int i = 0; i < item.getTags().size(); i++) {
+                if (em.merchRemoveTagBox.getSelectedItem().toString().equals(item.getTagsArray()[i])) {
+                    item.removeTag(em.merchRemoveTagBox.getSelectedItem().toString());
+                    em.merchRemoveTagBox.removeItem(em.merchRemoveTagBox.getSelectedItem().toString());
+                }
+            }
+        }
+
+        if(e.getSource() == em.merchEditDescriptionSubmit){
+            item.setDescription(em.merchEditDescriptionField.getText());
+        }
+
+        if (e.getSource() == em.merchSaleSubmit){
+            item.setSalePrice(Double.parseDouble(em.merchSalePriceField.getText()));
+            item.setSaleDescription(em.saleDescriptionField.getText());
         }
 
         //starts methods for adding an item

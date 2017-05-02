@@ -31,14 +31,13 @@ public class SaleItem {
         return name;
     }
 
-    public String[] getTags() {
-        if(!tags.isEmpty()) {
-            String[] theTags = new String[tags.size()];
-            theTags = tags.toArray(theTags);
-            return theTags;
-        } else {
-            throw new ArrayStoreException();
-        }
+    public ArrayList<String> getTags(){
+        return tags;
+    }
+    public Object[] getTagsArray(){
+        Object[] tagArray;
+        tagArray = tags.toArray();
+        return tagArray;
     }
 
 /*    public void setSalePercentage(int salePercentage) {
@@ -55,6 +54,10 @@ public class SaleItem {
         return salePrice;
     }
 */
+    public void setSalePrice(Double d){
+        df.format(d);
+        salePrice = d;}
+
     public void setSaleDescription(String sD) {
         if (!sD.equals("")) {
             saleDescription = sD;
@@ -66,6 +69,8 @@ public class SaleItem {
     public String getSaleDescription() {
         return saleDescription;
     }
+
+    public void setDescription(String s){description = s;}
 
     public String getDescription() {
         return description;
@@ -108,6 +113,7 @@ public class SaleItem {
         name = s;
     }
     public void setPrice(Double d){
+        df.format(d);
         price = d;
     }
 }
