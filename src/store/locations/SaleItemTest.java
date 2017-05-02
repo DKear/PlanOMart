@@ -69,7 +69,7 @@ public class SaleItemTest {
         SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
         String tag = "sliced";
         bread.addTag(tag);
-        Assertions.assertTrue(bread.getTags()[0].equals("sliced"));
+        Assertions.assertTrue(bread.getTagsArray()[0].equals("sliced"));
     }
 
     @Test

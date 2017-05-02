@@ -23,7 +23,7 @@ public class GUIEditPanel extends JPanel {
     public GUIEditPanel(){
 
         this.setLayout(new GridBagLayout());
-        setPreferredSize(new Dimension(800,600));
+        setPreferredSize(new Dimension(800,700));
         editNameField = new JTextField(20);
         editNameButton = new JButton("Submit");
         addTagsField = new JTextField(10);
