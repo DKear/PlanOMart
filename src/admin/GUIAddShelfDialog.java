@@ -5,9 +5,6 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by joshu on 4/29/2017.
- */
 public class GUIAddShelfDialog extends JDialog {
 
     private JLabel shelfNameLabel = new JLabel("Place shelf row/name here:");

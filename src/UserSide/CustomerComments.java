@@ -1,8 +1,5 @@
 package UserSide;
 
-/**
- * Created by joshu on 4/11/2017.
- */
 public class CustomerComments {
     private String subject, comment, contact;
 
@@ -26,10 +23,6 @@ public class CustomerComments {
     }
 
     public boolean validateComment(CustomerComments c) {
-        if (c.getSubject().equals("") || c.getComment().equals(""))  {
-            return false;
-        } else {
-            return true;
-        }
+        return !(c.getSubject().equals("") || c.getComment().equals(""));
     }
 }

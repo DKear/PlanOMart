@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.util.Arrays;
 
 public class GUIPassword extends JDialog {

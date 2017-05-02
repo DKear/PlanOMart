@@ -2,9 +2,6 @@ package store.locations;
 
 import java.util.ArrayList;
 
-/**
- * Created by joshu on 2/24/2017.
- */
 public class Shelf {
     public String rowName;
     private ArrayList<SaleItem> products;
@@ -36,13 +33,9 @@ public class Shelf {
         return products.size();
     }
     public SaleItem[] getItemsOnShelf() {
-        if (!products.isEmpty()) {
-            SaleItem[] itemsOnShelf = new SaleItem[products.size()];
-            itemsOnShelf = products.toArray(itemsOnShelf);
-            return itemsOnShelf;
-        } else {
-            throw new ArrayStoreException();
-        }
+        SaleItem[] itemsOnShelf = new SaleItem[products.size()];
+        itemsOnShelf = products.toArray(itemsOnShelf);
+        return itemsOnShelf;
     }
     public boolean addItem(SaleItem i) {
         return products.add(i);
@@ -84,10 +77,6 @@ public class Shelf {
     }
 
     public boolean validateShelf() {
-        if (!this.getRowName().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+        return !this.getRowName().equals("");
     }
 }

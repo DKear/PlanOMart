@@ -5,11 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Created by Jamie on 2/24/2017.
- */
-
-
 class StoreTest {
     @Test
     public void storeNameTest(){

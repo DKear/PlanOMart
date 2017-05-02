@@ -2,14 +2,11 @@ package admin;
 
 import admin.add.remove.panels.AdminAddRemovePanelBottom;
 import admin.add.remove.panels.AdminAddRemovePanelTop;
-import admin.main.panels.AdminMainBodyPanel;
 import net.miginfocom.swing.MigLayout;
 import store.locations.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class GUIAddRemoveWindow extends JDialog {
     private AdminAddRemovePanelTop adminAddRemovePanelTop;
