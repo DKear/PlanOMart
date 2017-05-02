@@ -65,7 +65,7 @@ public class GUI implements ActionListener {
     public String selected;
     public static GUIUserMain guiUserMain;
     public GUIEditMerch em;
-//    private GUIAddItemDialog addItemDialog;
+    //    private GUIAddItemDialog addItemDialog;
     public GUIPasswordChange pc;
     public GUIAddItemDialog addItemDialog;
     private JButton commentCreateButton = new JButton("Comment");
@@ -289,7 +289,7 @@ public class GUI implements ActionListener {
         adminEditCard.add(esh, "Edit Shelf");
         adminEditCard.add(pc, "Change password");
         adminEditCard.add(adminEditMerchPanel, "Merchandise");
-        adminEditCard.add(em , "Edit Merchandise");
+        adminEditCard.add(em, "Edit Merchandise");
 
         ae.add(adminEditCard);
 
@@ -379,6 +379,7 @@ public class GUI implements ActionListener {
         addAisleDialog.submitButton.addActionListener(this);
         addSectionDialog.submitButton.addActionListener(this);
     }
+
     public void reloadAddSectionDropBoxes() {
         addItemDialog.sectionDropBox.removeAllItems();
         addItemDialog.sectionDropBox.addItem("Select a Section...");
@@ -593,7 +594,7 @@ public class GUI implements ActionListener {
             }
         }
 
-        if(e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton || e.getSource() == pc.backButton || e.getSource() == merchReturn || e.getSource() == em.backButton){
+        if (e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton || e.getSource() == pc.backButton || e.getSource() == merchReturn || e.getSource() == em.backButton) {
 
             es.removeTagComboBox.removeAllItems();
             ea.removeTagComboBox.removeAllItems();
@@ -767,9 +768,7 @@ public class GUI implements ActionListener {
             }
         }
 
-
-        if(e.getSource() == pc.changePasswordButton) {
-
+        if (e.getSource() == pc.changePasswordButton)
             if (pc.changePasswordField.getPassword().length == 0) {
                 JOptionPane.showMessageDialog(controllingContainer, "Enter a new password");
             } else {
@@ -783,7 +782,6 @@ public class GUI implements ActionListener {
 
                 }
             }
-        }
 
         if(e.getSource() == editMerchButton){
             selected = editMerchCombobox.getSelectedItem().toString();
@@ -934,9 +932,8 @@ public class GUI implements ActionListener {
             } else {
                 price = -1;
             }
-            String brand = addItemDialog.itemBrandField.getText();
             String desc = addItemDialog.itemDescriptionField.getText();
-            SaleItem newItem = new SaleItem(price, name, brand, desc);
+            SaleItem newItem = new SaleItem(price, name, desc);
             editMerchCombobox.addItem(name);
             String tagsTogether = addItemDialog.itemTagField.getText();
             if (!tagsTogether.equals("")) { //adds tags if there are any
@@ -952,20 +949,24 @@ public class GUI implements ActionListener {
             if (newItem.validateItem() && sectionIndex != -1 && aisleIndex != -1 && rackIndex != -1 && shelfIndex != -1) {//if it's a valid item
                 if (store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex].hasItems()) {//if other items are on the shelf
                     for (SaleItem s : store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex].getItemsOnShelf()) {
-                        boolean check = newItem.getName().equals(s.getName()) && newItem.getBrand().equals(s.getBrand());//checking to see if it already exists
+                        boolean check = newItem.getName().equals(s.getName());//checking to see if it already exists
                         fcheck = check || fcheck; //will return false unless an item with that name and brand already exists on the shelf
                     }
                     if (fcheck == false) {
                         store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex].addItem(newItem);
+                        newItem.setShelf(store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex]);
                         addItemDialog.setVisible(false);
                         addItemDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Item already exists on shelf.");
                     }
                 } else { //if it's a valid item and no other items are on the shelf, it adds it immediately
                     store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex].addItem(newItem);
+                    newItem.setShelf(store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex]);
                     addItemDialog.setVisible(false);
                     addItemDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    reloadComboBoxes();
                 }
             } else if (sectionIndex == -1) {
                 JOptionPane.showMessageDialog(controllingContainer, "Select a section first.");
@@ -1034,19 +1035,27 @@ public class GUI implements ActionListener {
                     }
                     if (fcheck == false) {
                         store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].addShelf(newShelf);
+                        newShelf.setRack(store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex]);
+                        newShelf.setAisle(store.getSections()[sectionIndex].getAisles()[aisleIndex]);
+                        newShelf.setSection(store.getSections()[sectionIndex]);
                         addShelfDialog.shelfNameField.setText("");
                         addShelfDialog.shelfTagField.setText("");
                         addShelfDialog.setVisible(false);
                         addShelfDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Shelf already exists on Rack.");
                     }
                 } else {//if it's a valid shelf and no other shelves are in the rack, it adds it immediately
                     store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].addShelf(newShelf);
+                    newShelf.setRack(store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex]);
+                    newShelf.setAisle(store.getSections()[sectionIndex].getAisles()[aisleIndex]);
+                    newShelf.setSection(store.getSections()[sectionIndex]);
                     addShelfDialog.shelfNameField.setText("");
                     addShelfDialog.shelfTagField.setText("");
                     addItemDialog.setVisible(false);
                     addItemDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    reloadComboBoxes();
                 }
             } else if (sectionIndex == -1) {
                 JOptionPane.showMessageDialog(controllingContainer, "Select a section first.");
@@ -1096,19 +1105,25 @@ public class GUI implements ActionListener {
                     }
                     if (fcheck == false) {
                         store.getSections()[sectionIndex].getAisles()[aisleIndex].addRack(newRack);
+                        newRack.setAisle(store.getSections()[sectionIndex].getAisles()[aisleIndex]);
+                        newRack.setSection(store.getSections()[sectionIndex]);
                         addRackDialog.rackNameField.setText("");
                         addRackDialog.rackTagField.setText("");
                         addRackDialog.setVisible(false);
                         addRackDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Rack already exists in Aisle.");
                     }
                 } else { //if it's a valid rack and no other racks are in the aisle, it adds it immediately
                     store.getSections()[sectionIndex].getAisles()[aisleIndex].addRack(newRack);
+                    newRack.setAisle(store.getSections()[sectionIndex].getAisles()[aisleIndex]);
+                    newRack.setSection(store.getSections()[sectionIndex]);
                     addRackDialog.rackNameField.setText("");
                     addRackDialog.rackTagField.setText("");
                     addRackDialog.setVisible(false);
                     addRackDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    reloadComboBoxes();
                 }
             } else if (sectionIndex == -1) {
                 JOptionPane.showMessageDialog(controllingContainer, "Select a section first.");
@@ -1142,19 +1157,23 @@ public class GUI implements ActionListener {
                     }
                     if (fcheck == false) {
                         store.getSections()[sectionIndex].addAisle(newAisle);
+                        newAisle.setSection(store.getSections()[sectionIndex]);
                         addAisleDialog.aisleNameField.setText("");
                         addAisleDialog.aisleTagField.setText("");
                         addAisleDialog.setVisible(false);
                         addAisleDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Aisle already exists in Section.");
                     }
                 } else { //if it's a valid aisle and no other aisles are in that section, it adds it immediately
                     store.getSections()[sectionIndex].addAisle(newAisle);
+                    newAisle.setSection(store.getSections()[sectionIndex]);
                     addAisleDialog.aisleNameField.setText("");
                     addAisleDialog.aisleTagField.setText("");
                     addAisleDialog.setVisible(false);
                     addAisleDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    reloadComboBoxes();
                 }
             } else if (sectionIndex == -1) {
                 JOptionPane.showMessageDialog(controllingContainer, "Select a section first.");
@@ -1169,7 +1188,6 @@ public class GUI implements ActionListener {
         if (e.getSource() == addSectionDialog.submitButton) {//making a new section with click of submit button
             String name = addSectionDialog.sectionNameField.getText();
             Section newSection = new Section(name);
-
             String tagsTogether = addSectionDialog.sectionTagField.getText();
             if (!tagsTogether.equals("")) { //adds tags if there are any
                 String[] allTags = tagsTogether.split(", ");
@@ -1184,12 +1202,14 @@ public class GUI implements ActionListener {
                     }
                     if (fcheck == false) {
                         store.addSection(newSection);
+                        newSection.setStore(store);
                         editSectionComboBox.addItem(newSection.getSectionName());
                         adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(newSection.getSectionName());
                         addSectionDialog.sectionNameField.setText("");
                         addSectionDialog.sectionTagField.setText("");
                         addSectionDialog.setVisible(false);
                         addSectionDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Section already exists in Store.");
                     }

@@ -46,11 +46,7 @@ public class Rack {
     }
 
     public boolean hasShelves() {
-        if (shelves.size() == 0) {
-            return false;
-        } else {
-            return true;
-        }
+       return !shelves.isEmpty();
     }
 
     public boolean addShelf(Shelf s) {
@@ -106,10 +102,6 @@ public class Rack {
     }
 
     public boolean validateRack() {
-        if (!this.getRackName().equals("")) {
-            return true;
-        } else {
-            return false;
-        }
+        return !this.getRackName().equals("");
     }
 }

@@ -1,13 +1,8 @@
 package admin.main.panels;
 
-import net.miginfocom.layout.Grid;
-
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by Jamie on 4/29/2017.
- */
 public class GUIPasswordChange extends JPanel {
     public JPasswordField changePasswordField;
     public JPasswordField changePasswordFieldVerify;

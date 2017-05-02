@@ -7,9 +7,7 @@ import org.junit.rules.ExpectedException;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-/**
- * Created by Jamie on 2/24/2017.
- */
+
 class SectionTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();

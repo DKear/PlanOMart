@@ -1,6 +1,4 @@
-package UserSide; /**
- * Created by joshu on 4/2/2017.
- */
+package UserSide;
 
 import javax.swing.*;
 import java.awt.*;

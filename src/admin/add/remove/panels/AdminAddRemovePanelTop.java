@@ -1,11 +1,9 @@
 package admin.add.remove.panels;
 
-import admin.main.panels.AdminMainBodyPanel;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import javax.swing.table.DefaultTableColumnModel;
 import java.awt.*;
 
 public class AdminAddRemovePanelTop extends JPanel {

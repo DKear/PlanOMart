@@ -1,6 +1,4 @@
-package UserSide; /**
- * Created by joshu on 4/11/2017.
- */
+package UserSide;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

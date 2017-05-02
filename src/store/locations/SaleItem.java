@@ -3,31 +3,24 @@ package store.locations;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-/**
- * Created by joshu on 2/24/2017.
- */
 public class SaleItem {
     private double price;
     private String name = "";
-    private String brand = "";
     private String description = "";
     private ArrayList<String> tags;
     private boolean sale = false;
     private double salePrice;
     private String saleDescription = "";
-    private ArrayList<Shelf> shelves;
+    private Shelf shelf;
     private DecimalFormat df = new DecimalFormat("#.##");
 
-
-    public SaleItem(double p, String n, String b, String d) {
+    public SaleItem(double p, String n, String d) {
             df.format(p);
             price = p;
             name = n;
-            brand = b;
             tags = new ArrayList<>();
             salePrice = price;
             description = d;
-            shelves = new ArrayList<>();
         }
 
     public double getPrice() {
@@ -36,10 +29,6 @@ public class SaleItem {
 
     public String getName() {
         return name;
-    }
-
-    public String getBrand() {
-        return brand;
     }
 
     public ArrayList<String> getTags(){
@@ -51,7 +40,7 @@ public class SaleItem {
         return tagArray;
     }
 
-    public void setSalePercentage(int salePercentage) {
+/*    public void setSalePercentage(int salePercentage) {
         if (salePercentage > 0) {
             double amountOff = salePercentage * .01 * price;
             amountOff = Double.parseDouble(df.format(amountOff));
@@ -61,9 +50,11 @@ public class SaleItem {
         }
 
     }
+    */
     public double getSalePrice() {
         return salePrice;
     }
+
     public void setSalePrice(Double d){
         df.format(d);
         salePrice = d;}
@@ -98,26 +89,16 @@ public class SaleItem {
         return tags.remove(t);
     }
 
-    public void setShelves(Shelf s){
-        shelves.add(s);
+    public void setShelf(Shelf s) {
+        shelf = s;
     }
 
-    public Shelf[] getShelvesWithItem(){
-        if(!shelves.isEmpty()) {
-            Shelf[] shelvesWithItem = new Shelf[shelves.size()];
-            shelvesWithItem = shelves.toArray(shelvesWithItem);
-            return shelvesWithItem;
-        } else {
-            throw new ArrayStoreException();
-        }
+    public Shelf getShelf(){
+        return shelf;
     }
 
     public boolean validateItem() {
-        if (this.getPrice() <= 0 || this.getName().equals("") || this.getBrand().equals("") || this.getDescription().equals("")) {
-            return false;
-        } else {
-            return true;
-        }
+        return !(this.getPrice() <= 0 || this.getName().equals("") || this.getDescription().equals(""));
     }
     public boolean onSale(){
         return sale;
