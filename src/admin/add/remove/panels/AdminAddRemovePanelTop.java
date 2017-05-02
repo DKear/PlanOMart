@@ -85,8 +85,7 @@ public class AdminAddRemovePanelTop extends JPanel {
         }
         objectList.repaint();
     }
-
-
+    
     //***Lambda Expression for Removing selected object from JList though the JComboBox
     public void removeButtonClicked(ActionEvent e) {
         String selectedValue = objectList.getSelectedValue();
