@@ -27,7 +27,7 @@ public class DropBoxPanel extends JPanel {
     private JLabel rackLabel;
     private JLabel shelfLabel;
 
-    private JButton searchButton;
+    public JButton searchButton;
 
     DropBoxPanel() {
         setBorder(new BevelBorder(BevelBorder.RAISED));

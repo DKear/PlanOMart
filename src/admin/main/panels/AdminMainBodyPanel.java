@@ -8,7 +8,8 @@ import java.awt.*;
 
 public class AdminMainBodyPanel extends JPanel{
 
-    private JTable returnField;
+    //private JTable returnField;
+    public JTextArea returnField;
     public DropBoxPanel dropBoxPanel;
 
     public AdminMainBodyPanel(){
@@ -31,18 +32,20 @@ public class AdminMainBodyPanel extends JPanel{
                         "Cya", 42
                 }
         };
-        returnField = new JTable(data, columns);
+        returnField = new JTextArea();
+        returnField.setLineWrap(true);
+        returnField.setWrapStyleWord(true);
         returnField.setFont(new Font("Arial", Font.PLAIN, 42));
-        returnField.setRowHeight(50);
+        returnField.setEditable(false);
 
         dropBoxPanel = new DropBoxPanel();
 
-        setLayout(new MigLayout("insets 0 0","[fill,75%][fill,25%]","[grow]"));
+        setLayout(new MigLayout("insets 0 0","[fill,70%][fill,30%]","[grow]"));
         add(returnField, "grow, span 4");
         add(dropBoxPanel, "grow");
     }
 
-    public JTable getReturnField() {
+    public JTextArea getReturnField() {
         return returnField;
     }
 }

@@ -98,6 +98,7 @@ public class GUI implements ActionListener {
         adminPanel = new GUIAdminMain();
         adminPanel.adminEditBottomPanel.switchUserButton.addActionListener(this);
         adminPanel.adminEditBottomPanel.editButton.addActionListener(this);
+        adminPanel.adminEditBottomPanel.adminPanel.dropBoxPanel.searchButton.addActionListener(this);
         /*adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if (adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedItem().equals(store.sections.get(adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedIndex()-1).getAisleNames(store.sections.get(adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedIndex()-1).getAisles()))){
@@ -861,6 +862,10 @@ public class GUI implements ActionListener {
         if (e.getSource() == em.merchSaleSubmit){
             item.setSalePrice(Double.parseDouble(em.merchSalePriceField.getText()));
             item.setSaleDescription(em.saleDescriptionField.getText());
+        }
+
+        if(e.getSource() == adminPanel.adminEditBottomPanel.adminPanel.dropBoxPanel.searchButton){
+
         }
 
         //starts methods for adding an item
