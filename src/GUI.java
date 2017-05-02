@@ -427,6 +427,7 @@ public class GUI implements ActionListener {
                         editShelfComboBox.addItem(shelf.getRowDisplayName());
                         adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
                         for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                            item = shelf.getItemsOnShelf()[m];
                             editMerchCombobox.addItem(item.getName());
                         }
                     }
