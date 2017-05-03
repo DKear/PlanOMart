@@ -46,13 +46,9 @@ public class UserDropBoxPanel extends JPanel{
         aisleLabel = new JLabel("Aisle: ");
         aisleLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         aisleDropbox = new JComboBox<>();
-<<<<<<< HEAD
         aisleDropbox.addItem("Select Aisle...");
 
 
-=======
-        aisleDropbox.addItem("Select an Aisle...");
->>>>>>> origin/master
         aisleDropbox.setPreferredSize(new Dimension(300, 50));
         aisleDropbox.setFont(new Font("Arial", Font.PLAIN, 16));
 
