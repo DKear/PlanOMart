@@ -7,16 +7,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-/**
- * Created by joshu on 4/19/2017.
- */
 public class GUIViewComments extends JDialog{
     private JButton deleteButton;
     private JButton viewCommentButton;
     private JPanel viewCustComm;
     private GridBagConstraints viewCommGrid; //layout used
     private DefaultListModel listOfCommentSubjects; //a pre-list for JList
-    private JList subjectList;//list populated by subjects of comments. Placed in scrollPane
+    private JList<String> subjectList;//list populated by subjects of comments. Placed in scrollPane
     private JScrollPane paneOfSubjects;
     private JLabel viewCommentLabel;//placed above scroll pane
     private ReadComment read = new ReadComment();
@@ -43,7 +40,7 @@ public class GUIViewComments extends JDialog{
         viewCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
         listOfCommentSubjects = new DefaultListModel();
         this.populateList();
-        subjectList = new JList(listOfCommentSubjects);
+        subjectList = new JList<>(listOfCommentSubjects);
         paneOfSubjects = new JScrollPane(subjectList);
         viewCommGrid.gridy = viewCommGrid.gridx = 0;
         viewCommentLabel = new JLabel("Subject of Messages. Click a subject then the View button to view the comment.");
