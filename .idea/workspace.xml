@@ -5,6 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PlanOMart/GUI$1.class" afterPath="$PROJECT_DIR$/out/production/PlanOMart/GUI$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PlanOMart/GUI.class" afterPath="$PROJECT_DIR$/out/production/PlanOMart/GUI.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI.java" afterPath="$PROJECT_DIR$/src/GUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserSide/UserDropBoxPanel.java" afterPath="$PROJECT_DIR$/src/UserSide/UserDropBoxPanel.java" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +22,8 @@
       <file leaf-file-name="GUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-962">
-              <caret line="340" column="43" lean-forward="false" selection-start-line="340" selection-start-column="43" selection-end-line="340" selection-end-column="43" />
+            <state relative-caret-position="233">
+              <caret line="1015" column="95" lean-forward="false" selection-start-line="1015" selection-start-column="95" selection-end-line="1015" selection-end-column="95" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,11 +76,11 @@
       <file leaf-file-name="UserDropBoxPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UserSide/UserDropBoxPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-641">
-              <caret line="47" column="41" lean-forward="false" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
+            <state relative-caret-position="375">
+              <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
               <folding>
-                <element signature="e#927#1087#0" expanded="true" />
-                <element signature="e#1086#1087#0" expanded="true" />
+                <element signature="e#926#1086#0" expanded="true" />
+                <element signature="e#1085#1086#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,7 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>em.merch</find>
       <find>em.</find>
       <find>editdesc</find>
       <find>editdescriptionfield</find>
@@ -143,9 +143,10 @@
       <find>sectionDropBox.addItem</find>
       <find>userPanel</find>
       <find>guiadminmain</find>
-      <find>userpanel</find>
       <find>guiuser</find>
       <find>guiusermain</find>
+      <find>userpanel</find>
+      <find>query</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -961,19 +962,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UserSide/UserDropBoxPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-641">
-          <caret line="47" column="41" lean-forward="false" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
+        <state relative-caret-position="375">
+          <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
           <folding>
-            <element signature="e#927#1087#0" expanded="true" />
-            <element signature="e#1086#1087#0" expanded="true" />
+            <element signature="e#926#1086#0" expanded="true" />
+            <element signature="e#1085#1086#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-962">
-          <caret line="340" column="43" lean-forward="false" selection-start-line="340" selection-start-column="43" selection-end-line="340" selection-end-column="43" />
+        <state relative-caret-position="233">
+          <caret line="1015" column="95" lean-forward="false" selection-start-line="1015" selection-start-column="95" selection-end-line="1015" selection-end-column="95" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
