@@ -14,12 +14,7 @@ public class UserDropBoxPanel extends JPanel{
     public JComboBox<String> aisleDropbox;
     public JComboBox<String> rackDropbox;
     public JComboBox<String> shelfDropbox;
-
     public JTextField searchField;
-
-    public DefaultComboBoxModel aisleModel;
-    public DefaultComboBoxModel rackModel;
-    public DefaultComboBoxModel shelfModel;
 
     private JLabel sectionLabel;
     private JLabel aisleLabel;
@@ -50,20 +45,22 @@ public class UserDropBoxPanel extends JPanel{
         aisleLabel = new JLabel("Aisle: ");
         aisleLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         aisleDropbox = new JComboBox<>();
-
-
+        aisleDropbox.addItem("Select an Aisle...");
         aisleDropbox.setPreferredSize(new Dimension(300, 50));
         aisleDropbox.setFont(new Font("Arial", Font.PLAIN, 16));
+
 
         rackLabel = new JLabel("Rack: ");
         rackLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         rackDropbox = new JComboBox<>();
+        rackDropbox.addItem("Select a Rack...");
         rackDropbox.setPreferredSize(new Dimension(300, 50));
         rackLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 
         shelfLabel = new JLabel("Shelf: ");
         shelfLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         shelfDropbox = new JComboBox<>();
+        shelfDropbox.addItem("Select a Shelf...");
         shelfDropbox.setPreferredSize(new Dimension(300, 50));
         shelfDropbox.setFont(new Font("Arial", Font.PLAIN, 16));
 

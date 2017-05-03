@@ -298,7 +298,7 @@ public class GUI implements ActionListener {
         addItemDialog = new GUIAddItemDialog();
         addItemDialog.sectionDropBox.addActionListener(this);
         addItemDialog.submitButton.addActionListener(this);
-        //this is for the adding everthing else
+        //this is for the adding everything else
         AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addShelfButton.addActionListener(this);
         AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addRackButton.addActionListener(this);
         AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addAisleButton.addActionListener(this);
@@ -335,6 +335,8 @@ public class GUI implements ActionListener {
         editRackComboBox.removeAllItems();
         editShelfComboBox.removeAllItems();
         editMerchCombobox.removeAllItems();
+        guiUserMain.userMainBodyPanel.userDropBoxPanel.sectionDropbox.removeAllItems();
+        guiUserMain.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem("Select a section...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.removeAllItems();
         adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem("Select section...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.removeAllItems();
@@ -347,18 +349,24 @@ public class GUI implements ActionListener {
             section = store.getSections()[i];
             editSectionComboBox.addItem(section.getSectionName());
             adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
+            guiUserMain.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem(section.getSectionName());
             for (int j = 0; j < section.getAisles().length; j++) {
                 aisle = section.getAisles()[j];
                 editAisleComboBox.addItem(aisle.getAisleDisplayName());
                 adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
+                guiUserMain.userMainBodyPanel.userDropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
+
                 for (int k = 0; k < aisle.getRack().length; k++) {
                     rack = aisle.getRack()[k];
                     editRackComboBox.addItem(rack.getRackDisplayName());
                     adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
+                    guiUserMain.userMainBodyPanel.userDropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
+
                     for (int l = 0; l < rack.getShelf().length; l++) {
                         shelf = rack.getShelf()[l];
                         editShelfComboBox.addItem(shelf.getRowDisplayName());
                         adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
+                        guiUserMain.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem(shelf.getRowDisplayName());
                         for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
                             editMerchCombobox.addItem(item.getName());
                         }
@@ -794,7 +802,6 @@ public class GUI implements ActionListener {
             reloadAddSectionDropBoxes();
             addItemDialog.setVisible(true);
         }
-
         if (e.getSource() == addItemDialog.sectionDropBox) {//populate the aisle box
             int sectionIndex = addItemDialog.sectionDropBox.getSelectedIndex();
             if (sectionIndex != -1) {//makes sure an index is selected first, populates aisles
@@ -875,7 +882,7 @@ public class GUI implements ActionListener {
             if (newItem.validateItem() && sectionIndex != -1 && aisleIndex != -1 && rackIndex != -1 && shelfIndex != -1) {//if it's a valid item
                 if (store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex].hasItems()) {//if other items are on the shelf
                     for (SaleItem s : store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex].getItemsOnShelf()) {
-                        boolean check = newItem.getName().equals(s.getName());//checking to see if it already exists
+                        boolean check = newItem.getName().equalsIgnoreCase(s.getName());//checking to see if it already exists
                         fcheck = check || fcheck; //will return false unless an item with that name and brand already exists on the shelf
                     }
                     if (fcheck == false) {
@@ -957,7 +964,7 @@ public class GUI implements ActionListener {
             if (newShelf.validateShelf() && sectionIndex != -1 && aisleIndex != -1 && rackIndex != -1) {//if it's a valid shelf name
                 if (store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].hasShelves()) {//if other shelves are in the rack
                     for (Shelf s : store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()) {
-                        boolean check = newShelf.getRowName().equals(s.getRowName());//checking to see if it already exists
+                        boolean check = newShelf.getRowName().equalsIgnoreCase(s.getRowName());//checking to see if it already exists
                         fcheck = check || fcheck; //will return false unless a shelf with that name already exists in the rack
                     }
                     if (fcheck == false) {
@@ -1028,7 +1035,7 @@ public class GUI implements ActionListener {
             if (newRack.validateRack() && sectionIndex != -1 && aisleIndex != -1) {//if it's a valid rack name
                 if (store.getSections()[sectionIndex].getAisles()[aisleIndex].hasRacks()) {//if other racks are in the aisle
                     for (Rack r : store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()) {
-                        boolean check = newRack.getRackName().equals(r.getRackName());//checking to see if it already exists
+                        boolean check = newRack.getRackName().equalsIgnoreCase(r.getRackName());//checking to see if it already exists
                         fcheck = check || fcheck; //will return false unless a rack with that name already exists in the aisle
                     }
                     if (fcheck == false) {
@@ -1081,7 +1088,7 @@ public class GUI implements ActionListener {
             if (newAisle.validateAisle() && sectionIndex != -1) {//if it's a valid aisle name
                 if (store.getSections()[sectionIndex].hasAisle()) {//if other aisles are in the section
                     for (Aisle a : store.getSections()[sectionIndex].getAisles()) {
-                        boolean check = newAisle.getAisleName().equals(a.getAisleName());//checking to see if it already exists
+                        boolean check = newAisle.getAisleName().equalsIgnoreCase(a.getAisleName());//checking to see if it already exists
                         fcheck = check || fcheck; //will return false unless an aisle with that name already exists in that section
                     }
                     if (fcheck == false) {
@@ -1127,7 +1134,7 @@ public class GUI implements ActionListener {
             }
             if (newSection.validateSection()) {//if it's a valid section name
                     for (Section s : store.getSections()) {
-                        boolean check = newSection.getSectionName().equals(s.getSectionName());//checking to see if it already exists
+                        boolean check = newSection.getSectionName().equalsIgnoreCase(s.getSectionName());//checking to see if it already exists
                         fcheck = check || fcheck; //will return false unless a section with that name already exists in the store
                     }
                     if (fcheck == false) {
