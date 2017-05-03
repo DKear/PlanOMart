@@ -61,7 +61,6 @@ public class GUI implements ActionListener {
     public GUIEditPanel er;
     public GUIEditPanel esh;
     public String selected;
-    public GUIUserMain guiUserMain = new GUIUserMain();
     public GUIEditMerch em;
     //    private GUIAddItemDialog addItemDialog;
     public GUIPasswordChange pc;
@@ -110,7 +109,7 @@ public class GUI implements ActionListener {
 
         cards = new JPanel(new CardLayout());
         cards.add(openingPanel, OPENINGPANEL);
-        cards.add(guiUserMain, USERPANEL);
+        cards.add(userPanel, USERPANEL);
         cards.add(adminPanel, ADMINPANEL);
 
         openingContent = new JPanel();
@@ -340,14 +339,6 @@ public class GUI implements ActionListener {
         editRackComboBox.removeAllItems();
         editShelfComboBox.removeAllItems();
         editMerchCombobox.removeAllItems();
-        guiUserMain.userMainBodyPanel.userDropBoxPanel.sectionDropbox.removeAllItems();
-        guiUserMain.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem("Select a Section...");
-        guiUserMain.userMainBodyPanel.userDropBoxPanel.aisleDropbox.removeAllItems();
-        guiUserMain.userMainBodyPanel.userDropBoxPanel.aisleDropbox.addItem("Select an Aisle...");
-        guiUserMain.userMainBodyPanel.userDropBoxPanel.rackDropbox.removeAllItems();
-        guiUserMain.userMainBodyPanel.userDropBoxPanel.rackDropbox.addItem("Select a Rack...");
-        guiUserMain.userMainBodyPanel.userDropBoxPanel.shelfDropbox.removeAllItems();
-        guiUserMain.userMainBodyPanel.userDropBoxPanel.shelfDropbox.addItem("Select a Shelf...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.removeAllItems();
         adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem("Select Section...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.removeAllItems();
