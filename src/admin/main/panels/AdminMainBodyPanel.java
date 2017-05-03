@@ -35,4 +35,3 @@ public class AdminMainBodyPanel extends JPanel{
         return returnField;
     }
 }
-

@@ -27,7 +27,7 @@ public class Aisle {
         aisleName = s;
     }
 
-    public String[] getRacksNames() {
+    public String[] getRacksNames(Rack[] rack) {
         String[] nameArray = new String[racks.size()];
         int i = 0;
         for (Rack r : racks) {

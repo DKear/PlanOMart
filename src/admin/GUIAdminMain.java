@@ -15,14 +15,15 @@ public class GUIAdminMain extends JPanel {
     public AdminMainBottomPanel adminEditBottomPanel;
     public AdminMainBodyPanel adminEditBodyPanel;
 
-    public GUIAdminMain(Store store) {
+    public GUIAdminMain() {
         setPreferredSize(new Dimension(1290, 1080));
+        setVisible(false);
 
         adminEditTopPanel = new AdminMainTopPanel();
 
         adminEditBodyPanel = new AdminMainBodyPanel();
 
-        adminEditBottomPanel = new AdminMainBottomPanel(adminEditBodyPanel, store);
+        adminEditBottomPanel = new AdminMainBottomPanel(adminEditBodyPanel);
 
         setLayout(new MigLayout("", "[grow]", "[][grow][]"));
         add(adminEditTopPanel, "cell 0 0, wrap, growx, height 100px");
