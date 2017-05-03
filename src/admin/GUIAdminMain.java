@@ -17,6 +17,7 @@ public class GUIAdminMain extends JPanel {
 
     public GUIAdminMain() {
         setPreferredSize(new Dimension(1290, 1080));
+        setVisible(false);
 
         adminEditTopPanel = new AdminMainTopPanel();
 

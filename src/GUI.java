@@ -28,7 +28,6 @@ public class GUI implements ActionListener {
     private JButton adminEditButton;
     private GUIAdminEdit ae;
     private JPanel adminEditCard;
-    private JPanel adminAddPanel;
     private JPanel openingContent;
     private JButton openingUserButton;
     private JButton openingAdminButton;
@@ -41,7 +40,6 @@ public class GUI implements ActionListener {
     public Aisle aisle;
     public Rack rack;
     public Shelf shelf;
-    public SaleItem saleItem;
     public SaleItem item;
     public GUIAdminMain adminPanel;
     public JComboBox<String> editSectionComboBox;
@@ -63,7 +61,6 @@ public class GUI implements ActionListener {
     public GUIEditPanel er;
     public GUIEditPanel esh;
     public String selected;
-    public static GUIUserMain guiUserMain;
     public GUIEditMerch em;
     //    private GUIAddItemDialog addItemDialog;
     public GUIPasswordChange pc;
@@ -74,6 +71,7 @@ public class GUI implements ActionListener {
     private GUIAddAisleDialog addAisleDialog = new GUIAddAisleDialog();
     private GUIAddSectionDialog addSectionDialog = new GUIAddSectionDialog();
     private GUIInitialSetup is = new GUIInitialSetup();
+    GUIUserMain userPanel;
 
     public void addComponentToPane(Container pane) {
         store = new Store("store");
@@ -97,6 +95,7 @@ public class GUI implements ActionListener {
         adminPanel = new GUIAdminMain();
         adminPanel.adminEditBottomPanel.switchUserButton.addActionListener(this);
         adminPanel.adminEditBottomPanel.editButton.addActionListener(this);
+        adminPanel.adminEditBottomPanel.adminPanel.dropBoxPanel.searchButton.addActionListener(this);
         /*adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if (adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedItem().equals(store.sections.get(adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedIndex()-1).getAisleNames(store.sections.get(adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedIndex()-1).getAisles()))){
@@ -105,7 +104,9 @@ public class GUI implements ActionListener {
             }
         });*/
 
-        GUIUserMain userPanel = new GUIUserMain();
+        userPanel = new GUIUserMain();
+        userPanel.userMainBodyPanel.userDropBoxPanel.searchButton.addActionListener(this);
+
 
         cards = new JPanel(new CardLayout());
         cards.add(openingPanel, OPENINGPANEL);
@@ -291,8 +292,6 @@ public class GUI implements ActionListener {
         pw.submitButton.addActionListener(this);
         pw.add(passwordPanel);
 
-        guiUserMain = new GUIUserMain();
-
         is.submitButton.addActionListener(this);
 
         //writing listener so on click will do the event in this class too
@@ -301,7 +300,7 @@ public class GUI implements ActionListener {
         addItemDialog = new GUIAddItemDialog();
         addItemDialog.sectionDropBox.addActionListener(this);
         addItemDialog.submitButton.addActionListener(this);
-        //this is for the adding everthing else
+        //this is for the adding everything else
         AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addShelfButton.addActionListener(this);
         AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addRackButton.addActionListener(this);
         AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addAisleButton.addActionListener(this);
@@ -342,30 +341,52 @@ public class GUI implements ActionListener {
         editShelfComboBox.removeAllItems();
         editMerchCombobox.removeAllItems();
         adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.removeAllItems();
-        adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem("Select section...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem("Select Section...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.removeAllItems();
-        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem("Select aisle...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem("Select Aisle...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.removeAllItems();
-        adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem("Select rack...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem("Select Rack...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.removeAllItems();
-        adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem("Select shelf...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem("Select Shelf...");
+        userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.removeAllItems();
+        userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem("Select Section...");
+        userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.removeAllItems();
+        userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.addItem("Select Aisle...");
+        userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.removeAllItems();
+        userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.addItem("Select Rack...");
+        userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.removeAllItems();
+        userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.addItem("Select Shelf...");
+
         for (int i = 0; i < store.getSections().length; i++) {
             section = store.getSections()[i];
             editSectionComboBox.addItem(section.getSectionName());
             adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
+
+            userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem(section.getSectionName());
+
             for (int j = 0; j < section.getAisles().length; j++) {
                 aisle = section.getAisles()[j];
                 editAisleComboBox.addItem(aisle.getAisleDisplayName());
                 adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
+
+                userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
+
                 for (int k = 0; k < aisle.getRack().length; k++) {
                     rack = aisle.getRack()[k];
                     editRackComboBox.addItem(rack.getRackDisplayName());
                     adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
+
+                    userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
+
                     for (int l = 0; l < rack.getShelf().length; l++) {
                         shelf = rack.getShelf()[l];
                         editShelfComboBox.addItem(shelf.getRowDisplayName());
                         adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
-                        for (int m = 0; m < shelf.getItemsOnShelf().length; m++) {
+
+                        userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
+                        for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
+
+                            item = shelf.getItemsOnShelf()[m];
                             editMerchCombobox.addItem(item.getName());
                         }
                     }
@@ -395,7 +416,6 @@ public class GUI implements ActionListener {
             ae.setVisible(true);
 
         }
-
 
         if (e.getSource() == pw.submitButton) {
             passwordInput = pw.passwordField.getPassword();
@@ -467,6 +487,7 @@ public class GUI implements ActionListener {
                     editSectionComboBox.addItem(section.getSectionName());
 
                     adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
+                    userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem(section.getSectionName());
                     addItemDialog.sectionDropBox.addItem(section.getSectionName());
                     addShelfDialog.sectionDropBox.addItem(section.getSectionName());
                     addRackDialog.sectionDropBox.addItem(section.getSectionName());
@@ -479,12 +500,14 @@ public class GUI implements ActionListener {
                         aisle.setSection(section);
                         editAisleComboBox.addItem(aisle.getAisleDisplayName());
                         adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
+                        userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
                         for (int k = 0; k < rackInt; k++) {
                             rack = new Rack("Rack: " + Integer.toString(k + 1));
                             aisle.addRack(rack);
                             rack.setAisle(aisle);
                             editRackComboBox.addItem(rack.getRackDisplayName());
                             adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
+                            userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
                             for (int l = 0; l < shelfInt; l++) {
 
                                 shelf = new Shelf("Shelf: " + Integer.toString(l + 1));
@@ -493,6 +516,7 @@ public class GUI implements ActionListener {
                                 shelf.setRack(rack);
                                 editShelfComboBox.addItem(shelf.getRowDisplayName());
                                 adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
+                                userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
                             }
                         }
                     }
@@ -518,14 +542,6 @@ public class GUI implements ActionListener {
             ecl.show(adminEditCard, "Change password");
         }
 
-        if (e.getSource() == adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox) {
-            JOptionPane.showMessageDialog(controllingContainer, "Aaa");
-            for (int i = 0; i < store.sections.size(); i++) {
-                if (adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.getSelectedItem().equals(store.getSectionsNames(store.getSections())[i])) {
-                    adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.setModel(new DefaultComboBoxModel(store.sections.get(i).getAisleNames(store.sections.get(i).getAisles())));
-                }
-            }
-        }
 
         if (e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton || e.getSource() == pc.backButton || e.getSource() == merchReturn || e.getSource() == em.backButton) {
 
@@ -796,12 +812,248 @@ public class GUI implements ActionListener {
             item.setSaleDescription(em.saleDescriptionField.getText());
         }
 
+        if(e.getSource() == adminPanel.adminEditBottomPanel.adminPanel.dropBoxPanel.searchButton){
+            if(!adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.getSelectedItem().equals("Select Section...")){
+                selected = adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.getSelectedItem().toString();
+                for (int i = 0; i < store.getSections().length; i++) {
+                    if (store.getSections()[i].getSectionName().equals(selected)) {
+                        section = store.sections.get(i);
+                        adminPanel.adminEditBodyPanel.returnField.append("Search result: '" + section.getSectionName() + "'\n");
+                        adminPanel.adminEditBodyPanel.returnField.append("Aisles:\n");
+                        if(section.hasAisle()) {
+                            for (int k = 0; k < section.getAisles().length; k++) {
+                                aisle = section.getAisles()[k];
+                                adminPanel.adminEditBodyPanel.returnField.append(aisle.getAisleName() + "\n");
+                            }
+                        } else{
+                            adminPanel.adminEditBodyPanel.returnField.append("none\n");
+                        }
+                        if(section.getTags().size() > 0) {
+                            adminPanel.adminEditBodyPanel.returnField.append("Tags:\n");
+                            for (int j = 0; j < section.getTags().size(); j++) {
+                                adminPanel.adminEditBodyPanel.returnField.append(section.getTags().get(j) + "\n");
+                            }
+                        }
+                    }
+                }
+            }
+            if(!adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedItem().equals("Select Aisle...")){
+                selected = adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedItem().toString();
+                for (int i = 0; i < store.getSections().length; i++) {
+                    section = store.sections.get(i);
+                    for (int j = 0; j < section.getAisles().length; j++) {
+                        if (section.getAisles()[j].getAisleDisplayName().equals(selected)) {
+                            aisle = section.getAisles()[j];
+                            adminPanel.adminEditBodyPanel.returnField.append("Search result: '" + aisle.getAisleName() + "'\n");
+                            adminPanel.adminEditBodyPanel.returnField.append("Racks:\n");
+                            if (aisle.hasRacks()){
+                                for (int k = 0; k < aisle.getRack().length; k++){
+                                    rack = aisle.getRack()[k];
+                                    adminPanel.adminEditBodyPanel.returnField.append(rack.getRackName() + "\n");
+                                }
+                            } else{
+                                adminPanel.adminEditBodyPanel.returnField.append("none\n");
+                            }
+                            if(aisle.getTags().size() > 0){
+                                adminPanel.adminEditBodyPanel.returnField.append("Tags:\n");
+                                for (int m = 0; m < aisle.getTags().size(); m ++){
+                                    adminPanel.adminEditBodyPanel.returnField.append(aisle.getTags().get(m)+ "\n");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if(!adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.getSelectedItem().equals("Select Rack...")){
+                selected = adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.getSelectedItem().toString();
+                for (int i = 0; i < store.getSections().length; i++) {
+                    section = store.sections.get(i);
+                    for (int j = 0; j < section.getAisles().length; j++) {
+                        aisle = section.getAisles()[j];
+                        for(int k = 0; k < aisle.getRack().length; k++){
+                            if(aisle.getRack()[k].getRackDisplayName().equals(selected)){
+                                rack = aisle.getRack()[k];
+                                adminPanel.adminEditBodyPanel.returnField.append("Search result: '" + rack.getRackName() +"'\n");
+                                adminPanel.adminEditBodyPanel.returnField.append("Shelves:\n");
+                                if(rack.hasShelves()){
+                                    for (int m = 0; m < rack.getShelf().length; m++){
+                                        shelf = rack.getShelf()[m];
+                                        adminPanel.adminEditBodyPanel.returnField.append(shelf.rowName + "\n");
+                                    }
+                                } else{
+                                    adminPanel.adminEditBodyPanel.returnField.append("none\n");
+                                }
+                                if(rack.getTags().size() > 0){
+                                    adminPanel.adminEditBodyPanel.returnField.append("Tags:\n");
+                                    for(int n = 0; n < rack.getTags().size(); n++){
+                                        adminPanel.adminEditBodyPanel.returnField.append(rack.getTags().get(n) + "\n");
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            if(!adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.getSelectedItem().equals("Select Shelf...")){
+                selected = adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.getSelectedItem().toString();
+                for (int i = 0; i < store.getSections().length; i++) {
+                    section = store.sections.get(i);
+                    for (int j = 0; j < section.getAisles().length; j++) {
+                        aisle = section.getAisles()[j];
+                        for(int k = 0; k < aisle.getRack().length; k++){
+                            rack = aisle.getRack()[k];
+                            for(int l = 0; l < rack.getShelf().length; l++){
+                                if(rack.getShelf()[l].getRowDisplayName().equals(selected)){
+                                    shelf = rack.getShelf()[l];
+                                    adminPanel.adminEditBodyPanel.returnField.append("Search results: '" + shelf.getRowName() + "'\n");
+                                    adminPanel.adminEditBodyPanel.returnField.append("Items on shelf:\n");
+                                    if(shelf.hasItems()){
+                                        for (int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                                            item = shelf.getItemsOnShelf()[m];
+                                            adminPanel.adminEditBodyPanel.returnField.append(item.getName()+"\n");
+                                        }
+                                    } else{
+                                        adminPanel.adminEditBodyPanel.returnField.append("none\n");
+                                    }
+                                    if (shelf.getTags().size() > 0){
+                                        adminPanel.adminEditBodyPanel.returnField.append("Tags:\n");
+                                        for(int n = 0; n < shelf.getTags().size(); n++){
+                                            adminPanel.adminEditBodyPanel.returnField.append(shelf.getTags().get(n) + "\n");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        if(e.getSource() == userPanel.userMainBodyPanel.userDropBoxPanel.searchButton){
+            if(!userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.getSelectedItem().equals("Select Section...")){
+                selected = userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.getSelectedItem().toString();
+                for (int i = 0; i < store.getSections().length; i++) {
+                    if (store.getSections()[i].getSectionName().equals(selected)) {
+                        section = store.sections.get(i);
+                        userPanel.userMainBodyPanel.returnField.append("Search result: '" + section.getSectionName() + "'\n");
+                        userPanel.userMainBodyPanel.returnField.append("Aisles:\n");
+                        if(section.hasAisle()) {
+                            for (int k = 0; k < section.getAisles().length; k++) {
+                                aisle = section.getAisles()[k];
+                                userPanel.userMainBodyPanel.returnField.append(aisle.getAisleName() + "\n");
+                            }
+                        } else{
+                            userPanel.userMainBodyPanel.returnField.append("none\n");
+                        }
+                        if(section.getTags().size() > 0) {
+                            userPanel.userMainBodyPanel.returnField.append("Tags:\n");
+                            for (int j = 0; j < section.getTags().size(); j++) {
+                                userPanel.userMainBodyPanel.returnField.append(section.getTags().get(j) + "\n");
+                            }
+                        }
+                    }
+                }
+            }
+            if(!userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.getSelectedItem().equals("Select Aisle...")){
+                selected = userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.getSelectedItem().toString();
+                for (int i = 0; i < store.getSections().length; i++) {
+                    section = store.sections.get(i);
+                    for (int j = 0; j < section.getAisles().length; j++) {
+                        if (section.getAisles()[j].getAisleDisplayName().equals(selected)) {
+                            aisle = section.getAisles()[j];
+                            userPanel.userMainBodyPanel.returnField.append("Search result: '" + aisle.getAisleName() + "'\n");
+                            userPanel.userMainBodyPanel.returnField.append("Racks:\n");
+                            if (aisle.hasRacks()){
+                                for (int k = 0; k < aisle.getRack().length; k++){
+                                    rack = aisle.getRack()[k];
+                                    userPanel.userMainBodyPanel.returnField.append(rack.getRackName() + "\n");
+                                }
+                            } else{
+                                userPanel.userMainBodyPanel.returnField.append("none\n");
+                            }
+                            if(aisle.getTags().size() > 0){
+                                userPanel.userMainBodyPanel.returnField.append("Tags:\n");
+                                for (int m = 0; m < aisle.getTags().size(); m ++){
+                                    userPanel.userMainBodyPanel.returnField.append(aisle.getTags().get(m)+ "\n");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if(!userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.getSelectedItem().equals("Select Rack...")){
+                selected = userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.getSelectedItem().toString();
+                for (int i = 0; i < store.getSections().length; i++) {
+                    section = store.sections.get(i);
+                    for (int j = 0; j < section.getAisles().length; j++) {
+                        aisle = section.getAisles()[j];
+                        for(int k = 0; k < aisle.getRack().length; k++){
+                            if(aisle.getRack()[k].getRackDisplayName().equals(selected)){
+                                rack = aisle.getRack()[k];
+                                userPanel.userMainBodyPanel.returnField.append("Search result: '" + rack.getRackName() +"'\n");
+                                userPanel.userMainBodyPanel.returnField.append("Shelves:\n");
+                                if(rack.hasShelves()){
+                                    for (int m = 0; m < rack.getShelf().length; m++){
+                                        shelf = rack.getShelf()[m];
+                                        userPanel.userMainBodyPanel.returnField.append(shelf.rowName + "\n");
+                                    }
+                                } else{
+                                    userPanel.userMainBodyPanel.returnField.append("none\n");
+                                }
+                                if(rack.getTags().size() > 0){
+                                    userPanel.userMainBodyPanel.returnField.append("Tags:\n");
+                                    for(int n = 0; n < rack.getTags().size(); n++){
+                                        userPanel.userMainBodyPanel.returnField.append(rack.getTags().get(n) + "\n");
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            if(!userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.getSelectedItem().equals("Select Shelf...")){
+                selected = userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.getSelectedItem().toString();
+                for (int i = 0; i < store.getSections().length; i++) {
+                    section = store.sections.get(i);
+                    for (int j = 0; j < section.getAisles().length; j++) {
+                        aisle = section.getAisles()[j];
+                        for(int k = 0; k < aisle.getRack().length; k++){
+                            rack = aisle.getRack()[k];
+                            for(int l = 0; l < rack.getShelf().length; l++){
+                                if(rack.getShelf()[l].getRowDisplayName().equals(selected)){
+                                    shelf = rack.getShelf()[l];
+                                    userPanel.userMainBodyPanel.returnField.append("Search results: '" + shelf.getRowName() + "'\n");
+                                    userPanel.userMainBodyPanel.returnField.append("Items on shelf:\n");
+                                    if(shelf.hasItems()){
+                                        for (int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                                            item = shelf.getItemsOnShelf()[m];
+                                            userPanel.userMainBodyPanel.returnField.append(item.getName()+"\n");
+                                        }
+                                    } else{
+                                        userPanel.userMainBodyPanel.returnField.append("none\n");
+                                    }
+                                    if (shelf.getTags().size() > 0){
+                                        userPanel.userMainBodyPanel.returnField.append("Tags:\n");
+                                        for(int n = 0; n < shelf.getTags().size(); n++){
+                                            userPanel.userMainBodyPanel.returnField.append(shelf.getTags().get(n) + "\n");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
         //starts methods for adding an item
         if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton) {
             reloadAddSectionDropBoxes();
             addItemDialog.setVisible(true);
         }
-
         if (e.getSource() == addItemDialog.sectionDropBox) {//populate the aisle box
             int sectionIndex = addItemDialog.sectionDropBox.getSelectedIndex();
             if (sectionIndex != -1) {//makes sure an index is selected first, populates aisles
@@ -882,7 +1134,7 @@ public class GUI implements ActionListener {
             if (newItem.validateItem() && sectionIndex != -1 && aisleIndex != -1 && rackIndex != -1 && shelfIndex != -1) {//if it's a valid item
                 if (store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex].hasItems()) {//if other items are on the shelf
                     for (SaleItem s : store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex].getItemsOnShelf()) {
-                        boolean check = newItem.getName().equals(s.getName());//checking to see if it already exists
+                        boolean check = newItem.getName().equalsIgnoreCase(s.getName());//checking to see if it already exists
                         fcheck = check || fcheck; //will return false unless an item with that name and brand already exists on the shelf
                     }
                     if (fcheck == false) {
@@ -964,7 +1216,7 @@ public class GUI implements ActionListener {
             if (newShelf.validateShelf() && sectionIndex != -1 && aisleIndex != -1 && rackIndex != -1) {//if it's a valid shelf name
                 if (store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].hasShelves()) {//if other shelves are in the rack
                     for (Shelf s : store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()) {
-                        boolean check = newShelf.getRowName().equals(s.getRowName());//checking to see if it already exists
+                        boolean check = newShelf.getRowName().equalsIgnoreCase(s.getRowName());//checking to see if it already exists
                         fcheck = check || fcheck; //will return false unless a shelf with that name already exists in the rack
                     }
                     if (fcheck == false) {
@@ -1035,7 +1287,7 @@ public class GUI implements ActionListener {
             if (newRack.validateRack() && sectionIndex != -1 && aisleIndex != -1) {//if it's a valid rack name
                 if (store.getSections()[sectionIndex].getAisles()[aisleIndex].hasRacks()) {//if other racks are in the aisle
                     for (Rack r : store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()) {
-                        boolean check = newRack.getRackName().equals(r.getRackName());//checking to see if it already exists
+                        boolean check = newRack.getRackName().equalsIgnoreCase(r.getRackName());//checking to see if it already exists
                         fcheck = check || fcheck; //will return false unless a rack with that name already exists in the aisle
                     }
                     if (fcheck == false) {
@@ -1088,7 +1340,7 @@ public class GUI implements ActionListener {
             if (newAisle.validateAisle() && sectionIndex != -1) {//if it's a valid aisle name
                 if (store.getSections()[sectionIndex].hasAisle()) {//if other aisles are in the section
                     for (Aisle a : store.getSections()[sectionIndex].getAisles()) {
-                        boolean check = newAisle.getAisleName().equals(a.getAisleName());//checking to see if it already exists
+                        boolean check = newAisle.getAisleName().equalsIgnoreCase(a.getAisleName());//checking to see if it already exists
                         fcheck = check || fcheck; //will return false unless an aisle with that name already exists in that section
                     }
                     if (fcheck == false) {
@@ -1133,32 +1385,32 @@ public class GUI implements ActionListener {
                 }
             }
             if (newSection.validateSection()) {//if it's a valid section name
-                    for (Section s : store.getSections()) {
-                        boolean check = newSection.getSectionName().equals(s.getSectionName());//checking to see if it already exists
-                        fcheck = check || fcheck; //will return false unless a section with that name already exists in the store
-                    }
-                    if (fcheck == false) {
-                        store.addSection(newSection);
-                        newSection.setStore(store);
-                        editSectionComboBox.addItem(newSection.getSectionName());
-                        adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(newSection.getSectionName());
-                        addSectionDialog.sectionNameField.setText("");
-                        addSectionDialog.sectionTagField.setText("");
-                        addSectionDialog.setVisible(false);
-                        addSectionDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        reloadComboBoxes();
-                    } else {
-                        JOptionPane.showMessageDialog(controllingContainer, "Section already exists in Store.");
-                        fcheck = false;
-                    }
+                for (Section s : store.getSections()) {
+                    boolean check = newSection.getSectionName().equalsIgnoreCase(s.getSectionName());//checking to see if it already exists
+                    fcheck = check || fcheck; //will return false unless a section with that name already exists in the store
+                }
+                if (fcheck == false) {
+                    store.addSection(newSection);
+                    newSection.setStore(store);
+                    editSectionComboBox.addItem(newSection.getSectionName());
+                    adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(newSection.getSectionName());
+                    addSectionDialog.sectionNameField.setText("");
+                    addSectionDialog.sectionTagField.setText("");
+                    addSectionDialog.setVisible(false);
+                    addSectionDialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    reloadComboBoxes();
+                } else {
+                    JOptionPane.showMessageDialog(controllingContainer, "Section already exists in Store.");
+                    fcheck = false;
+                }
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Make sure the name is filled out.");
             }
         }
+        //***************************************************
+        // ***Populating the JList for the AdminAddRemovePan
     }
 
-    //******************************************************
-    //***Populating the JList for the AdminAddRemovePanelTop
     public void populatingAddRemoveJList(ActionEvent e) {
         AdminAddRemovePanelTop adminAddRemovePanelTop = AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop;
         adminAddRemovePanelTop.modelObjectList.clear();
@@ -1193,7 +1445,6 @@ public class GUI implements ActionListener {
         AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.repaint();
     }
 
-    //*********************************************************************************
     //***Lambda Expression for Removing selected object from JList though the JComboBox
 
     public void removeButtonClicked(ActionEvent e) {

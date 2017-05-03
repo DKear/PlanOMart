@@ -5,7 +5,6 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -18,16 +17,12 @@ public class DropBoxPanel extends JPanel {
 
     public JTextField searchField;
 
-    public DefaultComboBoxModel aisleModel;
-    public DefaultComboBoxModel rackModel;
-    public DefaultComboBoxModel shelfModel;
-
     private JLabel sectionLabel;
     private JLabel aisleLabel;
     private JLabel rackLabel;
     private JLabel shelfLabel;
 
-    private JButton searchButton;
+    public JButton searchButton;
 
     public DropBoxPanel() {
         setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -52,7 +47,7 @@ public class DropBoxPanel extends JPanel {
         aisleLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         aisleDropbox = new JComboBox<>();
         aisleDropbox.setPreferredSize(new Dimension(300, 50));
-        aisleDropbox.addItem("Select a Aisle...");
+        aisleDropbox.addItem("Select an Aisle...");
         aisleDropbox.setFont(new Font("Arial", Font.PLAIN, 16));
 
         rackLabel = new JLabel("Rack: ");
@@ -90,7 +85,4 @@ public class DropBoxPanel extends JPanel {
 
         add(searchButton, "cell 1 5");
     }
-
 }
-
-
