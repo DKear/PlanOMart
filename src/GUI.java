@@ -71,6 +71,7 @@ public class GUI implements ActionListener {
     private GUIAddAisleDialog addAisleDialog = new GUIAddAisleDialog();
     private GUIAddSectionDialog addSectionDialog = new GUIAddSectionDialog();
     private GUIInitialSetup is = new GUIInitialSetup();
+    GUIUserMain userPanel;
 
     public void addComponentToPane(Container pane) {
         store = new Store("store");
@@ -103,7 +104,7 @@ public class GUI implements ActionListener {
             }
         });*/
 
-        GUIUserMain userPanel = new GUIUserMain();
+        userPanel = new GUIUserMain();
 
         cards = new JPanel(new CardLayout());
         cards.add(openingPanel, OPENINGPANEL);
@@ -337,29 +338,41 @@ public class GUI implements ActionListener {
         editShelfComboBox.removeAllItems();
         editMerchCombobox.removeAllItems();
         adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.removeAllItems();
-        adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem("Select section...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem("Select Section...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.removeAllItems();
-        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem("Select aisle...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem("Select Aisle...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.removeAllItems();
-        adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem("Select rack...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem("Select Rack...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.removeAllItems();
-        adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem("Select shelf...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem("Select Shelf...");
+        userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.removeAllItems();
+        userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem("Select Section...");
+        userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.removeAllItems();
+        userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.addItem("Select Aisle...");
+        userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.removeAllItems();
+        userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.addItem("Select Rack...");
+        userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.removeAllItems();
+        userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.addItem("Select Shelf...");
         for (int i = 0; i < store.getSections().length; i++) {
             section = store.getSections()[i];
             editSectionComboBox.addItem(section.getSectionName());
             adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
+            userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem(section.getSectionName());
             for (int j = 0; j < section.getAisles().length; j++) {
                 aisle = section.getAisles()[j];
                 editAisleComboBox.addItem(aisle.getAisleDisplayName());
                 adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
+                userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
                 for (int k = 0; k < aisle.getRack().length; k++) {
                     rack = aisle.getRack()[k];
                     editRackComboBox.addItem(rack.getRackDisplayName());
                     adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
+                    userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
                     for (int l = 0; l < rack.getShelf().length; l++) {
                         shelf = rack.getShelf()[l];
                         editShelfComboBox.addItem(shelf.getRowDisplayName());
                         adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
+                        userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
                         for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
                             item = shelf.getItemsOnShelf()[m];
                             editMerchCombobox.addItem(item.getName());
@@ -462,6 +475,7 @@ public class GUI implements ActionListener {
                     editSectionComboBox.addItem(section.getSectionName());
 
                     adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(section.getSectionName());
+                    userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem(section.getSectionName());
                     addItemDialog.sectionDropBox.addItem(section.getSectionName());
                     addShelfDialog.sectionDropBox.addItem(section.getSectionName());
                     addRackDialog.sectionDropBox.addItem(section.getSectionName());
@@ -474,12 +488,14 @@ public class GUI implements ActionListener {
                         aisle.setSection(section);
                         editAisleComboBox.addItem(aisle.getAisleDisplayName());
                         adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
+                        userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
                         for (int k = 0; k < rackInt; k++) {
                             rack = new Rack("Rack: " + Integer.toString(k + 1));
                             aisle.addRack(rack);
                             rack.setAisle(aisle);
                             editRackComboBox.addItem(rack.getRackDisplayName());
                             adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
+                            userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
                             for (int l = 0; l < shelfInt; l++) {
 
                                 shelf = new Shelf("Shelf: " + Integer.toString(l + 1));
@@ -488,6 +504,7 @@ public class GUI implements ActionListener {
                                 shelf.setRack(rack);
                                 editShelfComboBox.addItem(shelf.getRowDisplayName());
                                 adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
+                                userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
                             }
                         }
                     }
@@ -513,14 +530,6 @@ public class GUI implements ActionListener {
             ecl.show(adminEditCard, "Change password");
         }
 
-        if (e.getSource() == adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox) {
-            JOptionPane.showMessageDialog(controllingContainer, "Aaa");
-            for (int i = 0; i < store.sections.size(); i++) {
-                if (adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.getSelectedItem().equals(store.getSectionsNames(store.getSections())[i])) {
-                    adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.setModel(new DefaultComboBoxModel(store.sections.get(i).getAisleNames(store.sections.get(i).getAisles())));
-                }
-            }
-        }
 
         if (e.getSource() == editReturn || e.getSource() == es.backButton || e.getSource() == ea.backButton || e.getSource() == er.backButton || e.getSource() == esh.backButton || e.getSource() == pc.backButton || e.getSource() == merchReturn || e.getSource() == em.backButton) {
 

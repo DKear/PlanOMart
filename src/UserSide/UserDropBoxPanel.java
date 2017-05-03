@@ -43,13 +43,14 @@ public class UserDropBoxPanel extends JPanel{
         sectionLabel = new JLabel("Sections: ");
         sectionLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         sectionDropbox = new JComboBox<>();
-        sectionDropbox.addItem("Select a Section...");
+        sectionDropbox.addItem("Select Section...");
         sectionDropbox.setPreferredSize(new Dimension(300, 50));
         sectionDropbox.setFont(new Font("Arial", Font.PLAIN, 16));
 
         aisleLabel = new JLabel("Aisle: ");
         aisleLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         aisleDropbox = new JComboBox<>();
+        aisleDropbox.addItem("Select Aisle...");
 
 
         aisleDropbox.setPreferredSize(new Dimension(300, 50));
@@ -58,12 +59,14 @@ public class UserDropBoxPanel extends JPanel{
         rackLabel = new JLabel("Rack: ");
         rackLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         rackDropbox = new JComboBox<>();
+        rackDropbox.addItem("Select Rack...");
         rackDropbox.setPreferredSize(new Dimension(300, 50));
         rackLabel.setFont(new Font("Arial", Font.PLAIN, 16));
 
         shelfLabel = new JLabel("Shelf: ");
         shelfLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         shelfDropbox = new JComboBox<>();
+        shelfDropbox.addItem("Select Shelf...");
         shelfDropbox.setPreferredSize(new Dimension(300, 50));
         shelfDropbox.setFont(new Font("Arial", Font.PLAIN, 16));
 
