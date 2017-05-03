@@ -1,6 +1,7 @@
 import UserSide.GUICreateComments;
 import UserSide.GUIUserMain;
 import admin.*;
+import admin.add.remove.panels.AdminAddRemovePanelTop;
 import admin.main.panels.AdminMainBottomPanel;
 import admin.main.panels.GUIEditMerch;
 import admin.main.panels.GUIPasswordChange;
@@ -12,6 +13,7 @@ import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.Objects;
 
 
 public class GUI implements ActionListener {
