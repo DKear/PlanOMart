@@ -11,7 +11,6 @@ public class UserMainBottomPanel extends JPanel {
 
     public JButton switchUserButton;
     public JButton makeCommentButton;
-    public JButton viewComment;
 
     public GUICreateComments guiCreateComments;
 

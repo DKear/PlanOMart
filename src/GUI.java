@@ -26,7 +26,6 @@ public class GUI implements ActionListener {
     private JButton adminEditButton;
     private GUIAdminEdit ae;
     private JPanel adminEditCard;
-    private JPanel adminAddPanel;
     private JPanel openingContent;
     private JButton openingUserButton;
     private JButton openingAdminButton;
@@ -60,7 +59,7 @@ public class GUI implements ActionListener {
     public GUIEditPanel er;
     public GUIEditPanel esh;
     public String selected;
-    public static GUIUserMain guiUserMain;
+    public GUIUserMain guiUserMain = new GUIUserMain();
     public GUIEditMerch em;
     //    private GUIAddItemDialog addItemDialog;
     public GUIPasswordChange pc;
@@ -91,7 +90,7 @@ public class GUI implements ActionListener {
 
         //adminPanel.adminEditBottomPanel();
 
-        adminPanel = new GUIAdminMain(store);
+        adminPanel = new GUIAdminMain();
         adminPanel.adminEditBottomPanel.switchUserButton.addActionListener(this);
         adminPanel.adminEditBottomPanel.editButton.addActionListener(this);
         /*adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addActionListener(new ActionListener(){
@@ -102,11 +101,9 @@ public class GUI implements ActionListener {
             }
         });*/
 
-        GUIUserMain userPanel = new GUIUserMain();
-
         cards = new JPanel(new CardLayout());
         cards.add(openingPanel, OPENINGPANEL);
-        cards.add(userPanel, USERPANEL);
+        cards.add(guiUserMain, USERPANEL);
         cards.add(adminPanel, ADMINPANEL);
 
         openingContent = new JPanel();
@@ -288,8 +285,6 @@ public class GUI implements ActionListener {
         pw.submitButton.addActionListener(this);
         pw.add(passwordPanel);
 
-        guiUserMain = new GUIUserMain();
-
         is.submitButton.addActionListener(this);
 
         //writing listener so on click will do the event in this class too
@@ -336,15 +331,21 @@ public class GUI implements ActionListener {
         editShelfComboBox.removeAllItems();
         editMerchCombobox.removeAllItems();
         guiUserMain.userMainBodyPanel.userDropBoxPanel.sectionDropbox.removeAllItems();
-        guiUserMain.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem("Select a section...");
+        guiUserMain.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem("Select a Section...");
+        guiUserMain.userMainBodyPanel.userDropBoxPanel.aisleDropbox.removeAllItems();
+        guiUserMain.userMainBodyPanel.userDropBoxPanel.aisleDropbox.addItem("Select an Aisle...");
+        guiUserMain.userMainBodyPanel.userDropBoxPanel.rackDropbox.removeAllItems();
+        guiUserMain.userMainBodyPanel.userDropBoxPanel.rackDropbox.addItem("Select a Rack...");
+        guiUserMain.userMainBodyPanel.userDropBoxPanel.shelfDropbox.removeAllItems();
+        guiUserMain.userMainBodyPanel.userDropBoxPanel.shelfDropbox.addItem("Select a Shelf...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.removeAllItems();
-        adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem("Select section...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem("Select a Section...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.removeAllItems();
-        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem("Select aisle...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem("Select an Aisle...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.removeAllItems();
-        adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem("Select rack...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem("Select a Rack...");
         adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.removeAllItems();
-        adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem("Select shelf...");
+        adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem("Select a Shelf...");
         for (int i = 0; i < store.getSections().length; i++) {
             section = store.getSections()[i];
             editSectionComboBox.addItem(section.getSectionName());
@@ -355,19 +356,18 @@ public class GUI implements ActionListener {
                 editAisleComboBox.addItem(aisle.getAisleDisplayName());
                 adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
                 guiUserMain.userMainBodyPanel.userDropBoxPanel.aisleDropbox.addItem(aisle.getAisleDisplayName());
-
                 for (int k = 0; k < aisle.getRack().length; k++) {
                     rack = aisle.getRack()[k];
                     editRackComboBox.addItem(rack.getRackDisplayName());
                     adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
                     guiUserMain.userMainBodyPanel.userDropBoxPanel.rackDropbox.addItem(rack.getRackDisplayName());
-
                     for (int l = 0; l < rack.getShelf().length; l++) {
                         shelf = rack.getShelf()[l];
                         editShelfComboBox.addItem(shelf.getRowDisplayName());
                         adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
-                        guiUserMain.userMainBodyPanel.userDropBoxPanel.sectionDropbox.addItem(shelf.getRowDisplayName());
+                        guiUserMain.userMainBodyPanel.userDropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
                         for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                            item = shelf.getItemsOnShelf()[m];
                             editMerchCombobox.addItem(item.getName());
                         }
                     }

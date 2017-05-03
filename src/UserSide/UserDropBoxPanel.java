@@ -14,6 +14,7 @@ public class UserDropBoxPanel extends JPanel{
     public JComboBox<String> aisleDropbox;
     public JComboBox<String> rackDropbox;
     public JComboBox<String> shelfDropbox;
+
     public JTextField searchField;
 
     private JLabel sectionLabel;
@@ -23,7 +24,7 @@ public class UserDropBoxPanel extends JPanel{
 
     private JButton searchButton;
 
-    UserDropBoxPanel() {
+    public UserDropBoxPanel() {
         setBorder(new BevelBorder(BevelBorder.RAISED));
         searchField = new JTextField("Search");
         searchField.setPreferredSize(new Dimension(300, 50));
@@ -49,20 +50,19 @@ public class UserDropBoxPanel extends JPanel{
         aisleDropbox.setPreferredSize(new Dimension(300, 50));
         aisleDropbox.setFont(new Font("Arial", Font.PLAIN, 16));
 
-
         rackLabel = new JLabel("Rack: ");
         rackLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         rackDropbox = new JComboBox<>();
-        rackDropbox.addItem("Select a Rack...");
         rackDropbox.setPreferredSize(new Dimension(300, 50));
         rackLabel.setFont(new Font("Arial", Font.PLAIN, 16));
+        rackDropbox.addItem("Select a Rack...");
 
         shelfLabel = new JLabel("Shelf: ");
         shelfLabel.setFont(new Font("Arial", Font.PLAIN, 16));
         shelfDropbox = new JComboBox<>();
-        shelfDropbox.addItem("Select a Shelf...");
         shelfDropbox.setPreferredSize(new Dimension(300, 50));
         shelfDropbox.setFont(new Font("Arial", Font.PLAIN, 16));
+        shelfDropbox.addItem("Select a Shelf...");
 
         searchButton = new JButton("Search");
         searchButton.setPreferredSize(new Dimension(100, 50));
