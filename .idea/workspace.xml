@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1dfc2a13-cc39-4e46-9ce1-c3633fa3c87d" name="Default" comment="">
+    <list default="true" id="1dfc2a13-cc39-4e46-9ce1-c3633fa3c87d" name="Default" comment="Fixed issue with add">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PlanOMart/GUI$1.class" afterPath="$PROJECT_DIR$/out/production/PlanOMart/GUI$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PlanOMart/GUI.class" afterPath="$PROJECT_DIR$/out/production/PlanOMart/GUI.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI.java" afterPath="$PROJECT_DIR$/src/GUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserSide/UserMainBottomPanel.java" afterPath="$PROJECT_DIR$/src/UserSide/UserMainBottomPanel.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,11 +27,23 @@
       <file leaf-file-name="GUI.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9623">
-              <caret line="1054" column="39" lean-forward="false" selection-start-line="1054" selection-start-column="39" selection-end-line="1054" selection-end-column="39" />
+            <state relative-caret-position="528">
+              <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <marker date="1493769910180" expanded="false" signature="60472:60491" ph=" { " />
+                <marker date="1493769910180" expanded="false" signature="60510:60524" ph=" }" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GUICreateComments.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserSide/GUICreateComments.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -42,7 +53,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2277">
               <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-              <folding />
+              <folding>
+                <marker date="1493769842176" expanded="true" signature="3256:3321" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -50,14 +63,12 @@
       <file leaf-file-name="UserMainBottomPanel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UserSide/UserMainBottomPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="13" column="31" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+            <state relative-caret-position="297">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="false" />
-                <element signature="e#2039#2040#0" expanded="false" />
-                <element signature="e#2084#2085#0" expanded="false" />
-                <element signature="e#2143#2144#0" expanded="false" />
-                <element signature="e#2193#2194#0" expanded="false" />
+                <marker date="1493769842113" expanded="false" signature="2188:2194" ph=" }" />
+                <marker date="1493769842113" expanded="true" signature="2196:2358" ph="//..." />
               </folding>
             </state>
           </provider>
@@ -86,7 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>editsectioncombobox</find>
       <find>sectiondropBox</find>
       <find>populaterack</find>
       <find>additemdialog</find>
@@ -116,13 +126,14 @@
       <find>adminAddPanel</find>
       <find>aw</find>
       <find>userPan</find>
+      <find>comment</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="JoshBranch" />
       </map>
     </option>
   </component>
@@ -776,7 +787,7 @@
       <workItem from="1493674875073" duration="10611000" />
       <workItem from="1493737463843" duration="811000" />
       <workItem from="1493738427033" duration="2793000" />
-      <workItem from="1493767677969" duration="1740000" />
+      <workItem from="1493767677969" duration="2182000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'JoshBranch' of https://github.com/DKear/PlanOMart&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;out/production/PlanOMart/GUI$1.class&#10;#&#9;out/production/PlanOMart/GUI.class&#10;#&#9;src/GUI.java">
       <created>1493330501834</created>
@@ -834,7 +845,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493741980440</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed issue with add">
+      <created>1493769462891</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1493769462891</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -846,7 +864,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44474000" />
+    <option name="totallyTimeSpent" value="44916000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2762" height="1770" extended-state="6" />
@@ -901,7 +919,8 @@
     <MESSAGE value="The adds now fill all combo boxes and the brand was removed. It will be combined with the name by the user." />
     <MESSAGE value="Accidently commented out one too many things" />
     <MESSAGE value="Just cleaning up the GUI a bit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Just cleaning up the GUI a bit" />
+    <MESSAGE value="Fixed issue with add" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue with add" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -920,6 +939,8 @@
           <caret line="408" column="0" lean-forward="false" selection-start-line="408" selection-start-column="0" selection-end-line="408" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1493769910180" expanded="false" signature="60472:60491" ph=" { " />
+            <marker date="1493769910180" expanded="false" signature="60510:60524" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -1035,13 +1056,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserSide/GUICreateComments.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="17" lean-forward="false" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="33">
@@ -1118,9 +1132,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1346,14 +1358,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UserSide/UserMainBottomPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="13" column="31" lean-forward="false" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        <state relative-caret-position="297">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="false" />
-            <element signature="e#2039#2040#0" expanded="false" />
-            <element signature="e#2084#2085#0" expanded="false" />
-            <element signature="e#2143#2144#0" expanded="false" />
-            <element signature="e#2193#2194#0" expanded="false" />
+            <marker date="1493769842113" expanded="false" signature="2188:2194" ph=" }" />
+            <marker date="1493769842113" expanded="true" signature="2196:2358" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -1362,16 +1372,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2277">
           <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding>
+            <marker date="1493769842176" expanded="true" signature="3256:3321" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserSide/GUICreateComments.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9623">
-          <caret line="1054" column="39" lean-forward="false" selection-start-line="1054" selection-start-column="39" selection-end-line="1054" selection-end-column="39" />
+        <state relative-caret-position="528">
+          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1493769910180" expanded="false" signature="60472:60491" ph=" { " />
+            <marker date="1493769910180" expanded="false" signature="60510:60524" ph=" }" />
           </folding>
         </state>
       </provider>

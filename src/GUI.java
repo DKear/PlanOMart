@@ -65,8 +65,6 @@ public class GUI implements ActionListener {
     //    private GUIAddItemDialog addItemDialog;
     public GUIPasswordChange pc;
     public GUIAddItemDialog addItemDialog;
-    private JButton commentCreateButton = new JButton("Comment");
-    private GUICreateComments createCustomComments = new GUICreateComments();
     private GUIAddShelfDialog addShelfDialog = new GUIAddShelfDialog();
     private boolean fcheck = false;
     private GUIAddRackDialog addRackDialog = new GUIAddRackDialog();
@@ -294,9 +292,6 @@ public class GUI implements ActionListener {
 
         is.submitButton.addActionListener(this);
 
-        userPanel.add(commentCreateButton); //adds a button to the userPanel to the create comment dialog
-        commentCreateButton.addActionListener(this);// allows the button to do above on click
-
         //writing listener so on click will do the event in this class too
         //this will add an item
         AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelBottom.addItemButton.addActionListener(this);
@@ -393,11 +388,6 @@ public class GUI implements ActionListener {
         if (e.getSource() == adminEditButton) {
             ae.setVisible(true);
 
-        }
-
-
-        if (e.getSource() == commentCreateButton) {
-            createCustomComments.setVisible(true);
         }
 
         if (e.getSource() == pw.submitButton) {
