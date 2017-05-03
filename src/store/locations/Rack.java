@@ -1,6 +1,7 @@
 package store.locations;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Rack {
     private String rackName;

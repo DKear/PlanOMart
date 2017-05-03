@@ -32,6 +32,7 @@ public class Shelf {
     public int getNumOfItemsOnShelf(){
         return products.size();
     }
+
     public SaleItem[] getItemsOnShelf() {
         SaleItem[] itemsOnShelf = new SaleItem[products.size()];
         itemsOnShelf = products.toArray(itemsOnShelf);

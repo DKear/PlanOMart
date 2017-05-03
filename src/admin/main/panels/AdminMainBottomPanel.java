@@ -20,7 +20,7 @@ public class AdminMainBottomPanel extends JPanel {
     public static GUIAddRemoveWindow guiAddRemoveWindow;
     public AdminMainBodyPanel adminPanel;
 
-    public AdminMainBottomPanel(AdminMainBodyPanel panel, Store store) {
+    public AdminMainBottomPanel(AdminMainBodyPanel panel) {
         setBorder(new BevelBorder(BevelBorder.RAISED));
         adminPanel = panel;
 
@@ -63,7 +63,7 @@ public class AdminMainBottomPanel extends JPanel {
 //        add(mapButton);
 
         //initializing the JPanel used
-        guiAddRemoveWindow = new GUIAddRemoveWindow(store);
+        guiAddRemoveWindow = new GUIAddRemoveWindow();
     }
 
     //Below are the actual methods that the lambda expressions use

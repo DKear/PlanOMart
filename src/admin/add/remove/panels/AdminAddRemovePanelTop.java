@@ -26,14 +26,8 @@ public class AdminAddRemovePanelTop extends JPanel {
 
     public JList<String> objectList;
 
-    public Store store;
-
-    public GUIAdminMain guiAdminMain;
-
-    public AdminAddRemovePanelTop(Store store) {
+    public AdminAddRemovePanelTop() {
         setBorder(new BevelBorder(BevelBorder.RAISED));
-
-        this.store = store;
 
         dropBoxLabel = new JLabel("Select Type of Object: ");
         dropBoxLabel.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -47,12 +41,10 @@ public class AdminAddRemovePanelTop extends JPanel {
         objectDropBox.addItem("Rack");
         objectDropBox.addItem("Shelf");
         objectDropBox.addItem("Sale Item");
-        objectDropBox.addActionListener(e -> populatingAddRemoveJList());
 
         removeButton = new JButton("Remove");
         removeButton.setPreferredSize(new Dimension(100, 50));
         removeButton.setFont(new Font("Arial", Font.PLAIN, 16));
-        removeButton.addActionListener(this::removeButtonClicked);
 
         modelObjectList = new DefaultListModel<>();
         objectList = new JList<>(modelObjectList);
@@ -70,29 +62,5 @@ public class AdminAddRemovePanelTop extends JPanel {
         remove(this.objectList);
         this.objectList = objectList;
         add(objectList, "span, grow");
-    }
-
-    //***Populating the JList for the AdminAddRemovePanelTop
-    public void populatingAddRemoveJList() {
-        modelObjectList.clear();
-        String obj = (String) objectDropBox.getSelectedItem();
-        System.out.println("Called: " + obj);
-        if (Objects.equals(obj, "Section")) {
-            //Populates the JList with all existing Section Objects
-            for (String s : store.getSectionsNames(store.getSections())) {
-                modelObjectList.addElement(s);
-            }
-        }
-        objectList.repaint();
-    }
-    
-    //***Lambda Expression for Removing selected object from JList though the JComboBox
-    public void removeButtonClicked(ActionEvent e) {
-        String selectedValue = objectList.getSelectedValue();
-        for (Section s : store.getSections()) {
-            if (s.getSectionName().equals(selectedValue)) {
-                store.removeSection(s);
-            }
-        }
     }
 }

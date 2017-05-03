@@ -9,13 +9,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUIAddRemoveWindow extends JDialog {
-    private AdminAddRemovePanelTop adminAddRemovePanelTop;
+    public AdminAddRemovePanelTop adminAddRemovePanelTop;
     public AdminAddRemovePanelBottom adminAddRemovePanelBottom;
 
-    public GUIAddRemoveWindow(Store store) {
+    public GUIAddRemoveWindow() {
         setSize(new Dimension(1024, 512));
 
-        adminAddRemovePanelTop = new AdminAddRemovePanelTop(store);
+        adminAddRemovePanelTop = new AdminAddRemovePanelTop();
 
         adminAddRemovePanelBottom = new AdminAddRemovePanelBottom();
 
