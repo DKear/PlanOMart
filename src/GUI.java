@@ -1,7 +1,6 @@
 import UserSide.GUICreateComments;
 import UserSide.GUIUserMain;
 import admin.*;
-import admin.add.remove.panels.AdminAddRemovePanelTop;
 import admin.main.panels.AdminMainBottomPanel;
 import admin.main.panels.GUIEditMerch;
 import admin.main.panels.GUIPasswordChange;
@@ -13,7 +12,6 @@ import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
 import java.text.DecimalFormat;
 import java.util.Arrays;
-import java.util.Objects;
 
 
 public class GUI implements ActionListener {
@@ -27,7 +25,6 @@ public class GUI implements ActionListener {
     private JButton adminSwitchButton;
     private JButton adminEditButton;
     private GUIAdminEdit ae;
-    private GUIAdminAddWindow aw;
     private JPanel adminEditCard;
     private JPanel adminAddPanel;
     private JPanel openingContent;
@@ -37,8 +34,6 @@ public class GUI implements ActionListener {
     private JPanel passwordPanel;
     private GUIPassword pw;
     private char[] passwordInput;
-    private JPanel initialSetupPanel;
-    private GUIInitialSetup is;
     public Store store;
     public Section section;
     public Aisle aisle;
@@ -70,13 +65,12 @@ public class GUI implements ActionListener {
     //    private GUIAddItemDialog addItemDialog;
     public GUIPasswordChange pc;
     public GUIAddItemDialog addItemDialog;
-    private JButton commentCreateButton = new JButton("Comment");
-    private GUICreateComments createCustomComments = new GUICreateComments();
     private GUIAddShelfDialog addShelfDialog = new GUIAddShelfDialog();
     private boolean fcheck = false;
     private GUIAddRackDialog addRackDialog = new GUIAddRackDialog();
     private GUIAddAisleDialog addAisleDialog = new GUIAddAisleDialog();
     private GUIAddSectionDialog addSectionDialog = new GUIAddSectionDialog();
+    private GUIInitialSetup is = new GUIInitialSetup();
 
     public void addComponentToPane(Container pane) {
         store = new Store("store");
@@ -110,22 +104,6 @@ public class GUI implements ActionListener {
         });*/
 
         GUIUserMain userPanel = new GUIUserMain();
-
-        //Changing the userPanel so this is commented out
-/*
-        userPanel.setLayout(new GridBagLayout());
-        GridBagConstraints u = new GridBagConstraints();
-        u.weightx = u.weighty = 1;
-        u.gridx = 0;
-        u.gridy = 1;
-        u.anchor = GridBagConstraints.PAGE_START;
-        userPanel.add(new JLabel("User"), u);
-        u.weightx = u.weighty = 0;
-        u.gridx = 0;
-        u.gridy = 0;
-        u.anchor = GridBagConstraints.FIRST_LINE_START;
-        userPanel.add(userSwitchButton, u);
-*/
 
         cards = new JPanel(new CardLayout());
         cards.add(openingPanel, OPENINGPANEL);
@@ -298,14 +276,6 @@ public class GUI implements ActionListener {
 
         ae.add(adminEditCard);
 
-        aw = new GUIAdminAddWindow();
-        adminAddPanel = new JPanel();
-
-        adminAddPanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-
-        aw.add(adminAddPanel);
-
         passwordPanel = new JPanel();
         passwordPanel.setLayout(new GridBagLayout());
         GridBagConstraints pwc = new GridBagConstraints();
@@ -321,51 +291,7 @@ public class GUI implements ActionListener {
 
         guiUserMain = new GUIUserMain();
 
-        initialSetupPanel = new JPanel();
-        initialSetupPanel.setLayout(new GridBagLayout());
-        GridBagConstraints isp = new GridBagConstraints();
-        is = new GUIInitialSetup();
-        isp.gridx = isp.gridy = 0;
-        isp.anchor = GridBagConstraints.PAGE_START;
-        isp.gridwidth = 2;
-        initialSetupPanel.add(new JLabel("Welcome to PlanOMart! Please enter some information about your store."), isp);
-        isp.gridwidth = 1;
-        isp.gridy = 1;
-        isp.anchor = GridBagConstraints.CENTER;
-        initialSetupPanel.add(new JLabel("Store name:"), isp);
-        isp.gridx = 1;
-        initialSetupPanel.add(is.storeNameField, isp);
-        isp.gridx = 0;
-        isp.gridy = 2;
-        initialSetupPanel.add(new JLabel("Number of sections:"), isp);
-        isp.gridx = 1;
-        initialSetupPanel.add(is.numberOfSectionField, isp);
-        isp.gridx = 0;
-        isp.gridy = 3;
-        initialSetupPanel.add(new JLabel("Number of aisles in each section"), isp);
-        isp.gridx = 1;
-        initialSetupPanel.add(is.numberOfAislesField, isp);
-        isp.gridx = 0;
-        isp.gridy = 4;
-        initialSetupPanel.add(new JLabel("Number of racks in each aisle"), isp);
-        isp.gridx = 1;
-        initialSetupPanel.add(is.numberOfRacksField, isp);
-        isp.gridx = 0;
-        isp.gridy = 5;
-        initialSetupPanel.add(new JLabel("Number of shelves in each rack"), isp);
-        isp.gridx = 1;
-        initialSetupPanel.add(is.numberOfShelvesField, isp);
-        isp.gridwidth = 2;
-        isp.gridx = 0;
-        isp.gridy = 6;
-        initialSetupPanel.add(is.submitButton, isp);
         is.submitButton.addActionListener(this);
-        is.add(initialSetupPanel);
-
-/*
-        userPanel.add(commentCreateButton); //adds a button to the userPanel to the create comment dialog
-        commentCreateButton.addActionListener(this);// allows the button to do above on click
-*/
 
         //writing listener so on click will do the event in this class too
         //this will add an item
@@ -455,7 +381,6 @@ public class GUI implements ActionListener {
             pw.setVisible(true);
         }
         if (e.getSource() == openingUserButton) {
-
             cl.show(cards, USERPANEL);
         }
         if (e.getSource() == userSwitchButton || e.getSource() == adminPanel.adminEditBottomPanel.switchUserButton) {
@@ -466,8 +391,6 @@ public class GUI implements ActionListener {
             ae.setVisible(true);
 
         }
-
-
 
         if (e.getSource() == pw.submitButton) {
             passwordInput = pw.passwordField.getPassword();
@@ -1084,6 +1007,7 @@ public class GUI implements ActionListener {
                         reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Item already exists on shelf.");
+                        fcheck = false;
                     }
                 } else { //if it's a valid item and no other items are on the shelf, it adds it immediately
                     store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].getShelf()[shelfIndex].addItem(newItem);
@@ -1169,6 +1093,7 @@ public class GUI implements ActionListener {
                         reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Shelf already exists on Rack.");
+                        fcheck = false;
                     }
                 } else {//if it's a valid shelf and no other shelves are in the rack, it adds it immediately
                     store.getSections()[sectionIndex].getAisles()[aisleIndex].getRack()[rackIndex].addShelf(newShelf);
@@ -1238,6 +1163,7 @@ public class GUI implements ActionListener {
                         reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Rack already exists in Aisle.");
+                        fcheck = false;
                     }
                 } else { //if it's a valid rack and no other racks are in the aisle, it adds it immediately
                     store.getSections()[sectionIndex].getAisles()[aisleIndex].addRack(newRack);
@@ -1289,6 +1215,7 @@ public class GUI implements ActionListener {
                         reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Aisle already exists in Section.");
+                        fcheck = false;
                     }
                 } else { //if it's a valid aisle and no other aisles are in that section, it adds it immediately
                     store.getSections()[sectionIndex].addAisle(newAisle);
@@ -1336,6 +1263,7 @@ public class GUI implements ActionListener {
                         reloadComboBoxes();
                     } else {
                         JOptionPane.showMessageDialog(controllingContainer, "Section already exists in Store.");
+                        fcheck = false;
                     }
             } else {
                 JOptionPane.showMessageDialog(controllingContainer, "Make sure the name is filled out.");
