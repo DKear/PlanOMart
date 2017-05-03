@@ -2,9 +2,8 @@ package admin.main.panels;
 
 import admin.GUIAddRemoveWindow;
 import admin.GUIViewComments;
-import admin.add.remove.panels.AdminAddRemovePanelBottom;
-import admin.add.remove.panels.AdminAddRemovePanelBottom;
 import net.miginfocom.swing.MigLayout;
+import store.locations.*;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -62,6 +61,9 @@ public class AdminMainBottomPanel extends JPanel {
         add(addRemoveButton);
         add(viewCommentButton);
 //        add(mapButton);
+
+        //initializing the JPanel used
+        guiAddRemoveWindow = new GUIAddRemoveWindow();
     }
 
     //Below are the actual methods that the lambda expressions use
@@ -75,8 +77,6 @@ public class AdminMainBottomPanel extends JPanel {
 
     private void addRemoveButtonClicked(ActionEvent e) {
         if (e.getSource() == addRemoveButton) {
-            guiAddRemoveWindow = new GUIAddRemoveWindow();
-            guiAddRemoveWindow.setObjectTable(adminPanel.getReturnField());
             guiAddRemoveWindow.setVisible(true);
         }
     }

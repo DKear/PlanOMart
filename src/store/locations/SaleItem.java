@@ -3,30 +3,24 @@ package store.locations;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-/**
- * Created by joshu on 2/24/2017.
- */
 public class SaleItem {
     private double price;
     private String name = "";
-    private String brand = "";
     private String description = "";
     private ArrayList<String> tags;
+    private boolean sale = false;
     private double salePrice;
     private String saleDescription = "";
-    private ArrayList<Shelf> shelves;
+    private Shelf shelf;
     private DecimalFormat df = new DecimalFormat("#.##");
 
-
-    SaleItem(double p, String n, String b, String d) {
+    public SaleItem(double p, String n, String d) {
             df.format(p);
             price = p;
             name = n;
-            brand = b;
             tags = new ArrayList<>();
             salePrice = price;
             description = d;
-            shelves = new ArrayList<>();
         }
 
     public double getPrice() {
@@ -37,21 +31,16 @@ public class SaleItem {
         return name;
     }
 
-    public String getBrand() {
-        return brand;
+    public ArrayList<String> getTags(){
+        return tags;
+    }
+    public Object[] getTagsArray(){
+        Object[] tagArray;
+        tagArray = tags.toArray();
+        return tagArray;
     }
 
-    public String[] getTags() {
-        if(!tags.isEmpty()) {
-            String[] theTags = new String[tags.size()];
-            theTags = tags.toArray(theTags);
-            return theTags;
-        } else {
-            throw new ArrayStoreException();
-        }
-    }
-
-    public void setSalePercentage(int salePercentage) {
+/*    public void setSalePercentage(int salePercentage) {
         if (salePercentage > 0) {
             double amountOff = salePercentage * .01 * price;
             amountOff = Double.parseDouble(df.format(amountOff));
@@ -61,9 +50,14 @@ public class SaleItem {
         }
 
     }
+    */
     public double getSalePrice() {
         return salePrice;
     }
+
+    public void setSalePrice(Double d){
+        df.format(d);
+        salePrice = d;}
 
     public void setSaleDescription(String sD) {
         if (!sD.equals("")) {
@@ -76,6 +70,8 @@ public class SaleItem {
     public String getSaleDescription() {
         return saleDescription;
     }
+
+    public void setDescription(String s){description = s;}
 
     public String getDescription() {
         return description;
@@ -93,25 +89,32 @@ public class SaleItem {
         return tags.remove(t);
     }
 
-    public void setShelves(Shelf s){
-        shelves.add(s);
+    public void setShelf(Shelf s) {
+        shelf = s;
     }
 
-    public Shelf[] getShelvesWithItem(){
-        if(!shelves.isEmpty()) {
-            Shelf[] shelvesWithItem = new Shelf[shelves.size()];
-            shelvesWithItem = shelves.toArray(shelvesWithItem);
-            return shelvesWithItem;
-        } else {
-            throw new ArrayStoreException();
-        }
+    public Shelf getShelf(){
+        return shelf;
     }
 
-    public boolean validateItem(SaleItem i) {
-        if (i.getPrice() > 0 || !i.getName().equals("") || !i.getBrand().equals("") || !i.getDescription().equals("")) {
-            return false;
-        } else {
-            return true;
-        }
+    public boolean validateItem() {
+        return !(this.getPrice() <= 0 || this.getName().equals("") || this.getDescription().equals(""));
+    }
+    public boolean onSale(){
+        return sale;
+    }
+
+    public void setSaleTrue(){
+        sale = true;
+    }
+    public void setSaleFalse(){
+        sale = false;
+    }
+    public void setName(String s){
+        name = s;
+    }
+    public void setPrice(Double d){
+        df.format(d);
+        price = d;
     }
 }

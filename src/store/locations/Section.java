@@ -2,9 +2,6 @@ package store.locations;
 
 import java.util.ArrayList;
 
-/**
- * Created by Jamie on 2/23/2017.
- */
 public class Section {
     private String sectionName;
     private ArrayList<Aisle> aisles;
@@ -13,8 +10,12 @@ public class Section {
 
     public Section(String n){
         sectionName = n;
-        aisles = new ArrayList<Aisle>();
+        aisles = new ArrayList<>();
         tags = new ArrayList <String>();
+    }
+
+    public void setSectionName(String s){
+        sectionName = s;
     }
 
     public String getSectionName(){
@@ -22,11 +23,7 @@ public class Section {
     }
 
     public boolean hasAisle(){
-        if(aisles.size()==0){
-            return false;
-        } else {
-            return true;
-        }
+        return !aisles.isEmpty();
     }
 
     public boolean addAisle(Aisle s){
@@ -80,9 +77,14 @@ public class Section {
         }
     }
 
-    public String[] getTags(){
-        String[] tagArray = new String[tags.size()];
+    public Object[] getTagsArray(){
+        Object[] tagArray;
+        tagArray = tags.toArray();
         return tagArray;
+    }
+
+    public ArrayList<String> getTags(){
+        return tags;
     }
 
     public String[] getAisleNames(Aisle[] s){
@@ -91,5 +93,8 @@ public class Section {
             nameArray[i] = s[i].getAisleName();
         }
         return nameArray;
+    }
+    public boolean validateSection() {
+        return !this.getSectionName().equals("");
     }
 }

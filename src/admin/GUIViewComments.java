@@ -40,7 +40,7 @@ public class GUIViewComments extends JDialog{
         viewCommGrid = new GridBagConstraints();//tells the component where in the createCommGrid it will be placed
         listOfCommentSubjects = new DefaultListModel();
         this.populateList();
-        subjectList = new JList<>(listOfCommentSubjects);
+        subjectList = new JList<String>(listOfCommentSubjects);
         paneOfSubjects = new JScrollPane(subjectList);
         viewCommGrid.gridy = viewCommGrid.gridx = 0;
         viewCommentLabel = new JLabel("Subject of Messages. Click a subject then the View button to view the comment.");

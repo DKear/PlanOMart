@@ -3,41 +3,38 @@ package store.locations;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/**
- * Created by joshu on 2/24/2017.
- */
 public class SaleItemTest {
     @Test
     public void getPriceTest() {
-        SaleItem bread = new SaleItem(1.39, "White Bread", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
         Assertions.assertEquals(1.39, bread.getPrice());
     }
     @Test
     public void getPriceFormattedTest() {
-        SaleItem bread = new SaleItem(1, "White Bread", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1, "Wonder Bread White Classic", "bread");
         Assertions.assertEquals(1.00, bread.getPrice());
     }
 
     @Test
     public void tooLowOfPriceTest() {
-        SaleItem bread = new SaleItem(-1.39, "White Classic", "Wonder Bread", "bread");
-        Assertions.assertFalse(bread.validateItem(bread));
+        SaleItem bread = new SaleItem(-1.39, "Wonder Bread White Classic", "bread");
+        Assertions.assertFalse(bread.validateItem());
     }
 
     @Test
     public void getNameTest() {
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
         Assertions.assertTrue(bread.getName().equals("White Classic"));
     }
 
 
     @Test
     public void emptyStringNameTest() {
-        SaleItem bread = new SaleItem(1.39, "", "Wonder Bread", "bread");
-        Assertions.assertFalse(bread.validateItem(bread));
+        SaleItem bread = new SaleItem(1.39, "", "bread");
+        Assertions.assertFalse(bread.validateItem());
     }
 
-    @Test
+   /* @Test
     public void getBrandTest() {
         SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
         Assertions.assertTrue(bread.getBrand().equals("Wonder Bread"));
@@ -47,18 +44,18 @@ public class SaleItemTest {
     @Test
     public void emptyStringBrandTest() {
         SaleItem bread = new SaleItem(1.39, "White Classic", "", "bread");
-        Assertions.assertFalse(bread.validateItem(bread));
-    }
+        Assertions.assertFalse(bread.validateItem());
+    }*/
 
     @Test
     public void doesNotHaveTagTest() {
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
         Assertions.assertFalse(bread.hasTags());
     }
 
     @Test
     public void hasTagsTest() {
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
         String tag = "sliced";
         bread.addTag(tag);
         Assertions.assertTrue(bread.hasTags());
@@ -66,15 +63,15 @@ public class SaleItemTest {
 
     @Test
     public void getTagsTest() {
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
         String tag = "sliced";
         bread.addTag(tag);
-        Assertions.assertTrue(bread.getTags()[0].equals("sliced"));
+        Assertions.assertTrue(bread.getTagsArray()[0].equals("sliced"));
     }
 
     @Test
     public void noTagsToGetTest() {
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
         boolean test = false;
         try {
             bread.getTags();
@@ -87,7 +84,7 @@ public class SaleItemTest {
 
     @Test
     public void tagRemovedFromItemPositive() {
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
         String tag = "sliced";
         bread.addTag(tag);
         Assertions.assertTrue(bread.removeTag(tag));
@@ -95,17 +92,17 @@ public class SaleItemTest {
 
     @Test
     public void tagRemovedFromItemNegativeTest() {
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
         String tag = "sliced";
         Assertions.assertFalse(bread.removeTag(tag));
     }
 
-    @Test
+ /*   @Test
     public void getSalePriceTest() {
         SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
         bread.setSalePercentage(10);
         Assertions.assertEquals(1.25, bread.getSalePrice());
-    }
+    }*/
     /*@Test
     public void itemSalePriceTooLowTest() {
         SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
@@ -120,7 +117,7 @@ public class SaleItemTest {
         Assertions.assertTrue(test);
     }
     */
-    @Test
+    /*@Test
     public void itemSalePriceTooHighTest() {
         SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
         boolean test = false;
@@ -132,16 +129,17 @@ public class SaleItemTest {
         }
         Assertions.assertTrue(test);
     }
+    */
     @Test
     public void getSaleDescriptionTest() {
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
         bread.setSaleDescription("Buy One Get One");
         Assertions.assertTrue(bread.getSaleDescription().equals("Buy One Get One"));
     }
 
     @Test
     public void saleDescriptionIsNullTest() {
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
         boolean test = false;
         try {
             bread.setSaleDescription(null);
@@ -154,7 +152,7 @@ public class SaleItemTest {
 
     @Test
     public void saleDescriptionEmptyStringTest() {
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
         boolean test = false;
         try {
             bread.setSaleDescription("");
@@ -164,31 +162,19 @@ public class SaleItemTest {
         }
         Assertions.assertTrue(test);
     }
-    @Test
-    public void noShelvesToGetTest() {
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
-        boolean test = false;
-        try {
-            bread.getShelvesWithItem();
-        } catch (ArrayStoreException e) {
-            test = true;
-            Assertions.assertTrue(test);
-        }
-        Assertions.assertTrue(test);
-    }
 
     @Test
     public void setGetShelfTest(){
         Shelf shelf = new Shelf("10");
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
         shelf.addItem(bread);
-        bread.setShelves(shelf);
-        Assertions.assertTrue(bread.getShelvesWithItem()[0].equals(shelf) & shelf.getItemsOnShelf()[0].equals(bread));
+        bread.setShelf(shelf);
+        Assertions.assertTrue(bread.getShelf().equals(shelf) & shelf.getItemsOnShelf()[0].equals(bread));
     }
     @Test
     public void validateSaleItemPositiveTest() {
-        SaleItem bread = new SaleItem(1.39, "White Classic", "Wonder Bread", "bread");
-
+        SaleItem bread = new SaleItem(1.39, "Wonder Bread White Classic", "bread");
+        Assertions.assertTrue(bread.validateItem());
     }
 
 }

@@ -1,7 +1,5 @@
 package admin;
 
-import sun.plugin.javascript.navig.Anchor;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,10 +7,7 @@ import static java.awt.GridBagConstraints.CENTER;
 import static java.awt.GridBagConstraints.LINE_END;
 import static java.awt.GridBagConstraints.LINE_START;
 
-/**
- * Created by Jamie on 4/25/2017.
- */
-public class GUIEditSectionPanel extends JPanel {
+public class GUIEditPanel extends JPanel {
     public JTextField editNameField;
     public JButton editNameButton;
     public JTextField addTagsField;
@@ -20,10 +15,10 @@ public class GUIEditSectionPanel extends JPanel {
     public JComboBox removeTagComboBox;
     public JButton removeTagButton;
     public JButton backButton;
-    public GUIEditSectionPanel(){
+    public GUIEditPanel(){
 
         this.setLayout(new GridBagLayout());
-        setPreferredSize(new Dimension(800,600));
+        setPreferredSize(new Dimension(800,700));
         editNameField = new JTextField(20);
         editNameButton = new JButton("Submit");
         addTagsField = new JTextField(10);
@@ -34,7 +29,7 @@ public class GUIEditSectionPanel extends JPanel {
 
         GridBagConstraints es = new GridBagConstraints();
         es.gridx = es.gridy = 0;
-        add(new JLabel("Change Section Name: "), es);
+        add(new JLabel("Change Location Name: "), es);
         es.gridx = 1;
         add(editNameField, es);
         es.gridx = 0;

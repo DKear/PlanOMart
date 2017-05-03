@@ -3,9 +3,6 @@ package store.locations;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/**
- * Created by joshu on 2/24/2017.
- */
 public class ShelfTest {
     @Test
     public void getRowNumTest() {
@@ -23,7 +20,7 @@ public class ShelfTest {
     @Test
     public void getProductsOnShelfTest() {
         Shelf shelf = new Shelf("0");
-        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz","books");
+        SaleItem book = new SaleItem(20.00, "Dean Koontz Odd Thomas","books");
         shelf.addItem(book);
         SaleItem[] test = {book};
         Assertions.assertArrayEquals(test, shelf.getItemsOnShelf());
@@ -32,7 +29,7 @@ public class ShelfTest {
 
     @Test
     public void itemAdded() {
-        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz","books");
+        SaleItem book = new SaleItem(20.00, "Dean Koontz Odd Thomas","books");
         Shelf shelf = new Shelf("3");
         Assertions.assertTrue(shelf.addItem(book));
     }
@@ -45,7 +42,7 @@ public class ShelfTest {
 
     @Test
     public void hasItemsTest() {
-        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz","books");
+        SaleItem book = new SaleItem(20.00, "Dean Koontz Odd Thomas","books");
         Shelf shelf = new Shelf("0");
         shelf.addItem(book);
         Assertions.assertTrue(shelf.hasItems());
@@ -53,7 +50,7 @@ public class ShelfTest {
 
     @Test
     public void getItemsTest() {
-        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz","books");
+        SaleItem book = new SaleItem(20.00, "Dean Koontz Odd Thomas","books");
         Shelf shelf = new Shelf("0");
         shelf.addItem(book);
         Assertions.assertTrue(shelf.getItemsOnShelf()[0] == book);
@@ -74,7 +71,7 @@ public class ShelfTest {
 
     @Test
     public void productRemovedFromShelfPositive() {
-        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz","books");
+        SaleItem book = new SaleItem(20.00, "Dean Koontz Odd Thomas","books");
         Shelf shelf = new Shelf("0");
         shelf.addItem(book);
         Assertions.assertTrue(shelf.removeItems(book));
@@ -82,7 +79,7 @@ public class ShelfTest {
 
     @Test
     public void productRemovedFromShelfNegativeTest() {
-        SaleItem book = new SaleItem(20.00, "Odd Thomas", "Dean Koontz","books");
+        SaleItem book = new SaleItem(20.00, "Dean Koontz Odd Thomas","books");
         Shelf shelf = new Shelf("0");
         Assertions.assertFalse(shelf.removeItems(book));
     }
@@ -94,5 +91,15 @@ public class ShelfTest {
         rack.addShelf(shelf);
         shelf.setRack(rack);
         Assertions.assertTrue(rack.getShelf()[0].equals(shelf) & shelf.getRack().equals(rack));
+    }
+    @Test
+    public void validateShelfPositiveTest() {
+        Shelf shelf = new Shelf("Name");
+        Assertions.assertTrue(shelf.validateShelf());
+    }
+    @Test
+    public void validateShelfNegativeTest() {
+        Shelf shelf = new Shelf("");
+        Assertions.assertFalse(shelf.validateShelf());
     }
 }
