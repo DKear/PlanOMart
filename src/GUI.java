@@ -384,7 +384,7 @@ public class GUI implements ActionListener {
                         adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
 
                         userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.addItem(shelf.getRowDisplayName());
-                        for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                        for (int m = 0; m < shelf.getItemsOnShelf().length; m++) {
 
                             item = shelf.getItemsOnShelf()[m];
                             editMerchCombobox.addItem(item.getName());
@@ -422,6 +422,31 @@ public class GUI implements ActionListener {
         }
 
     }
+
+    public void printItemUser(SaleItem i) {
+        userPanel.userMainBodyPanel.returnField.append("Search results: '" + i.getName() + "'");
+        if (i.onSale()){
+            userPanel.userMainBodyPanel.returnField.append(" SALE!\n");
+            userPanel.userMainBodyPanel.returnField.append("Location: " + i.getShelf().getRowDisplayName() + "\n");
+            userPanel.userMainBodyPanel.returnField.append("Price: $" + i.getSalePrice() + "\n");
+            userPanel.userMainBodyPanel.returnField.append("Sale: " + i.getSaleDescription()+ "\n");
+        } else{
+            userPanel.userMainBodyPanel.returnField.append("\n");
+            userPanel.userMainBodyPanel.returnField.append("Location: " + i.getShelf().getRowDisplayName() + "\n");
+            userPanel.userMainBodyPanel.returnField.append("Price: $" + i.getPrice() + "\n");
+        }
+
+        userPanel.userMainBodyPanel.returnField.append("Description:\n");
+        if(i.getDescription().equals("")){
+            userPanel.userMainBodyPanel.returnField.append("No description found\n");
+        } else{
+            userPanel.userMainBodyPanel.returnField.append(i.getDescription() + "\n");
+        }
+
+
+    }
+
+
 
 
     public void actionPerformed(ActionEvent e) {
@@ -901,13 +926,14 @@ public class GUI implements ActionListener {
             item.setSaleDescription(em.saleDescriptionField.getText());
         }
 
+
         if(e.getSource() == adminPanel.adminEditBottomPanel.adminPanel.dropBoxPanel.searchButton){
 
             if(!adminPanel.adminEditBodyPanel.dropBoxPanel.searchField.getText().equals("")){
                 adminPanel.adminEditBodyPanel.returnField.append("Search query: " + "'" + adminPanel.adminEditBodyPanel.dropBoxPanel.searchField.getText() + "'\n");
                 selected = adminPanel.adminEditBodyPanel.dropBoxPanel.searchField.getText();
                 for (int i = 0; i < store.getSections().length; i++) {
-                    if (store.getSections()[i].getSectionName().equals(selected)) {
+                    if (store.getSections()[i].getSectionName().equalsIgnoreCase(selected)) {
                         section = store.sections.get(i);
                         adminPanel.adminEditBodyPanel.returnField.append("Search result: '" + section.getSectionName() + "'\n");
                         adminPanel.adminEditBodyPanel.returnField.append("Aisles:\n");
@@ -930,7 +956,7 @@ public class GUI implements ActionListener {
                 for (int i = 0; i < store.getSections().length; i++) {
                     section = store.sections.get(i);
                     for (int j = 0; j < section.getAisles().length; j++) {
-                        if (section.getAisles()[j].getAisleDisplayName().equals(selected)) {
+                        if (section.getAisles()[j].getAisleDisplayName().equalsIgnoreCase(selected)) {
                             aisle = section.getAisles()[j];
                             adminPanel.adminEditBodyPanel.returnField.append("Search result: '" + aisle.getAisleDisplayName() + "'\n");
                             adminPanel.adminEditBodyPanel.returnField.append("Racks:\n");
@@ -956,7 +982,7 @@ public class GUI implements ActionListener {
                     for (int j = 0; j < section.getAisles().length; j++) {
                         aisle = section.getAisles()[j];
                         for(int k = 0; k < aisle.getRack().length; k++){
-                            if(aisle.getRack()[k].getRackDisplayName().equals(selected)){
+                            if(aisle.getRack()[k].getRackDisplayName().equalsIgnoreCase(selected)){
                                 rack = aisle.getRack()[k];
                                 adminPanel.adminEditBodyPanel.returnField.append("Search result: '" + rack.getRackDisplayName() +"'\n");
                                 adminPanel.adminEditBodyPanel.returnField.append("Shelves:\n");
@@ -986,7 +1012,7 @@ public class GUI implements ActionListener {
                         for(int k = 0; k < aisle.getRack().length; k++){
                             rack = aisle.getRack()[k];
                             for(int l = 0; l < rack.getShelf().length; l++){
-                                if(rack.getShelf()[l].getRowDisplayName().equals(selected)){
+                                if(rack.getShelf()[l].getRowDisplayName().equalsIgnoreCase(selected)){
                                     shelf = rack.getShelf()[l];
                                     adminPanel.adminEditBodyPanel.returnField.append("Search results: '" + shelf.getRowDisplayName() + "'\n");
                                     adminPanel.adminEditBodyPanel.returnField.append("Items on shelf:\n");
@@ -1018,7 +1044,7 @@ public class GUI implements ActionListener {
                             for(int l = 0; l < rack.getShelf().length; l++){
                                 shelf = rack.getShelf()[l];
                                 for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
-                                    if(shelf.getItemsOnShelf()[m].getName().equals(selected)){
+                                    if(shelf.getItemsOnShelf()[m].getName().equalsIgnoreCase(selected)){
                                         item = shelf.getItemsOnShelf()[m];
                                         printItem(item);
                                     }
@@ -1054,7 +1080,7 @@ public class GUI implements ActionListener {
                 for (int i = 0; i < store.getSections().length; i++) {
                     section = store.sections.get(i);
                     for (int a = 0; a < section.getTags().size(); a++){
-                        if(section.getTags().get(a).equals(selected)){
+                        if(section.getTags().get(a).equalsIgnoreCase(selected)){
                             adminPanel.adminEditBodyPanel.returnField.append("Search result: '" + section.getSectionName() + "'\n");
                             adminPanel.adminEditBodyPanel.returnField.append("Aisles:\n");
                             if(section.hasAisle()) {
@@ -1076,7 +1102,7 @@ public class GUI implements ActionListener {
                     for (int j = 0; j < section.getAisles().length; j++) {
                         aisle = section.getAisles()[j];
                         for (int b = 0; b < aisle.getTags().size(); b++){
-                            if(aisle.getTags().get(b).equals(selected)){
+                            if(aisle.getTags().get(b).equalsIgnoreCase(selected)){
                                 adminPanel.adminEditBodyPanel.returnField.append("Search result: '" + aisle.getAisleDisplayName() + "'\n");
                                 adminPanel.adminEditBodyPanel.returnField.append("Racks:\n");
                                 if (aisle.hasRacks()){
@@ -1098,7 +1124,7 @@ public class GUI implements ActionListener {
                         for(int k = 0; k < aisle.getRack().length; k++){
                             rack = aisle.getRack()[k];
                             for (int c = 0; c < rack.getTags().size(); c++){
-                                if(rack.getTags().get(c).equals(selected)){
+                                if(rack.getTags().get(c).equalsIgnoreCase(selected)){
                                     adminPanel.adminEditBodyPanel.returnField.append("Search result: '" + rack.getRackDisplayName() +"'\n");
                                     adminPanel.adminEditBodyPanel.returnField.append("Shelves:\n");
                                     if(rack.hasShelves()){
@@ -1120,7 +1146,7 @@ public class GUI implements ActionListener {
                             for(int l = 0; l < rack.getShelf().length; l++){
                                 shelf = rack.getShelf()[l];
                                 for (int d = 0; d < shelf.getTags().size(); d++){
-                                    if(shelf.getTags().get(d).equals(selected)){
+                                    if(shelf.getTags().get(d).equalsIgnoreCase(selected)){
                                         adminPanel.adminEditBodyPanel.returnField.append("Search results: '" + shelf.getRowDisplayName() + "'\n");
                                         adminPanel.adminEditBodyPanel.returnField.append("Items on shelf:\n");
                                         if(shelf.hasItems()){
@@ -1142,7 +1168,7 @@ public class GUI implements ActionListener {
                                 for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
                                     item = shelf.getItemsOnShelf()[m];
                                     for (int f = 0; f<item.getTags().size(); f++){
-                                        if(item.getTags().get(f).equals(selected)){
+                                        if(item.getTags().get(f).equalsIgnoreCase(selected)){
                                             printItem(item);
                                             break;
                                         }
@@ -1160,19 +1186,19 @@ public class GUI implements ActionListener {
             if(!adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.getSelectedItem().equals("Select Section...")){
                 selected = adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.getSelectedItem().toString();
                 for (int i = 0; i < store.getSections().length; i++) {
-                    if (store.getSections()[i].getSectionName().equals(selected)) {
+                    if (store.getSections()[i].getSectionName().equalsIgnoreCase(selected)) {
                         section = store.sections.get(i);
                         adminPanel.adminEditBodyPanel.returnField.append("Search result: '" + section.getSectionName() + "'\n");
                         adminPanel.adminEditBodyPanel.returnField.append("Aisles:\n");
-                        if(section.hasAisle()) {
+                        if (section.hasAisle()) {
                             for (int k = 0; k < section.getAisles().length; k++) {
                                 aisle = section.getAisles()[k];
                                 adminPanel.adminEditBodyPanel.returnField.append(aisle.getAisleName() + "\n");
                             }
-                        } else{
+                        } else {
                             adminPanel.adminEditBodyPanel.returnField.append("none\n");
                         }
-                        if(section.getTags().size() > 0) {
+                        if (section.getTags().size() > 0) {
                             adminPanel.adminEditBodyPanel.returnField.append("Tags:\n");
                             for (int j = 0; j < section.getTags().size(); j++) {
                                 adminPanel.adminEditBodyPanel.returnField.append(section.getTags().get(j) + "\n");
@@ -1181,55 +1207,57 @@ public class GUI implements ActionListener {
                     }
                 }
             }
-            if(!adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedItem().equals("Select Aisle...")){
+            if (!adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedItem().equals("Select Aisle...")) {
                 selected = adminPanel.adminEditBodyPanel.dropBoxPanel.aisleDropbox.getSelectedItem().toString();
                 for (int i = 0; i < store.getSections().length; i++) {
                     section = store.sections.get(i);
                     for (int j = 0; j < section.getAisles().length; j++) {
-                        if (section.getAisles()[j].getAisleDisplayName().equals(selected)) {
+                        if (section.getAisles()[j].getAisleDisplayName().equalsIgnoreCase(selected)) {
                             aisle = section.getAisles()[j];
                             adminPanel.adminEditBodyPanel.returnField.append("Search result: '" + aisle.getAisleDisplayName() + "'\n");
                             adminPanel.adminEditBodyPanel.returnField.append("Racks:\n");
-                            if (aisle.hasRacks()){
-                                for (int k = 0; k < aisle.getRack().length; k++){
+                            if (aisle.hasRacks()) {
+                                for (int k = 0; k < aisle.getRack().length; k++) {
                                     rack = aisle.getRack()[k];
                                     adminPanel.adminEditBodyPanel.returnField.append(rack.getRackName() + "\n");
                                 }
-                            } else{
+                            } else {
                                 adminPanel.adminEditBodyPanel.returnField.append("none\n");
                             }
-                            if(aisle.getTags().size() > 0){
+                            if (aisle.getTags().size() > 0) {
                                 adminPanel.adminEditBodyPanel.returnField.append("Tags:\n");
-                                for (int m = 0; m < aisle.getTags().size(); m ++){
-                                    adminPanel.adminEditBodyPanel.returnField.append(aisle.getTags().get(m)+ "\n");
+                                for (int m = 0; m < aisle.getTags().size(); m++) {
+                                    adminPanel.adminEditBodyPanel.returnField.append(aisle.getTags().get(m) + "\n");
                                 }
                             }
                         }
                     }
                 }
             }
-            if(!adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.getSelectedItem().equals("Select Rack...")){
+            if (!adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.getSelectedItem().equals("Select Rack...")) {
                 selected = adminPanel.adminEditBodyPanel.dropBoxPanel.rackDropbox.getSelectedItem().toString();
                 for (int i = 0; i < store.getSections().length; i++) {
                     section = store.sections.get(i);
                     for (int j = 0; j < section.getAisles().length; j++) {
                         aisle = section.getAisles()[j];
-                        for(int k = 0; k < aisle.getRack().length; k++){
-                            if(aisle.getRack()[k].getRackDisplayName().equals(selected)){
+                        for (int k = 0; k < aisle.getRack().length; k++) {
+                            if (aisle.getRack()[k].getRackDisplayName().equalsIgnoreCase(selected)) {
                                 rack = aisle.getRack()[k];
+
                                 adminPanel.adminEditBodyPanel.returnField.append("Search result: '" + rack.getRackDisplayName() +"'\n");
+
                                 adminPanel.adminEditBodyPanel.returnField.append("Shelves:\n");
-                                if(rack.hasShelves()){
-                                    for (int m = 0; m < rack.getShelf().length; m++){
+                                if (rack.hasShelves()) {
+                                    for (int m = 0; m < rack.getShelf().length; m++) {
                                         shelf = rack.getShelf()[m];
                                         adminPanel.adminEditBodyPanel.returnField.append(shelf.rowName + "\n");
                                     }
-                                } else{
+                                } else {
                                     adminPanel.adminEditBodyPanel.returnField.append("none\n");
                                 }
-                                if(rack.getTags().size() > 0){
+                                if (rack.getTags().size() > 0) {
                                     adminPanel.adminEditBodyPanel.returnField.append("Tags:\n");
-                                    for(int n = 0; n < rack.getTags().size(); n++){
+                                    for (int n = 0; n < rack.getTags().size(); n++) {
                                         adminPanel.adminEditBodyPanel.returnField.append(rack.getTags().get(n) + "\n");
                                     }
                                 }
@@ -1239,30 +1267,30 @@ public class GUI implements ActionListener {
                     }
                 }
             }
-            if(!adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.getSelectedItem().equals("Select Shelf...")){
+            if (!adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.getSelectedItem().equals("Select Shelf...")) {
                 selected = adminPanel.adminEditBodyPanel.dropBoxPanel.shelfDropbox.getSelectedItem().toString();
                 for (int i = 0; i < store.getSections().length; i++) {
                     section = store.sections.get(i);
                     for (int j = 0; j < section.getAisles().length; j++) {
                         aisle = section.getAisles()[j];
-                        for(int k = 0; k < aisle.getRack().length; k++){
+                        for (int k = 0; k < aisle.getRack().length; k++) {
                             rack = aisle.getRack()[k];
-                            for(int l = 0; l < rack.getShelf().length; l++){
-                                if(rack.getShelf()[l].getRowDisplayName().equals(selected)){
+                            for (int l = 0; l < rack.getShelf().length; l++) {
+                                if (rack.getShelf()[l].getRowDisplayName().equalsIgnoreCase(selected)) {
                                     shelf = rack.getShelf()[l];
                                     adminPanel.adminEditBodyPanel.returnField.append("Search results: '" + shelf.getRowDisplayName() + "'\n");
                                     adminPanel.adminEditBodyPanel.returnField.append("Items on shelf:\n");
-                                    if(shelf.hasItems()){
-                                        for (int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                                    if (shelf.hasItems()) {
+                                        for (int m = 0; m < shelf.getItemsOnShelf().length; m++) {
                                             item = shelf.getItemsOnShelf()[m];
-                                            adminPanel.adminEditBodyPanel.returnField.append(item.getName()+"\n");
+                                            adminPanel.adminEditBodyPanel.returnField.append(item.getName() + "\n");
                                         }
-                                    } else{
+                                    } else {
                                         adminPanel.adminEditBodyPanel.returnField.append("none\n");
                                     }
-                                    if (shelf.getTags().size() > 0){
+                                    if (shelf.getTags().size() > 0) {
                                         adminPanel.adminEditBodyPanel.returnField.append("Tags:\n");
-                                        for(int n = 0; n < shelf.getTags().size(); n++){
+                                        for (int n = 0; n < shelf.getTags().size(); n++) {
                                             adminPanel.adminEditBodyPanel.returnField.append(shelf.getTags().get(n) + "\n");
                                         }
                                     }
@@ -1274,11 +1302,12 @@ public class GUI implements ActionListener {
             }
 
         }
-        if(e.getSource() == userPanel.userMainBodyPanel.userDropBoxPanel.searchButton){
-            if(!userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.getSelectedItem().equals("Select Section...")){
-                selected = userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.getSelectedItem().toString();
+        if (e.getSource() == userPanel.userMainBodyPanel.userDropBoxPanel.searchButton) {
+            if(!userPanel.userMainBodyPanel.userDropBoxPanel.searchField.getText().equals("")){
+                userPanel.userMainBodyPanel.returnField.append("Search query: " + "'" + userPanel.userMainBodyPanel.userDropBoxPanel.searchField.getText() + "'\n");
+                selected = userPanel.userMainBodyPanel.userDropBoxPanel.searchField.getText();
                 for (int i = 0; i < store.getSections().length; i++) {
-                    if (store.getSections()[i].getSectionName().equals(selected)) {
+                    if (store.getSections()[i].getSectionName().equalsIgnoreCase(selected)) {
                         section = store.sections.get(i);
                         userPanel.userMainBodyPanel.returnField.append("Search result: '" + section.getSectionName() + "'\n");
                         userPanel.userMainBodyPanel.returnField.append("Aisles:\n");
@@ -1293,13 +1322,10 @@ public class GUI implements ActionListener {
 
                     }
                 }
-            }
-            if(!userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.getSelectedItem().equals("Select Aisle...")){
-                selected = userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.getSelectedItem().toString();
                 for (int i = 0; i < store.getSections().length; i++) {
                     section = store.sections.get(i);
                     for (int j = 0; j < section.getAisles().length; j++) {
-                        if (section.getAisles()[j].getAisleDisplayName().equals(selected)) {
+                        if (section.getAisles()[j].getAisleDisplayName().equalsIgnoreCase(selected)) {
                             aisle = section.getAisles()[j];
                             userPanel.userMainBodyPanel.returnField.append("Search result: '" + aisle.getAisleDisplayName() + "'\n");
                             userPanel.userMainBodyPanel.returnField.append("Racks:\n");
@@ -1315,15 +1341,12 @@ public class GUI implements ActionListener {
                         }
                     }
                 }
-            }
-            if(!userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.getSelectedItem().equals("Select Rack...")){
-                selected = userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.getSelectedItem().toString();
                 for (int i = 0; i < store.getSections().length; i++) {
                     section = store.sections.get(i);
                     for (int j = 0; j < section.getAisles().length; j++) {
                         aisle = section.getAisles()[j];
                         for(int k = 0; k < aisle.getRack().length; k++){
-                            if(aisle.getRack()[k].getRackDisplayName().equals(selected)){
+                            if(aisle.getRack()[k].getRackDisplayName().equalsIgnoreCase(selected)){
                                 rack = aisle.getRack()[k];
                                 userPanel.userMainBodyPanel.returnField.append("Search result: '" + rack.getRackDisplayName() +"'\n");
                                 userPanel.userMainBodyPanel.returnField.append("Shelves:\n");
@@ -1341,9 +1364,6 @@ public class GUI implements ActionListener {
                         }
                     }
                 }
-            }
-            if(!userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.getSelectedItem().equals("Select Shelf...")){
-                selected = userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.getSelectedItem().toString();
                 for (int i = 0; i < store.getSections().length; i++) {
                     section = store.sections.get(i);
                     for (int j = 0; j < section.getAisles().length; j++) {
@@ -1351,7 +1371,7 @@ public class GUI implements ActionListener {
                         for(int k = 0; k < aisle.getRack().length; k++){
                             rack = aisle.getRack()[k];
                             for(int l = 0; l < rack.getShelf().length; l++){
-                                if(rack.getShelf()[l].getRowDisplayName().equals(selected)){
+                                if(rack.getShelf()[l].getRowDisplayName().equalsIgnoreCase(selected)){
                                     shelf = rack.getShelf()[l];
                                     userPanel.userMainBodyPanel.returnField.append("Search results: '" + shelf.getRowDisplayName() + "'\n");
                                     userPanel.userMainBodyPanel.returnField.append("Items on shelf:\n");
@@ -1363,6 +1383,237 @@ public class GUI implements ActionListener {
                                     } else{
                                         userPanel.userMainBodyPanel.returnField.append("none\n");
                                     }
+
+                                }
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < store.getSections().length; i++) {
+                    section = store.sections.get(i);
+                    for (int j = 0; j < section.getAisles().length; j++) {
+                        aisle = section.getAisles()[j];
+                        for(int k = 0; k < aisle.getRack().length; k++){
+                            rack = aisle.getRack()[k];
+                            for(int l = 0; l < rack.getShelf().length; l++){
+                                shelf = rack.getShelf()[l];
+                                for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                                    if(shelf.getItemsOnShelf()[m].getName().equalsIgnoreCase(selected)){
+                                        item = shelf.getItemsOnShelf()[m];
+                                        printItemUser(item);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                //start substring item search
+                for (int i = 0; i < store.getSections().length; i++) {
+                    section = store.sections.get(i);
+                    for (int j = 0; j < section.getAisles().length; j++) {
+                        aisle = section.getAisles()[j];
+                        for(int k = 0; k < aisle.getRack().length; k++){
+                            rack = aisle.getRack()[k];
+                            for(int l = 0; l < rack.getShelf().length; l++){
+                                shelf = rack.getShelf()[l];
+                                for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                                    item = shelf.getItemsOnShelf()[m];
+                                    for (int n = 0; n <= (item.getName().length() - selected.length()); n++){
+                                        if(item.getName().regionMatches(true, n, selected, 0, selected.length())&& !item.getName().equalsIgnoreCase(selected)){
+                                            printItemUser(item);
+                                        }
+
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+
+                for (int i = 0; i < store.getSections().length; i++) {
+                    section = store.sections.get(i);
+                    for (int a = 0; a < section.getTags().size(); a++){
+                        if(section.getTags().get(a).equals(selected)){
+                            userPanel.userMainBodyPanel.returnField.append("Search result: '" + section.getSectionName() + "'\n");
+                            userPanel.userMainBodyPanel.returnField.append("Aisles:\n");
+                            if(section.hasAisle()) {
+                                for (int k = 0; k < section.getAisles().length; k++) {
+                                    aisle = section.getAisles()[k];
+                                    userPanel.userMainBodyPanel.returnField.append(aisle.getAisleName() + "\n");
+                                }
+                            } else{
+                                userPanel.userMainBodyPanel.returnField.append("none\n");
+                            }
+                            break;
+                        }
+                    }
+                    for (int j = 0; j < section.getAisles().length; j++) {
+                        aisle = section.getAisles()[j];
+                        for (int b = 0; b < aisle.getTags().size(); b++){
+                            if(aisle.getTags().get(b).equals(selected)){
+                                userPanel.userMainBodyPanel.returnField.append("Search result: '" + aisle.getAisleDisplayName() + "'\n");
+                                userPanel.userMainBodyPanel.returnField.append("Racks:\n");
+                                if (aisle.hasRacks()){
+                                    for (int k = 0; k < aisle.getRack().length; k++){
+                                        rack = aisle.getRack()[k];
+                                        userPanel.userMainBodyPanel.returnField.append(rack.getRackName() + "\n");
+                                    }
+                                } else{
+                                    userPanel.userMainBodyPanel.returnField.append("none\n");
+                                }
+                                break;
+                            }
+                        }
+                        for(int k = 0; k < aisle.getRack().length; k++){
+                            rack = aisle.getRack()[k];
+                            for (int c = 0; c < rack.getTags().size(); c++){
+                                if(rack.getTags().get(c).equals(selected)){
+                                    userPanel.userMainBodyPanel.returnField.append("Search result: '" + rack.getRackDisplayName() +"'\n");
+                                    userPanel.userMainBodyPanel.returnField.append("Shelves:\n");
+                                    if(rack.hasShelves()){
+                                        for (int m = 0; m < rack.getShelf().length; m++){
+                                            shelf = rack.getShelf()[m];
+                                            userPanel.userMainBodyPanel.returnField.append(shelf.rowName + "\n");
+                                        }
+                                    } else{
+                                        userPanel.userMainBodyPanel.returnField.append("none\n");
+                                    }
+                                    break;
+                                }
+                            }
+                            for(int l = 0; l < rack.getShelf().length; l++){
+                                shelf = rack.getShelf()[l];
+                                for (int d = 0; d < shelf.getTags().size(); d++){
+                                    if(shelf.getTags().get(d).equals(selected)){
+                                        userPanel.userMainBodyPanel.returnField.append("Search results: '" + shelf.getRowDisplayName() + "'\n");
+                                        userPanel.userMainBodyPanel.returnField.append("Items on shelf:\n");
+                                        if(shelf.hasItems()){
+                                            for (int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                                                item = shelf.getItemsOnShelf()[m];
+                                                userPanel.userMainBodyPanel.returnField.append(item.getName()+"\n");
+                                            }
+                                        } else{
+                                            userPanel.userMainBodyPanel.returnField.append("none\n");
+                                        }
+                                        break;
+                                    }
+                                }
+                                for(int m = 0; m < shelf.getItemsOnShelf().length; m++){
+                                    item = shelf.getItemsOnShelf()[m];
+                                    for (int f = 0; f<item.getTags().size(); f++){
+                                        if(item.getTags().get(f).equals(selected)){
+                                            printItemUser(item);
+                                            break;
+                                        }
+                                    }
+                                }//here
+
+                            }
+                        }
+                    }
+                }
+
+
+            }
+
+            if (!userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.getSelectedItem().equals("Select Section...")) {
+                selected = userPanel.userMainBodyPanel.userDropBoxPanel.sectionDropbox.getSelectedItem().toString();
+                for (int i = 0; i < store.getSections().length; i++) {
+                    if (store.getSections()[i].getSectionName().equals(selected)) {
+                        section = store.sections.get(i);
+                        userPanel.userMainBodyPanel.returnField.append("Search result: '" + section.getSectionName() + "'\n");
+                        userPanel.userMainBodyPanel.returnField.append("Aisles:\n");
+                        if (section.hasAisle()) {
+                            for (int k = 0; k < section.getAisles().length; k++) {
+                                aisle = section.getAisles()[k];
+                                userPanel.userMainBodyPanel.returnField.append(aisle.getAisleName() + "\n");
+                            }
+                        } else {
+                            userPanel.userMainBodyPanel.returnField.append("none\n");
+                        }
+
+
+                    }
+                }
+            }
+            if (!userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.getSelectedItem().equals("Select Aisle...")) {
+                selected = userPanel.userMainBodyPanel.userDropBoxPanel.aisleDropbox.getSelectedItem().toString();
+                for (int i = 0; i < store.getSections().length; i++) {
+                    section = store.sections.get(i);
+                    for (int j = 0; j < section.getAisles().length; j++) {
+                        if (section.getAisles()[j].getAisleDisplayName().equals(selected)) {
+                            aisle = section.getAisles()[j];
+                            userPanel.userMainBodyPanel.returnField.append("Search result: '" + aisle.getAisleDisplayName() + "'\n");
+                            userPanel.userMainBodyPanel.returnField.append("Racks:\n");
+                            if (aisle.hasRacks()) {
+                                for (int k = 0; k < aisle.getRack().length; k++) {
+                                    rack = aisle.getRack()[k];
+                                    userPanel.userMainBodyPanel.returnField.append(rack.getRackName() + "\n");
+                                }
+                            } else {
+                                userPanel.userMainBodyPanel.returnField.append("none\n");
+                            }
+
+
+
+                        }
+                    }
+                }
+            }
+            if (!userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.getSelectedItem().equals("Select Rack...")) {
+                selected = userPanel.userMainBodyPanel.userDropBoxPanel.rackDropbox.getSelectedItem().toString();
+                for (int i = 0; i < store.getSections().length; i++) {
+                    section = store.sections.get(i);
+                    for (int j = 0; j < section.getAisles().length; j++) {
+                        aisle = section.getAisles()[j];
+                        for (int k = 0; k < aisle.getRack().length; k++) {
+                            if (aisle.getRack()[k].getRackDisplayName().equals(selected)) {
+                                rack = aisle.getRack()[k];
+
+                                userPanel.userMainBodyPanel.returnField.append("Search result: '" + rack.getRackDisplayName() +"'\n");
+
+                                userPanel.userMainBodyPanel.returnField.append("Shelves:\n");
+                                if (rack.hasShelves()) {
+                                    for (int m = 0; m < rack.getShelf().length; m++) {
+                                        shelf = rack.getShelf()[m];
+                                        userPanel.userMainBodyPanel.returnField.append(shelf.rowName + "\n");
+                                    }
+                                } else {
+                                    userPanel.userMainBodyPanel.returnField.append("none\n");
+                                }
+
+
+
+
+                            }
+                        }
+                    }
+                }
+            }
+            if (!userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.getSelectedItem().equals("Select Shelf...")) {
+                selected = userPanel.userMainBodyPanel.userDropBoxPanel.shelfDropbox.getSelectedItem().toString();
+                for (int i = 0; i < store.getSections().length; i++) {
+                    section = store.sections.get(i);
+                    for (int j = 0; j < section.getAisles().length; j++) {
+                        aisle = section.getAisles()[j];
+                        for (int k = 0; k < aisle.getRack().length; k++) {
+                            rack = aisle.getRack()[k];
+                            for (int l = 0; l < rack.getShelf().length; l++) {
+                                if (rack.getShelf()[l].getRowDisplayName().equals(selected)) {
+                                    shelf = rack.getShelf()[l];
+                                    userPanel.userMainBodyPanel.returnField.append("Search results: '" + shelf.getRowDisplayName() + "'\n");
+                                    userPanel.userMainBodyPanel.returnField.append("Items on shelf:\n");
+                                    if (shelf.hasItems()) {
+                                        for (int m = 0; m < shelf.getItemsOnShelf().length; m++) {
+                                            item = shelf.getItemsOnShelf()[m];
+                                            userPanel.userMainBodyPanel.returnField.append(item.getName() + "\n");
+                                        }
+                                    } else {
+                                        userPanel.userMainBodyPanel.returnField.append("none\n");
+                                    }
+
+
 
                                 }
                             }
@@ -1731,86 +1982,131 @@ public class GUI implements ActionListener {
                 JOptionPane.showMessageDialog(controllingContainer, "Make sure the name is filled out.");
             }
         }
-        //***************************************************
-        // ***Populating the JList for the AdminAddRemovePan
     }
 
+    //******************************************************
+    //***Populating the JList for the AdminAddRemovePanelTop
     public void populatingAddRemoveJList(ActionEvent e) {
-        AdminAddRemovePanelTop adminAddRemovePanelTop = AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop;
-        adminAddRemovePanelTop.modelObjectList.clear();
-        String obj = (String) adminAddRemovePanelTop.objectDropBox.getSelectedItem();
+        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.modelObjectList.clear();
+        String obj = (String) AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.objectDropBox.getSelectedItem();
         if (Objects.equals(obj, "Section")) {
-            for (String s : store.getSectionsNames(store.getSections())) {
-                adminAddRemovePanelTop.modelObjectList.addElement(s);
+            for (String str : store.getSectionsNames(store.getSections())) {
+                AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.modelObjectList.addElement(str);
             }
         } else if (Objects.equals(obj, "Aisle")) {
-            for (Section s : store.getSections()) {
-                for (Aisle a : s.getAisles()) {
-                    String name = a.getAisleName();
-                    adminAddRemovePanelTop.modelObjectList.addElement(name);
+            for (Section sec : store.getSections()) {
+                for (Aisle ais : sec.getAisles()) {
+                    AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.modelObjectList.addElement(ais.getAisleDisplayName());
                 }
             }
         } else if (Objects.equals(obj, "Rack")) {
-            for (String s : aisle.getRacksNames(aisle.getRack())) {
-                int count = 0;
-                adminAddRemovePanelTop.modelObjectList.addElement(s);
+            for (Section sec : store.getSections()) {
+                for (Aisle ais : sec.getAisles()) {
+                    for (Rack rac : ais.getRack()) {
+                        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.modelObjectList.addElement(rac.getRackDisplayName());
+                    }
+                }
             }
         } else if (Objects.equals(obj, "Shelf")) {
-            for (String s : rack.getShelfNames(rack.getShelf())) {
-                int count = 0;
-                adminAddRemovePanelTop.modelObjectList.addElement(s);
+            for (Section sec : store.getSections()) {
+                for (Aisle ais : sec.getAisles()) {
+                    for (Rack rac : ais.getRack()) {
+                        for (Shelf she : rac.getShelf()) {
+                            AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.modelObjectList.addElement(she.getRowDisplayName());
+                        }
+                    }
+                }
             }
         } else if (Objects.equals(obj, "Sale Item")) {
-            for (SaleItem s : shelf.getItemsOnShelf()) {
-                int count = 0;
-                adminAddRemovePanelTop.modelObjectList.addElement(s.toString());
+            for (Section sec : store.getSections()) {
+                for (Aisle ais : sec.getAisles()) {
+                    for (Rack rac : ais.getRack()) {
+                        for (Shelf she : rac.getShelf()) {
+                            for (SaleItem sal : she.getItemsOnShelf()) {
+                                AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.modelObjectList.addElement(sal.getName());
+                            }
+                        }
+
+                    }
+                }
             }
         }
         AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.repaint();
     }
 
+    //*********************************************************************************
     //***Lambda Expression for Removing selected object from JList though the JComboBox
-
     public void removeButtonClicked(ActionEvent e) {
-        int selectedValue = AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.objectList.getSelectedIndex();
-        if (selectedValue == 1) {
-            for (Section s : store.getSections()) {
-                if (s.getSectionName().equals(selectedValue)) {
-                    store.removeSection(s);
+        System.out.println("Made it to the listener");
+        int selectedDropBoxIndex = AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.objectDropBox.getSelectedIndex();
+        String selectedListValue = AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.objectList.getSelectedValue();
+        //For Removing Section
+        if (selectedDropBoxIndex == 1) {
+            for (Section sec : store.getSections()) {
+                if (sec.getSectionName().equals(selectedListValue)) {
+                    store.removeSection(sec);
                 }
             }
         }
-        if (selectedValue == 2) {
-            for (Aisle a : section.getAisles()) {
-                if (a.getAisleName().equals(selectedValue)) {
-                    section.removeAisle(a);
+        //For Removing Aisle
+        if (selectedDropBoxIndex == 2) {
+            System.out.println("Found DropBox selected on 'Aisle'");
+            for (Section sec : store.getSections()) {
+                System.out.println("1st ForLoop: for every Section in the Store");
+                for (Aisle ais : sec.getAisles()) {
+                    System.out.println("2nd ForLoop: for every Aisle in the Section");
+                    if (ais.getAisleDisplayName().equals(selectedListValue)) {
+                        System.out.println("Removing: " + ais + " from " + ais.getSection().getSectionName());
+                        sec.removeAisle(ais);
+                    }
                 }
             }
         }
-        if (selectedValue == 3) {
-            for (Rack r : aisle.getRack()) {
-                if (r.getRackName().equals(selectedValue)) {
-                    aisle.removeRack(r);
+        //For Removing Rack
+        if (selectedDropBoxIndex == 3) {
+            for (Section sec : store.getSections()) {
+                for (Aisle ais : section.getAisles()) {
+                    for (Rack rac : aisle.getRack()) {
+                        if (rac.getRackDisplayName().equals(selectedListValue)) {
+                            aisle.removeRack(rac);
+                        }
+                    }
                 }
             }
         }
-        if (selectedValue == 4) {
-            for (Shelf s : rack.getShelf()) {
-                if (s.getRowName().equals(selectedValue)) {
-                    rack.removeShelf(s);
+        //For Removing Shelf
+        if (selectedDropBoxIndex == 3) {
+            for (Section sec : store.getSections()) {
+                for (Aisle ais : section.getAisles()) {
+                    for (Rack rac : aisle.getRack()) {
+                        for (Shelf slf : rack.getShelf()) {
+                            if (slf.getRowDisplayName().equals(selectedListValue)) {
+                                rack.removeShelf(slf);
+                            }
+                        }
+                    }
                 }
             }
         }
-        if (selectedValue == 5) {
-            for (SaleItem i : shelf.getItemsOnShelf()) {
-                if (i.getName().equals(selectedValue)) {
-                    shelf.removeItems(i);
+        //For Removing SaleItem
+        if (selectedDropBoxIndex == 4) {
+            for (Section sec : store.getSections()) {
+                for (Aisle ais : section.getAisles()) {
+                    for (Rack rac : aisle.getRack()) {
+                        for (Shelf slf : rack.getShelf()) {
+                            for (SaleItem sal : shelf.getItemsOnShelf()) {
+                                if (sal.getName().equals(selectedListValue)) {
+                                    shelf.removeItems(sal);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
         populatingAddRemoveJList(e);
-        reloadComboBoxes();
         AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.repaint();
+        reloadComboBoxes();
     }
 
     private static void createAndShowGUI() {
@@ -1850,7 +2146,6 @@ public class GUI implements ActionListener {
             public void run() {
                 createAndShowGUI();
             }
-
         });
     }
 }

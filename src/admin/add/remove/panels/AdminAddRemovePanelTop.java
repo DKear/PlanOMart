@@ -20,11 +20,13 @@ import java.util.Objects;
 public class AdminAddRemovePanelTop extends JPanel {
 
     public JLabel dropBoxLabel;
-    public DefaultListModel<String> modelObjectList;
     public JComboBox<String> objectDropBox;
+
     public JButton removeButton;
 
+    public DefaultListModel<String> modelObjectList;
     public JList<String> objectList;
+    public JScrollPane scrollPane;
 
     public AdminAddRemovePanelTop() {
         setBorder(new BevelBorder(BevelBorder.RAISED));
@@ -47,14 +49,18 @@ public class AdminAddRemovePanelTop extends JPanel {
         removeButton.setFont(new Font("Arial", Font.PLAIN, 16));
 
         modelObjectList = new DefaultListModel<>();
+
         objectList = new JList<>(modelObjectList);
+        objectList.setFont(new Font("Arial", Font.PLAIN, 16));
+
+        scrollPane = new JScrollPane(objectList);
 
 
         setLayout(new MigLayout("", "[]push[]", "[align center][grow]"));
         add(dropBoxLabel, "");
         add(objectDropBox, "");
         add(removeButton, "wrap");
-        add(objectList, "span, grow");
+        add(scrollPane, "span, grow");
     }
 
     public void setObjectList(JList objectList) {
