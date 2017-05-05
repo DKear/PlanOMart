@@ -18,8 +18,8 @@ public class GUI implements ActionListener {
     private String USERPANEL = "User";
     private String OPENINGPANEL = "Opening Panel";
     private GUIAdminEdit ae;
-    private JPanel adminEditCard, openingContent, cards;
-    private JButton openingUserButton, openingAdminButton, adminEditButton, adminSwitchButton, userSwitchButton;
+    private JPanel adminEditCard, cards;
+    private JButton adminEditButton, adminSwitchButton, userSwitchButton;
     private Boolean storeExists = false;
     private GUIPassword pw;
     private char[] passwordInput;
@@ -45,6 +45,7 @@ public class GUI implements ActionListener {
     private GUIUserMain userPanel;
     private GUIAdminEditLocation adminEditLocation = new GUIAdminEditLocation();
     private GUIAdminEditPanel adminEditPanel = new GUIAdminEditPanel();
+    private GUIOpeningPanel openingPanel = new GUIOpeningPanel();
 
     public void addComponentToPane(Container pane) {
         store = new Store("store");
@@ -59,7 +60,6 @@ public class GUI implements ActionListener {
         userSwitchButton.addActionListener(this);
         adminSwitchButton = new JButton("Switch User Mode");
         adminSwitchButton.addActionListener(this);
-        JPanel openingPanel = new JPanel();
 
         adminPanel.adminEditBottomPanel.switchUserButton.addActionListener(this);
         adminPanel.adminEditBottomPanel.editButton.addActionListener(this);
@@ -68,34 +68,13 @@ public class GUI implements ActionListener {
         userPanel = new GUIUserMain();
         userPanel.userMainBodyPanel.userDropBoxPanel.searchButton.addActionListener(this);
 
+        openingPanel.openingUserButton.addActionListener(this);
+        openingPanel.openingAdminButton.addActionListener(this);
+
         cards = new JPanel(new CardLayout());
         cards.add(openingPanel, OPENINGPANEL);
         cards.add(userPanel, USERPANEL);
         cards.add(adminPanel, ADMINPANEL);
-
-        openingContent = new JPanel();
-        openingContent.setLayout(new GridBagLayout());
-        openingUserButton = new JButton("User");
-        openingUserButton.addActionListener(this);
-        openingAdminButton = new JButton("Admin");
-        openingAdminButton.addActionListener(this);
-        GridBagConstraints o = new GridBagConstraints();
-        o.gridwidth = 2;
-        o.gridx = 0;
-        o.gridy = 0;
-
-        openingContent.add(new JLabel("Select a mode:"), o);
-        o.gridwidth = 1;
-        o.gridx = 0;
-        o.gridy = 1;
-        o.weightx = 1;
-        o.insets = new Insets(0, 0, 0, 10);
-        openingContent.add(openingAdminButton, o);
-        o.gridx = 1;
-        o.gridy = 1;
-        o.insets = new Insets(0, 10, 0, 0);
-        openingContent.add(openingUserButton, o);
-        openingPanel.add(openingContent);
 
         adminEditButton = new JButton("Edit");
         adminEditButton.addActionListener(this);
@@ -330,10 +309,10 @@ public class GUI implements ActionListener {
         CardLayout cl = (CardLayout) (cards.getLayout());
         CardLayout ecl = (CardLayout) (adminEditCard.getLayout());
 
-        if (e.getSource() == openingAdminButton) {
+        if (e.getSource() == openingPanel.openingAdminButton) {
             pw.setVisible(true);
         }
-        if (e.getSource() == openingUserButton) {
+        if (e.getSource() == openingPanel.openingUserButton) {
             cl.show(cards, USERPANEL);
         }
         if (e.getSource() == userSwitchButton || e.getSource() == adminPanel.adminEditBottomPanel.switchUserButton) {
