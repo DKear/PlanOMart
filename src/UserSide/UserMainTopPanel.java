@@ -7,13 +7,12 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 
 public class UserMainTopPanel extends JPanel {
-    private JLabel title;
+    public static JLabel title = new JLabel();
     private JLabel userLabel;
 
     public UserMainTopPanel() {
         setBorder(new BevelBorder(BevelBorder.RAISED));
 
-        title = new JLabel("Plan-O-Mart");
         title.setFont(new Font("Arial", Font.BOLD, 64));
 
         userLabel = new JLabel("User Account");

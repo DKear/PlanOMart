@@ -8,13 +8,12 @@ import java.awt.*;
 
 
 public class AdminMainTopPanel extends JPanel {
-    private JLabel title;
+    public static JLabel title = new JLabel();
     private JLabel adminLabel;
 
     public AdminMainTopPanel() {
 
         setBorder(new BevelBorder(BevelBorder.RAISED));
-        title = new JLabel("Plan-O-Mart");
         title.setFont(new Font("Arial", Font.BOLD, 64));
 
         adminLabel = new JLabel("Administrator Account");

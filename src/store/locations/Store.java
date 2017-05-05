@@ -9,7 +9,11 @@ public class Store {
 
     public Store(String n){
         storeName = n;
-        sections = new ArrayList<Section>();
+        sections = new ArrayList<>();
+    }
+
+    public void setNewStoreName(String n){
+        storeName = n;
     }
     public String getStoreName(){
         return storeName;
