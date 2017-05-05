@@ -109,9 +109,5 @@ public class GUIEditMerch extends JPanel{
         add(merchSaleSubmit, em);
         em.gridy++;
         add(backButton, em);
-
-
-
-
     }
 }
