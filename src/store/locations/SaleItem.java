@@ -12,7 +12,7 @@ public class SaleItem {
     private double salePrice;
     private String saleDescription = "";
     private Shelf shelf;
-    private DecimalFormat df = new DecimalFormat("#.##");
+    private DecimalFormat df = new DecimalFormat("#.00");
 
     public SaleItem(double p, String n, String d) {
             df.format(p);

@@ -7,7 +7,7 @@ public class GUIAdminEdit extends JDialog {
     public JButton changePassButton;
 
     public GUIAdminEdit(){
-        setSize(400,400);
+        setSize(400,500);
         Dimension buttonSize = new Dimension(150, 30);
         locationButton = new JButton("Location object");
 
