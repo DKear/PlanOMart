@@ -170,8 +170,8 @@ public class GUI implements ActionListener {
         addAisleDialog.submitButton.addActionListener(this);
         addSectionDialog.submitButton.addActionListener(this);
 
-        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.removeButton.addActionListener(this::removeButtonClicked);
-        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.objectDropBox.addActionListener(this::populatingAddRemoveJList);
+        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.objectDropBox.addActionListener(this);
+        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.removeButton.addActionListener(this);
     }
 
     public void reloadAddSectionDropBoxes() {
@@ -1061,98 +1061,15 @@ public class GUI implements ActionListener {
             adminPanel.adminEditBodyPanel.dropBoxPanel.sectionDropbox.addItem(addSectionDialog.newSection.getSectionName());
             reloadComboBoxes();
         }
-    }
-    //******************************************************
-    //***Populating the JList for the AdminAddRemovePanelTop
-    public void populatingAddRemoveJList(ActionEvent e) {
-        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.modelObjectList.clear();
-        String obj = (String) AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.objectDropBox.getSelectedItem();
-        if (Objects.equals(obj, "Section")) {
-            for (String str : store.getSectionsNames(store.getSections())) {
-                AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.modelObjectList.addElement(str);
-            }
-        } else if (Objects.equals(obj, "Aisle")) {
-            for (Section sec : store.getSections()) {
-                for (Aisle ais : sec.getAisles()) {
-                    AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.modelObjectList.addElement(ais.getAisleDisplayName());
-                }}
-        } else if (Objects.equals(obj, "Rack")) {
-            for (Section sec : store.getSections()) {
-                for (Aisle ais : sec.getAisles()) {
-                    for (Rack rac : ais.getRack()) {
-                        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.modelObjectList.addElement(rac.getRackDisplayName());
-                    }}}
-        } else if (Objects.equals(obj, "Shelf")) {
-            for (Section sec : store.getSections()) {
-                for (Aisle ais : sec.getAisles()) {
-                    for (Rack rac : ais.getRack()) {
-                        for (Shelf she : rac.getShelf()) {
-                            AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.modelObjectList.addElement(she.getRowDisplayName());
-                        }}}}
-        } else if (Objects.equals(obj, "Sale Item")) {
-            for (Section sec : store.getSections()) {
-                for (Aisle ais : sec.getAisles()) {
-                    for (Rack rac : ais.getRack()) {
-                        for (Shelf she : rac.getShelf()) {
-                            for (SaleItem sal : she.getItemsOnShelf()) {
-                                AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.modelObjectList.addElement(sal.getName());
-                            }}}}}}
-        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.repaint();
-    }
-
-    //*********************************************************************************
-    //***Lambda Expression for Removing selected object from JList though the JComboBox
-    public void removeButtonClicked(ActionEvent e) {
-        System.out.println("Made it to the listener");
-        int selectedDropBoxIndex = AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.objectDropBox.getSelectedIndex();
-        String selectedListValue = AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.objectList.getSelectedValue();
-        //For Removing Section
-        if (selectedDropBoxIndex == 1) {
-            for (Section sec : store.getSections()) {
-                if (sec.getSectionName().equals(selectedListValue)) {
-                    store.removeSection(sec);
-                }}}
-        //For Removing Aisle
-        if (selectedDropBoxIndex == 2) {
-            System.out.println("Found DropBox selected on 'Aisle'");
-            for (Section sec : store.getSections()) {
-                System.out.println("1st ForLoop: for every Section in the Store");
-                for (Aisle ais : sec.getAisles()) {
-                    System.out.println("2nd ForLoop: for every Aisle in the Section");
-                    if (ais.getAisleDisplayName().equals(selectedListValue)) {
-                        System.out.println("Removing: " + ais + " from " + ais.getSection().getSectionName());
-                        sec.removeAisle(ais);
-                    }}}}
-        //For Removing Rack
-        if (selectedDropBoxIndex == 3) {
-            for (Section sec : store.getSections()) {
-                for (Aisle ais : sec.getAisles()) {
-                    for (Rack rac : ais.getRack()) {
-                        if (rac.getRackDisplayName().equals(selectedListValue)) {
-                            ais.removeRack(rac);
-                        }}}}}
-        //For Removing Shelf
-        if (selectedDropBoxIndex == 4) {
-            for (Section sec : store.getSections()) {
-                for (Aisle ais : sec.getAisles()) {
-                    for (Rack rac : ais.getRack()) {
-                        for (Shelf slf : rac.getShelf()) {
-                            if (slf.getRowDisplayName().equals(selectedListValue)) {
-                                rac.removeShelf(slf);
-                            }}}}}}
-        //For Removing SaleItem
-        if (selectedDropBoxIndex == 5) {
-            for (Section sec : store.getSections()) {
-                for (Aisle ais : sec.getAisles()) {
-                    for (Rack rac : ais.getRack()) {
-                        for (Shelf slf : rac.getShelf()) {
-                            for (SaleItem sal : slf.getItemsOnShelf()) {
-                                if (sal.getName().equals(selectedListValue)) {
-                                    slf.removeItems(sal);
-                                }}}}}}}
-        populatingAddRemoveJList(e);
-        AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.repaint();
-        reloadComboBoxes();
+        //remove method
+        if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.removeButton) {
+            AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.removeButtonClicked(store, e);
+            reloadComboBoxes();
+        }
+        //populate remove JList
+        if (e.getSource() == AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.objectDropBox) {
+            AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.populatingAddRemoveJList(store);
+        }
     }
 
     private static void createAndShowGUI() {
