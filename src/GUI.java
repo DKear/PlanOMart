@@ -1126,29 +1126,29 @@ public class GUI implements ActionListener {
         //For Removing Rack
         if (selectedDropBoxIndex == 3) {
             for (Section sec : store.getSections()) {
-                for (Aisle ais : section.getAisles()) {
-                    for (Rack rac : aisle.getRack()) {
+                for (Aisle ais : sec.getAisles()) {
+                    for (Rack rac : ais.getRack()) {
                         if (rac.getRackDisplayName().equals(selectedListValue)) {
-                            aisle.removeRack(rac);
+                            ais.removeRack(rac);
                         }}}}}
         //For Removing Shelf
-        if (selectedDropBoxIndex == 3) {
-            for (Section sec : store.getSections()) {
-                for (Aisle ais : section.getAisles()) {
-                    for (Rack rac : aisle.getRack()) {
-                        for (Shelf slf : rack.getShelf()) {
-                            if (slf.getRowDisplayName().equals(selectedListValue)) {
-                                rack.removeShelf(slf);
-                            }}}}}}
-        //For Removing SaleItem
         if (selectedDropBoxIndex == 4) {
             for (Section sec : store.getSections()) {
-                for (Aisle ais : section.getAisles()) {
-                    for (Rack rac : aisle.getRack()) {
-                        for (Shelf slf : rack.getShelf()) {
-                            for (SaleItem sal : shelf.getItemsOnShelf()) {
+                for (Aisle ais : sec.getAisles()) {
+                    for (Rack rac : ais.getRack()) {
+                        for (Shelf slf : rac.getShelf()) {
+                            if (slf.getRowDisplayName().equals(selectedListValue)) {
+                                rac.removeShelf(slf);
+                            }}}}}}
+        //For Removing SaleItem
+        if (selectedDropBoxIndex == 5) {
+            for (Section sec : store.getSections()) {
+                for (Aisle ais : sec.getAisles()) {
+                    for (Rack rac : ais.getRack()) {
+                        for (Shelf slf : rac.getShelf()) {
+                            for (SaleItem sal : slf.getItemsOnShelf()) {
                                 if (sal.getName().equals(selectedListValue)) {
-                                    shelf.removeItems(sal);
+                                    slf.removeItems(sal);
                                 }}}}}}}
         populatingAddRemoveJList(e);
         AdminMainBottomPanel.guiAddRemoveWindow.adminAddRemovePanelTop.repaint();
