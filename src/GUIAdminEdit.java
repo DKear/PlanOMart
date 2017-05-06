@@ -2,19 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUIAdminEdit extends JDialog {
-    public JButton locationButton;
-    public JButton merchandiseButton;
-    public JButton changePassButton;
+    public static JButton locationButton = new JButton("Location object");;
+    public static JButton merchandiseButton = new JButton("Merchandise object");;
+    public static JButton changePassButton = new JButton("Change password");;
 
     public GUIAdminEdit(){
         setSize(400,500);
         Dimension buttonSize = new Dimension(150, 30);
-        locationButton = new JButton("Location object");
 
         locationButton.setPreferredSize(buttonSize);
-        merchandiseButton = new JButton("Merchandise object");
         merchandiseButton.setPreferredSize(buttonSize);
-        changePassButton = new JButton("Change password");
         changePassButton.setPreferredSize(buttonSize);
 
         setVisible(false);

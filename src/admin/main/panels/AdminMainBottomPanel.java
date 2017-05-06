@@ -71,9 +71,6 @@ public class AdminMainBottomPanel extends JPanel {
         getParent().setVisible(false);
     }
 
-    /*public void editButtonClicked(ActionEvent e){
-        guiAddRemoveWindow.setVisible(true);
-    }*/
 
     private void addRemoveButtonClicked(ActionEvent e) {
         if (e.getSource() == addRemoveButton) {
