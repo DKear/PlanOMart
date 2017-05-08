@@ -1,7 +1,8 @@
 package admin;
 
 import net.miginfocom.swing.MigLayout;
-
+import store.locations.Aisle;
+import store.locations.Store;
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,6 +15,7 @@ public class GUIAddAisleDialog extends JDialog {
     public JComboBox<String> sectionDropBox = new JComboBox<>();
     private JLabel locationLabel = new JLabel("Location of Aisle:");
     public JButton submitButton = new JButton("Submit");
+    private boolean fcheck = false;
 
     public GUIAddAisleDialog() {
         setSize(1024, 412);
@@ -48,5 +50,47 @@ public class GUIAddAisleDialog extends JDialog {
         setSize(1000, 600);
 
         setVisible(false);
+    }
+    public void addTheAisle(Store store) {
+        String name = aisleNameField.getText();
+        Aisle newAisle = new Aisle(name);
+        String tagsTogether = aisleTagField.getText();
+        if (!tagsTogether.equals("")) { //adds tags if there are any
+            String[] allTags = tagsTogether.split(", ");
+            for (String s : allTags) {
+                newAisle.addTag(s);
+            }}
+        int sectionIndex = sectionDropBox.getSelectedIndex() - 1;
+        if (newAisle.validateAisle() && sectionIndex != -1) {//if it's a valid aisle name
+            if (store.getSections()[sectionIndex].hasAisle()) {//if other aisles are in the section
+                for (Aisle a : store.getSections()[sectionIndex].getAisles()) {
+                    boolean check = newAisle.getAisleName().equalsIgnoreCase(a.getAisleName());//checking to see if it already exists
+                    fcheck = check || fcheck; //will return false unless an aisle with that name already exists in that section
+                }
+                if (fcheck == false) {
+                    store.getSections()[sectionIndex].addAisle(newAisle);
+                    newAisle.setSection(store.getSections()[sectionIndex]);
+                    aisleNameField.setText("");
+                    aisleTagField.setText("");
+                    setVisible(false);
+                    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Aisle already exists in Section.");
+                    fcheck = false;
+                }
+            } else { //if it's a valid aisle and no other aisles are in that section, it adds it immediately
+                store.getSections()[sectionIndex].addAisle(newAisle);
+                newAisle.setSection(store.getSections()[sectionIndex]);
+                aisleNameField.setText("");
+                aisleTagField.setText("");
+                setVisible(false);
+                setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+            }
+        } else if (sectionIndex == -1) {
+            JOptionPane.showMessageDialog(this, "Select a section first.");
+        } else if (!newAisle.validateAisle()) {
+            JOptionPane.showMessageDialog(this, "Make sure the name is filled out.");
+        }
     }
 }

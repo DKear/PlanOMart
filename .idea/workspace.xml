@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba16fc0b-098a-4798-bd75-f298cbb353cf" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/locations/AisleTest.java" afterPath="$PROJECT_DIR$/src/store/locations/AisleTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PlanOMart/GUI$1.class" afterPath="$PROJECT_DIR$/out/production/PlanOMart/GUI$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PlanOMart/GUI.class" afterPath="$PROJECT_DIR$/out/production/PlanOMart/GUI.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GUI.java" afterPath="$PROJECT_DIR$/src/GUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/GUIAddAisleDialog.java" afterPath="$PROJECT_DIR$/src/admin/GUIAddAisleDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/GUIAddItemDialog.java" afterPath="$PROJECT_DIR$/src/admin/GUIAddItemDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/GUIAddRackDialog.java" afterPath="$PROJECT_DIR$/src/admin/GUIAddRackDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/GUIAddSectionDialog.java" afterPath="$PROJECT_DIR$/src/admin/GUIAddSectionDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/GUIAddShelfDialog.java" afterPath="$PROJECT_DIR$/src/admin/GUIAddShelfDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRemovePanelTop.java" afterPath="$PROJECT_DIR$/src/admin/add/remove/panels/AdminAddRemovePanelTop.java" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,7 +28,7 @@
       <file leaf-file-name="RackTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/store/locations/RackTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-923">
+            <state relative-caret-position="100">
               <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
               <folding />
             </state>
@@ -36,19 +42,9 @@
       <find>setsect</find>
     </findStrings>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
-    </option>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/store/locations/AisleTest.java" />
-      </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
@@ -461,13 +457,6 @@
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="ba16fc0b-098a-4798-bd75-f298cbb353cf" name="Default" comment="" />
-      <created>1494209174739</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1494209174739</updated>
-    </task>
     <servers />
   </component>
   <component name="TestHistory">
@@ -495,7 +484,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -512,7 +501,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15416667" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15416667" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -567,7 +556,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/store/locations/RackTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-923">
+        <state relative-caret-position="100">
           <caret line="7" column="6" lean-forward="false" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
           <folding />
         </state>
