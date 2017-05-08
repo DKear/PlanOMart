@@ -1,5 +1,6 @@
 package store.locations;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -74,5 +75,31 @@ class AisleTest {
     public void validateAisleNegativeTest() {
         Aisle a = new Aisle("");
         Assertions.assertFalse(a.validateAisle());
+    }
+
+    @Test
+    public void addTagTest(){
+        Aisle a = new Aisle("Aisle: test");
+        a.addTag("dairy");
+        Assertions.assertTrue(a.tags.get(0).equals("dairy"));
+    }
+
+    @Test
+    public void removeTagTest(){
+        Aisle a = new Aisle("Aisle: test");
+        a.addTag("dairy");
+        a.addTag("freezer");
+        a.removeTag(a.tags.get(0));
+        Assertions.assertTrue(a.tags.get(0).equals("freezer"));
+    }
+
+
+    @Test
+    public void getDisplayNameTest(){
+        Section s = new Section("Section: test");
+        Aisle a = new Aisle("Aisle: test");
+        s.addAisle(a);
+        a.setSection(s);
+        Assertions.assertTrue(a.getAisleDisplayName().equals("Section: test Aisle: test"));
     }
 }
