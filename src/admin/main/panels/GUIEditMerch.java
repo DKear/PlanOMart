@@ -90,6 +90,7 @@ public class GUIEditMerch extends JPanel{
         em.gridwidth = 2;
         em.gridy++;
         add(merchEditDescriptionSubmit, em);
+        em.gridy++;
         add(saleButton, em);
         em.gridy++;
         em.gridwidth = 1;
