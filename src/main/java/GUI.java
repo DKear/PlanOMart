@@ -45,7 +45,6 @@ public class GUI implements ActionListener {
     private GUIAdminEditPanel adminEditPanel = new GUIAdminEditPanel();
     private GUIOpeningPanel openingPanel = new GUIOpeningPanel();
 
-    @Deprecated
     private void addComponentToPane(Container pane) {
         controllingContainer = pane;
         pane.setPreferredSize(new Dimension(1920, 1080));
