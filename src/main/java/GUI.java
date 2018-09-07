@@ -45,6 +45,7 @@ public class GUI implements ActionListener {
     private GUIAdminEditPanel adminEditPanel = new GUIAdminEditPanel();
     private GUIOpeningPanel openingPanel = new GUIOpeningPanel();
 
+    @Deprecated
     private void addComponentToPane(Container pane) {
         controllingContainer = pane;
         pane.setPreferredSize(new Dimension(1920, 1080));
@@ -1088,7 +1089,6 @@ public class GUI implements ActionListener {
     public static void main(String[] args) {
         /* Use an appropriate Look and Feel */
         try {
-            if
             //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
         } catch (UnsupportedLookAndFeelException ex) {
