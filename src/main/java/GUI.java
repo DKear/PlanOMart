@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;              //for layout managers and more
 import java.awt.event.*;        //for action events
 import java.util.Arrays;
-import java.util.Objects;
 
 public class GUI implements ActionListener {
     private Container controllingContainer;
@@ -28,14 +27,14 @@ public class GUI implements ActionListener {
     public Aisle aisle;
     public Rack rack;
     public Shelf shelf;
-    public SaleItem item;
-    public GUIAdminMain adminPanel = new GUIAdminMain();
+    private SaleItem item;
+    private GUIAdminMain adminPanel = new GUIAdminMain();
     private GUIEditMerchPanel adminEditMerchPanel;
-    public GUIEditPanel es, ea, er, esh;
-    public String selected;
-    public GUIEditMerch em = new GUIEditMerch();
-    public GUIPasswordChange pc = new GUIPasswordChange();
-    public GUIAddItemDialog addItemDialog;
+    private GUIEditPanel es, ea, er, esh;
+    private String selected;
+    private GUIEditMerch em = new GUIEditMerch();
+    private GUIPasswordChange pc = new GUIPasswordChange();
+    private GUIAddItemDialog addItemDialog;
     private GUIAddShelfDialog addShelfDialog = new GUIAddShelfDialog();
     private GUIAddRackDialog addRackDialog = new GUIAddRackDialog();
     private GUIAddAisleDialog addAisleDialog = new GUIAddAisleDialog();
@@ -46,7 +45,7 @@ public class GUI implements ActionListener {
     private GUIAdminEditPanel adminEditPanel = new GUIAdminEditPanel();
     private GUIOpeningPanel openingPanel = new GUIOpeningPanel();
 
-    public void addComponentToPane(Container pane) {
+    private void addComponentToPane(Container pane) {
         controllingContainer = pane;
         pane.setPreferredSize(new Dimension(1920, 1080));
 
@@ -81,7 +80,7 @@ public class GUI implements ActionListener {
         pane.add(cards, BorderLayout.CENTER);
 
         ae = new GUIAdminEdit();
-        ae.locationButton.addActionListener(this);
+        GUIAdminEdit.locationButton.addActionListener(this);
         ae.changePassButton.addActionListener(this);
         ae.merchandiseButton.addActionListener(this);
         ae.locationButton.addActionListener(this);

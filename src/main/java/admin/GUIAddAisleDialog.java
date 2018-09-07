@@ -12,7 +12,7 @@ public class GUIAddAisleDialog extends JDialog {
     public JTextField aisleNameField = new JTextField();
     private JLabel aisleTagLabel = new JLabel("Place aisle tags here, separated by a comma and space. Ex. sliced, white");
     public JTextField aisleTagField = new JTextField();
-    public JComboBox<String> sectionDropBox = new JComboBox<>();
+    public JComboBox sectionDropBox;
     private JLabel locationLabel = new JLabel("Location of Aisle:");
     public JButton submitButton = new JButton("Submit");
     private boolean fcheck = false;
@@ -25,7 +25,7 @@ public class GUIAddAisleDialog extends JDialog {
         aisleNameField.setPreferredSize(new Dimension(300, 50));
 
         //Constructing and designing sectionDropBox
-        sectionDropBox = new JComboBox<>();
+        sectionDropBox = new JComboBox();
         sectionDropBox.setPreferredSize(new Dimension(300, 50));
         sectionDropBox.addItem("Select a Section...");
 
